@@ -10,6 +10,13 @@ import { DetalleDtoComponent } from './componentes/dtos/detalle-dto/detalle-dto.
 import { DetalleEndpointComponent } from './componentes/endpoints/detalle-endpoint/detalle-endpoint.component';
 import { ListaEndpointsComponent } from './componentes/endpoints/lista-endpoints/lista-endpoints.component';
 import { GestionEndpointsComponent } from './componentes/endpoints/gestion-endpoints/gestion-endpoints.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,14 @@ import { GestionEndpointsComponent } from './componentes/endpoints/gestion-endpo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
