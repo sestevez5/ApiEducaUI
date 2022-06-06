@@ -1,0 +1,6 @@
+import { subsistemaModel } from './subsistemaModel';
+export const SUBSISTEMAS: subsistemaModel[] = [
+
+    {codigo: 'ASEALU', Denominacion: 'Apuntes de Seguimiento del Alumnado', Descripcion:'bla, bla,...'}
+
+]

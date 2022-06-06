@@ -1,21 +1,17 @@
-import { GestionEndpointsComponent } from './componentes/endpoints/gestion-endpoints/gestion-endpoints.component';
+import { LoginComponent } from './componentes/general/login/login.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GestionDtosComponent } from './componentes/dtos/gestion-dtos/gestion-dtos.component';
+
 
 const routes: Routes = [
-  {
-    path: '',
-    component: GestionDtosComponent
-  },
-  {
-    path: 'endpoints',
-    component: GestionEndpointsComponent
-  },
-  {
-    path: 'dtos',
-    component: GestionDtosComponent
-  },
+  { path: '', redirectTo: 'login', pathMatch:'full'},
+  { path: 'login', component: LoginComponent },
+  { path:'dashboard', loadChildren: () => import('./dashboardModule/dashboard.module').then(x => x.DashboardModule)},
+  { path:'webapi', loadChildren: () => import('./webApiModule/webapi.module').then(x => x.WebapiModule)},
+  { path: '**', redirectTo: 'login', pathMatch:'full'}
+
+
 
 ];
 

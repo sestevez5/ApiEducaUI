@@ -17,6 +17,19 @@ img {
     width: 50%;
 }
 
-.anchor {
+.ancho {
     width: 80%;
+}
+
+.boton {
+
+    height: 50px;
+
+}
+
+.spinner {
+
+    margin: 0 auto
+
+
 }
