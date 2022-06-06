@@ -9,10 +9,19 @@ export class WebapiService {
   constructor(private http: HttpClient) {
     http.get('../assets/json/webapiPre.json').subscribe(dato=> {
 
-      const x=Object.values(dato);
+    
+for(const [key, value] of Object.entries(dato)){
 
-      console.log(x[4].schemas);
-   }
+  if (key==='paths') {
+  console.log(value)
+  }
+}
+        
+      }
+    
+
+      
+   
     )
 }
 }
