@@ -1,3 +1,4 @@
+import { IDto } from './../models/dtoModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,22 +7,37 @@ import { Injectable } from '@angular/core';
 })
 export class WebapiService {
 
+  uriDatos: string = '../assets/json/webapiPre.json';
+
+  dtos: IDto[]=[];
+
   constructor(private http: HttpClient) {
-    http.get('../assets/json/webapiPre.json').subscribe(dato=> {
 
-    
-for(const [key, value] of Object.entries(dato)){
+    this.ProcesarDatos();
 
-  if (key==='paths') {
-  console.log(value)
-  }
 }
-        
-      }
-    
 
-      
-   
-    )
+ProcesarDatos(){
+  this.http.get(this.uriDatos).subscribe(dato=> {
+    
+    for(const [key, value] of Object.entries(dato)){
+          if (key==='paths') { 
+            this.ObtenerDtos(value);
+           }
+    }
+  });
 }
+
+ObtenerDtos(paths:Object){
+
+  for(const [key, value] of Object.entries(paths)){
+ 
+      console.log(key,value);
+    
+}
+  
+
+}
+
+
 }

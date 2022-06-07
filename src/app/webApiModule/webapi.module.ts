@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './../sharedModule/shared.module';
+
 import { WebApiRoutingModule } from './webapi-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,7 @@ import { GestionDtosComponent } from './components/dtos/gestion-dtos/gestion-dto
   imports: [
     CommonModule,
     WebApiRoutingModule,
-    HttpClientModule
+    SharedModule
     
   ]
 })
