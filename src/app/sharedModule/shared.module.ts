@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import { MatTreeModule } from '@angular/material/tree';
 
 
 
@@ -34,7 +35,8 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatTreeModule
   ],
   exports: [
     MatMenuModule,
@@ -48,7 +50,8 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatTreeModule
   ]
 })
 export class SharedModule {

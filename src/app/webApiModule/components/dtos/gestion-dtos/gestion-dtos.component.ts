@@ -1,25 +1,51 @@
 import { WebapiService } from './../../../services/webapi.service';
 import { Component, OnInit } from '@angular/core';
+import {MatTreeNestedDataSource} from '@angular/material/tree';
+import {NestedTreeControl} from '@angular/cdk/tree';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+/**
+ * Food data with nested structure.
+ * Each node has a name and an optional list of children.
+ */
+ interface FoodNode {
+  nodo: {nombreEntidad: string, camposSimples: Array<{nombreCampo:string,tipoCampo:string}>};
+  children?: FoodNode[];
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const TREE_DATA: FoodNode[] = [
+  {
+    nodo: {nombreEntidad: 'A', camposSimples: [{nombreCampo:'x',tipoCampo:'integer'},{nombreCampo:'y',tipoCampo:'integer'}] },
+    children: [
+      {
+        nodo: {nombreEntidad: 'Matricula', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'},{nombreCampo:'id',tipoCampo:'integer'}] }
+      }
+    ],
+  },
+
+  {
+    nodo: {nombreEntidad: 'B', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'},{nombreCampo:'denominacionLarga',tipoCampo:'integer'}] },
+    children: [
+      {
+        nodo: {nombreEntidad: 'Matricula', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'}] }
+      }
+    ],
+  },
+  {
+    nodo: {nombreEntidad: 'C', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'},{nombreCampo:'',tipoCampo:'integer'}] },
+    children: [
+      {
+        nodo: {nombreEntidad: 'C1', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'}] },
+        children: [
+          {
+            nodo: {nombreEntidad: 'C11', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'}] }
+          }
+        ]
+      }
+    ],
+  },
+  
 ];
+
 
 @Component({
   selector: 'app-gestion-dtos',
@@ -27,14 +53,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./gestion-dtos.component.css']
 })
 export class GestionDtosComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
 
-  constructor(private was: WebapiService) { 
+  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
 
-   
-   
-  }
+  constructor(private was: WebapiService) { this.dataSource.data = TREE_DATA;}
+
+  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+
+
 
   ngOnInit(): void {
   }
