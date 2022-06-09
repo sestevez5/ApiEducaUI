@@ -1,50 +1,28 @@
+import { EnumTipoDto } from './../../../models/enumTipoDto';
+import { subsistemaModel } from './../../../models/subsistemaModel';
+import { IDto } from './../../../models/dtoModel';
 import { WebapiService } from './../../../services/webapi.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
 
-/**
- * Food data with nested structure.
- * Each node has a name and an optional list of children.
- */
- interface FoodNode {
-  nodo: {nombreEntidad: string, camposSimples: Array<{nombreCampo:string,tipoCampo:string}>};
-  children?: FoodNode[];
+import { EnumTipoCampoSimple } from 'src/app/webApiModule/models/enumTipoCampoSimple';
+
+
+
+const x: IDto = {
+  denominacion: "Matricula",
+  tipo: "MatriculaDTO",
+  tipoDTO: EnumTipoDto.EX,
+  subsistema: "Matriculas",
+  campos: [
+    { denominacion: "idMatricula", tipo: "numero", descripcion: "bla, bla"},
+    { denominacion: "fecha", tipo: "cadena", descripcion: "bla, bla"},
+    { denominacion: "viva", tipo: "fecha", descripcion: "bla, bla"},
+    { denominacion: "area", tipo: "AreaDTO", tipoDTO: EnumTipoDto.EX, subsistema: "Matriculas", campos:[   { denominacion: "fecha", tipo: "cadena", descripcion: "bla, bla"},
+    { denominacion: "viva", tipo: "cadena", descripcion: "bla, bla"},] }
+  ]
 }
-
-const TREE_DATA: FoodNode[] = [
-  {
-    nodo: {nombreEntidad: 'A', camposSimples: [{nombreCampo:'x',tipoCampo:'integer'},{nombreCampo:'y',tipoCampo:'integer'}] },
-    children: [
-      {
-        nodo: {nombreEntidad: 'Matricula', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'},{nombreCampo:'id',tipoCampo:'integer'}] }
-      }
-    ],
-  },
-
-  {
-    nodo: {nombreEntidad: 'B', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'},{nombreCampo:'denominacionLarga',tipoCampo:'integer'}] },
-    children: [
-      {
-        nodo: {nombreEntidad: 'Matricula', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'}] }
-      }
-    ],
-  },
-  {
-    nodo: {nombreEntidad: 'C', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'},{nombreCampo:'',tipoCampo:'integer'}] },
-    children: [
-      {
-        nodo: {nombreEntidad: 'C1', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'}] },
-        children: [
-          {
-            nodo: {nombreEntidad: 'C11', camposSimples: [{nombreCampo:'id',tipoCampo:'integer'}] }
-          }
-        ]
-      }
-    ],
-  },
-  
-];
 
 
 @Component({
@@ -54,16 +32,16 @@ const TREE_DATA: FoodNode[] = [
 })
 export class GestionDtosComponent implements OnInit {
 
-  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<FoodNode>();
 
-  constructor(private was: WebapiService) { this.dataSource.data = TREE_DATA;}
+  @Input() dto:IDto = x;
 
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  constructor(private was: WebapiService) { }
 
 
 
   ngOnInit(): void {
   }
+
+
 
 }
