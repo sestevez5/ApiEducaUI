@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GestionDtosComponent } from './gestion-dtos.component';
+import { ArbolAgrupamientosComponent } from './arbol-agrupamientos.component';
 
-describe('GestionDtosComponent', () => {
-  let component: GestionDtosComponent;
-  let fixture: ComponentFixture<GestionDtosComponent>;
+describe('ArbolAgrupamientosComponent', () => {
+  let component: ArbolAgrupamientosComponent;
+  let fixture: ComponentFixture<ArbolAgrupamientosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GestionDtosComponent ]
+      declarations: [ ArbolAgrupamientosComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GestionDtosComponent);
+    fixture = TestBed.createComponent(ArbolAgrupamientosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

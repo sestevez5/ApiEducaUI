@@ -1,0 +1,22 @@
+
+mat-sidenav-container {
+  height: calc(100% - 64px);
+
+}
+
+mat-sidenav {
+
+}
+
+mat-sidenav-content {
+
+}
+
+
+
+
+  /* .contenido {
+    padding-left: 16px;
+} */
+
+

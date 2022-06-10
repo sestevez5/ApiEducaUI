@@ -1,0 +1,49 @@
+<mat-nav-list>
+    <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+        <span class="full-width" *ngIf="isExpanded || isShowing">Todos</span>
+        <mat-icon mat-list-icon>home</mat-icon>
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+    </mat-list-item>
+
+    <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+
+        <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+            <span class="full-width" *ngIf="isExpanded || isShowing">Gestion Centros</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+        </mat-list-item>
+        <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+
+            <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+                <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+                    <span class="full-width" *ngIf="isExpanded || isShowing">Proideac</span>
+                    <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+                </mat-list-item>
+                <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+                    <mat-list-item>Situaciones de aprendizaje</mat-list-item>
+                    <mat-list-item>Programaciones didácticas</mat-list-item>
+                </div>
+            </div>
+        </div>
+
+        <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+            <span class="full-width" *ngIf="isExpanded || isShowing">Matrículas</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+        </mat-list-item>
+        <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+            
+            <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+                <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+                    <span class="full-width" *ngIf="isExpanded || isShowing">Matrículas</span>
+                    <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+                </mat-list-item>
+                <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+                    <mat-list-item>SubSubmenu Item 1</mat-list-item>
+                    <mat-list-item>SubSubmenu Item 2</mat-list-item>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</mat-nav-list>
+

@@ -3,15 +3,14 @@ import { IDto } from './../../../models/dtoModel';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-arbol-dto',
-  templateUrl: './arbol-dto.component.html',
-  styleUrls: ['./arbol-dto.component.css']
+  selector: 'app-arbol-agrupamientos',
+  templateUrl: './arbol-agrupamientos.component.html',
+  styleUrls: ['./arbol-agrupamientos.component.css']
 })
-export class ArbolDTOComponent implements OnInit {
+export class ArbolAgrupamientosComponent implements OnInit {
 
   ICampoSimple!: ICampoSimple;
   IDto!: IDto
-
   @Input() dto: IDto | undefined; 
   @Input() nombreCampo: string | undefined;
   @Input() ocultarTipos: boolean= false;
@@ -26,7 +25,5 @@ export class ArbolDTOComponent implements OnInit {
     return !('tipoDTO' in campo);
   }
 
- 
-  
 
 }

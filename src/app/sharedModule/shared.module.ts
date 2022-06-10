@@ -16,6 +16,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -36,7 +38,10 @@ import { MatTreeModule } from '@angular/material/tree';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatCheckboxModule
   ],
   exports: [
     MatMenuModule,
@@ -51,7 +56,10 @@ import { MatTreeModule } from '@angular/material/tree';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule {

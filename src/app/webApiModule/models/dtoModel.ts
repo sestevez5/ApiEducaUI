@@ -6,5 +6,6 @@ export interface IDto {
     tipo: string;
     tipoDTO: EnumTipoDto;
     subsistema: string;
+    gestion:string;
     campos: Array<IDto|ICampoSimple>
 }

@@ -13,16 +13,22 @@ export class WebapiService {
 
   constructor(private http: HttpClient) {
 
-    this.ProcesarDatos();
+    this.ProcesarDtos();
 
 }
 
-ProcesarDatos(){
+ProcesarDtos(){
   this.http.get(this.uriDatos).subscribe(dato=> {
+
     
     for(const [key, value] of Object.entries(dato)){
-          if (key==='paths') { 
-            this.ObtenerDtos(value);
+          if (key==='components') { 
+            const x=value.schemas;
+            for(const [key, value] of Object.entries(x)){
+        
+                this.ObtenerDtos(x);
+               
+        }
            }
     }
   });
@@ -30,14 +36,39 @@ ProcesarDatos(){
 
 ObtenerDtos(paths:Object){
 
+  let endPoints: string[][]=[];
+
   for(const [key, value] of Object.entries(paths)){
- 
-      console.log(key,value);
+
+    const arrayNombresDto=key.split('.');
+    const longitud = arrayNombresDto.length;
+
+    const nombreDto = arrayNombresDto[longitud-1];
+   
+    if (nombreDto.endsWith('ExDTO')){
+      endPoints.push(arrayNombresDto)
+    }
+    
+    console.log(endPoints);
     
 }
   
 
 }
+
+// procesarEndpoint(key: string){
+
+//   const arrayNombresDto=key.split('.');
+//   const longitud = arrayNombresDto.length;
+//   for (let index = 0; index < array.length; index++) {
+//   const element = array[index];
+  
+// }
+
+//   console.log(arrayNombresDto);
+//   console.log('Dto: ', arrayNombresDto[longitud-1])
+
+// }
 
 
 }
