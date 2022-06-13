@@ -1,11 +1,21 @@
 <div *ngIf="dto"  class="dto" [ngClass]="{'DtoHijo' : !esDtoRaiz}">
     <div class="seccion seccionCabeceraDto" [ngClass]="esDtoRaiz ? 'seccionCabeceraDtoRaiz' : 'seccionCabeceraDtoHijo'">
-        <button  (click)="expandir = !expandir"  mat-icon-button aria-label="Example icon-button with menu icon">
-            <mat-icon class="boton-expandir" [ngClass]="{'rotado' : !expandir}">expand_more</mat-icon>
-        </button>
-        <span class="tipoDto">{{dto.nombreDto}}</span>
+  
+        <div class="tipoDto">
+            {{dto.nombreDto}}
+
+        </div>
+        <div class="botonDesplegarExpandir">
+            <button  (click)="expandir = !expandir"  mat-icon-button aria-label="Example icon-button with menu icon">
+                <mat-icon class="iconoDesplegarExpandir" [ngClass]="{'rotado' : !expandir}">expand_more</mat-icon>
+            </button>
+
+        </div>
+        
+        
+   
     </div>
-    <div *ngIf="!this.esCampoSimple(dto)" class="seccion seccionCuerpo">
+    <div *ngIf="!this.esCampoSimple(dto)" class="seccion seccionCuerpo" [ngClass]="{'oculto' : !expandir}">
 
         <div class="seccion seccionCampo" *ngFor="let campo of dto.campos" >
 
@@ -14,12 +24,12 @@
             <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo); else campoDto" >
                 <div class="seccion seccionNombre">{{campo.nombreCampo}}:</div>
                 <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoSimple"  >
-                    {{campo.tipoCampo}}
+                    [{{campo.tipoCampo}}]
                 </div>
             </ng-container>
 
             <ng-template #campoDto>
-                <div class="seccion seccionNombre">{{campo.nombreCampo}}</div>
+                <div class="seccion seccionNombre">{{campo.nombreCampo}}:</div>
                 <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoDto"  >
                     <app-arbol-dto *ngIf="!this.esCampoSimple(campo.tipoCampo)" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false"></app-arbol-dto>
                 </div>
