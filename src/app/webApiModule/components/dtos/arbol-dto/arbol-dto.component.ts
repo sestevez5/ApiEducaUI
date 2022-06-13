@@ -1,4 +1,3 @@
-import { ICampoSimple } from './../../../models/campoSimpleModel';
 import { IDto } from './../../../models/dtoModel';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -9,11 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ArbolDTOComponent implements OnInit {
 
-  ICampoSimple!: ICampoSimple;
   IDto!: IDto
 
   @Input() dto: IDto | undefined; 
-  @Input() nombreCampo: string | undefined;
   @Input() ocultarTipos: boolean= false;
   @Input() esDtoRaiz: boolean = false;
   expandir = true;
@@ -22,8 +19,9 @@ export class ArbolDTOComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  esCampoSimple(campo: IDto|ICampoSimple) {
-    return !('tipoDTO' in campo);
+  esCampoSimple(tipoCampo: any) {
+
+    return !(tipoCampo instanceof Object);
   }
 
  

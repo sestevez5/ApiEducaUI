@@ -1,29 +1,32 @@
-<div class="xDto" *ngIf="dto" >
-    <div [ngClass]="esDtoRaiz ? 'cabeceraDtoRaiz' : 'cabeceraDtoHijo'">
-        <button  (click)="expandir = !expandir"  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+<div *ngIf="dto"  class="dto" [ngClass]="{'DtoHijo' : !esDtoRaiz}">
+    <div class="seccion seccionCabeceraDto" [ngClass]="esDtoRaiz ? 'seccionCabeceraDtoRaiz' : 'seccionCabeceraDtoHijo'">
+        <button  (click)="expandir = !expandir"  mat-icon-button aria-label="Example icon-button with menu icon">
             <mat-icon class="boton-expandir" [ngClass]="{'rotado' : !expandir}">expand_more</mat-icon>
         </button>
-        {{ this.nombreCampo? this.nombreCampo+": ":null}}<span class="tipoDto">{{dto.tipo}}</span>
+        <span class="tipoDto">{{dto.nombreDto}}</span>
     </div>
-    <div *ngIf="!this.esCampoSimple(dto) && expandir"  class="cuerpo">
-        <div class="campos">
-            <ng-container *ngFor="let campo of dto.campos" >
+    <div *ngIf="!this.esCampoSimple(dto)" class="seccion seccionCuerpo">
 
-                <div class="campoSimple" *ngIf="this.esCampoSimple(campo)">
-                    {{ (campo | como : ICampoSimple).denominacion }}<span *ngIf="!this.ocultarTipos"  class="tipo" >: [{{ (campo | como : ICampoSimple).tipo }}]</span>
-                </div>
+        <div class="seccion seccionCampo" *ngFor="let campo of dto.campos" >
 
-                <div class="Dto" *ngIf="!this.esCampoSimple(campo)">
-                    <app-arbol-dto [dto]="(campo | como : IDto)" [nombreCampo]="(campo | como : ICampoSimple).denominacion"></app-arbol-dto>
+            
+            
+            <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo); else campoDto" >
+                <div class="seccion seccionNombre">{{campo.nombreCampo}}:</div>
+                <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoSimple"  >
+                    {{campo.tipoCampo}}
                 </div>
             </ng-container>
 
+            <ng-template #campoDto>
+                <div class="seccion seccionNombre">{{campo.nombreCampo}}</div>
+                <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoDto"  >
+                    <app-arbol-dto *ngIf="!this.esCampoSimple(campo.tipoCampo)" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false"></app-arbol-dto>
+                </div>
+
+            </ng-template>
+
         </div>
-      
+    
     </div>
-
-
-
-
-
 </div>

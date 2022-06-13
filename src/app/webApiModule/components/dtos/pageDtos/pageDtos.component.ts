@@ -11,34 +11,36 @@ import { EnumTipoCampoSimple } from 'src/app/webApiModule/models/enumTipoCampoSi
 
 
 const x: IDto[] = [{
-  denominacion: "Matricula",
-  tipo: "MatriculaDTO",
-  tipoDTO: EnumTipoDto.EX,
+  nombreDto: "MatriculaDTO",
+  tipoDto: EnumTipoDto.EX,
   subsistema: "Matriculas",
   gestion: "Prueba",
   campos: [
-    { denominacion: "idMatricula", tipo: "numero", descripcion: "bla, bla"},
-    { denominacion: "fecha", tipo: "cadena", descripcion: "bla, bla"},
-    { denominacion: "viva", tipo: "fecha", descripcion: "bla, bla"},
-    { denominacion: "area", tipo: "AreaDTO", tipoDTO: EnumTipoDto.EX, subsistema: "Matriculas", gestion: "pruebaGestion", campos:[   { denominacion: "fecha", tipo: "cadena", descripcion: "bla, bla"},
-    { denominacion: "viva", tipo: "cadena", descripcion: "bla, bla"},] }
-  ]
-},
-{
-  denominacion: "Matricula",
-  tipo: "MatriculaDTO",
-  tipoDTO: EnumTipoDto.EX,
-  subsistema: "Matriculas",
-  gestion: "pruebaGestion",
-  campos: [
-    { denominacion: "idMatricula", tipo: "numero", descripcion: "bla, bla"},
-    { denominacion: "fecha", tipo: "cadena", descripcion: "bla, bla"},
-    { denominacion: "viva", tipo: "fecha", descripcion: "bla, bla"},
-    { denominacion: "area", tipo: "AreaDTO", tipoDTO: EnumTipoDto.EX, subsistema: "Matriculas", gestion: "pruebaGestion", campos:[   { denominacion: "fecha", tipo: "cadena", descripcion: "bla, bla"},
-    { denominacion: "viva", tipo: "cadena", descripcion: "bla, bla"},] }
+    { nombreCampo: "idMatricula", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+    { nombreCampo: "idMatricula2", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+    { nombreCampo: "MatriculaArea", 
+      tipoCampo: 
+        { nombreDto: "MatriculaAreaDTO", 
+          tipoDto: EnumTipoDto.EX, 
+          subsistema:"prueba", 
+          gestion:"prueba2",
+          campos: [
+            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+            { nombreCampo: "infoArea", 
+              tipoCampo: 
+                { nombreDto: "AreaInfoDTO", 
+                  tipoDto: EnumTipoDto.EX, 
+                  subsistema:"prueba", 
+                  gestion:"prueba2",
+                  campos: [
+        
+                  ] },
+                descripcionCampo: "dsajlksdjlasdj"},
+
+          ] },
+        descripcionCampo: "dsajlksdjlasdj"},
   ]
 }
-
 
 
 ]

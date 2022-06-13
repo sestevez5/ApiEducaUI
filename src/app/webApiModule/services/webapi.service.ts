@@ -13,7 +13,7 @@ export class WebapiService {
 
   constructor(private http: HttpClient) {
 
-    this.ProcesarDtos();
+    //this.ProcesarDtos();
 
 }
 

@@ -1,11 +1,9 @@
-import { ICampoSimple } from './campoSimpleModel';
 import { subsistemaModel } from './subsistemaModel';
 import { EnumTipoDto } from './enumTipoDto';
 export interface IDto {
-    denominacion: string;
-    tipo: string;
-    tipoDTO: EnumTipoDto;
+    nombreDto: string;
+    tipoDto: EnumTipoDto;
     subsistema: string;
     gestion:string;
-    campos: Array<IDto|ICampoSimple>
+    campos: Array<{nombreCampo:string, tipoCampo:IDto|string, descripcionCampo: string}>
 }

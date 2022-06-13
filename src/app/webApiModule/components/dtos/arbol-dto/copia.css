@@ -1,0 +1,124 @@
+.campos {
+    margin-top: 6px;
+    margin-left: 42px;
+    padding-left: 5px;
+    border-left-style: solid;
+    border-left-color: grey;
+    border-left-width: 1px;
+    
+  }
+
+  .tipoDto {
+    font-weight: bold;
+  }
+  
+  .tipo {
+   
+    font-style: italic;
+    color: grey;
+  }
+
+  .cabeceraDtoRaiz {
+    margin-top: 8px;
+    background-color: #b2dafa;
+
+
+
+  }
+
+  .cabeceraDtoHijo {
+    /* height: 25px; */
+    background-color: #b2dafa;
+
+  }
+
+
+
+  .boton-expandir {
+  
+    transform: rotate(0deg);
+  }
+
+
+
+
+  .boton-expandir.rotado {
+  
+    transform: rotate(-90deg);
+  }
+
+
+
+
+.campo {
+  display: flex;
+  margin-bottom: 10px;
+
+}
+
+
+.nombreCampo{
+ padding-top: 8px;
+}
+
+.tipoCampo {
+
+  margin-left: 5px;
+  display: inline-block;
+  width:100%
+ }
+
+ .tipoCampoSimple {
+  padding-top: 8px;
+
+
+ }
+
+button {
+
+  padding: 0px;
+  margin: 0px;
+}
+
+<div *ngIf="dto" class="Dto" [ngClass]="{'DtoRaiz' : esDtoRaiz}">
+    <!-- Cabecera del nodo raíz. -->
+    <div [ngClass]="esDtoRaiz ? 'cabeceraDtoRaiz' : 'cabeceraDtoHijo'">
+        <button  (click)="expandir = !expandir"  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon class="boton-expandir" [ngClass]="{'rotado' : !expandir}">expand_more</mat-icon>
+        </button>
+        <span class="tipoDto">{{dto.nombreDto}}</span>
+    </div>
+
+    <!-- Cuerpo: Lista de campos -->
+    <div *ngIf="!this.esCampoSimple(dto) && expandir"  class="cuerpo">
+
+        <!-- Para cada campo generamos un div con el nombre del campo más el tipo. El tipo puede ser, recursivamente, un nuevo Dto -->
+        <div class="campos">
+
+            <!-- Para cada campo generamos un div con el nombre del campo más el tipo. El tipo puede ser, recursivamente, un nuevo Dto -->
+            <ng-container class="campo" *ngFor="let campo of dto.campos" >
+
+                <!-- CASO 1: Se trata de un campo primitivo. Solo se renderiza el nombre del campo y el tipo primitvo -->
+                <div *ngIf="this.esCampoSimple(campo.tipoCampo) && !this.ocultarTipos"  class="campoSimple">
+                    {{ campo.nombreCampo }}
+                    <span *ngIf="this.esCampoSimple(campo.tipoCampo) && !this.ocultarTipos"  class="tipoCampoSimple" >: [{{ campo.tipoCampo }}]</span>
+                </div>
+
+                <!-- CASO 2: El tipo es un DTO. Se renderiza el nombre del campo y todo el tipo -->
+                <div *ngIf="!this.esCampoSimple(campo.tipoCampo) && !this.ocultarTipos"  class="campoDto tipoCampo">
+                    {{ campo.nombreCampo }}
+                    <app-arbol-dto *ngIf="!this.esCampoSimple(campo.tipoCampo)" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false"></app-arbol-dto>
+                </div>
+
+      
+            </ng-container>
+
+        </div>
+      
+    </div>
+
+
+
+
+
+</div>

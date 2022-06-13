@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SidenavDtosComponent } from './components/dtos/sidenavDtos/sidenavDtos.component';
 import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.component';
-import { ArbolAgrupamientosComponent } from './components/comunes/arbol-agrupamientos/arbol-agrupamientos.component'
+
 
 
 
@@ -20,8 +20,7 @@ import { ArbolAgrupamientosComponent } from './components/comunes/arbol-agrupami
     ArbolDTOComponent,
     ComoPipe,
     SidenavDtosComponent,
-    MainDtosComponent,
-    ArbolAgrupamientosComponent
+    MainDtosComponent
   ],
   imports: [
     CommonModule,
