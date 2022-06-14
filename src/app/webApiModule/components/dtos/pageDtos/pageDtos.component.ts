@@ -16,8 +16,8 @@ const x: IDto[] = [{
   subsistema: "Matriculas",
   gestion: "Prueba",
   campos: [
-    { nombreCampo: "idMatricula", tipoCampo:"entero", descripcionCampo: "bla, bla"},
-    { nombreCampo: "idMatricula2", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+    { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
+    { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
     { nombreCampo: "MatriculaArea", 
       tipoCampo: 
         { nombreDto: "MatriculaAreaDTO", 
@@ -25,15 +25,15 @@ const x: IDto[] = [{
           subsistema:"prueba", 
           gestion:"prueba2",
           campos: [
-            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
             { nombreCampo: "infoArea", 
               tipoCampo: 
                 { nombreDto: "AreaInfoDTO", 
                   tipoDto: EnumTipoDto.EX, 
                   subsistema:"prueba", 
                   gestion:"prueba2",
-                  campos: [ { nombreCampo: "idMatricula", tipoCampo:"entero", descripcionCampo: "bla, bla"},
-                  { nombreCampo: "idMatricula2", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+                  campos: [ { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
+                  { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
                   { nombreCampo: "MatriculaArea", 
                     tipoCampo: 
                       { nombreDto: "MatriculaAreaDTO", 
@@ -41,7 +41,7 @@ const x: IDto[] = [{
                         subsistema:"prueba", 
                         gestion:"prueba2",
                         campos: [
-                          { nombreCampo: "idMatriculaArea", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+                          { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
                           { nombreCampo: "infoArea", 
                             tipoCampo: 
                               { nombreDto: "AreaInfoDTO", 
@@ -51,16 +51,16 @@ const x: IDto[] = [{
                                 campos: [
                       
                                 ] },
-                              descripcionCampo: "dsajlksdjlasdj"},
+                              nullable: true},
               
                         ] },
-                      descripcionCampo: "dsajlksdjlasdj"}
+                      nullable: true}
         
                   ] },
-                descripcionCampo: "dsajlksdjlasdj"},
+                nullable: true},
 
           ] },
-        descripcionCampo: "dsajlksdjlasdj"},
+        nullable: true},
   ]
 },
 {
@@ -69,8 +69,8 @@ const x: IDto[] = [{
   subsistema: "Matriculas",
   gestion: "Prueba",
   campos: [
-    { nombreCampo: "idMatricula", tipoCampo:"entero", descripcionCampo: "bla, bla"},
-    { nombreCampo: "idMatricula2", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+    { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
+    { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
     { nombreCampo: "MatriculaArea", 
       tipoCampo: 
         { nombreDto: "MatriculaAreaDTO", 
@@ -78,15 +78,15 @@ const x: IDto[] = [{
           subsistema:"prueba", 
           gestion:"prueba2",
           campos: [
-            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
             { nombreCampo: "infoArea", 
               tipoCampo: 
                 { nombreDto: "AreaInfoDTO", 
                   tipoDto: EnumTipoDto.EX, 
                   subsistema:"prueba", 
                   gestion:"prueba2",
-                  campos: [ { nombreCampo: "idMatricula", tipoCampo:"entero", descripcionCampo: "bla, bla"},
-                  { nombreCampo: "idMatricula2", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+                  campos: [ { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
+                  { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
                   { nombreCampo: "MatriculaArea", 
                     tipoCampo: 
                       { nombreDto: "MatriculaAreaDTO", 
@@ -94,7 +94,7 @@ const x: IDto[] = [{
                         subsistema:"prueba", 
                         gestion:"prueba2",
                         campos: [
-                          { nombreCampo: "idMatriculaArea", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+                          { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
                           { nombreCampo: "infoArea", 
                             tipoCampo: 
                               { nombreDto: "AreaInfoDTO", 
@@ -104,16 +104,16 @@ const x: IDto[] = [{
                                 campos: [
                       
                                 ] },
-                              descripcionCampo: "dsajlksdjlasdj"},
+                              nullable: true},
               
                         ] },
-                      descripcionCampo: "dsajlksdjlasdj"}
+                      nullable: true}
         
                   ] },
-                descripcionCampo: "dsajlksdjlasdj"},
+                nullable: true},
 
           ] },
-        descripcionCampo: "dsajlksdjlasdj"},
+        nullable: true},
   ]
 }
 
@@ -129,11 +129,13 @@ const x: IDto[] = [{
 export class PageDtosComponent implements OnInit {
 
 
-  @Input() dtos:IDto[] = x;
+  @Input() dtos:IDto[] = [];
   
   events: string[] = [];
   opened= false;
-  constructor(private was: WebapiService) { }
+  constructor(private was: WebapiService) { 
+    was.obtenerDtos().subscribe( dtos => this.dtos = dtos );
+  }
 
 
 
