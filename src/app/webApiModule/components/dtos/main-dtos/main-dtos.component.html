@@ -1,6 +1,20 @@
 <div class="container">
     <div class="cabecera">
-        DTOS
+     
     </div>
+
+    <div class="buscador">
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Buscar</mat-label>
+              <input matInput #message maxlength="256" placeholder="Ejemplo: SituacionAprendizajeEXDTOs...">
+              <mat-hint align="start"><strong>La búsqueda atiende nombre de Dtos y campos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+        </form>
+    </div>
+
+    
     <app-arbol-dto *ngFor="let dto of dtos" [dto]="dto" [esDtoRaiz]="true"></app-arbol-dto>
+   
 </div>

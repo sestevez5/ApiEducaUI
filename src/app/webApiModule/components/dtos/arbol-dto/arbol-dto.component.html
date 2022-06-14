@@ -1,4 +1,4 @@
-<div *ngIf="dto"  class="dto" [ngClass]="{'DtoHijo' : !esDtoRaiz}">
+<div *ngIf="dto"  class="dto" [ngClass]="{'dtoPadre' : esDtoRaiz}">
     <div class="seccion seccionCabeceraDto" [ngClass]="esDtoRaiz ? 'seccionCabeceraDtoRaiz' : 'seccionCabeceraDtoHijo'">
   
         <div class="tipoDto">

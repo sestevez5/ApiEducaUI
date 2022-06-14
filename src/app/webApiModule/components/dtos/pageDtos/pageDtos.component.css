@@ -12,6 +12,14 @@ mat-sidenav-content {
 
 }
 
+.webApiPestanya {
+  padding:40px;
+}
+
+
+mat-sidenav-content {
+  background-color: white;
+}
 
 
 

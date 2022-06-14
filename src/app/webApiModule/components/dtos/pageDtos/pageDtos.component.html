@@ -4,9 +4,24 @@
   </mat-sidenav>
 
   <mat-sidenav-content> 
-    <app-main-dtos [dtos]="dtos">
+    <mat-tab-group>
+      <mat-tab label="DTOS">    
+        <div class="webApiPestanya">
+          <app-main-dtos [dtos]="dtos"></app-main-dtos>   
+        </div>
+        
+     
+      </mat-tab>
+      
+      <mat-tab label="Endpoints"> 
+        <div class="webApiPestanya">
+          Pendiente 
+        </div>
+        
+      </mat-tab>
+    </mat-tab-group>
 
-    </app-main-dtos>    
+  
   </mat-sidenav-content>
   
 </mat-sidenav-container> 

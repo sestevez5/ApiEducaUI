@@ -62,6 +62,59 @@ const x: IDto[] = [{
           ] },
         descripcionCampo: "dsajlksdjlasdj"},
   ]
+},
+{
+  nombreDto: "MatriculaDTO",
+  tipoDto: EnumTipoDto.EX,
+  subsistema: "Matriculas",
+  gestion: "Prueba",
+  campos: [
+    { nombreCampo: "idMatricula", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+    { nombreCampo: "idMatricula2", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+    { nombreCampo: "MatriculaArea", 
+      tipoCampo: 
+        { nombreDto: "MatriculaAreaDTO", 
+          tipoDto: EnumTipoDto.EX, 
+          subsistema:"prueba", 
+          gestion:"prueba2",
+          campos: [
+            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+            { nombreCampo: "infoArea", 
+              tipoCampo: 
+                { nombreDto: "AreaInfoDTO", 
+                  tipoDto: EnumTipoDto.EX, 
+                  subsistema:"prueba", 
+                  gestion:"prueba2",
+                  campos: [ { nombreCampo: "idMatricula", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+                  { nombreCampo: "idMatricula2", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+                  { nombreCampo: "MatriculaArea", 
+                    tipoCampo: 
+                      { nombreDto: "MatriculaAreaDTO", 
+                        tipoDto: EnumTipoDto.EX, 
+                        subsistema:"prueba", 
+                        gestion:"prueba2",
+                        campos: [
+                          { nombreCampo: "idMatriculaArea", tipoCampo:"entero", descripcionCampo: "bla, bla"},
+                          { nombreCampo: "infoArea", 
+                            tipoCampo: 
+                              { nombreDto: "AreaInfoDTO", 
+                                tipoDto: EnumTipoDto.EX, 
+                                subsistema:"prueba", 
+                                gestion:"prueba2",
+                                campos: [
+                      
+                                ] },
+                              descripcionCampo: "dsajlksdjlasdj"},
+              
+                        ] },
+                      descripcionCampo: "dsajlksdjlasdj"}
+        
+                  ] },
+                descripcionCampo: "dsajlksdjlasdj"},
+
+          ] },
+        descripcionCampo: "dsajlksdjlasdj"},
+  ]
 }
 
 

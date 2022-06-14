@@ -8,22 +8,26 @@
 
 
 
-.dto {
-
+.dtoPadre {
+    margin-bottom: 20px;
 }
 
-.dtoHijo {
 
-    padding-right: 0px;
-
-}
 
 .seccionCabeceraDto {
-    background-color: #b2dafa;
+    background-color: #f1f1f1;
+    box-shadow: 1px 1px 2px #999;
     min-height: 15px;
     margin-bottom: 5px;
     display: flex;
     padding-left: 6px;
+}
+
+.dtoPadre > .seccionCabeceraDto{
+    background-color: #ddd;
+    /* border-top-style: solid;
+    border-top-width: 1px; */
+
 }
 
 .seccionCuerpo {

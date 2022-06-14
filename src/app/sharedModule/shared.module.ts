@@ -17,7 +17,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule} from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
+
+
+
 
 
 
@@ -41,7 +45,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTreeModule,
     MatSidenavModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ],
   exports: [
     MatMenuModule,
@@ -59,7 +64,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTreeModule,
     MatSidenavModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ]
 })
 export class SharedModule {
