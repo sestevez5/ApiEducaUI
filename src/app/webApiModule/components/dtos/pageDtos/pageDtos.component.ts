@@ -134,7 +134,11 @@ export class PageDtosComponent implements OnInit {
   events: string[] = [];
   opened= false;
   constructor(private was: WebapiService) { 
-    was.obtenerDtos().subscribe( dtos => this.dtos = dtos );
+    was.obtenerDtos().subscribe( 
+      datos => {this.dtos = datos}
+    );
+      // dtos => { this.dtos = dtos} 
+      
   }
 
 

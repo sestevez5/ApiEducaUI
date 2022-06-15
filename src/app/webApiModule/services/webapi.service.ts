@@ -11,6 +11,7 @@ import { map, Observable } from 'rxjs';
 export class WebapiService {
 
   uriDatos: string = '../assets/json/webapiPre.json';
+  datos: any;
 
   dtos: IDto[]=[];
 
@@ -25,6 +26,8 @@ export class WebapiService {
     return this.http.get(this.uriDatos)
     .pipe(
       map( datos => {
+
+        this.datos = datos;
 
         let dtos: IDto[]=[];
 
@@ -97,8 +100,8 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
 
     
         const nombreCampo=key;
-        console.log(nombreCampo);
-        let tipo=''
+
+        let tipo: any;
         let nullable: undefined
 
         const val: any = value
@@ -106,7 +109,7 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
         if (Object.prototype.hasOwnProperty.call(val, 'type'))
         {
           tipo = val['type'];
-          console.log('tipo',tipo);
+          
 
         }
         if (Object.prototype.hasOwnProperty.call(val, 'nullable'))
@@ -116,8 +119,10 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
 
         if (Object.prototype.hasOwnProperty.call(val, '$ref'))
         {
-          console.log(val['$ref'])
 
+          tipo=this.obtenerDtoAPartirDeReferencia(val['$ref']);
+          console.log(tipo)
+      
         }
 
         const campo: ICampo = {
@@ -134,59 +139,22 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
   return campos;
 
 }
-// ObtenerDtos(paths:Object){
-
-//   let endPoints: string[][]=[];
-
-//   for(const [key, value] of Object.entries(paths)){
-
-//     const arrayNombresDto=key.split('.');
-//     const longitud = arrayNombresDto.length;
-
-//     const nombreDto = arrayNombresDto[longitud-1];
-   
-//     if (nombreDto.endsWith('ExDTO')){
-//       endPoints.push(arrayNombresDto)
-//     }
-    
-//     console.log(endPoints);
-    
-// }
-  
-
-// }
-
-// procesarEndpoint(key: string){
-
-//   const arrayNombresDto=key.split('.');
-//   const longitud = arrayNombresDto.length;
-//   for (let index = 0; index < array.length; index++) {
-//   const element = array[index];
-  
-// }
-
-//   console.log(arrayNombresDto);
-//   console.log('Dto: ', arrayNombresDto[longitud-1])
-
-// }
 
 
-//ProcesarDtos1(){
-  //   this.http.get(this.uriDatos).subscribe(dato=> {
-  
-      
-  //     for(const [key, value] of Object.entries(dato)){
-  //           if (key==='components') { 
-  //             const x=value.schemas;
-  //             for(const [key, value] of Object.entries(x)){
-          
-  //                 this.ObtenerDtos(x);
-                 
-  //         }
-  //            }
-  //     }
-  //   });
-  // }
-  
+obtenerDtoAPartirDeReferencia(referencia:string){
+
+
+
+  const arraySeccionesReferencia=referencia.split('/');
+  const key = arraySeccionesReferencia[arraySeccionesReferencia.length-1]
+  const value = this.datos.components.schemas[arraySeccionesReferencia[arraySeccionesReferencia.length-1]]
+
+  const dto: IDto = this.obtenerDto(key, value)
+  return dto;
+
+
+};
 
 }
+
+
