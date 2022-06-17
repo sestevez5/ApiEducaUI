@@ -4,23 +4,25 @@ import { SharedModule } from './../sharedModule/shared.module';
 import { WebApiRoutingModule } from './webapi-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageDtosComponent } from './components/dtos/pageDtos/pageDtos.component';
+import { PageWebApiComponent } from './components/comunes/pageWebApi/pageWebApi.component';
 import { ArbolDTOComponent } from './components/dtos/arbol-dto/arbol-dto.component';
 import { FormsModule } from '@angular/forms';
 
 import { SidenavDtosComponent } from './components/dtos/sidenavDtos/sidenavDtos.component';
 import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.component';
+import { PanelParametrosComponent } from './components/dtos/panel-parametros/panel-parametros.component';
 
 
 
 
 @NgModule({
   declarations: [
-    PageDtosComponent,
+    PageWebApiComponent,
     ArbolDTOComponent,
     ComoPipe,
     SidenavDtosComponent,
-    MainDtosComponent
+    MainDtosComponent,
+    PanelParametrosComponent
   ],
   imports: [
     CommonModule,

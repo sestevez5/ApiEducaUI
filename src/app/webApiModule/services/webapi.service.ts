@@ -143,8 +143,6 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
 
 obtenerDtoAPartirDeReferencia(referencia:string){
 
-
-
   const arraySeccionesReferencia=referencia.split('/');
   const key = arraySeccionesReferencia[arraySeccionesReferencia.length-1]
   const value = this.datos.components.schemas[arraySeccionesReferencia[arraySeccionesReferencia.length-1]]

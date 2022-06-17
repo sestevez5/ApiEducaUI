@@ -1,13 +1,9 @@
-.buscador {
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-mat-form-field {
-    width: 100%;
-}
 
 app-arbol-dto {
 
     margin-bottom: 20px;
+}
+
+.seccionDtos {
+    margin-top: 20px;
 }

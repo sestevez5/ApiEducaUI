@@ -122,11 +122,11 @@ const x: IDto[] = [{
 
 
 @Component({
-  selector: 'app-pageDtos',
-  templateUrl: './pageDtos.component.html',
-  styleUrls: ['./pageDtos.component.css']
+  selector: 'app-pageWebApi',
+  templateUrl: './pageWebApi.component.html',
+  styleUrls: ['./pageWebApi.component.css']
 })
-export class PageDtosComponent implements OnInit {
+export class PageWebApiComponent implements OnInit {
 
 
   @Input() dtos:IDto[] = [];

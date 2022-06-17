@@ -19,6 +19,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 
@@ -46,7 +47,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSidenavModule,
     MatDividerModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatMenuModule,
@@ -65,7 +67,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSidenavModule,
     MatDividerModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
   ]
 })
 export class SharedModule {
