@@ -1,3 +1,4 @@
+import { IenumDto } from './../models/enumModel';
 import { ICampo } from './../models/campoModel';
 import { IDto } from './../models/dtoModel';
 import { HttpClient } from '@angular/common/http';
@@ -53,13 +54,19 @@ procesarDtos(nodoDtos: any): IDto[]{
 
   for(const [key, value] of Object.entries(nodoDtos)){
 
-    if (key.endsWith('EXDTO') || key.endsWith('InfoDTO')){
+    const v: any =value;
+   
 
-      const dto = this.obtenerDto(key,value);
-      dtos.push(dto);
+  
+      console.log(v)
+      if (key.endsWith('ExDTO') || key.endsWith('InfoDTO')){
+        const dto = this.obtenerDto(key,value);
+        dtos.push(dto);
+         
+       }
 
-       
-    }
+    
+    
   }
 
  
@@ -73,8 +80,6 @@ obtenerDto(key:any, value: any): IDto{
 
   const arrayNombresDto=key.split('.');
   const longitud = arrayNombresDto.length;
-
-
 
   const dto:IDto = {
     nombreDto: arrayNombresDto[longitud-1],
@@ -91,7 +96,6 @@ obtenerDto(key:any, value: any): IDto{
 
 
 obtenerCamposDto(camposNodo: any):ICampo[]{
-
 
 
     const campos:ICampo[]=[];
@@ -121,7 +125,8 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
         {
 
           tipo=this.obtenerDtoAPartirDeReferencia(val['$ref']);
-          console.log(tipo)
+          console.log('el tipo es:', tipo);
+   
       
         }
 
@@ -141,14 +146,21 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
 }
 
 
-obtenerDtoAPartirDeReferencia(referencia:string){
+obtenerDtoAPartirDeReferencia(referencia:string): IDto | IenumDto{
 
   const arraySeccionesReferencia=referencia.split('/');
   const key = arraySeccionesReferencia[arraySeccionesReferencia.length-1]
   const value = this.datos.components.schemas[arraySeccionesReferencia[arraySeccionesReferencia.length-1]]
 
-  const dto: IDto = this.obtenerDto(key, value)
+  if (value.enum) {
+    return { "valores": ['hola'], "tipo": "adios"}
+    
+  }
+  else {
+  const dto: IDto = this.obtenerDto(key, value);
   return dto;
+  }
+  
 
 
 };

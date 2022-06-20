@@ -3362,6 +3362,14 @@
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asocilada con la colección de entidades SituacionAprendizajeExDTO."
+      },
+      "Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Requests.ECodigoSituacionAprendizaje": {
+        "enum": [
+          "CPUB",
+          "BRUJ"
+        ],
+        "type": "string",
+        "description": "Código tipo situación de aprendizaje."
       }
     },
     "securitySchemes": {

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SidenavDtosComponent } from './components/dtos/sidenavDtos/sidenavDtos.component';
 import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.component';
 import { PanelParametrosComponent } from './components/dtos/panel-parametros/panel-parametros.component';
+import { BuscadorComponent } from './components/comunes/buscador/buscador.component';
 
 
 
@@ -22,7 +23,8 @@ import { PanelParametrosComponent } from './components/dtos/panel-parametros/pan
     ComoPipe,
     SidenavDtosComponent,
     MainDtosComponent,
-    PanelParametrosComponent
+    PanelParametrosComponent,
+    BuscadorComponent
   ],
   imports: [
     CommonModule,

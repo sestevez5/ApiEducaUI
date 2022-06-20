@@ -1,5 +1,6 @@
 import { IDto } from './../../../models/dtoModel';
 import { Component, Input, OnInit } from '@angular/core';
+import { __importDefault } from 'tslib';
 
 @Component({
   selector: 'app-arbol-dto',
@@ -11,9 +12,11 @@ export class ArbolDTOComponent implements OnInit {
   IDto!: IDto
 
   @Input() dto: IDto | undefined; 
-  @Input() ocultarTipos: boolean= false;
-  @Input() esDtoRaiz: boolean = false;
-  expandir = true;
+  @Input() mostrarTiposDeCampos=true;
+  @Input() mostrarDescripcionesDtos=true;
+  @Input() esDtoRaiz: boolean = true;
+  @Input() expandido: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

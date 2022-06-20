@@ -1,10 +1,35 @@
 <div class="container">
-    <div class="cabecera">
-     
-    </div>
 
-
-    <div class="seccionDtos">
-        <app-arbol-dto *ngFor="let dto of dtos" [dto]="dto" [esDtoRaiz]="true"></app-arbol-dto>
+  <!-- Barra de filtrado general -->
+  <mat-toolbar>
+    <div class="seccionBuscador">
+      <mat-form-field class="example-full-width" appearance="legacy">
+        <mat-label>Buscar</mat-label>
+        <input matInput #message maxlength="256" placeholder="Ejemplo: SituacionAprendizajeEXDTOs..." [(ngModel)]="this.textoFiltro">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-hint align="start"><strong>La búsqueda atiende nombre de Dtos y campos</strong> </mat-hint> 
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
     </div>
+    <span class="example-spacer"></span>
+    <mat-slide-toggle [(ngModel)]="mostrarTiposDeCampos" color="primary">Mostrar tipo de campos</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="mostrarDescripcionesDtos" color="primary">Mostrar descripciones</mat-slide-toggle>
+    <button mat-icon-button class="example-icon" (click)="onExpandirToggle()" aria-label="Example icon-button with share icon">
+      <mat-icon >{{ this.panelesExpandidos? 'expand_less' : 'expand_more'}}</mat-icon>
+    </button>
+  </mat-toolbar>
+    
+  <!-- Sección que renderiza los Dtos. -->
+  <div class="seccionDtos">
+    <mat-accordion [multi]="true">
+        <app-arbol-dto 
+          *ngFor="let dto of this.dtosFiltrados" 
+          [dto]="dto" 
+          [expandido]="this.panelesExpandidos" 
+          [mostrarTiposDeCampos]="this.mostrarTiposDeCampos"
+          [mostrarDescripcionesDtos]="this.mostrarDescripcionesDtos">
+        </app-arbol-dto>
+    </mat-accordion>
+  </div>
+
 </div>

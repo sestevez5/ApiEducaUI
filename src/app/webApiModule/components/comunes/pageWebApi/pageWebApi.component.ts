@@ -135,7 +135,9 @@ export class PageWebApiComponent implements OnInit {
   opened= false;
   constructor(private was: WebapiService) { 
     was.obtenerDtos().subscribe( 
-      datos => {this.dtos = datos}
+      datos => {
+
+        this.dtos = datos}
     );
       // dtos => { this.dtos = dtos} 
       

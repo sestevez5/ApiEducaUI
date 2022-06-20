@@ -1,16 +1,17 @@
-mat-panel-title {
-    width: 25%;
+ 
+/* .seccionCabeceraDto {background-color: aqua;}
+.seccionCuerpo {background-color: yellow;}
+.seccionCampo {background-color: orange;}
+.seccionNombre { background-color: green;}
+.seccionDatosTipoCampo { background-color: brown;}  
+.dto {background-color: grey;} */
+
+
+
+.dtoPadre {
+    margin-bottom: 20px;
 }
 
-.dtoPadre mat-expansion-panel-header {
-    height: 39px;
-    background-color: #eee;
-}
-
-.dtoHijo mat-expansion-panel-header {
-    height: 29px;
-    background-color: #fafafa;
-}
 
 
 .seccionCabeceraDto {
@@ -42,7 +43,6 @@ mat-panel-title {
 .seccionCampo {
     margin:1px;
     min-height: 20px;
-    margin-bottom: 5px;
     display: flex;
 }
 

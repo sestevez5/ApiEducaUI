@@ -7,3 +7,26 @@ app-arbol-dto {
 .seccionDtos {
     margin-top: 20px;
 }
+
+.example-spacer {
+    flex: auto;
+}
+
+mat-toolbar {
+    margin-bottom: 15px;
+    padding: 8px;
+    padding-right: 0px;
+    background-color: white;
+    font-size: 15px;
+
+}
+
+
+.seccionBuscador {
+    width: 100%;
+}
+.example-full-width {
+    width: 80%;
+  }
+
+
