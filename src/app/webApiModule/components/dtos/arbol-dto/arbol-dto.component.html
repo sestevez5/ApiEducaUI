@@ -1,87 +1,45 @@
 
-<!-- <div *ngIf="dto"  class="dto" [ngClass]="{'dtoPadre' : esDtoRaiz}">
-    <div class="seccion seccionCabeceraDto" [ngClass]="esDtoRaiz ? 'seccionCabeceraDtoRaiz' : 'seccionCabeceraDtoHijo'">
-  
-        <div class="tipoDto">
-            {{dto.nombreDto}}
-
-        </div>
-        <div class="botonDesplegarExpandir">
-            <button  (click)="expandir = !expandir"  mat-icon-button aria-label="Example icon-button with menu icon">
-                <mat-icon class="iconoDesplegarExpandir" [ngClass]="{'rotado' : !expandir}">expand_more</mat-icon>
-            </button>
-
-        </div>
-        
-        
-   
-    </div>
-    <div *ngIf="!this.esCampoSimple(dto)" class="seccion seccionCuerpo" [ngClass]="{'oculto' : !expandir}">
-
-        <div class="seccion seccionCampo" *ngFor="let campo of dto.campos" >
-
-            
-            
-            <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo); else campoDto" >
-                <div class="seccion seccionNombre">{{campo.nombreCampo}}:</div>
-                <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoSimple"  >
-                    [{{campo.tipoCampo}}]
-                </div>
-            </ng-container>
-
-            <ng-template #campoDto>
-                <div class="seccion seccionNombre">{{campo.nombreCampo}}:</div>
-                <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoDto"  >
-                    <app-arbol-dto *ngIf="!this.esCampoSimple(campo.tipoCampo)" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false"></app-arbol-dto>
-                </div>
-
-            </ng-template>
-
-        </div>
-    
-    </div>
-</div> -->
-
 <mat-expansion-panel [expanded]="this.expandido" *ngIf="dto" class="dto" [ngClass]="{'dtoPadre' : esDtoRaiz}">
-    <mat-expansion-panel-header>
     
-      <mat-panel-title>
-        {{dto.nombreDto}}
-      </mat-panel-title>
-      <mat-panel-description *ngIf="this.mostrarDescripcionesDtos" >
-        This is a summary of the content
-      </mat-panel-description>
-
+    <!-- Cabecera -->
+    <mat-expansion-panel-header>
+          <mat-panel-title> {{dto.nombreDto}} </mat-panel-title>
+      <mat-panel-description *ngIf="this.mostrarDescripcionesDtos" > This is a summary of the content </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <div *ngIf="!this.esCampoSimple(dto)" class="seccion seccionCuerpo">
+    <!-- Cuerpo: Colección de campos -->
+    <div class="seccion seccionCuerpo">
 
         <div class="seccion seccionCampo" *ngFor="let campo of dto.campos" >
-
+           
+            <!-- Sección que contempla el nombre del campo. 
+            Es común inependientemente de la tipología del campo -->
             <div class="seccion seccionNombre">{{campo.nombreCampo}}:</div>
-
+            {{this.esCampoSimple(campo.tipoCampo)}}
+            <!-- Sección correspondiente al tipo del campo. Parte derecha dle nombre -->
             <div class="seccion seccionTipo">
-                <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo); else campoDto" >
 
-                
-                    <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoSimple" *ngIf="this.mostrarTiposDeCampos"   >
+                <!-- Caso 1. Campos de tipo simple -->
+                <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo)===enumTipologiaDeCampos.SIMPLE" >
+                    <div    class="seccion seccionDatosTipoCampo seccionDatosTipoCampoSimple" 
+                            *ngIf="this.mostrarTiposDeCampos"   >
                         [{{campo.tipoCampo}}]
                     </div>
                 </ng-container>
-                
-    
-                <ng-template #campoDto >
+
+                <!-- Caso 2. Es un DTO. LLamada recursiva -->
+                <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo)===enumTipologiaDeCampos.DTO"  >
                     <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoDto" *ngIf="this.mostrarTiposDeCampos" >
-                        <app-arbol-dto class="dtoHijo" *ngIf="!this.esCampoSimple(campo.tipoCampo)" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false" ></app-arbol-dto>
+                        <app-arbol-dto class="dtoHijo" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false" ></app-arbol-dto>
                     </div>
-    
-                </ng-template>
+                </ng-container>
 
-            </div>
+                <!-- Caso 3. Es un DTO. LLamada recursiva -->
+                <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo)===enumTipologiaDeCampos.ENUMERADO"  >
+                    TPO ENUMERADO
+                </ng-container>
 
-    
-
-        </div>
-    
-    </div>
-  </mat-expansion-panel>
+            </div>  <!-- Fin sección de tipo -->
+        </div> <!-- Fin sección campo -->
+    </div> <!-- Fin sección cuerpo -->
+</mat-expansion-panel>

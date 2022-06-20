@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { EnumTipoDto } from '../models/enumTipoDto';
 import { map, Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -53,41 +54,32 @@ procesarDtos(nodoDtos: any): IDto[]{
   const dtos: IDto[]=[];
 
   for(const [key, value] of Object.entries(nodoDtos)){
-
     const v: any =value;
-   
+    if (v.properties) {
+      const dto = this.obtenerNodo(key,value);
+      dtos.push(dto);
+    }
 
-  
-      console.log(v)
-      if (key.endsWith('ExDTO') || key.endsWith('InfoDTO')){
-        const dto = this.obtenerDto(key,value);
-        dtos.push(dto);
-         
-       }
-
-    
-    
   }
-
- 
-
   return dtos;
-
 }
 
 
-obtenerDto(key:any, value: any): IDto{
+obtenerNodo(key:any, value: any): IDto{
 
   const arrayNombresDto=key.split('.');
   const longitud = arrayNombresDto.length;
 
-  const dto:IDto = {
-    nombreDto: arrayNombresDto[longitud-1],
-    tipoDto: EnumTipoDto.EX,
-    subsistema: arrayNombresDto[longitud-2],
-    gestion: arrayNombresDto[longitud-3],
-    campos: this.obtenerCamposDto(value.properties)
-  };
+  let dto:IDto;
+    dto = {
+      nombreDto: arrayNombresDto[longitud-1],
+      tipoDto: EnumTipoDto.EX,
+      subsistema: arrayNombresDto[longitud-2],
+      gestion: arrayNombresDto[longitud-3],
+      campos: this.obtenerCamposDto(value.properties)
+    };
+  
+
 
 
   return dto;
@@ -125,7 +117,7 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
         {
 
           tipo=this.obtenerDtoAPartirDeReferencia(val['$ref']);
-          console.log('el tipo es:', tipo);
+       
    
       
         }
@@ -157,7 +149,7 @@ obtenerDtoAPartirDeReferencia(referencia:string): IDto | IenumDto{
     
   }
   else {
-  const dto: IDto = this.obtenerDto(key, value);
+  const dto: IDto = this.obtenerNodo(key, value);
   return dto;
   }
   
