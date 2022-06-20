@@ -14,8 +14,15 @@
            
             <!-- Sección que contempla el nombre del campo. 
             Es común inependientemente de la tipología del campo -->
-            <div class="seccion seccionNombre">{{campo.nombreCampo}}:</div>
-            {{this.esCampoSimple(campo.tipoCampo)}}
+            <div class="seccion seccionNombreCampo" [ngClass]="{'seccionNombreCampoExpandido' : !this.mostrarTiposDeCampos}"
+            >
+            <span matTooltip="{{campo.nombreCampo}}">
+                {{campo.nombreCampo}}{{this.mostrarTiposDeCampos?':':null}}
+            </span>
+                
+            </div>
+            
+
             <!-- Sección correspondiente al tipo del campo. Parte derecha dle nombre -->
             <div class="seccion seccionTipo">
 
@@ -29,14 +36,21 @@
 
                 <!-- Caso 2. Es un DTO. LLamada recursiva -->
                 <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo)===enumTipologiaDeCampos.DTO"  >
-                    <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoDto" *ngIf="this.mostrarTiposDeCampos" >
+                    <div    class="seccion seccionDatosTipoCampo seccionDatosTipoCampoDto" 
+                            *ngIf="this.mostrarTiposDeCampos" >
                         <app-arbol-dto class="dtoHijo" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false" ></app-arbol-dto>
                     </div>
                 </ng-container>
 
-                <!-- Caso 3. Es un DTO. LLamada recursiva -->
+                <!-- Caso 3. Es un tipo enumerado.  -->
                 <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo)===enumTipologiaDeCampos.ENUMERADO"  >
-                    TPO ENUMERADO
+
+                    <div    class="seccion seccionDatosTipoCampo seccionDatosTipoCampoEnumerado" 
+                            *ngIf="this.mostrarTiposDeCampos" >
+                            Valores: 
+                            {{'<'+this.convertirArrayCadenasEnCadena((campo.tipoCampo | como : IenumDto).valores)+'>'}}
+                    </div>
+
                 </ng-container>
 
             </div>  <!-- Fin sección de tipo -->

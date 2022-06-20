@@ -1,3 +1,4 @@
+import { IenumDto } from './../../../models/enumModel';
 import { IDto } from './../../../models/dtoModel';
 import { Component, Input, OnInit } from '@angular/core';
 import { __importDefault } from 'tslib';
@@ -12,7 +13,8 @@ export class ArbolDTOComponent implements OnInit {
 
   enumTipologiaDeCampos = EnumTipologiaDeCampos;
 
-  IDto!: IDto
+  IDto!: IDto;
+  IenumDto!: IenumDto;
 
   @Input() dto: IDto | undefined; 
   @Input() mostrarTiposDeCampos=true;
@@ -26,13 +28,23 @@ export class ArbolDTOComponent implements OnInit {
   }
 
   esCampoSimple(tipoCampo: any): EnumTipologiaDeCampos {
-    if (tipoCampo instanceof Object) {
-      console.log('tipoCampo:', tipoCampo);
-    }
-  
+
     if (!(tipoCampo instanceof Object)) return EnumTipologiaDeCampos.SIMPLE
-    if ((tipoCampo instanceof Object) && tipoCampo.hasOwnProperty('enum')) return EnumTipologiaDeCampos.ENUMERADO
+    if ((tipoCampo instanceof Object) && tipoCampo.hasOwnProperty('valores')) return EnumTipologiaDeCampos.ENUMERADO
     else return EnumTipologiaDeCampos.DTO
+  }
+
+  convertirArrayCadenasEnCadena(cadenas: string[]): string {
+
+    let cadena='';
+    if (cadenas.length>0) { cadena = cadenas[0]}
+    for (let index = 1; index < cadenas.length; index++) {
+      cadena += ' | ' +cadenas[index];
+      
+    }
+
+    return cadena;
+
   }
 
 }
@@ -42,3 +54,5 @@ enum EnumTipologiaDeCampos {
   ENUMERADO,
   DTO
 }
+
+

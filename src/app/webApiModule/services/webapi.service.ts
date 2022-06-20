@@ -55,8 +55,10 @@ procesarDtos(nodoDtos: any): IDto[]{
 
   for(const [key, value] of Object.entries(nodoDtos)){
     const v: any =value;
+
+    // Solo se anlizan objetos de los schemas.
     if (v.properties) {
-      const dto = this.obtenerNodo(key,value);
+      const dto = this.obtenerDto(key,value);
       dtos.push(dto);
     }
 
@@ -65,7 +67,7 @@ procesarDtos(nodoDtos: any): IDto[]{
 }
 
 
-obtenerNodo(key:any, value: any): IDto{
+obtenerDto(key:any, value: any): IDto{
 
   const arrayNombresDto=key.split('.');
   const longitud = arrayNombresDto.length;
@@ -97,34 +99,31 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
     
         const nombreCampo=key;
 
-        let tipo: any;
+        let tipoCampo: any;
         let nullable: undefined
 
         const val: any = value
    
-        if (Object.prototype.hasOwnProperty.call(val, 'type'))
+        if (Object.prototype.hasOwnProperty.call(val, '$ref'))
         {
-          tipo = val['type'];
-          
-
+          tipoCampo=this.obtenerDtoAPartirDeReferencia(val['$ref']);
         }
+        else if (Object.prototype.hasOwnProperty.call(val, 'type'))
+        {
+          tipoCampo = val['type'];        
+        }
+
+
         if (Object.prototype.hasOwnProperty.call(val, 'nullable'))
         {
           nullable = val['nullable'];
         }
 
-        if (Object.prototype.hasOwnProperty.call(val, '$ref'))
-        {
-
-          tipo=this.obtenerDtoAPartirDeReferencia(val['$ref']);
-       
-   
-      
-        }
+    
 
         const campo: ICampo = {
           nombreCampo: nombreCampo,
-          tipoCampo: tipo,
+          tipoCampo: tipoCampo,
           nullable: nullable
         }
 
@@ -145,11 +144,12 @@ obtenerDtoAPartirDeReferencia(referencia:string): IDto | IenumDto{
   const value = this.datos.components.schemas[arraySeccionesReferencia[arraySeccionesReferencia.length-1]]
 
   if (value.enum) {
-    return { "valores": ['hola'], "tipo": "adios"}
+    
+    return { "valores": value.enum, "tipo": "string"}
     
   }
   else {
-  const dto: IDto = this.obtenerNodo(key, value);
+  const dto: IDto = this.obtenerDto(key, value);
   return dto;
   }
   
