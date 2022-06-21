@@ -54,9 +54,11 @@ procesarDtos(nodoDtos: any): IDto[]{
   const dtos: IDto[]=[];
 
   for(const [key, value] of Object.entries(nodoDtos)){
-    const v: any =value;
 
-    // Solo se anlizan objetos de los schemas.
+    console.log(key);
+    
+    const v: any =value;
+    // Solo se analizan objetos de los schemas.
     if (v.properties) {
       const dto = this.obtenerDto(key,value);
       dtos.push(dto);
