@@ -25,10 +25,19 @@ mat-toolbar {
 
 
 .seccionBuscador {
-    width: 100%;
+    width: 40%;
 }
 .example-full-width {
-    width: 80%;
+    width: 100%;
   }
+
+.iconoColapsarDesplegar {
+    margin-left: 40px;
+}
+
+.iconoFiltrarAgrupacion {
+    margin-left: 40px;
+
+}
 
 

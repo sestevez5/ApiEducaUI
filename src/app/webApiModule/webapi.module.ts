@@ -12,6 +12,7 @@ import { SidenavDtosComponent } from './components/dtos/sidenavDtos/sidenavDtos.
 import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.component';
 import { PanelParametrosComponent } from './components/dtos/panel-parametros/panel-parametros.component';
 import { BuscadorComponent } from './components/comunes/buscador/buscador.component';
+import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupaciones/selector-agrupaciones.component';
 
 
 
@@ -24,7 +25,8 @@ import { BuscadorComponent } from './components/comunes/buscador/buscador.compon
     SidenavDtosComponent,
     MainDtosComponent,
     PanelParametrosComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    SelectorAgrupacionesComponent
   ],
   imports: [
     CommonModule,

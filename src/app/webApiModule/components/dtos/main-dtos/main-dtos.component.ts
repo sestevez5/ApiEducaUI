@@ -1,7 +1,9 @@
+import { SelectorAgrupacionesComponent } from './../selector-agrupaciones/selector-agrupaciones.component';
 import { IDto } from './../../../models/dtoModel';
 import { AfterContentChecked, AfterContentInit, AfterViewInit, Component,Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, skip } from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-main-dtos',
@@ -23,7 +25,11 @@ export class MainDtosComponent implements OnInit,  OnChanges {
   @Input() dtos: IDto[]=[];
   dtosFiltrados: IDto[]=[];
   
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+
+  openDialog() {
+    this.dialog.open(SelectorAgrupacionesComponent);
+  }
 
   ngOnInit(): void {
     
@@ -48,3 +54,5 @@ export class MainDtosComponent implements OnInit,  OnChanges {
   }
 
 }
+
+
