@@ -9,7 +9,8 @@ mat-panel-title {
 
 .dtoHijo mat-expansion-panel-header {
     height: 29px;
-    background-color: #fafafa;
+    background-color: #fdfdfd;
+    box-shadow: 1px 1px 2px #999;
 }
 
 
