@@ -16,34 +16,34 @@ const x: IDto[] = [{
   subsistema: "Matriculas",
   gestion: "Prueba",
   campos: [
-    { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
-    { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
+    { nombreCampo: "idMatricula", esColeccion:false, tipoCampo:"entero", nullable: true},
+    { nombreCampo: "idMatricula2", esColeccion:false, tipoCampo:"entero", nullable: true},
     { nombreCampo: "MatriculaArea", 
-      tipoCampo: 
+      esColeccion:false, tipoCampo: 
         { nombreDto: "MatriculaAreaDTO", 
           tipoDto: EnumTipoDto.EX, 
           subsistema:"prueba", 
           gestion:"prueba2",
           campos: [
-            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
+            { nombreCampo: "idMatriculaArea", esColeccion:false, tipoCampo:"entero", nullable: true},
             { nombreCampo: "infoArea", 
-              tipoCampo: 
+              esColeccion:false, tipoCampo: 
                 { nombreDto: "AreaInfoDTO", 
                   tipoDto: EnumTipoDto.EX, 
                   subsistema:"prueba", 
                   gestion:"prueba2",
-                  campos: [ { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
-                  { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
+                  campos: [ { nombreCampo: "idMatricula", esColeccion:false, tipoCampo:"entero", nullable: true},
+                  { nombreCampo: "idMatricula2", esColeccion:false, tipoCampo:"entero", nullable: true},
                   { nombreCampo: "MatriculaArea", 
-                    tipoCampo: 
+                    esColeccion:false, tipoCampo: 
                       { nombreDto: "MatriculaAreaDTO", 
                         tipoDto: EnumTipoDto.EX, 
                         subsistema:"prueba", 
                         gestion:"prueba2",
                         campos: [
-                          { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
+                          { nombreCampo: "idMatriculaArea", esColeccion:false, tipoCampo:"entero", nullable: true},
                           { nombreCampo: "infoArea", 
-                            tipoCampo: 
+                            esColeccion:false, tipoCampo: 
                               { nombreDto: "AreaInfoDTO", 
                                 tipoDto: EnumTipoDto.EX, 
                                 subsistema:"prueba", 
@@ -69,34 +69,34 @@ const x: IDto[] = [{
   subsistema: "Matriculas",
   gestion: "Prueba",
   campos: [
-    { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
-    { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
+    { nombreCampo: "idMatricula", esColeccion:false, tipoCampo:"entero", nullable: true},
+    { nombreCampo: "idMatricula2", esColeccion:false, tipoCampo:"entero", nullable: true},
     { nombreCampo: "MatriculaArea", 
-      tipoCampo: 
+      esColeccion:false, tipoCampo: 
         { nombreDto: "MatriculaAreaDTO", 
           tipoDto: EnumTipoDto.EX, 
           subsistema:"prueba", 
           gestion:"prueba2",
           campos: [
-            { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
+            { nombreCampo: "idMatriculaArea", esColeccion:false, tipoCampo:"entero", nullable: true},
             { nombreCampo: "infoArea", 
-              tipoCampo: 
+              esColeccion:false, tipoCampo: 
                 { nombreDto: "AreaInfoDTO", 
                   tipoDto: EnumTipoDto.EX, 
                   subsistema:"prueba", 
                   gestion:"prueba2",
-                  campos: [ { nombreCampo: "idMatricula", tipoCampo:"entero", nullable: true},
-                  { nombreCampo: "idMatricula2", tipoCampo:"entero", nullable: true},
+                  campos: [ { nombreCampo: "idMatricula", esColeccion:false, tipoCampo:"entero", nullable: true},
+                  { nombreCampo: "idMatricula2", esColeccion:false, tipoCampo:"entero", nullable: true},
                   { nombreCampo: "MatriculaArea", 
-                    tipoCampo: 
+                    esColeccion:false, tipoCampo: 
                       { nombreDto: "MatriculaAreaDTO", 
                         tipoDto: EnumTipoDto.EX, 
                         subsistema:"prueba", 
                         gestion:"prueba2",
                         campos: [
-                          { nombreCampo: "idMatriculaArea", tipoCampo:"entero", nullable: true},
+                          { nombreCampo: "idMatriculaArea", esColeccion:false, tipoCampo:"entero", nullable: true},
                           { nombreCampo: "infoArea", 
-                            tipoCampo: 
+                            esColeccion:false, tipoCampo: 
                               { nombreDto: "AreaInfoDTO", 
                                 tipoDto: EnumTipoDto.EX, 
                                 subsistema:"prueba", 

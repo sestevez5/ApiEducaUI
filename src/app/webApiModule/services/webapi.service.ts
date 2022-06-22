@@ -55,7 +55,7 @@ procesarDtos(nodoDtos: any): IDto[]{
 
   for(const [key, value] of Object.entries(nodoDtos)){
 
-    console.log(key);
+    
     
     const v: any =value;
     // Solo se analizan objetos de los schemas.
@@ -102,6 +102,7 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
         const nombreCampo=key;
 
         let tipoCampo: any;
+        let esColeccion: boolean=false;
         let nullable: undefined
 
         const val: any = value
@@ -112,7 +113,22 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
         }
         else if (Object.prototype.hasOwnProperty.call(val, 'type'))
         {
-          tipoCampo = val['type'];        
+       
+          if (val.type==='array'){
+          
+            esColeccion=true;
+            if (Object.prototype.hasOwnProperty.call(val.items, '$ref')){
+              tipoCampo=this.obtenerDtoAPartirDeReferencia(val.items['$ref']);
+            } else
+            {
+              tipoCampo = val.items['type']; 
+            }
+          } else {
+            tipoCampo = val['type']; 
+
+          }
+         
+
         }
 
 
@@ -126,6 +142,7 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
         const campo: ICampo = {
           nombreCampo: nombreCampo,
           tipoCampo: tipoCampo,
+          esColeccion: esColeccion,
           nullable: nullable
         }
 

@@ -23,6 +23,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge';
+
+
 
 
 
@@ -54,7 +57,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSlideToggleModule,
     MatTooltipModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule,
+
   ],
   exports: [
     MatMenuModule,
@@ -77,7 +82,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSlideToggleModule,
     MatTooltipModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule
   ]
 })
 export class SharedModule {

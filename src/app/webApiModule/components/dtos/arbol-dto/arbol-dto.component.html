@@ -14,13 +14,14 @@
            
             <!-- Sección que contempla el nombre del campo. 
             Es común inependientemente de la tipología del campo -->
-            <div class="seccion seccionNombreCampo" [ngClass]="{'seccionNombreCampoExpandido' : !this.mostrarTiposDeCampos}"
-            >
-            <span matTooltip="{{campo.nombreCampo}}">
-                {{campo.nombreCampo}}{{this.mostrarTiposDeCampos?':':null}}
-            </span>
-                
-            </div>
+            <div class="seccion seccionNombreCampo" [ngClass]="{'seccionNombreCampoExpandido' : !this.mostrarTiposDeCampos}">
+          {{campo.nombreCampo}}{{this.mostrarTiposDeCampos?':':null}}
+     
+            <mat-icon *ngIf="campo.esColeccion" >reorder</mat-icon>
+
+         
+        
+        </div>
             
 
             <!-- Sección correspondiente al tipo del campo. Parte derecha dle nombre -->

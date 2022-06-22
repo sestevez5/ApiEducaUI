@@ -4,13 +4,14 @@ mat-panel-title {
 
 .dtoPadre mat-expansion-panel-header {
     height: 39px;
-    background-color: #eee;
+    background-color: #d3deee;
 }
 
 .dtoHijo mat-expansion-panel-header {
     height: 29px;
-    background-color: #fdfdfd;
+    background-color: #e9eef6;
     box-shadow: 1px 1px 2px #999;
+
 }
 
 
@@ -31,9 +32,10 @@ mat-panel-title {
 }
 
 .seccionCuerpo {
-    border-left-style: solid;
+    padding-top: 5px;
+    /* border-left-style: solid;
     border-left-width: 1px;
-    border-left-color: #ccc;
+    border-left-color: #ccc; */
     min-height: 20px;
     margin-left: 1px;
     padding-left: 5px;
@@ -57,6 +59,7 @@ mat-panel-title {
     white-space:nowrap;
     text-overflow: ellipsis;
     display: inline-block;
+    
 }
 
 .seccionNombreCampoExpandido {
@@ -80,4 +83,16 @@ mat-panel-title {
 }
 
 
+:host ::ng-deep .mat-expansion-panel-body {
+    padding-right: 5px;
+}
+
+mat-icon {
+    font-size: 17px;
+    color: #2b83bd;
+    margin: 0px;
+    padding: 0px;
+    vertical-align:middle;
+   
+}
 
