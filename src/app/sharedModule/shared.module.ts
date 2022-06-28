@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 // Angular Material
@@ -24,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
+import { BuscadorComponent } from './components/buscador/buscador.component';
 
 
 
@@ -34,7 +36,9 @@ import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    BuscadorComponent
+  ],
   imports: [
     CommonModule,
     MatMenuModule,
@@ -59,6 +63,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatPaginatorModule,
     MatDialogModule,
     MatBadgeModule,
+    FormsModule
 
   ],
   exports: [
@@ -83,7 +88,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTooltipModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatBadgeModule
+    MatBadgeModule,
+    FormsModule
   ]
 })
 export class SharedModule {
