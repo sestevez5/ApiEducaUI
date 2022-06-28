@@ -7,6 +7,7 @@ import { EnumTipoDto } from '../models/enumTipoDto';
 import { map, Observable, BehaviorSubject } from 'rxjs';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,23 +46,40 @@ export class WebapiService {
 
   }
 
-  obtenerDtos() {
-    
 
-  this.http.get<IDto[]>(this.uriDatos)
-  .subscribe(
-      datos => {
-        this.datos = datos;
-        for(const [key, value] of Object.entries(datos)){
-          if (key==='components') { 
-            const nodoDtos = (<any>value).schemas;
-            const dtos = this.procesarDtos(nodoDtos).slice(0,1720);
-            this.dtos.next(dtos);
-          } // Fin if
-        } // Fin for
-      }
+
+  obtenerDtosBis(cadenaFiltro:string, pagina: number, tamanyoPagina:number): Observable<{datos:IDto[], numeroElementos:number}> {
+    
+  console.log(cadenaFiltro, pagina, tamanyoPagina);
+
+    return this.http.get<IDto[]>(this.uriDatos)
+    .pipe(
+      map(
+        datos => {
+
+          let dtos: IDto[];
+          let numeroElementos: number
+          this.datos=datos;
+   
+          for(const [key, value] of Object.entries(datos)){
+            if (key==='components') { 
+              const nodoDtos = (<any>value).schemas;
+          
+              dtos = cadenaFiltro?this.procesarDtos(nodoDtos).filter(dto => dto.nombreDto.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.procesarDtos(nodoDtos);
+              numeroElementos = dtos.length;
+              console.log(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
+              dtos = dtos.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
+              console.log(dtos);
+            
+            } // Fin if
+          } // Fin for
+
+          return { datos: dtos, numeroElementos: numeroElementos};
+        })
     )
-  }
+
+   
+    }
 
 
 
@@ -182,6 +200,7 @@ obtenerCamposDto(camposNodo: any):ICampo[]{
 
 obtenerDtoAPartirDeReferencia(referencia:string): IDto | IenumDto{
 
+ 
   const arraySeccionesReferencia=referencia.split('/');
   const key = arraySeccionesReferencia[arraySeccionesReferencia.length-1]
   const value = this.datos.components.schemas[arraySeccionesReferencia[arraySeccionesReferencia.length-1]]

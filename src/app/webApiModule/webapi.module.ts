@@ -8,10 +8,9 @@ import { PageWebApiComponent } from './components/comunes/pageWebApi/pageWebApi.
 import { ArbolDTOComponent } from './components/dtos/arbol-dto/arbol-dto.component';
 import { FormsModule } from '@angular/forms';
 
-import { SidenavDtosComponent } from './components/dtos/sidenavDtos/sidenavDtos.component';
+
 import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.component';
-import { PanelParametrosComponent } from './components/dtos/panel-parametros/panel-parametros.component';
-import { BuscadorComponent } from './components/comunes/buscador/buscador.component';
+
 import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupaciones/selector-agrupaciones.component';
 
 
@@ -22,10 +21,7 @@ import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupa
     PageWebApiComponent,
     ArbolDTOComponent,
     ComoPipe,
-    SidenavDtosComponent,
     MainDtosComponent,
-    PanelParametrosComponent,
-    BuscadorComponent,
     SelectorAgrupacionesComponent
   ],
   imports: [

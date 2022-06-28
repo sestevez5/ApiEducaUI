@@ -1,3 +1,4 @@
+import { WebapiService } from './../../../services/webapi.service';
 import { SelectorAgrupacionesComponent } from './../selector-agrupaciones/selector-agrupaciones.component';
 import { IDto } from './../../../models/dtoModel';
 import { AfterContentChecked, AfterContentInit, AfterViewInit, Component,Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
@@ -6,6 +7,8 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, skip } from 'rxjs'
 import {MatDialog} from '@angular/material/dialog';
 import { NumberFormatStyle } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+
 
 interface IPaginacion {
   longitud: number;
@@ -14,72 +17,44 @@ interface IPaginacion {
   paginaSeleccionada: number;
 }
 
+
 @Component({
   selector: 'app-main-dtos',
   templateUrl: './main-dtos.component.html',
   styleUrls: ['./main-dtos.component.css']
 })
-export class MainDtosComponent implements OnInit,  OnChanges {
+export class MainDtosComponent{
 
   panelesExpandidos=false;
   mostrarTiposDeCampos=true;
   mostrarDescripcionesDtos=true;
 
+
   paginacion: IPaginacion;
-
   paginaEvent: PageEvent;
+  textoFiltro: string='';
 
-
-
-  _textoFiltro: BehaviorSubject<string>= new BehaviorSubject('');
-  get textoFiltro(): string { return this._textoFiltro.getValue(); }
-  set textoFiltro(val: string) { this._textoFiltro.next(val); }
+  cargando:boolean=false;
 
 
   @ViewChild(MatAccordion) acordeon!: MatAccordion;
-  @Input() dtos: IDto[]=[];
-  dtosFiltrados: IDto[]=[];
-  dtosFiltradosPaginados: IDto[]=[];
+  dtos : IDto[];
   
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,private  was: WebapiService ) {
+
+    this.paginacion = this.paginacion = {
+      longitud:0,
+      paginaSeleccionada:0,
+      opcionesPagina: [5,10,15,20],
+      tamanyoPagina: 15
+    }
+
+    this.actualizarDatos();
+   }
 
   openDialog() {
     this.dialog.open(SelectorAgrupacionesComponent);
   }
-
-  ngOnInit(): void {
-    
-    this._textoFiltro
-    .pipe(
-      skip(1), // El primer valor del cuadro de texto queremos omitirlo.
-      debounceTime(700),
-      distinctUntilChanged()
-    )
-    .subscribe(val => {
-      this.dtosFiltrados=this.dtos.filter(dto => dto.nombreDto.toLowerCase().includes(val.toLowerCase()))
-      this.actualizarListaDtos();
-    }
-      );
-
-
-
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.dtosFiltrados=this.dtos;
-
-    this.paginacion = {
-      longitud:this.dtosFiltrados.length,
-      paginaSeleccionada:0,
-      opcionesPagina: [5,10,15,20],
-      tamanyoPagina: 10
-      
-    }
-
-    this.actualizarListaDtos();
-
-  }
- 
 
   onExpandirToggle() {
     this.panelesExpandidos = !this.panelesExpandidos;
@@ -87,24 +62,34 @@ export class MainDtosComponent implements OnInit,  OnChanges {
 
 
   onSeleccionarPagina(event){
-
-    this.paginacion = {
-      longitud:this.dtosFiltrados.length,
-      paginaSeleccionada:event.pageIndex,
-      opcionesPagina: [5,10,15,20],
-      tamanyoPagina: event.pageSize
-    }
-
-    this.actualizarListaDtos();
-
+    this.paginacion.paginaSeleccionada=event.pageIndex;
+    this.paginacion.tamanyoPagina=event.pageSize;
+    this.actualizarDatos();
   }
 
 
-  private actualizarListaDtos() {
-    this.paginacion.longitud = this.dtosFiltrados.length;
-    const primerElemento = this.paginacion.paginaSeleccionada*this.paginacion.tamanyoPagina;
-    const ultimoElemento = primerElemento+this.paginacion.tamanyoPagina;
-    this.dtosFiltradosPaginados = this.dtosFiltrados.slice(primerElemento, ultimoElemento);
+
+
+  onCambiarTextoFiltro(nuevoTexto:string){
+    this.textoFiltro=nuevoTexto;
+    this.paginacion.paginaSeleccionada=0;
+    this.actualizarDatos();
+  }
+
+
+
+  actualizarDatos()
+  {
+    this.cargando=true;
+    this.was.obtenerDtosBis(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina)
+      .subscribe(
+        dtos => {
+          this.dtos = dtos.datos;
+          this.paginacion.longitud=dtos.numeroElementos;
+          this.cargando=false;
+        }
+      )
+
   }
 
 }

@@ -3,13 +3,10 @@
   <!-- Barra de filtrado general -->
   <mat-toolbar>
     <div class="seccionBuscador">
-      <mat-form-field class="example-full-width" appearance="legacy">
-        <mat-label>Buscar</mat-label>
-        <input matInput #message maxlength="256" placeholder="Ejemplo: SituacionAprendizajeEXDTOs..." [(ngModel)]="this.textoFiltro">
-        <mat-icon matSuffix>search</mat-icon>
-        <mat-hint align="start"><strong>La búsqueda atiende nombre de Dtos y campos</strong> </mat-hint> 
-        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-      </mat-form-field>
+
+
+        <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
+
     </div>
     <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
       <mat-icon >account_tree</mat-icon>
@@ -30,15 +27,17 @@
     <mat-paginator [length]="this.paginacion.longitud"
                    [pageSize]="this.paginacion.tamanyoPagina"
                    [pageSizeOptions]="this.paginacion.opcionesPagina"
+                   [pageIndex]="this.paginacion.paginaSeleccionada"
                    (page)="onSeleccionarPagina($event)"
                
                    aria-label="Select page">
     </mat-paginator>
     
 
-    <mat-accordion [multi]="true">
+    <p *ngIf="this.cargando" >Cargando...</p>
+    <mat-accordion [multi]="true" *ngIf="!this.cargando" >
         <app-arbol-dto 
-          *ngFor="let dto of this.dtosFiltradosPaginados" 
+          *ngFor="let dto of this.dtos" 
           [dto]="dto" 
           [expandido]="this.panelesExpandidos" 
           [mostrarTiposDeCampos]="this.mostrarTiposDeCampos"

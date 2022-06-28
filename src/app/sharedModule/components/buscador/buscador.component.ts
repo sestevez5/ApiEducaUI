@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, } from '@angular/core';
-import { BehaviorSubject, debounceTime, skip } from 'rxjs';
+import { Component, OnInit, Input, Output,  EventEmitter } from '@angular/core';
+import { BehaviorSubject, debounceTime, skip, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-buscador',
@@ -8,7 +8,7 @@ import { BehaviorSubject, debounceTime, skip } from 'rxjs';
 })
 export class BuscadorComponent implements OnInit {
 
-  @Output() texto
+  @Output() texto: EventEmitter<string> = new EventEmitter<string>();
 
   _textoFiltro: BehaviorSubject<string>= new BehaviorSubject('');
   get textoFiltro(): string { return this._textoFiltro.getValue(); }
@@ -26,11 +26,7 @@ export class BuscadorComponent implements OnInit {
       debounceTime(700),
       distinctUntilChanged()
     )
-    .subscribe(val => {
-      this.dtosFiltrados=this.dtos.filter(dto => dto.nombreDto.toLowerCase().includes(val.toLowerCase()))
-      this.actualizarListaDtos();
-    }
-      );
+    .subscribe(valor => this.texto.emit(valor));
   }
 
 }

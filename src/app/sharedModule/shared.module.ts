@@ -89,7 +89,8 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
     MatPaginatorModule,
     MatDialogModule,
     MatBadgeModule,
-    FormsModule
+    FormsModule,
+    BuscadorComponent
   ]
 })
 export class SharedModule {

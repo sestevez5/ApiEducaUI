@@ -1,7 +1,8 @@
 <mat-form-field class="example-full-width" appearance="legacy">
-    <mat-label>Buscar</mat-label>
-    <input matInput #message maxlength="256" placeholder="Ejemplo: SituacionAprendizajeEXDTOs..." [(ngModel)]="this.textoFiltro">
-    <mat-icon matSuffix>search</mat-icon>
-    <mat-hint align="start"><strong>La búsqueda atiende nombre de Dtos y campos</strong> </mat-hint> 
-    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-  </mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput #message maxlength="256" placeholder="Ejemplo: SituacionAprendizajeEXDTOs..." [(ngModel)]="this.textoFiltro">
+  <mat-icon matSuffix>search</mat-icon>
+  <mat-hint align="start"><strong>La búsqueda atiende nombre de Dtos y campos</strong> </mat-hint> 
+  <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+
+</mat-form-field>
