@@ -39,7 +39,7 @@
                 <ng-container *ngIf="this.esCampoSimple(campo.tipoCampo)===enumTipologiaDeCampos.DTO"  >
                     <div    class="seccion seccionDatosTipoCampo seccionDatosTipoCampoDto" 
                             *ngIf="this.mostrarTiposDeCampos" >
-                        <app-arbol-dto class="dtoHijo" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false" ></app-arbol-dto>
+                        <app-arbol-dto class="dtoHijo" [dto]="(campo.tipoCampo | como : IDto)"  [esDtoRaiz]="false" [expandido]="this.expandido"></app-arbol-dto>
                     </div>
                 </ng-container>
 

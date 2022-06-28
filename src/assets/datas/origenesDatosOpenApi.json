@@ -1,0 +1,13 @@
+[
+    {
+        "orden":1,
+        "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
+        "Descripción": "ApiEduca (Entorno de Producción)"
+    },
+    {
+        "orden":2,
+        "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
+        "Descripción": "ApiEduca (Entorno de Preproducción)"
+    }
+   
+]

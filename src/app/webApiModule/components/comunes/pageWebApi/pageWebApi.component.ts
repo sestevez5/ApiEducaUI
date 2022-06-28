@@ -134,11 +134,17 @@ export class PageWebApiComponent implements OnInit {
   events: string[] = [];
   opened= false;
   constructor(private was: WebapiService) { 
-    was.obtenerDtos().subscribe( 
+
+    was.dtos.subscribe( 
       datos => {
 
         this.dtos = datos}
     );
+
+    setTimeout(() => {
+      was.obtenerDtos();
+    
+    }, 1000); 
       // dtos => { this.dtos = dtos} 
       
   }

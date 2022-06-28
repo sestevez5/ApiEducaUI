@@ -27,9 +27,10 @@
   <!-- Sección que renderiza los Dtos. -->
   <div class="seccionDtos">
     
-    <mat-paginator [length]="10"
-                   [pageSize]="3"
-                   [pageSizeOptions]="[5, 10, 25, 100]"
+    <mat-paginator [length]="this.paginacion.longitud"
+                   [pageSize]="this.paginacion.tamanyoPagina"
+                   [pageSizeOptions]="this.paginacion.opcionesPagina"
+                   (page)="onSeleccionarPagina($event)"
                
                    aria-label="Select page">
     </mat-paginator>
@@ -37,7 +38,7 @@
 
     <mat-accordion [multi]="true">
         <app-arbol-dto 
-          *ngFor="let dto of this.dtosFiltrados" 
+          *ngFor="let dto of this.dtosFiltradosPaginados" 
           [dto]="dto" 
           [expandido]="this.panelesExpandidos" 
           [mostrarTiposDeCampos]="this.mostrarTiposDeCampos"

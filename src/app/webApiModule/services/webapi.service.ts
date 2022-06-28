@@ -4,7 +4,7 @@ import { IDto } from './../models/dtoModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EnumTipoDto } from '../models/enumTipoDto';
-import { map, Observable } from 'rxjs';
+import { map, Observable, BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -12,38 +12,54 @@ import { map, Observable } from 'rxjs';
 })
 export class WebapiService {
 
+  origenDatosOpenApiOnline: any = '../assets/datas/origenesDatosOpenApi.json';
+
+  urisDatosOpenApiOnline: string[];
+
+
+
+  origenDatosSeleccionado =   this.http.get(this.origenDatosOpenApiOnline)
+  .subscribe(
+    datos => {
+      const coleccionUrls: string[]=[]
+      for(const [key, value] of Object.entries(datos)){
+
+        coleccionUrls.push(value.url);
+      
+      } // Fin for
+
+    }
+
+  )
   uriDatos: string = '../assets/json/webapiPre.json';
   datos: any;
 
-  dtos: IDto[]=[];
+  dtos: BehaviorSubject<IDto[]> = new BehaviorSubject<IDto[]>([]);
+
+
+  
 
   constructor(private http: HttpClient) {
-    //this.obtenerDtos();
+
+
+
   }
 
-  obtenerDtos(): Observable<IDto[]> {
+  obtenerDtos() {
+    
 
-    let dtos: IDto[];
-
-    return this.http.get(this.uriDatos)
-    .pipe(
-      map( datos => {
-
+  this.http.get<IDto[]>(this.uriDatos)
+  .subscribe(
+      datos => {
         this.datos = datos;
-
-        let dtos: IDto[]=[];
-
         for(const [key, value] of Object.entries(datos)){
           if (key==='components') { 
-            const nodoDtos = value.schemas;
-            dtos = this.procesarDtos(nodoDtos);
-    
-            } // Fin if
+            const nodoDtos = (<any>value).schemas;
+            const dtos = this.procesarDtos(nodoDtos).slice(0,1720);
+            this.dtos.next(dtos);
+          } // Fin if
         } // Fin for
-
-        return dtos;
-      })
-
+      }
     )
   }
 
@@ -65,7 +81,15 @@ procesarDtos(nodoDtos: any): IDto[]{
     }
 
   }
-  return dtos;
+  return dtos.sort(
+   
+      function( a:IDto , b:IDto){
+        if(a.nombreDto > b.nombreDto) return 1;
+        if(a.nombreDto < b.nombreDto) return -1;
+        return 0;
+      }
+
+  );
 }
 
 
