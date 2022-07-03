@@ -27,7 +27,7 @@ export class PageWebApiComponent {
     {value: 'tacos-2', viewValue: 'Tacos'},
   ];
 
-  selectedFood = this.foods[2].value;
+  selectedFood = this.documentosOpenApiPrefijados[2].value;
 
   selectCar(event: Event) {
     this.selectedFood = (event.target as HTMLSelectElement).value;

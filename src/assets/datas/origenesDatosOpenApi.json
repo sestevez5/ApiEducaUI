@@ -1,13 +1,17 @@
-[
+{
+    "rutas":[
     {
         "orden":1,
-        "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
-        "Descripción": "ApiEduca (Entorno de Producción)"
+        "url":"../assets/json/webapiPre.json",
+        "Descripcion": "ApiEduca (Entorno de Producción)"
     },
     {
         "orden":2,
-        "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
-        "Descripción": "ApiEduca (Entorno de Preproducción)"
+        "url":"../assets/json/webapiPre.json",
+        "Descripcion": "ApiEduca (Entorno de Preproducción)"
     }
    
 ]
+}
+
+

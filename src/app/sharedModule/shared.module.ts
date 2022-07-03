@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BuscadorComponent } from './components/buscador/buscador.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -63,7 +64,8 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
     MatPaginatorModule,
     MatDialogModule,
     MatBadgeModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
 
   ],
   exports: [
@@ -90,7 +92,8 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
     MatDialogModule,
     MatBadgeModule,
     FormsModule,
-    BuscadorComponent
+    BuscadorComponent,
+    MatSelectModule
   ]
 })
 export class SharedModule {

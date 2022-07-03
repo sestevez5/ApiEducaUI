@@ -42,14 +42,22 @@ export class MainDtosComponent{
   
   constructor(public dialog: MatDialog,private  was: WebapiService ) {
 
-    this.paginacion = this.paginacion = {
-      longitud:0,
-      paginaSeleccionada:0,
-      opcionesPagina: [5,10,15,20],
-      tamanyoPagina: 15
-    }
+   
+    this.was.dtos$.subscribe(dtos => {
 
-    this.actualizarDatos();
+
+      this.paginacion = this.paginacion = {
+        longitud:0,
+        paginaSeleccionada:0,
+        opcionesPagina: [5,10,15,20],
+        tamanyoPagina: 15
+      };
+
+      this.actualizarDatos();
+
+    })
+
+    
    }
 
   openDialog() {
@@ -80,15 +88,13 @@ export class MainDtosComponent{
 
   actualizarDatos()
   {
-    this.cargando=true;
-    this.was.obtenerDtosBis(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina)
-      .subscribe(
-        dtos => {
-          this.dtos = dtos.datos;
-          this.paginacion.longitud=dtos.numeroElementos;
-          this.cargando=false;
-        }
-      )
+   
+      const result: any = this.was.obtenerDtos(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
+      this.dtos = result.datos;
+      this.paginacion.longitud = result.numeroElementos;
+
+    
+ 
 
   }
 

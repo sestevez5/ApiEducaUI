@@ -34,8 +34,10 @@
     </mat-paginator>
     
 
-    <p *ngIf="this.cargando" >Cargando...</p>
-    <mat-accordion [multi]="true" *ngIf="!this.cargando" >
+    <!-- <p *ngIf="this.cargando" >Cargando...</p> -->
+    <!-- <mat-accordion [multi]="true" *ngIf="!this.cargando" > -->
+
+      <mat-accordion [multi]="true" >
         <app-arbol-dto 
           *ngFor="let dto of this.dtos" 
           [dto]="dto" 
