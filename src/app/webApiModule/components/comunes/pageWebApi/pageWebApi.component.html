@@ -1,11 +1,11 @@
-<div class="container-fluid">
+<div>
   
-  <div class="selectorEntornos">
+  <div class="menuGestionWebApi">
+    
     <mat-form-field appearance="legacy">
       <mat-label>Entorno</mat-label>
       <mat-select [(value)]="selectedFood">
-        <mat-option></mat-option>
-        <mat-option [value]="option.value" *ngFor="let option of documentosOpenApiPrefijados">{{ option.viewValue }}</mat-option>
+        <mat-option [value]="option.url" *ngFor="let option of documentosOpenApiPrefijados">{{ option.descripcion }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

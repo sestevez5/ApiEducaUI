@@ -13,9 +13,9 @@ import { map, Observable, BehaviorSubject } from 'rxjs';
 })
 export class WebapiService {
 
-  origenDatosOpenApiOnline: any = '../assets/datas/origenesDatosOpenApi.json';
+  origenDatosOpenApiOnline: string = '../assets/datas/origenesDatosOpenApi.json';
 
-  urisDatosOpenApiOnline: string[];
+  rutasDatosOpenApiOnline$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
 
 
@@ -56,17 +56,17 @@ export class WebapiService {
     this.http.get(this.origenDatosOpenApiOnline)
     .subscribe(
       contenidoDocumentoActual => {
-
-     
-        const coleccionUrls: string[]=[]
+    
+        const coleccionRutas: any[]=[]
         for(const [key, value] of Object.entries(contenidoDocumentoActual["rutas"])){
   
-          coleccionUrls.push(value["url"]);
+          coleccionRutas.push(value);
         
         } // Fin for
-        this.origenDatosOpenApiOnline = coleccionUrls;
+        this.rutasDatosOpenApiOnline$.next(coleccionRutas);
+        
   
-        this.uriDatos$.next(this.origenDatosOpenApiOnline[0]);
+        this.uriDatos$.next(this.rutasDatosOpenApiOnline$.value[0].url);
   
       }
 
@@ -79,8 +79,8 @@ export class WebapiService {
     
   }
 
-  obtenerDocumentos(): string[] {
-    return this.urisDatosOpenApiOnline;
+  obtenerRutasDocumentosOpenApi(): BehaviorSubject<any[]> {
+    return this.rutasDatosOpenApiOnline$;
   }
 
   // Se establece un nuevo documento openApi. Desencadenará la regeneración de todo el documento.

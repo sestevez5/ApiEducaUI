@@ -5,9 +5,10 @@ import { IDto } from '../../../models/dtoModel';
 import { Component, Input, OnInit } from '@angular/core';
 
 
-interface Food {
-  value: string;
-  viewValue: string;
+interface OrigenDatosOpenApi {
+  orden: number;
+  url: string;
+  descripcion: string;
 }
 
 @Component({
@@ -17,17 +18,22 @@ interface Food {
 })
 export class PageWebApiComponent {
 
-  constructor(was: WebapiService){
-    was.obtenerDocumentos()
+  documentosOpenApiPrefijados: OrigenDatosOpenApi[]=[];
+
+  constructor(private was: WebapiService){
+
+    was.obtenerRutasDocumentosOpenApi().subscribe(
+      rutas => {
+        this.documentosOpenApiPrefijados=rutas;
+        console.log(this.documentosOpenApiPrefijados);
+      }
+    )
   }
 
-  documentosOpenApiPrefijados: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
 
-  selectedFood = this.documentosOpenApiPrefijados[2].value;
+ 
+
+  selectedFood: string = null;
 
   selectCar(event: Event) {
     this.selectedFood = (event.target as HTMLSelectElement).value;
