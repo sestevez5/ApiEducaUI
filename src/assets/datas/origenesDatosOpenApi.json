@@ -2,13 +2,28 @@
     "rutas":[
     {
         "orden":1,
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL]"
+    },
+    {
+        "orden":1,
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL2]"
+    },
+    {
+        "orden":2,
         "url":"https://localhost:44371/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Producción)"
     },
     {
-        "orden":2,
+        "orden":3,
         "url":"../assets/json/webapiPre.json",
         "descripcion": "ApiEduca (Entorno de Preproducción)"
+    },
+    {
+        "orden":4,
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Desarrollo)"
     }
    
 ]
