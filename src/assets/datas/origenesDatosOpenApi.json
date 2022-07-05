@@ -2,12 +2,12 @@
     "rutas":[
     {
         "orden":1,
-        "url":"https://localhost:44371/swagger/v1/swagger.json",
+        "url":"https://wwwpre.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Producción)"
     },
     {
         "orden":2,
-        "url":"../assets/json/webapiPre.json",
+        "url":"https://wwwdesa.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Preproducción)"
     }
    

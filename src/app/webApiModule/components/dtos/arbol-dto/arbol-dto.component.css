@@ -2,14 +2,28 @@ mat-panel-title {
     width: 25%;
 }
 
+
+
+
+
+
+
 .dtoPadre mat-expansion-panel-header {
     height: 39px;
-    background-color: #d3deee;
+    /* background-color: #d3deee; */
+    background-color: #fbfbfb;
+    /* border-bottom-style: solid; */
+    border-color: rgb(195, 195, 218);
+    border-width: 1px;
+    box-shadow: 1px 1px 2px #999;
+
+
+   
 }
 
 .dtoHijo mat-expansion-panel-header {
     height: 29px;
-    background-color: #e9eef6;
+    background-color: #fcfcfc;
     box-shadow: 1px 1px 2px #999;
 
 }

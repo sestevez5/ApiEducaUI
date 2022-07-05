@@ -66,7 +66,7 @@ export class WebapiService {
         this.rutasDatosOpenApiOnline$.next(coleccionRutas);
         
   
-        this.uriDatos$.next(this.rutasDatosOpenApiOnline$.value[0].url);
+        this.uriDatos$.next(this.rutasDatosOpenApiOnline$.value[1].url);
   
       }
 
