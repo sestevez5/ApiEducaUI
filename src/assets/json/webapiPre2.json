@@ -15,11 +15,6 @@
     },
     "version": "v1"
   },
-  "servers": [
-    {
-      "url": "/educacion/bussed/sigacapi"
-    }
-  ],
   "paths": {
     "/api/ActividadesSituacionAprendizaje/{id}": {
       "get": {
@@ -46,7 +41,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ActividadSituacionAprendizajeExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ActividadSituacionAprendizajeExDTOResponseModel"
                 }
               }
             }
@@ -100,7 +95,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ColeccionActividadSituacionAprendizajeExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ColeccionActividadSituacionAprendizajeExDTOResponseModel"
                 }
               }
             }
@@ -140,17 +135,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
               }
             }
           }
@@ -193,17 +188,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
               }
             }
           }
@@ -246,17 +241,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
               }
             }
           }
@@ -320,7 +315,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ComunicacionEnWebExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ComunicacionEnWebExDTOResponseModel"
                 }
               }
             }
@@ -379,70 +374,56 @@
           {
             "name": "NifnieRemitente",
             "in": "query",
-            "description": "Nifnie del remitente (Opcional). Si se omite, para obtener los resultos por remitente se debe especificar pasaporte o cial del remitente.",
             "schema": {
               "type": "string",
-              "description": "Nifnie del remitente (Opcional). Si se omite, para obtener los resultos por remitente se debe especificar pasaporte o cial del remitente.",
               "nullable": true
             }
           },
           {
             "name": "PasaporteRemitente",
             "in": "query",
-            "description": "Pasaporte del remitente (Opcional). Si se omite, para obtener los resultos por remitente se debe especificar nifnie o cial del remitente.",
             "schema": {
               "type": "string",
-              "description": "Pasaporte del remitente (Opcional). Si se omite, para obtener los resultos por remitente se debe especificar nifnie o cial del remitente.",
               "nullable": true
             }
           },
           {
             "name": "CialRemitente",
             "in": "query",
-            "description": "Cial del remitente (Opcional). Si se omite, para obtener los resultos por remitente se debe especificar nifnie o pasaporte del remitente.",
             "schema": {
               "type": "string",
-              "description": "Cial del remitente (Opcional). Si se omite, para obtener los resultos por remitente se debe especificar nifnie o pasaporte del remitente.",
               "nullable": true
             }
           },
           {
             "name": "NifnieDestinatario",
             "in": "query",
-            "description": "Nifnie del destinatario (Opcional). Si se omite, para obtener los resultos por destinatario se debe especificar pasaporte o cial del destinatario.",
             "schema": {
               "type": "string",
-              "description": "Nifnie del destinatario (Opcional). Si se omite, para obtener los resultos por destinatario se debe especificar pasaporte o cial del destinatario.",
               "nullable": true
             }
           },
           {
             "name": "PasaporteDestinatario",
             "in": "query",
-            "description": "Pasaporte del destinatario (Opcional). Si se omite, para obtener los resultos por destinatario se debe especificar nifnie o cial del destinatario.",
             "schema": {
               "type": "string",
-              "description": "Pasaporte del destinatario (Opcional). Si se omite, para obtener los resultos por destinatario se debe especificar nifnie o cial del destinatario.",
               "nullable": true
             }
           },
           {
             "name": "CialDestinatario",
             "in": "query",
-            "description": "Cial del destinatario (Opcional). Si se omite, para obtener los resultos por destinatario se debe especificar nifnie o pasaporte del destinatario.",
             "schema": {
               "type": "string",
-              "description": "Cial del destinatario (Opcional). Si se omite, para obtener los resultos por destinatario se debe especificar nifnie o pasaporte del destinatario.",
               "nullable": true
             }
           },
           {
             "name": "FechaDesde",
             "in": "query",
-            "description": "Fecha a partir de la cual se obtienen las comunicaciones cuya fecha de envío sea igual o posterior (Opcional).",
             "schema": {
               "type": "string",
-              "description": "Fecha a partir de la cual se obtienen las comunicaciones cuya fecha de envío sea igual o posterior (Opcional).",
               "format": "date-time",
               "nullable": true
             }
@@ -450,10 +431,8 @@
           {
             "name": "FechaHasta",
             "in": "query",
-            "description": "Fecha a partir de la cual se obtienen las comunicaciones cuya fecha de envío sea igual o anterior (Opcional).",
             "schema": {
               "type": "string",
-              "description": "Fecha a partir de la cual se obtienen las comunicaciones cuya fecha de envío sea igual o anterior (Opcional).",
               "format": "date-time",
               "nullable": true
             }
@@ -461,10 +440,8 @@
           {
             "name": "Ultimas",
             "in": "query",
-            "description": "Número de comunicaciones a devolver (Opcional). Si se omite, se obtienen todas las que cumplan con los criterios de filtrado establecidos.",
             "schema": {
               "type": "integer",
-              "description": "Número de comunicaciones a devolver (Opcional). Si se omite, se obtienen todas las que cumplan con los criterios de filtrado establecidos.",
               "format": "int32",
               "nullable": true
             }
@@ -476,7 +453,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ColeccionComunicacionEnWebExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ColeccionComunicacionEnWebExDTOResponseModel"
                 }
               }
             }
@@ -530,7 +507,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.CriterioEvaluacionExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.CriterioEvaluacionExDTOResponseModel"
                 }
               }
             }
@@ -584,7 +561,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.ColeccionCriterioEvaluacionExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.ColeccionCriterioEvaluacionExDTOResponseModel"
                 }
               }
             }
@@ -638,7 +615,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.InstrumentoEvaluacionExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.InstrumentoEvaluacionExDTOResponseModel"
                 }
               }
             }
@@ -692,7 +669,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.ColeccionInstrumentoEvaluacionExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.ColeccionInstrumentoEvaluacionExDTOResponseModel"
                 }
               }
             }
@@ -731,18 +708,17 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Identificador del nombramiento a partir del cual se desea obtener la colección de matrículas asociadas.",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Identificador del nombramiento a partir del cual se desea obtener la colección de matrículas asociadas.",
               "format": "uuid"
             }
           },
           {
             "name": "Foto",
-            "in": "query",
+            "in": "path",
             "description": "Indica si se debe incluir la foto del alumnado seleccionado. Por defecto, no se incluirá la foto del alumnado seleccionado.",
+            "required": true,
             "schema": {
               "type": "boolean",
               "description": "Indica si se debe incluir la foto del alumnado seleccionado. Por defecto, no se incluirá la foto del alumnado seleccionado."
@@ -751,10 +727,8 @@
           {
             "name": "FechaReferencia",
             "in": "query",
-            "description": "Fecha de referencia usada para el filtrado de las actividades vigentes en la semana que la contiene.",
             "schema": {
               "type": "string",
-              "description": "Fecha de referencia usada para el filtrado de las actividades vigentes en la semana que la contiene.",
               "format": "date-time",
               "nullable": true
             }
@@ -766,7 +740,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasNombramientoExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasNombramientoExDTOResponseModel"
                 }
               }
             }
@@ -805,21 +779,17 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Identificador del nombramiento a partir del cual se desea obtener la colección de matrículas asociadas.",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Identificador del nombramiento a partir del cual se desea obtener la colección de matrículas asociadas.",
               "format": "uuid"
             }
           },
           {
             "name": "FechaReferencia",
             "in": "query",
-            "description": "Fecha de referencia usada para el filtrado de las actividades vigentes en la semana que la contiene.",
             "schema": {
               "type": "string",
-              "description": "Fecha de referencia usada para el filtrado de las actividades vigentes en la semana que la contiene.",
               "format": "date-time",
               "nullable": true
             }
@@ -827,30 +797,24 @@
           {
             "name": "CodigoGrupo",
             "in": "query",
-            "description": "Código de grupo por el que filtrar la colección de matrículas áreas. Por defecto, valor nulo.",
             "schema": {
               "type": "string",
-              "description": "Código de grupo por el que filtrar la colección de matrículas áreas. Por defecto, valor nulo.",
               "nullable": true
             }
           },
           {
             "name": "CodigoArea",
             "in": "query",
-            "description": "Código de área por el que filtrar la colección de matrículas áreas. Por defecto, valor nulo.",
             "schema": {
               "type": "string",
-              "description": "Código de área por el que filtrar la colección de matrículas áreas. Por defecto, valor nulo.",
               "nullable": true
             }
           },
           {
             "name": "IdArea",
             "in": "query",
-            "description": "Identificador del área del plan de estudios de canarias por el que filtrar la colección de matrículas áreas. Por defecto, valor nulo.",
             "schema": {
               "type": "integer",
-              "description": "Identificador del área del plan de estudios de canarias por el que filtrar la colección de matrículas áreas. Por defecto, valor nulo.",
               "format": "int32",
               "nullable": true
             }
@@ -862,7 +826,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasAreasNombramientoExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasAreasNombramientoExDTOResponseModel"
                 }
               }
             }
@@ -961,7 +925,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Responses.ProductoInstrumentoEvaluacionExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Responses.ProductoInstrumentoEvaluacionExDTOResponseModel"
                 }
               }
             }
@@ -1014,17 +978,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel"
+                "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel"
               }
             }
           }
@@ -1035,7 +999,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.Comun.Responses.CRUDResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.Comun.Responses.CRUDResponseModel"
                 }
               }
             }
@@ -1099,7 +1063,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.SituacionAprendizajeExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.SituacionAprendizajeExDTOResponseModel"
                 }
               }
             }
@@ -1180,10 +1144,8 @@
           {
             "name": "Cadena",
             "in": "query",
-            "description": "Cadena de filtado genérica.",
             "schema": {
               "type": "string",
-              "description": "Cadena de filtado genérica.",
               "nullable": true
             }
           }
@@ -1194,7 +1156,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
                 }
               }
             }
@@ -1267,7 +1229,7 @@
             "description": "Código del tipo de situaciones de aprendizaje a obtener.",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Requests.ECodigoSituacionAprendizaje"
+              "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Requests.ECodigoSituacionAprendizaje"
             }
           },
           {
@@ -1282,12 +1244,17 @@
             }
           },
           {
+            "name": "TipoSituacionAprendizaje",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/GestionAcademica.FiltrosColecciones.ProIdeac.SituacionAprendizaje.Filtros.ETipoSituacionAprendizaje"
+            }
+          },
+          {
             "name": "Cadena",
             "in": "query",
-            "description": "Cadena de filtado genérica.",
             "schema": {
               "type": "string",
-              "description": "Cadena de filtado genérica.",
               "nullable": true
             }
           }
@@ -1298,7 +1265,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
                 }
               }
             }
@@ -1390,30 +1357,24 @@
           {
             "name": "Nifnie",
             "in": "query",
-            "description": "Nifnie del docente (Opcional). Si se omite, se debe especificar pasaporte.",
             "schema": {
               "type": "string",
-              "description": "Nifnie del docente (Opcional). Si se omite, se debe especificar pasaporte.",
               "nullable": true
             }
           },
           {
             "name": "Pasaporte",
             "in": "query",
-            "description": "Pasaporte del docente (Opcional). Si se omite, se debe especificar nifnie.",
             "schema": {
               "type": "string",
-              "description": "Pasaporte del docente (Opcional). Si se omite, se debe especificar nifnie.",
               "nullable": true
             }
           },
           {
             "name": "FechaReferencia",
             "in": "query",
-            "description": "Usada para filtrar los nombramientos asociados al docente. Si se omite, no se filtrará por este campo.",
             "schema": {
               "type": "string",
-              "description": "Usada para filtrar los nombramientos asociados al docente. Si se omite, no se filtrará por este campo.",
               "format": "date-time",
               "nullable": true
             }
@@ -1421,10 +1382,8 @@
           {
             "name": "IdArea",
             "in": "query",
-            "description": "Identificador del área del plan de estudio de Canarias por el que filtrar las situaciones de aprendizaje a obtener (Opcional). Si se omite, se debe especificar idEstudio o idEnsenanza.",
             "schema": {
               "type": "integer",
-              "description": "Identificador del área del plan de estudio de Canarias por el que filtrar las situaciones de aprendizaje a obtener (Opcional). Si se omite, se debe especificar idEstudio o idEnsenanza.",
               "format": "int32",
               "nullable": true
             }
@@ -1432,10 +1391,8 @@
           {
             "name": "IdEstudio",
             "in": "query",
-            "description": "Identificador del estudio del plan de estudio de Canarias por el que filtrar las situaciones de aprendizaje a obtener (Opcional). Si se omite, se debe especificar idArea o idEnsenanza.",
             "schema": {
               "type": "integer",
-              "description": "Identificador del estudio del plan de estudio de Canarias por el que filtrar las situaciones de aprendizaje a obtener (Opcional). Si se omite, se debe especificar idArea o idEnsenanza.",
               "format": "int32",
               "nullable": true
             }
@@ -1443,10 +1400,8 @@
           {
             "name": "IdEnsenanza",
             "in": "query",
-            "description": "Identificador de la enseñanza del plan de estudio de Canarias por el que filtrar las situaciones de aprendizaje a obtener (Opcional). Si se omite, se debe especificar idArea o idEstudio.",
             "schema": {
               "type": "integer",
-              "description": "Identificador de la enseñanza del plan de estudio de Canarias por el que filtrar las situaciones de aprendizaje a obtener (Opcional). Si se omite, se debe especificar idArea o idEstudio.",
               "format": "int32",
               "nullable": true
             }
@@ -1454,10 +1409,8 @@
           {
             "name": "Cadena",
             "in": "query",
-            "description": "Cadena de filtado genérica.",
             "schema": {
               "type": "string",
-              "description": "Cadena de filtado genérica.",
               "nullable": true
             }
           }
@@ -1468,7 +1421,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
+                  "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
                 }
               }
             }
@@ -1500,7 +1453,7 @@
   },
   "components": {
     "schemas": {
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.SituacionAprendizajePadreInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.SituacionAprendizajePadreInfoDTO": {
         "type": "object",
         "properties": {
           "idSituacionAprendizajePadre": {
@@ -1518,7 +1471,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.IdentificacionActividadExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.IdentificacionActividadExDTO": {
         "type": "object",
         "properties": {
           "titulo": {
@@ -1532,7 +1485,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.CriterioEvaluacionSituacionAprendizajeInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.CriterioEvaluacionSituacionAprendizajeInfoDTO": {
         "type": "object",
         "properties": {
           "idCriterioEvaluacion": {
@@ -1549,7 +1502,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.InstrumentoEvaluacionInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.InstrumentoEvaluacionInfoDTO": {
         "type": "object",
         "properties": {
           "idInstrumentoEvaluacion": {
@@ -1563,14 +1516,14 @@
           "criteriosEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.CriterioEvaluacionSituacionAprendizajeInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.CriterioEvaluacionSituacionAprendizajeInfoDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ProductoInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ProductoInfoDTO": {
         "type": "object",
         "properties": {
           "idProducto": {
@@ -1584,7 +1537,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO": {
         "type": "object",
         "properties": {
           "idValorEntidadEstatica": {
@@ -1606,34 +1559,34 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.DatosTecnicosActividadSituacionAprendizajeExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.DatosTecnicosActividadSituacionAprendizajeExDTO": {
         "type": "object",
         "properties": {
           "instrumentos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.InstrumentoEvaluacionInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.InstrumentoEvaluacionInfoDTO"
             },
             "nullable": true
           },
           "productos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ProductoInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ProductoInfoDTO"
             },
             "nullable": true
           },
           "agrupamientos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
           "evaluacionAgente": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
@@ -1644,7 +1597,7 @@
           "recursos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
@@ -1655,7 +1608,7 @@
           "espacios": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
@@ -1674,7 +1627,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.ArchivoAdjuntoExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.ArchivoAdjuntoExDTO": {
         "type": "object",
         "properties": {
           "idArchivo": {
@@ -1692,7 +1645,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSitaucionAprendizajeExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.AActividadSitaucionAprendizajeExDTO": {
         "type": "object",
         "properties": {
           "idActividad": {
@@ -1700,25 +1653,25 @@
             "format": "uuid"
           },
           "infoSituacionAprendizajePadre": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.SituacionAprendizajePadreInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.SituacionAprendizajePadreInfoDTO"
           },
           "identificacionActividad": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.IdentificacionActividadExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.IdentificacionActividadExDTO"
           },
           "datosTecnicosActividad": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.DatosTecnicosActividadSituacionAprendizajeExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.DatosTecnicosActividadSituacionAprendizajeExDTO"
           },
           "archivosAdjuntos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.ArchivoAdjuntoExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.ArchivoAdjuntoExDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple": {
+      "SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple": {
         "type": "object",
         "properties": {
           "fechaHoraPeticion": {
@@ -1745,14 +1698,14 @@
         "additionalProperties": false,
         "description": "Metadatos que encapsula el conjunto de datos devuelto en la respuesta de un endpoint vinculado con una entidad simple."
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ActividadSituacionAprendizajeExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ActividadSituacionAprendizajeExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSitaucionAprendizajeExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.AActividadSitaucionAprendizajeExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
           }
         },
         "additionalProperties": false,
@@ -1788,7 +1741,7 @@
           "additionalProperties": false
         }
       },
-      "Servicios.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosPaginacionColeccionResponse": {
+      "SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosPaginacionColeccionResponse": {
         "type": "object",
         "properties": {
           "posicionInicial": {
@@ -1810,7 +1763,7 @@
         "additionalProperties": false,
         "description": "Metadatos asociados con los datos de paginación devueltos en la sección paginación de los endpoints vinculados a colecciones."
       },
-      "Servicios.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosFiltroColeccionResponse": {
+      "SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosFiltroColeccionResponse": {
         "type": "object",
         "properties": {
           "parametro": {
@@ -1825,7 +1778,7 @@
         "additionalProperties": false,
         "description": "Metadatos asociados con el par Parametro-Valor devuelto en la sección filtro de los endpoints vinculados a colecciones."
       },
-      "Servicios.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosOrdenColeccionResponse": {
+      "SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosOrdenColeccionResponse": {
         "type": "object",
         "properties": {
           "campo": {
@@ -1840,16 +1793,16 @@
         "additionalProperties": false,
         "description": "Metadatos asociados con el par Campo-TipoOrden devuelto en la sección orden de los endpoints vinculados a colecciones."
       },
-      "Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion": {
+      "SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion": {
         "type": "object",
         "properties": {
           "bloque": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosPaginacionColeccionResponse"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosPaginacionColeccionResponse"
           },
           "filtro": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosFiltroColeccionResponse"
+              "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosFiltroColeccionResponse"
             },
             "nullable": true,
             "readOnly": true
@@ -1857,7 +1810,7 @@
           "orden": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosOrdenColeccionResponse"
+              "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.Colecciones.MetadatosOrdenColeccionResponse"
             },
             "nullable": true,
             "readOnly": true
@@ -1886,26 +1839,26 @@
         "additionalProperties": false,
         "description": "Metadatos que encapsula el conjunto de secciones paginación, orden y filtro devuelto en la respuesta de un endpoint vinculado a colecciones."
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ColeccionActividadSituacionAprendizajeExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ColeccionActividadSituacionAprendizajeExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSitaucionAprendizajeExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ActividadSituacionAprendizaje.AActividadSitaucionAprendizajeExDTO"
             },
             "description": "Sección datos de la respuesta.",
             "nullable": true,
             "readOnly": true
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la colección ActividadExDTO."
       },
-      "Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest": {
         "required": [
           "username"
         ],
@@ -1918,7 +1871,7 @@
         "additionalProperties": false,
         "description": "Datos del usuario para la solicitud de autentificación."
       },
-      "Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest": {
         "required": [
           "pt",
           "service"
@@ -1935,7 +1888,7 @@
         "additionalProperties": false,
         "description": "Datos del usuario para la solicitud de autentificación."
       },
-      "Servicios.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest": {
         "required": [
           "guidSesion"
         ],
@@ -1948,7 +1901,7 @@
         "additionalProperties": false,
         "description": "Datos de sesión de usuario en el SUA-CAS para su autenticación."
       },
-      "Servicio.Centros.DTO.CentroInfoDTO": {
+      "Centros.Servicio.DTO.CentroInfoDTO": {
         "type": "object",
         "properties": {
           "idCentro": {
@@ -1970,7 +1923,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.Comun.Nombramiento.CursoCentroInfoDTO": {
+      "GestionAcademica.Servicio.DTO.Comun.Nombramiento.CursoCentroInfoDTO": {
         "type": "object",
         "properties": {
           "idCursoCentro": {
@@ -1982,12 +1935,12 @@
             "nullable": true
           },
           "infoCentro": {
-            "$ref": "#/components/schemas/Servicio.Centros.DTO.CentroInfoDTO"
+            "$ref": "#/components/schemas/Centros.Servicio.DTO.CentroInfoDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.Comun.Personal.DocumentoIdentificativoExDTO": {
+      "GestionAcademica.Servicio.DTO.Comun.Personal.DocumentoIdentificativoExDTO": {
         "type": "object",
         "properties": {
           "nifNie": {
@@ -2005,7 +1958,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.Comunicaciones.ComunicacionExDTO": {
+      "GestionAcademica.Servicio.DTO.Comunicaciones.ComunicacionExDTO": {
         "type": "object",
         "properties": {
           "asunto": {
@@ -2027,7 +1980,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO": {
+      "GestionAcademica.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO": {
         "type": "object",
         "properties": {
           "idDestinatarioComunicacionEnWeb": {
@@ -2035,7 +1988,7 @@
             "format": "uuid"
           },
           "documentoIdentificativoDestinatarioComunicacionEnWeb": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Personal.DocumentoIdentificativoExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Personal.DocumentoIdentificativoExDTO"
           },
           "leido": {
             "type": "boolean"
@@ -2047,7 +2000,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.Comunicaciones.ComunicacionEnWebExDTO": {
+      "GestionAcademica.Servicio.DTO.Comunicaciones.ComunicacionEnWebExDTO": {
         "type": "object",
         "properties": {
           "idComunicacionEnWeb": {
@@ -2055,10 +2008,10 @@
             "format": "uuid"
           },
           "infoCursoCentro": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Nombramiento.CursoCentroInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Nombramiento.CursoCentroInfoDTO"
           },
           "documentoIdentificativoRemitente": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Personal.DocumentoIdentificativoExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Personal.DocumentoIdentificativoExDTO"
           },
           "remitente": {
             "type": "string",
@@ -2069,51 +2022,51 @@
             "format": "date-time"
           },
           "comunicacion": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comunicaciones.ComunicacionExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comunicaciones.ComunicacionExDTO"
           },
           "destinatarios": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ComunicacionEnWebExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ComunicacionEnWebExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comunicaciones.ComunicacionEnWebExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comunicaciones.ComunicacionEnWebExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la entidad ComunicacionEnWebExDTO."
       },
-      "Servicios.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ColeccionComunicacionEnWebExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Ekade.Comunicaciones.Models.Responses.ColeccionComunicacionEnWebExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comunicaciones.ComunicacionEnWebExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comunicaciones.ComunicacionEnWebExDTO"
             },
             "description": "Sección datos de la respuesta.",
             "nullable": true,
             "readOnly": true
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la colección de entidades ComunicacionEnWebExDTO."
       },
-      "Servicio.PlanEstudio.DTO.EnsenyanzaSCInfoDTO": {
+      "PlanEstudio.Servicio.DTO.EnsenyanzaSCInfoDTO": {
         "type": "object",
         "properties": {
           "idEnsenyanzaSC": {
@@ -2131,7 +2084,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.PlanEstudio.DTO.EstudioSCInfoDTO": {
+      "PlanEstudio.Servicio.DTO.EstudioSCInfoDTO": {
         "type": "object",
         "properties": {
           "idEstudioSC": {
@@ -2147,12 +2100,12 @@
             "nullable": true
           },
           "ensenyanza": {
-            "$ref": "#/components/schemas/Servicio.PlanEstudio.DTO.EnsenyanzaSCInfoDTO"
+            "$ref": "#/components/schemas/PlanEstudio.Servicio.DTO.EnsenyanzaSCInfoDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.PlanEstudio.DTO.AreaSCInfoDTO": {
+      "PlanEstudio.Servicio.DTO.AreaSCInfoDTO": {
         "type": "object",
         "properties": {
           "idAreaSC": {
@@ -2168,12 +2121,12 @@
             "nullable": true
           },
           "estudio": {
-            "$ref": "#/components/schemas/Servicio.PlanEstudio.DTO.EstudioSCInfoDTO"
+            "$ref": "#/components/schemas/PlanEstudio.Servicio.DTO.EstudioSCInfoDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.CompetenciaInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.CompetenciaInfoDTO": {
         "type": "object",
         "properties": {
           "idCompetencia": {
@@ -2191,7 +2144,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.CriterioEvaluacion.CalificadorCriterioEvaluacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.CriterioEvaluacion.CalificadorCriterioEvaluacionExDTO": {
         "type": "object",
         "properties": {
           "idCalificadorCriterioEvaluacion": {
@@ -2216,7 +2169,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.CriterioEvaluacion.RubricaCalificadorExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.CriterioEvaluacion.RubricaCalificadorExDTO": {
         "type": "object",
         "properties": {
           "idRubrica": {
@@ -2228,12 +2181,12 @@
             "nullable": true
           },
           "calificador": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.CriterioEvaluacion.CalificadorCriterioEvaluacionExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.CriterioEvaluacion.CalificadorCriterioEvaluacionExDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.CriterioEvaluacion.CriterioEvaluacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.CriterioEvaluacion.CriterioEvaluacionExDTO": {
         "type": "object",
         "properties": {
           "idCriterioEvaluacion": {
@@ -2251,60 +2204,60 @@
           "areas": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.PlanEstudio.DTO.AreaSCInfoDTO"
+              "$ref": "#/components/schemas/PlanEstudio.Servicio.DTO.AreaSCInfoDTO"
             },
             "nullable": true
           },
           "competencias": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.CompetenciaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.CompetenciaInfoDTO"
             },
             "nullable": true
           },
           "rubricasCalificadores": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.CriterioEvaluacion.RubricaCalificadorExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.CriterioEvaluacion.RubricaCalificadorExDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.CriterioEvaluacionExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.CriterioEvaluacionExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.CriterioEvaluacion.CriterioEvaluacionExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.CriterioEvaluacion.CriterioEvaluacionExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la entidad CriterioEvaluacionExDTO."
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.ColeccionCriterioEvaluacionExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.ColeccionCriterioEvaluacionExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.CriterioEvaluacion.CriterioEvaluacionExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.CriterioEvaluacion.CriterioEvaluacionExDTO"
             },
             "description": "Sección datos de la respuesta.",
             "nullable": true,
             "readOnly": true
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la colección de entidades CriterioEvaluacionExDTO."
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSituacionAprendizajeInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSituacionAprendizajeInfoDTO": {
         "type": "object",
         "properties": {
           "idActividad": {
@@ -2312,26 +2265,26 @@
             "format": "uuid"
           },
           "identififcacionActividad": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.IdentificacionActividadExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.IdentificacionActividadExDTO"
           },
           "instrumentosEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.InstrumentoEvaluacionInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.InstrumentoEvaluacionInfoDTO"
             },
             "nullable": true
           },
           "productos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ProductoInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ProductoInfoDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.CriterioEvaluacionInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.CriterioEvaluacionInfoDTO": {
         "type": "object",
         "properties": {
           "idCriterioEvaluacion": {
@@ -2349,7 +2302,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.Comun.EntidadEstatica.ValorEntidadEstaticaExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.Comun.EntidadEstatica.ValorEntidadEstaticaExDTO": {
         "type": "object",
         "properties": {
           "textoLibre": {
@@ -2387,7 +2340,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.RelacionInstrumentosEvaluacionCriterioEvaluacionInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.RelacionInstrumentosEvaluacionCriterioEvaluacionInfoDTO": {
         "type": "object",
         "properties": {
           "idRelacionProductoInstrumentoCriterioEvaluacion": {
@@ -2395,12 +2348,12 @@
             "format": "uuid"
           },
           "criterioEvaluacion": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.CriterioEvaluacionInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.CriterioEvaluacionInfoDTO"
           },
           "competencias": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.CompetenciaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.CompetenciaInfoDTO"
             },
             "nullable": true
           },
@@ -2418,21 +2371,21 @@
           "tecnicasEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.EntidadEstatica.ValorEntidadEstaticaExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.EntidadEstatica.ValorEntidadEstaticaExDTO"
             },
             "nullable": true
           },
           "herramientasEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.EntidadEstatica.ValorEntidadEstaticaExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.EntidadEstatica.ValorEntidadEstaticaExDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.InstrumentoEvaluacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.InstrumentoEvaluacionExDTO": {
         "type": "object",
         "properties": {
           "idInstrumentoEvaluacion": {
@@ -2448,51 +2401,51 @@
             "nullable": true
           },
           "infoActividadPadre": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSituacionAprendizajeInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSituacionAprendizajeInfoDTO"
           },
           "criteriosEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.RelacionInstrumentosEvaluacionCriterioEvaluacionInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.RelacionInstrumentosEvaluacionCriterioEvaluacionInfoDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.InstrumentoEvaluacionExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.InstrumentoEvaluacionExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.InstrumentoEvaluacionExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.InstrumentoEvaluacionExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la entidad InstrumentoEvaluacionExDTO."
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.ColeccionInstrumentoEvaluacionExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.ColeccionInstrumentoEvaluacionExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.InstrumentoEvaluacion.InstrumentoEvaluacionExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.InstrumentoEvaluacion.InstrumentoEvaluacionExDTO"
             },
             "description": "Sección datos de la respuesta.",
             "nullable": true,
             "readOnly": true
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la colección de entidades InstrumentoEvaluacionExDTO."
       },
-      "Servicio.GestionAcademica.DTO.Comun.Nombramiento.DocenteInfoDTO": {
+      "GestionAcademica.Servicio.DTO.Comun.Nombramiento.DocenteInfoDTO": {
         "type": "object",
         "properties": {
           "apellido1": {
@@ -2518,7 +2471,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.Comun.Nombramiento.NombramientoInfoDTO": {
+      "GestionAcademica.Servicio.DTO.Comun.Nombramiento.NombramientoInfoDTO": {
         "type": "object",
         "properties": {
           "idNombramiento": {
@@ -2534,10 +2487,10 @@
             "format": "date-time"
           },
           "infoDocente": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Nombramiento.DocenteInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Nombramiento.DocenteInfoDTO"
           },
           "infoCursoCentro": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Nombramiento.CursoCentroInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Nombramiento.CursoCentroInfoDTO"
           },
           "esVigenteCursoEscolarNombramiento": {
             "type": "boolean"
@@ -2545,7 +2498,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaNombramiento.AlumnoInfoDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaNombramiento.AlumnoInfoDTO": {
         "type": "object",
         "properties": {
           "idAlumnadoCentro": {
@@ -2582,12 +2535,12 @@
             "nullable": true
           },
           "documentoIdentificativo": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Personal.DocumentoIdentificativoExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Personal.DocumentoIdentificativoExDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaNombramiento.GrupoInfoDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaNombramiento.GrupoInfoDTO": {
         "type": "object",
         "properties": {
           "idGrupoClase": {
@@ -2605,7 +2558,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaNombramiento.EstudioInfoDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaNombramiento.EstudioInfoDTO": {
         "type": "object",
         "properties": {
           "idEstudio": {
@@ -2627,7 +2580,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaNombramiento.MatriculaInfoDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaNombramiento.MatriculaInfoDTO": {
         "type": "object",
         "properties": {
           "idMatricula": {
@@ -2635,22 +2588,22 @@
             "format": "uuid"
           },
           "infoAlumno": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaNombramiento.AlumnoInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaNombramiento.AlumnoInfoDTO"
           },
           "numeroLista": {
             "type": "string",
             "nullable": true
           },
           "infoGrupoClase": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaNombramiento.GrupoInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaNombramiento.GrupoInfoDTO"
           },
           "infoEstudio": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaNombramiento.EstudioInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaNombramiento.EstudioInfoDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaNombramiento.RelacionMatriculaNombramientoExDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaNombramiento.RelacionMatriculaNombramientoExDTO": {
         "type": "object",
         "properties": {
           "idNombramiento": {
@@ -2668,41 +2621,41 @@
             "type": "boolean"
           },
           "infoMatricula": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaNombramiento.MatriculaInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaNombramiento.MatriculaInfoDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaNombramiento.MatriculasNombramientoExDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaNombramiento.MatriculasNombramientoExDTO": {
         "type": "object",
         "properties": {
           "nombramiento": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Nombramiento.NombramientoInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Nombramiento.NombramientoInfoDTO"
           },
           "matriculas": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaNombramiento.RelacionMatriculaNombramientoExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaNombramiento.RelacionMatriculaNombramientoExDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasNombramientoExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasNombramientoExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaNombramiento.MatriculasNombramientoExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaNombramiento.MatriculasNombramientoExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la colección de MatriculasNombramientoExDTO."
       },
-      "Servicio.GestionAcademica.DTO.Comun.Area.AreaInfoDTO": {
+      "GestionAcademica.Servicio.DTO.Comun.Area.AreaInfoDTO": {
         "type": "object",
         "properties": {
           "idArea": {
@@ -2724,7 +2677,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaAreaNombramiento.MatriculaAreaInfoDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaAreaNombramiento.MatriculaAreaInfoDTO": {
         "type": "object",
         "properties": {
           "idMatriculaArea": {
@@ -2732,51 +2685,51 @@
             "format": "uuid"
           },
           "infoMatricula": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaNombramiento.MatriculaInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaNombramiento.MatriculaInfoDTO"
           },
           "infoArea": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Area.AreaInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Area.AreaInfoDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.MatriculaAreaNombramiento.MatriculasAreasNombramientoExDTO": {
+      "GestionAcademica.Servicio.DTO.MatriculaAreaNombramiento.MatriculasAreasNombramientoExDTO": {
         "type": "object",
         "properties": {
           "nombramiento": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Nombramiento.NombramientoInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Nombramiento.NombramientoInfoDTO"
           },
           "matriculasAreas": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaAreaNombramiento.MatriculaAreaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaAreaNombramiento.MatriculaAreaInfoDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasAreasNombramientoExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Ekade.Matricula.Models.Responses.MatriculasAreasNombramientoExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.MatriculaAreaNombramiento.MatriculasAreasNombramientoExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.MatriculaAreaNombramiento.MatriculasAreasNombramientoExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la colección de matrículas-áreas filtradas en base a un nombramiento, fecha referencia,\r\ngrupo o area."
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ETipoProductoInstrumento": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ETipoProductoInstrumento": {
         "enum": [
           "Producto",
           "InstrumentoEvaluacion"
         ],
         "type": "string"
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CriterioEvaluacionInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CriterioEvaluacionInfoDTO": {
         "type": "object",
         "properties": {
           "idCriterioEvaluacion": {
@@ -2784,7 +2737,7 @@
             "format": "int32"
           },
           "area": {
-            "$ref": "#/components/schemas/Servicio.PlanEstudio.DTO.AreaSCInfoDTO"
+            "$ref": "#/components/schemas/PlanEstudio.Servicio.DTO.AreaSCInfoDTO"
           },
           "codigoCriterioEvaluacion": {
             "type": "string",
@@ -2793,7 +2746,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CompetenciaInfoDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CompetenciaInfoDTO": {
         "type": "object",
         "properties": {
           "idItemSC": {
@@ -2811,7 +2764,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.ValorEntidadEstatica.TecnicaEvaluacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.ValorEntidadEstatica.TecnicaEvaluacionExDTO": {
         "type": "object",
         "properties": {
           "descripcionTecnicaEvaluacion": {
@@ -2849,7 +2802,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.ValorEntidadEstatica.HerramientaEvaluacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.ValorEntidadEstatica.HerramientaEvaluacionExDTO": {
         "type": "object",
         "properties": {
           "descripcionHerramientaEvaluacion": {
@@ -2887,7 +2840,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.RelacionProductosInstrumentosCriteriosEvaluacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.RelacionProductosInstrumentosCriteriosEvaluacionExDTO": {
         "type": "object",
         "properties": {
           "idRelacionProductoInstrumentoCriterioEvaluacion": {
@@ -2895,7 +2848,7 @@
             "format": "uuid"
           },
           "criterioEvaluacion": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CriterioEvaluacionInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CriterioEvaluacionInfoDTO"
           },
           "implementacionParcial": {
             "type": "boolean"
@@ -2907,7 +2860,7 @@
           "competencias": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CompetenciaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.CompetenciaInfoDTO"
             },
             "nullable": true
           },
@@ -2922,21 +2875,21 @@
           "tecnicasEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.ValorEntidadEstatica.TecnicaEvaluacionExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.ValorEntidadEstatica.TecnicaEvaluacionExDTO"
             },
             "nullable": true
           },
           "herramientasEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.ValorEntidadEstatica.HerramientaEvaluacionExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.ValorEntidadEstatica.HerramientaEvaluacionExDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ProductoInstrumentoEvaluacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ProductoInstrumentoEvaluacionExDTO": {
         "type": "object",
         "properties": {
           "idProductoInstrumentoEvaluacion": {
@@ -2956,32 +2909,32 @@
             "nullable": true
           },
           "tipoProductoInstrumentoEvaluacion": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ETipoProductoInstrumento"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ETipoProductoInstrumento"
           },
           "relacionesCriteriosEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.RelacionProductosInstrumentosCriteriosEvaluacionExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.RelacionProductosInstrumentosCriteriosEvaluacionExDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Responses.ProductoInstrumentoEvaluacionExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Responses.ProductoInstrumentoEvaluacionExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ProductoInstrumentoEvaluacionExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ProductoInstrumentoEvaluacionExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la entidad ProductoInstrumentoEvaluacionExDTO."
       },
-      "Servicio.GestionAcademica.Interfaz.Comun.Models.IValorEntidadEstaticaRequestModel": {
+      "GestionAcademica.Servicio.Interfaz.Comun.Models.IValorEntidadEstaticaRequestModel": {
         "type": "object",
         "properties": {
           "codigoValorEntidadEstatica": {
@@ -2995,7 +2948,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.Interfaz.ProIdeac.ProductoInstrumentoEvaluacion.Models.IRelacionProductosInstrumentosCriteriosEvaluacionDTORequestModel": {
+      "GestionAcademica.Servicio.Interfaz.ProIdeac.ProductoInstrumentoEvaluacion.Models.IRelacionProductosInstrumentosCriteriosEvaluacionDTO": {
         "type": "object",
         "properties": {
           "codigoCriterioEvaluacion": {
@@ -3020,21 +2973,21 @@
           "tecnicasEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.Interfaz.Comun.Models.IValorEntidadEstaticaRequestModel"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.Interfaz.Comun.Models.IValorEntidadEstaticaRequestModel"
             },
             "nullable": true
           },
           "herramientasEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.Interfaz.Comun.Models.IValorEntidadEstaticaRequestModel"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.Interfaz.Comun.Models.IValorEntidadEstaticaRequestModel"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionDTORequestModel": {
         "type": "object",
         "properties": {
           "denominacion": {
@@ -3048,14 +3001,14 @@
           "relacionProductosInstrumentosCriteriosEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.Interfaz.ProIdeac.ProductoInstrumentoEvaluacion.Models.IRelacionProductosInstrumentosCriteriosEvaluacionDTORequestModel"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.Interfaz.ProIdeac.ProductoInstrumentoEvaluacion.Models.IRelacionProductosInstrumentosCriteriosEvaluacionDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.Comun.CRUDDTO": {
+      "GestionAcademica.Servicio.DTO.Comun.CRUDDTO": {
         "type": "object",
         "properties": {
           "id": {
@@ -3069,19 +3022,19 @@
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.Comun.Responses.CRUDResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.Comun.Responses.CRUDResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.CRUDDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.CRUDDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.TipoSituacionAprendizajeExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.TipoSituacionAprendizajeExDTO": {
         "type": "object",
         "properties": {
           "idTipoSituacionAprendizaje": {
@@ -3099,22 +3052,22 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.VinculoSituacionAprendizajeExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.VinculoSituacionAprendizajeExDTO": {
         "type": "object",
         "properties": {
           "docente": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Nombramiento.DocenteInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Nombramiento.DocenteInfoDTO"
           },
           "nombramiento": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.Comun.Nombramiento.NombramientoInfoDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.Comun.Nombramiento.NombramientoInfoDTO"
           },
           "centro": {
-            "$ref": "#/components/schemas/Servicio.Centros.DTO.CentroInfoDTO"
+            "$ref": "#/components/schemas/Centros.Servicio.DTO.CentroInfoDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.DatosTecnicosSituacionAprendizajeExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.DatosTecnicosSituacionAprendizajeExDTO": {
         "type": "object",
         "properties": {
           "titulo": {
@@ -3136,14 +3089,14 @@
           "areas": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.PlanEstudio.DTO.AreaSCInfoDTO"
+              "$ref": "#/components/schemas/PlanEstudio.Servicio.DTO.AreaSCInfoDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.IdentificacionSituacionAprendizajeExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.IdentificacionSituacionAprendizajeExDTO": {
         "type": "object",
         "properties": {
           "descripcion": {
@@ -3161,20 +3114,20 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.FundamentacionCurricularExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionCurricularExDTO": {
         "type": "object",
         "properties": {
           "criteriosEvaluacion": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.CriterioEvaluacionSituacionAprendizajeInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.CriterioEvaluacionSituacionAprendizajeInfoDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaConcrecionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaConcrecionExDTO": {
         "type": "object",
         "properties": {
           "fundamentosMetodologicos": {
@@ -3188,14 +3141,14 @@
           "modeloEnsenazas": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
           "agrupamientos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
@@ -3206,7 +3159,7 @@
           "espacios": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
@@ -3217,7 +3170,7 @@
           "recursos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.EntidadEstaticaInfoDTO"
             },
             "nullable": true
           },
@@ -3228,7 +3181,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaInformacionAdicionalExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaInformacionAdicionalExDTO": {
         "type": "object",
         "properties": {
           "fuentes": {
@@ -3246,7 +3199,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.PeriodoImplementacionExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.PeriodoImplementacionExDTO": {
         "type": "object",
         "properties": {
           "fechaDesde": {
@@ -3264,7 +3217,7 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ValoracionAjusteExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ValoracionAjusteExDTO": {
         "type": "object",
         "properties": {
           "desarrollo": {
@@ -3278,19 +3231,19 @@
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.SeguimientoAula.SeguimientoAulaExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.SeguimientoAula.SeguimientoAulaExDTO": {
         "type": "object",
         "properties": {
           "periodoImplementacion": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.PeriodoImplementacionExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.PeriodoImplementacionExDTO"
           },
           "valoracionAjuste": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.ValoracionAjusteExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.ValoracionAjusteExDTO"
           }
         },
         "additionalProperties": false
       },
-      "Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO": {
+      "GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO": {
         "type": "object",
         "properties": {
           "idSituacionAprendizaje": {
@@ -3298,70 +3251,87 @@
             "format": "uuid"
           },
           "tipoSituacionAprendizaje": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.TipoSituacionAprendizajeExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.TipoSituacionAprendizajeExDTO"
           },
           "vinculoSituacionAprendizaje": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.VinculoSituacionAprendizajeExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.VinculoSituacionAprendizajeExDTO"
           },
           "datosTecnicosSituacionAprendizaje": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.DatosTecnicosSituacionAprendizajeExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.DatosTecnicosSituacionAprendizajeExDTO"
           },
           "idenficiacionSituacionAprendizaje": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.IdentificacionSituacionAprendizajeExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.IdentificacionSituacionAprendizajeExDTO"
           },
           "fundamentacionCurricular": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.FundamentacionCurricularExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionCurricularExDTO"
           },
           "fundamentacionMetodologicaConcrecion": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaConcrecionExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaConcrecionExDTO"
           },
           "fundamentacionMetodologicaInformacionAdicional": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaInformacionAdicionalExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaInformacionAdicionalExDTO"
           },
           "seguimientoAula": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.SeguimientoAula.SeguimientoAulaExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.SeguimientoAula.SeguimientoAulaExDTO"
           },
           "actividades": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSituacionAprendizajeInfoDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.Comun.SituacionAprendizaje.ActividadSituacionAprendizaje.ActividadSituacionAprendizajeInfoDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.SituacionAprendizajeExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.SituacionAprendizajeExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
-            "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO"
+            "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO"
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asociada con la entidad SituacionAprendizajeExDTO."
       },
-      "Servicios.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel": {
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel": {
         "type": "object",
         "properties": {
           "dato": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Servicio.GestionAcademica.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO"
+              "$ref": "#/components/schemas/GestionAcademica.Servicio.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO"
             },
             "description": "Sección datos de la respuesta.",
             "nullable": true,
             "readOnly": true
           },
           "metadatos": {
-            "$ref": "#/components/schemas/Servicios.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+            "$ref": "#/components/schemas/SigacAPI.Servicio.WebAPI.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
           }
         },
         "additionalProperties": false,
         "description": "Modelo de la respuesta asocilada con la colección de entidades SituacionAprendizajeExDTO."
+      },
+      "SigacAPI.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Requests.ECodigoSituacionAprendizaje": {
+        "enum": [
+          "CPUB",
+          "BRUJ"
+        ],
+        "type": "string",
+        "description": "Código tipo situación de aprendizaje."
+      },
+      "GestionAcademica.FiltrosColecciones.ProIdeac.SituacionAprendizaje.Filtros.ETipoSituacionAprendizaje": {
+        "enum": [
+          "PrivadaVinculada",
+          "PrivadaNoVinculada",
+          "CatalogoPublico",
+          "Brujula20"
+        ],
+        "type": "string"
       }
     },
     "securitySchemes": {

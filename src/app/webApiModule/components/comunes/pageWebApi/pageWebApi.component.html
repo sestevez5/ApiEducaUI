@@ -4,17 +4,18 @@
     
     <mat-form-field appearance="legacy">
       <mat-label>Entorno</mat-label>
-      <mat-select [(value)]="selectedFood">
+      <mat-select [value]="this.rutaSeleccionada?.url" (selectionChange)="onSeleccionarRuta($event.value)">
         <mat-option [value]="option.url" *ngFor="let option of documentosOpenApiPrefijados">{{ option.descripcion }}</mat-option>
       </mat-select>
+ 
     </mat-form-field>
   </div>
 
 
-  <mat-tab-group>
+  <mat-tab-group  >
     <mat-tab label="DTOS">    
       <div class="webApiPestanya">
-        <app-main-dtos></app-main-dtos>   
+        <app-main-dtos [mostrarDtos]="!this.cargando"></app-main-dtos>   
       </div>
       
    

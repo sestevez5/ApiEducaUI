@@ -39,6 +39,8 @@ export class MainDtosComponent{
 
   @ViewChild(MatAccordion) acordeon!: MatAccordion;
   dtos : IDto[];
+
+  @Input() mostrarDtos=true;
   
   constructor(public dialog: MatDialog,private  was: WebapiService ) {
 

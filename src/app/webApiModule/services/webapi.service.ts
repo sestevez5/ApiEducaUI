@@ -1,10 +1,10 @@
 import { IenumDto } from './../models/enumModel';
 import { ICampo } from './../models/campoModel';
 import { IDto } from './../models/dtoModel';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EnumTipoDto } from '../models/enumTipoDto';
-import { map, Observable, BehaviorSubject } from 'rxjs';
+import { map, Observable, BehaviorSubject, catchError, throwError } from 'rxjs';
 
 
 
@@ -13,23 +13,26 @@ import { map, Observable, BehaviorSubject } from 'rxjs';
 })
 export class WebapiService {
 
+  // Ruta del fichero que contiene todas las rutas de los docuementos OpenApi.
   origenDatosOpenApiOnline: string = '../assets/datas/origenesDatosOpenApi.json';
 
+  // Observable que emite la colección de rutas.
   rutasDatosOpenApiOnline$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
-
-
- 
-
+  
   uriDatos$: BehaviorSubject<string>= new BehaviorSubject<string>("");
+
+  // Observable que emite actualizaciones de colecciones de Dtos.
   dtos$: BehaviorSubject<IDto[]> = new BehaviorSubject<IDto[]>([]);
 
-  uriDatosOriginal: string = '../assets/json/webapiPre.json';
+ 
   uriDatosActual: string = '';
   contenidoDocumentoActual: any;
 
 
-  dtosActuales: IDto[];  // mantiene los últios dtos cargados.
+  dtosActuales: IDto[];  // mantiene los últimos dtos cargados.
+
+  erroresCargaDocumentoOpenApi$: BehaviorSubject<string> = new BehaviorSubject<string>("");
  
 
   constructor(private http: HttpClient) {
@@ -38,7 +41,7 @@ export class WebapiService {
     this.uriDatos$
     .subscribe(
       nuevoDoc => {
-        this.uriDatosActual = nuevoDoc; //Establecemos el nuevo documento como actual
+         this.uriDatosActual = nuevoDoc; //Establecemos el nuevo documento como actual
         this.uriDatosActual != ""?this.actualizarDtos():null; // Actualizamos la lista de Dtos
       }
     );
@@ -54,6 +57,8 @@ export class WebapiService {
     //this.uriDatos$.next('../assets/json/webapiPre.json');
 
     this.http.get(this.origenDatosOpenApiOnline)
+  
+    
     .subscribe(
       contenidoDocumentoActual => {
     
@@ -70,8 +75,6 @@ export class WebapiService {
   
       }
 
-
-  
     )
 
 
@@ -113,21 +116,10 @@ export class WebapiService {
 
     
     this.http.get(this.uriDatosActual)
-    .pipe(
-      map(
-
-        
-
-
-        contenidoDocumentoActual => {
-
-       
-
+    .subscribe(
+      contenidoDocumentoActual => {
         let dtos: IDto[];
-     
-
-
-          this.contenidoDocumentoActual=contenidoDocumentoActual;
+        this.contenidoDocumentoActual=contenidoDocumentoActual;
    
           for(const [key, value] of Object.entries(contenidoDocumentoActual)){
             if (key==='components') { 
@@ -141,8 +133,10 @@ export class WebapiService {
           } // Fin for
 
           this.dtos$.next(dtos);
-        })
-    ).subscribe();
+        },
+        error => this.erroresCargaDocumentoOpenApi$.next("No se ha podido cargar el documento")
+      
+    )
 
    
     }

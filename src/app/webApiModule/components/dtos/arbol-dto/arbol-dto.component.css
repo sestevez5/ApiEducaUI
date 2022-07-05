@@ -11,10 +11,9 @@ mat-panel-title {
 .dtoPadre mat-expansion-panel-header {
     height: 39px;
     /* background-color: #d3deee; */
-    background-color: #fbfbfb;
+    background-color:  #C9D6E8;
     /* border-bottom-style: solid; */
-    border-color: rgb(195, 195, 218);
-    border-width: 1px;
+
     box-shadow: 1px 1px 2px #999;
 
 
@@ -23,8 +22,10 @@ mat-panel-title {
 
 .dtoHijo mat-expansion-panel-header {
     height: 29px;
+
     background-color: #fcfcfc;
-    box-shadow: 1px 1px 2px #999;
+    background-color:  #C9D6E8;
+    box-shadow: 1px 1px 1px #999;
 
 }
 

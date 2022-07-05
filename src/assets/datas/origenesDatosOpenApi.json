@@ -22,8 +22,8 @@
     },
     {
         "orden":4,
-        "url":"../assets/json/webapiPre.json",
-        "descripcion": "ApiEduca (Entorno de Desarrollo)"
+        "url":"../assets/json/webapiPre2.json",
+        "descripcion": "ApiEduca (prueba)"
     }
    
 ]

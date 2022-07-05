@@ -4,6 +4,8 @@ import { IDto } from '../../../models/dtoModel';
 
 import { Component, Input, OnInit } from '@angular/core';
 
+import {MatSnackBar } from '@angular/material/snack-bar'
+
 
 interface OrigenDatosOpenApi {
   orden: number;
@@ -19,23 +21,46 @@ interface OrigenDatosOpenApi {
 export class PageWebApiComponent {
 
   documentosOpenApiPrefijados: OrigenDatosOpenApi[]=[];
+  rutaSeleccionada: OrigenDatosOpenApi;
+  rutaSeleccionadaOld: OrigenDatosOpenApi;
+  cargando= false;
 
-  constructor(private was: WebapiService){
+  constructor(private was: WebapiService, private snackBar: MatSnackBar){
+
+ 
+    was.erroresCargaDocumentoOpenApi$.subscribe(
+      error =>  {
+        if(error) {
+        const x = this.snackBar.open(error, "cerrar");
+        x.onAction().subscribe(() => {
+          this.cargando=false;
+          this.rutaSeleccionada=this.rutaSeleccionadaOld;
+        });
+      }
+    }
+    )
+
+    was.dtos$.subscribe(
+      dtos => { 
+        this.cargando=false;
+        this.rutaSeleccionadaOld = this.rutaSeleccionada
+      }
+    )
 
     was.obtenerRutasDocumentosOpenApi().subscribe(
       rutas => {
+        if (rutas.length>0){
         this.documentosOpenApiPrefijados=rutas;
-        console.log(this.documentosOpenApiPrefijados);
+        this.onSeleccionarRuta(this.documentosOpenApiPrefijados[0].url);
+        }
       }
     )
   }
 
-
- 
-
-  selectedFood: string = null;
-
-  selectCar(event: Event) {
-    this.selectedFood = (event.target as HTMLSelectElement).value;
+  onSeleccionarRuta(ruta:string) {
+  
+    this.rutaSeleccionada=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
+    this.cargando=true;
+    this.was.cambiarDocumento(this.rutaSeleccionada.url)
   }
 }
