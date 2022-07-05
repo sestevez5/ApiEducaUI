@@ -30,13 +30,24 @@ export class PageWebApiComponent {
  
     was.erroresCargaDocumentoOpenApi$.subscribe(
       error =>  {
+
         if(error) {
         const x = this.snackBar.open(error, "cerrar");
+        x.afterDismissed().subscribe(() => {
+         
+          this.cargando=false;
+          this.rutaSeleccionada=this.rutaSeleccionadaOld;
+          
+        });
         x.onAction().subscribe(() => {
           this.cargando=false;
           this.rutaSeleccionada=this.rutaSeleccionadaOld;
         });
-      }
+
+       
+        }
+
+      
     }
     )
 
