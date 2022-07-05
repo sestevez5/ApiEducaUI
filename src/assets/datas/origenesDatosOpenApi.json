@@ -2,13 +2,28 @@
     "rutas":[
     {
         "orden":1,
-        "url":"https://wwwpre.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
-        "descripcion": "ApiEduca (Entorno de Producción)"
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL]"
+    },
+    {
+        "orden":1,
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL2]"
     },
     {
         "orden":2,
-        "url":"https://wwwdesa.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
+        "url":"https://localhost:44371/swagger/v1/swagger.json",
+        "descripcion": "ApiEduca (Entorno de Producción)"
+    },
+    {
+        "orden":3,
+        "url":"../assets/json/webapiPre.json",
         "descripcion": "ApiEduca (Entorno de Preproducción)"
+    },
+    {
+        "orden":4,
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Desarrollo)"
     }
    
 ]
