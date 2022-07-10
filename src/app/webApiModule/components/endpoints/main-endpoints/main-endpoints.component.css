@@ -1,0 +1,48 @@
+
+app-arbol-dto {
+
+    margin-bottom: 20px;
+}
+
+.seccionDtos {
+    margin-top: 20px;
+}
+
+.example-spacer {
+    flex: auto;
+}
+
+mat-toolbar {
+    margin-bottom: 15px;
+    padding: 8px;
+    padding-right: 0px;
+    background-color: white;
+    font-size: 15px;
+
+
+
+}
+
+
+.seccionBuscador {
+    width: 40%;
+}
+
+
+.iconoColapsarDesplegar {
+    margin-left: 40px;
+}
+
+.iconoFiltrarAgrupacion {
+    margin-left: 40px;
+
+}
+
+
+:host ::ng-deep .mat-accordion .mat-expansion-panel:last-of-type {
+    border-radius: 0px;;
+}
+
+:host ::ng-deep  .mat-accordion .mat-expansion-panel:last-of-type {
+    border-radius: 0px;;
+}

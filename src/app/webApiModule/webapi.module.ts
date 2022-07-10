@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.component';
 
 import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupaciones/selector-agrupaciones.component';
+import { MainEndpointsComponent } from './components/endpoints/main-endpoints/main-endpoints.component';
 
 
 
@@ -22,7 +23,8 @@ import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupa
     ArbolDTOComponent,
     ComoPipe,
     MainDtosComponent,
-    SelectorAgrupacionesComponent
+    SelectorAgrupacionesComponent,
+    MainEndpointsComponent
   ],
   imports: [
     CommonModule,

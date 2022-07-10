@@ -1,3 +1,4 @@
+import { IEndpoint } from './../models/endpointModel';
 import { IenumDto } from './../models/enumModel';
 import { ICampo } from './../models/campoModel';
 import { IDto } from './../models/dtoModel';
@@ -5,6 +6,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { EnumTipoDto } from '../models/enumTipoDto';
 import { map, Observable, BehaviorSubject, catchError, throwError } from 'rxjs';
+import { EnumMetodoHttp } from '../models/enumMetodoHttp';
 
 
 
@@ -13,27 +15,38 @@ import { map, Observable, BehaviorSubject, catchError, throwError } from 'rxjs';
 })
 export class WebapiService {
 
+  //---------------------------------------
+  // ORÍGENES DE DATOS
+  //---------------------------------------
+
   // Ruta del fichero que contiene todas las rutas de los docuementos OpenApi.
   origenDatosOpenApiOnline: string = '../assets/datas/origenesDatosOpenApi.json';
 
   // Observable que emite la colección de rutas.
   rutasDatosOpenApiOnline$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-
   
   uriDatos$: BehaviorSubject<string>= new BehaviorSubject<string>("");
 
-  // Observable que emite actualizaciones de colecciones de Dtos.
-  dtos$: BehaviorSubject<IDto[]> = new BehaviorSubject<IDto[]>([]);
-
- 
   uriDatosActual: string = '';
   contenidoDocumentoActual: any;
-
-
-  dtosActuales: IDto[];  // mantiene los últimos dtos cargados.
-
+  
   erroresCargaDocumentoOpenApi$: BehaviorSubject<string> = new BehaviorSubject<string>("");
  
+
+
+  //---------------------------------------
+  // DTOS
+  //---------------------------------------
+  // Observable que emite actualizaciones de colecciones de Dtos.
+  dtos$: BehaviorSubject<IDto[]> = new BehaviorSubject<IDto[]>([]);
+  dtosActuales: IDto[];  // mantiene los últimos dtos cargados.
+
+  //---------------------------------------
+  // DTOS
+  //---------------------------------------
+  // Observable que emite actualizaciones de colecciones de Dtos.
+  endpoints$: BehaviorSubject<IEndpoint[]> = new BehaviorSubject<IEndpoint[]>([]);
+  endpointsActuales: IEndpoint[];  // mantiene los últimos dtos cargados.
 
   constructor(private http: HttpClient) {
 
@@ -41,8 +54,8 @@ export class WebapiService {
     this.uriDatos$
     .subscribe(
       nuevoDoc => {
-         this.uriDatosActual = nuevoDoc; //Establecemos el nuevo documento como actual
-        this.uriDatosActual != ""?this.actualizarDtos():null; // Actualizamos la lista de Dtos
+        this.uriDatosActual = nuevoDoc; //Establecemos el nuevo documento como actual
+        this.uriDatosActual != ""?this.actualizarEntidades():null; // Actualizamos la lista de Dtos
       }
     );
 
@@ -57,8 +70,6 @@ export class WebapiService {
     //this.uriDatos$.next('../assets/json/webapiPre.json');
 
     this.http.get(this.origenDatosOpenApiOnline)
-  
-    
     .subscribe(
       contenidoDocumentoActual => {
     
@@ -93,9 +104,6 @@ export class WebapiService {
 
   // Se devuelve un subconjunto de dtos a partir de los datos pasados como parámetros.
   obtenerDtos(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:IDto[], numeroElementos:number} {
-
-
-
     const dtos = cadenaFiltro?this.dtosActuales.filter(dto => dto.nombreDto.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.dtosActuales;
     const numeroElementos = dtos.length;
     
@@ -109,11 +117,10 @@ export class WebapiService {
   // Métodos privados
   //--------------------------------------
 
+
   // A partir del documento establecido en this.uriDatosActual regenera la lista de dtos 
   // ( emite un nuevo valor que es procesado por la subscripción de dtos$ )
-  private actualizarDtos(){
-
-
+  private actualizarEntidades(){
     
     this.http.get(this.uriDatosActual)
     .subscribe(
@@ -124,12 +131,15 @@ export class WebapiService {
           for(const [key, value] of Object.entries(contenidoDocumentoActual)){
             if (key==='components') { 
               const nodoDtos = (<any>value).schemas;
-          
               dtos = this.procesarDtos(nodoDtos);
-
-          
-            
             } // Fin if
+            else if (key === 'paths') {
+              const nodoEndpoints = value;
+              const endPoints = this.procesarEndpoints(nodoEndpoints)
+
+
+            }
+
           } // Fin for
 
           this.dtos$.next(dtos);
@@ -274,6 +284,83 @@ export class WebapiService {
 
 
   };
+
+  private procesarEndpoints(nodoEndpoints: any): IEndpoint[]{
+
+    const endpoints: IEndpoint[]=[];
+
+    for(const [key, value] of Object.entries(nodoEndpoints)){
+
+      const v: any =value;
+
+        const endPoint = this.obtenerEndpoint(key,value);
+
+        console.log(endPoint);
+        endpoints.push(endPoint);
+      }
+
+    
+    return endpoints.sort(
+    
+        function( a:IEndpoint , b:IEndpoint){
+          if(a.uriRelativa > b.uriRelativa) return 1;
+          if(a.uriRelativa < b.uriRelativa) return -1;
+          return 0;
+        }
+
+    );
+  }
+
+    // A partir de un nodo del documento obtiene el Dto correspondiente
+    private obtenerEndpoint(key:any, value: any): IEndpoint {
+
+      // const arrayNombresDto=key.split('.');
+      // const longitud = arrayNombresDto.length;
+  
+      // let dto:IDto;
+      //   dto = {
+      //     nombreDto: arrayNombresDto[longitud-1],
+      //     tipoDto: EnumTipoDto.EX,
+      //     subsistema: arrayNombresDto[longitud-2],
+      //     gestion: arrayNombresDto[longitud-3],
+      //     campos: this.obtenerCamposDto(value.properties)
+      //   };
+      
+
+
+      
+      let metodoHttp: EnumMetodoHttp;
+      let descripcion:string;
+     
+
+
+      
+      if (value.get) {
+        metodoHttp=EnumMetodoHttp.GET;
+        descripcion =value.get.summary;
+      }
+      if (value.post) {
+        metodoHttp=EnumMetodoHttp.POST;
+        descripcion =value.post.summary;
+      }
+
+      const ep: IEndpoint = {
+        uriRelativa: key,
+        metodoHttp: metodoHttp,
+        descripcion: descripcion
+        
+
+      }
+     
+
+  
+   
+
+
+  
+      return ep;
+  
+    }
 
 }
 

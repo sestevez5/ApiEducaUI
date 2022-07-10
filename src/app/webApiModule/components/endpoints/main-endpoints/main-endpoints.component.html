@@ -1,0 +1,53 @@
+<div >
+
+    <!-- Barra de filtrado general -->
+    <mat-toolbar>
+      <div class="seccionBuscador">
+  
+  
+          <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
+  
+      </div>
+      <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
+        <mat-icon >account_tree</mat-icon>
+      </button>
+  
+      <span class="example-spacer"></span>
+      <mat-slide-toggle [(ngModel)]="mostrarTiposDeCampos" color="primary">Mostrar tipo de campos</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="mostrarDescripcionesDtos" color="primary">Mostrar descripciones</mat-slide-toggle>
+     
+      <button mat-icon-button class="iconoColapsarDesplegar" (click)="onExpandirToggle()" aria-label="Example icon-button with share icon">
+        <mat-icon >{{ this.panelesExpandidos? 'expand_less' : 'expand_more'}}</mat-icon>
+      </button>
+    </mat-toolbar>
+      
+    <!-- Sección que renderiza los Dtos. -->
+    <p *ngIf="!this.mostrarDtos">Cargando...</p>
+    <div class="seccionDtos" *ngIf="this.mostrarDtos" >
+      
+      <mat-paginator [length]="this.paginacion.longitud"
+                     [pageSize]="this.paginacion.tamanyoPagina"
+                     [pageSizeOptions]="this.paginacion.opcionesPagina"
+                     [pageIndex]="this.paginacion.paginaSeleccionada"
+                     (page)="onSeleccionarPagina($event)"
+                 
+                     aria-label="Select page">
+      </mat-paginator>
+      
+  
+      <!-- <p *ngIf="this.cargando" >Cargando...</p> -->
+      <!-- <mat-accordion [multi]="true" *ngIf="!this.cargando" > -->
+  
+        <mat-accordion [multi]="true" >
+          <app-arbol-dto 
+            *ngFor="let dto of this.dtos" 
+            [dto]="dto" 
+            [expandido]="this.panelesExpandidos" 
+            [mostrarTiposDeCampos]="this.mostrarTiposDeCampos"
+            [mostrarDescripcionesDtos]="this.mostrarDescripcionesDtos">
+          </app-arbol-dto>
+      </mat-accordion>
+    </div>
+  
+  </div>
+  
