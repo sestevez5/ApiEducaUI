@@ -1,3 +1,4 @@
+import { IParametroEndpoint } from './../models/parametroEndpoint';
 import { IEndpoint } from './../models/endpointModel';
 import { IenumDto } from './../models/enumModel';
 import { ICampo } from './../models/campoModel';
@@ -66,6 +67,12 @@ export class WebapiService {
       
     )
 
+    this.endpoints$
+    .subscribe(
+      nuevosEndpoints => {this.endpointsActuales = nuevosEndpoints; }
+      
+    )
+
     // Emitimos, por defecto, un documento que desencadenará contenidoDocumentoActual.
     //this.uriDatos$.next('../assets/json/webapiPre.json');
 
@@ -113,6 +120,17 @@ export class WebapiService {
     }
   }
 
+  obtenerEndpointsFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:IEndpoint[], numeroElementos:number} {
+    const endpoints = cadenaFiltro?this.endpointsActuales.filter(endpoint => endpoint.uriRelativa.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.endpointsActuales;
+    const numeroElementos = endpoints.length;
+    
+    return { 
+      datos: endpoints.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
+      numeroElementos:numeroElementos
+    }
+  }
+
+
   //--------------------------------------
   // Métodos privados
   //--------------------------------------
@@ -126,6 +144,7 @@ export class WebapiService {
     .subscribe(
       contenidoDocumentoActual => {
         let dtos: IDto[];
+        let endpoints: IEndpoint[];
         this.contenidoDocumentoActual=contenidoDocumentoActual;
    
           for(const [key, value] of Object.entries(contenidoDocumentoActual)){
@@ -135,14 +154,13 @@ export class WebapiService {
             } // Fin if
             else if (key === 'paths') {
               const nodoEndpoints = value;
-              const endPoints = this.procesarEndpoints(nodoEndpoints)
-
-
-            }
+              endpoints = this.procesarEndpoints(nodoEndpoints);
+               }
 
           } // Fin for
 
           this.dtos$.next(dtos);
+          this.endpoints$.next(endpoints);
         },
         error => this.erroresCargaDocumentoOpenApi$.next("No se ha podido cargar el documento")
       
@@ -287,16 +305,14 @@ export class WebapiService {
 
   private procesarEndpoints(nodoEndpoints: any): IEndpoint[]{
 
-    const endpoints: IEndpoint[]=[];
+    let endpoints: IEndpoint[]=[];
 
     for(const [key, value] of Object.entries(nodoEndpoints)){
 
       const v: any =value;
 
-        const endPoint = this.obtenerEndpoint(key,value);
-
-        console.log(endPoint);
-        endpoints.push(endPoint);
+        const endPointsNodo = this.obtenerEndpoints(key,value);
+        endpoints=endpoints.concat(endPointsNodo);
       }
 
     
@@ -312,25 +328,15 @@ export class WebapiService {
   }
 
     // A partir de un nodo del documento obtiene el Dto correspondiente
-    private obtenerEndpoint(key:any, value: any): IEndpoint {
-
-      // const arrayNombresDto=key.split('.');
-      // const longitud = arrayNombresDto.length;
-  
-      // let dto:IDto;
-      //   dto = {
-      //     nombreDto: arrayNombresDto[longitud-1],
-      //     tipoDto: EnumTipoDto.EX,
-      //     subsistema: arrayNombresDto[longitud-2],
-      //     gestion: arrayNombresDto[longitud-3],
-      //     campos: this.obtenerCamposDto(value.properties)
-      //   };
-      
+    private obtenerEndpoints(key:any, value: any): IEndpoint[] {
 
 
-      
+     
       let metodoHttp: EnumMetodoHttp;
       let descripcion:string;
+      let parametrosQuery: IParametroEndpoint[];
+      let parametrosPath: IParametroEndpoint[];
+      const endpoints: IEndpoint[]=[];
      
 
 
@@ -338,28 +344,67 @@ export class WebapiService {
       if (value.get) {
         metodoHttp=EnumMetodoHttp.GET;
         descripcion =value.get.summary;
+        parametrosQuery= value.get.parameters?this.obtenerParametros(value.get.parameters, "query"):[];
+        parametrosPath= value.get.parameters?this.obtenerParametros(value.get.parameters, "path"):[];
+        const ep: IEndpoint = {
+          uriRelativa: key,
+          metodoHttp: metodoHttp,
+          descripcion: descripcion,
+          parametrosQuery: parametrosQuery,
+          parametrosPath: parametrosPath
+          
+        }
+  
+        endpoints.push(ep);
+      
       }
       if (value.post) {
         metodoHttp=EnumMetodoHttp.POST;
         descripcion =value.post.summary;
+        parametrosQuery= value.post.parameters?this.obtenerParametros(value.post.parameters, "query"):[];
+        parametrosPath= value.post.parameters?this.obtenerParametros(value.post.parameters, "path"):[];
+        const ep: IEndpoint = {
+          uriRelativa: key,
+          metodoHttp: metodoHttp,
+          descripcion: descripcion,
+          parametrosQuery: parametrosQuery,
+          parametrosPath: parametrosPath
+          
+        }
+  
+        endpoints.push(ep);
       }
 
-      const ep: IEndpoint = {
-        uriRelativa: key,
-        metodoHttp: metodoHttp,
-        descripcion: descripcion
-        
-
-      }
+  
      
 
   
-   
-
-
+      return endpoints;
   
-      return ep;
-  
+    }
+
+    private obtenerParametros(value: any, tipo: string): IParametroEndpoint[] {
+
+      const parametros: IParametroEndpoint[]=[];
+
+      for(let i in value){
+
+        if (value[i].in === tipo) {
+
+          const parametro: IParametroEndpoint = {
+            nombre: value[i].name?value[i].name:'',
+            tipo: value[i].schema?value[i].schema.type?value[i].schema.type:'':'',
+            formato: value[i].schema?value[i].schema.format?value[i].schema.format:'':'',
+            admiteNulo: value[i].schema?value[i].schema.nullable?value[i].schema.nullable:false:false,
+            descripcion: value[i].schema?value[i].schema.description?value[i].schema.description:'':'',
+          }
+          parametros.push(parametro);
+
+          }
+        
+      }
+      
+      return parametros
     }
 
 }

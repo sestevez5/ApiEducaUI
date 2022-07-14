@@ -13,6 +13,7 @@ import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.compone
 
 import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupaciones/selector-agrupaciones.component';
 import { MainEndpointsComponent } from './components/endpoints/main-endpoints/main-endpoints.component';
+import { EndpointComponent } from './components/endpoints/endpoint/endpoint.component';
 
 
 
@@ -24,7 +25,8 @@ import { MainEndpointsComponent } from './components/endpoints/main-endpoints/ma
     ComoPipe,
     MainDtosComponent,
     SelectorAgrupacionesComponent,
-    MainEndpointsComponent
+    MainEndpointsComponent,
+    EndpointComponent
   ],
   imports: [
     CommonModule,

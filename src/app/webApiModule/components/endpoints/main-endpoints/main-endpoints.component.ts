@@ -1,3 +1,4 @@
+import { IEndpoint } from './../../../models/endpointModel';
 import { WebapiService } from './../../../services/webapi.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IDto } from './../../../models/dtoModel';
@@ -21,7 +22,7 @@ interface IPaginacion {
 export class MainEndpointsComponent {
   panelesExpandidos=false;
   mostrarTiposDeCampos=true;
-  mostrarDescripcionesDtos=true;
+  mostrarDescripcionesEndpoints=true;
 
 
   paginacion: IPaginacion;
@@ -32,16 +33,14 @@ export class MainEndpointsComponent {
 
 
   @ViewChild(MatAccordion) acordeon!: MatAccordion;
-  dtos : IDto[];
+  endpoints : IEndpoint[];
 
-  @Input() mostrarDtos=true;
+  @Input() mostrarEndpoints=true;
   
   constructor(public dialog: MatDialog,private  was: WebapiService ) {
 
    
-    this.was.dtos$.subscribe(dtos => {
-
-
+    this.was.endpoints$.subscribe(endpoints => {
       this.paginacion = this.paginacion = {
         longitud:0,
         paginaSeleccionada:0,
@@ -85,8 +84,8 @@ export class MainEndpointsComponent {
   actualizarDatos()
   {
    
-      const result: any = this.was.obtenerDtos(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
-      this.dtos = result.datos;
+      const result: any = this.was.obtenerEndpointsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
+      this.endpoints = result.datos;
       this.paginacion.longitud = result.numeroElementos;
 
     
