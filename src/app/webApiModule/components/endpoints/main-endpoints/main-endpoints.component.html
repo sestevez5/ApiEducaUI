@@ -11,6 +11,14 @@
       <span class="example-spacer"></span>
       <mat-slide-toggle [(ngModel)]="mostrarTiposDeCampos" color="primary">Mostrar tipo de campos</mat-slide-toggle>
       <mat-slide-toggle [(ngModel)]="mostrarDescripcionesEndpoints" color="primary">Mostrar descripciones</mat-slide-toggle>
+
+      <div class="metodoHttp metodoHttpGet"><mat-slide-toggle [(ngModel)]="mostrarDescripcionesEndpoints" color="primary">GET</mat-slide-toggle></div>
+      <div class="metodoHttp metodoHttpPost"><mat-slide-toggle [(ngModel)]="mostrarDescripcionesEndpoints" color="primary">POST</mat-slide-toggle></div>
+      <div class="metodoHttp metodoHttpPut"><mat-slide-toggle [(ngModel)]="mostrarDescripcionesEndpoints" color="primary">PUT</mat-slide-toggle></div>
+      <div class="metodoHttp metodoHttpDelete"><mat-slide-toggle [(ngModel)]="mostrarDescripcionesEndpoints" color="primary">DELETE</mat-slide-toggle></div>
+
+      
+      
      
       <button mat-icon-button class="iconoColapsarDesplegar" (click)="onExpandirToggle()" aria-label="Example icon-button with share icon">
         <mat-icon >{{ this.panelesExpandidos? 'expand_less' : 'expand_more'}}</mat-icon>
