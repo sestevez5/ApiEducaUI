@@ -1,3 +1,4 @@
+import { OpenApi3Service } from './../../../services/open-api3.service';
 import { IEndpoint } from './../../../models/endpointModel';
 import { WebapiService } from './../../../services/webapi.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -37,7 +38,7 @@ export class MainEndpointsComponent {
 
   @Input() mostrarEndpoints=true;
   
-  constructor(public dialog: MatDialog,private  was: WebapiService ) {
+  constructor(public dialog: MatDialog,private  was: WebapiService, was1: OpenApi3Service) {
 
    
     this.was.endpoints$.subscribe(endpoints => {
@@ -49,6 +50,8 @@ export class MainEndpointsComponent {
       };
 
       this.actualizarDatos();
+
+      was1.actualizarOpenApiObject3Actual();
 
     })
 
