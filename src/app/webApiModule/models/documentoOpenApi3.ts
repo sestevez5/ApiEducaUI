@@ -28,7 +28,7 @@ export interface IPathsObject {
 
 export interface IComponentObject {
 
-    schemas?: ISchema[]
+    schemas?: ISchemaReferenceObject[]
     
 }
 
@@ -47,24 +47,31 @@ export interface IExternalDocumentationObject {
 // ----------------------------------------------
 // Estructuras derivadas de IComponentObject.
 // ----------------------------------------------
-export interface ISchema {
+export interface ISchemaReferenceObject {
 
     name: string;
-    estructura: ISchemaObject | IReferenceObject
+    structure: ISchemaObject | IReferenceObject
 
 }
 
 export interface ISchemaObject {
 
-
+    type?: string;
+    properties?: ISchemaReferenceObject[];
+    format?: string;
+    nullable?: boolean;
+    description?: string;
 
 }
 
 export interface IReferenceObject {
 
+    reference: string;
+
 
 
 }
+
 
 
 

@@ -1,4 +1,4 @@
-import { IComponentObject, IOpenApiObject3, ISchemaObject } from './../models/documentoOpenApi3';
+import { IComponentObject, IOpenApiObject3, ISchemaReferenceObject, ISchemaObject, IReferenceObject } from './../models/documentoOpenApi3';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Component } from '@angular/core';
@@ -50,7 +50,7 @@ export class OpenApi3Service {
 
   actualizarOpenApiObject3Actual() {
 
-    console.log('ruta: ',this.rutaDocumentoOpenApiActual);
+
 
     this.http.get(this.rutaDocumentoOpenApiActual)
       .subscribe(
@@ -58,11 +58,8 @@ export class OpenApi3Service {
 
           const cda: any = contenidoDocumentoActual
 
-          cda.components?this.obtenerComponentObject(cda.components):undefined
-
-        
-        
-
+          cda.components?this.obtenerComponentObject(cda.components):undefined;
+          console.log(cda);
 
         }
       )
@@ -71,30 +68,73 @@ export class OpenApi3Service {
 
   private obtenerComponentObject(components: any): IComponentObject|undefined {
 
-    components.schemas?this.obtenerSchemaObject(components.schemas):undefined
+    components.schemas?this.obtenerSchemaReferenceObject(components.schemas):undefined
 
     return undefined;
 
   }
 
-  private obtenerSchemaObject(schemas: any): ISchemaObject[]|undefined {
+  private obtenerSchemaReferenceObject(schemas: any): ISchemaReferenceObject[]|undefined {
 
+    const schemasReferenceObject: ISchemaReferenceObject[]=[];
+
+    let name: string;
+    let structure: ISchemaObject | IReferenceObject
 
 
     for (const key in schemas) {
-      console.log(key);
+
+      name=key;
+  
+    
 
       if ( schemas[key].$ref ) {
-        console.log('Es un reference Object');
+        
+        structure = {
+          reference: schemas[key].$ref
+        }
+          
       }
       else
       {
-        console.log('NO');
+       
+        structure =  this.obtenerSchemaObject(schemas[key]);
       }
 
-      
+      schemasReferenceObject.push({
+        name: name,
+        structure: structure
+      });
+
+    
+
     }
+
+    
     return undefined;
   }
+
+  private obtenerSchemaObject(schema:any): ISchemaObject | undefined {
+
+    let schemaObject: ISchemaObject = {
+      type: schema.type?schema.type:null,
+      properties: schema.properties?this.obtenerSchemaReferenceObject(schema.properties):null,
+      format: schema.format?schema.format:null,
+      nullable: schema.nullable?schema.nullable:null,
+      description: schema.description?schema.description:null,
+
+    }
+
+    //console.log("schemaObjerct", schemaObject);
+
+    return schemaObject;
+
+    
+
+
+  }
+
+
+
 
 }
