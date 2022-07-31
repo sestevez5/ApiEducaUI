@@ -10,7 +10,7 @@ import { __importDefault } from 'tslib';
   templateUrl: './arbol-dto.component.html',
   styleUrls: ['./arbol-dto.component.css']
 })
-export class ArbolDTOComponent implements OnInit {
+export class ArbolDTOComponent {
 
   enumTipologiaDeCampos = EnumTipologiaDeCampos;
 
@@ -25,8 +25,7 @@ export class ArbolDTOComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
   esCampoSimple(tipoCampo: any): EnumTipologiaDeCampos {
 

@@ -27,10 +27,10 @@ export interface IPathsObject {
 }
 
 export interface IComponentObject {
-
-    schemas?: ISchemaReferenceObject[]
-    
+    schemas?: Array<ISchemaObjectWithKey>;
 }
+
+
 
 export interface ISecurityRequerimentObject {
     
@@ -47,30 +47,21 @@ export interface IExternalDocumentationObject {
 // ----------------------------------------------
 // Estructuras derivadas de IComponentObject.
 // ----------------------------------------------
-export interface ISchemaReferenceObject {
-
-    name: string;
-    structure: ISchemaObject | IReferenceObject
-
-}
-
 export interface ISchemaObject {
 
     type?: string;
-    properties?: ISchemaReferenceObject[];
+    properties?: Array<ISchemaObjectWithKey>;
     format?: string;
     nullable?: boolean;
     description?: string;
 
 }
 
-export interface IReferenceObject {
-
-    reference: string;
-
-
-
+export interface ISchemaObjectWithKey {
+    key?: string;
+    value: ISchemaObject
 }
+
 
 
 

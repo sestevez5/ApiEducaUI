@@ -14,6 +14,8 @@ import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.compone
 import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupaciones/selector-agrupaciones.component';
 import { MainEndpointsComponent } from './components/endpoints/main-endpoints/main-endpoints.component';
 import { EndpointComponent } from './components/endpoints/endpoint/endpoint.component';
+import { MainSchemasComponent } from './components/schemas/main-schemas/main-schemas.component';
+import { ArbolSchemasComponent } from './components/schemas/arbol-schemas/arbol-schemas.component';
 
 
 
@@ -26,7 +28,9 @@ import { EndpointComponent } from './components/endpoints/endpoint/endpoint.comp
     MainDtosComponent,
     SelectorAgrupacionesComponent,
     MainEndpointsComponent,
-    EndpointComponent
+    EndpointComponent,
+    MainSchemasComponent,
+    ArbolSchemasComponent
   ],
   imports: [
     CommonModule,

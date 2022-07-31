@@ -1,0 +1,39 @@
+<mat-expansion-panel [expanded]="this.expandido" *ngIf="schema" class="schema" [ngClass]="{'schemaPadre' : esSchemaRaiz}">
+
+        <!-- Cabecera -->
+        <mat-expansion-panel-header>
+            <mat-panel-title> {{schema.key}} </mat-panel-title>
+        <mat-panel-description *ngIf="this.mostrarDescripcionesSchemas" > This is a summary of the content </mat-panel-description>
+      </mat-expansion-panel-header>
+
+    <!-- Cuerpo: Colección de campos -->
+    <div class="seccion seccionCuerpo">
+
+      <div class="seccion seccionCampo" *ngFor="let property of schema.value.properties" >
+         
+          <!-- Sección que contempla el nombre del campo. 
+          Es común inependientemente de la tipología del campo -->
+        <div class="seccion seccionNombreCampo" [ngClass]="{'seccionNombreCampoExpandido' : !this.mostrarTiposDePropiedades}">
+          {{property.key}}{{this.mostrarTiposDePropiedades?':':null}}
+  
+          <mat-icon *ngIf="property.value.type === 'array'">reorder</mat-icon>
+        </div>
+
+        <div class="seccion seccionTipo">
+              <!-- Caso 1. Campos de tipo simple -->
+          <ng-container *ngIf="this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
+              <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoSimple" 
+                      *ngIf="this.mostrarTiposDePropiedades"   >
+                  [{{property.value.type}}]
+              </div>
+          </ng-container>
+        </div>
+      
+    
+
+      </div>
+    </div>
+
+
+</mat-expansion-panel>
+    

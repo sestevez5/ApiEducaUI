@@ -1,12 +1,9 @@
 import { OpenApi3Service } from './../../../services/open-api3.service';
-import { IEndpoint } from './../../../models/endpointModel';
-import { WebapiService } from './../../../services/webapi.service';
 import { MatDialog } from '@angular/material/dialog';
-import { IDto } from './../../../models/dtoModel';
+import { ISchemaObject, ISchemaObjectWithKey } from './../../../models/documentoOpenApi3';
 import { MatAccordion } from '@angular/material/expansion';
-import { PageEvent } from '@angular/material/paginator';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-
+import { PageEvent } from '@angular/material/paginator';
 
 interface IPaginacion {
   longitud: number;
@@ -15,15 +12,18 @@ interface IPaginacion {
   paginaSeleccionada: number;
 }
 
+
 @Component({
-  selector: 'app-main-endpoints',
-  templateUrl: './main-endpoints.component.html',
-  styleUrls: ['./main-endpoints.component.css']
+  selector: 'app-main-schemas',
+  templateUrl: './main-schemas.component.html',
+  styleUrls: ['./main-schemas.component.css']
 })
-export class MainEndpointsComponent {
+export class MainSchemasComponent {
+
+  
   panelesExpandidos=false;
-  mostrarTiposDeCampos=true;
-  mostrarDescripcionesEndpoints=true;
+  mostrarTiposDePropiedades=true;
+  mostrarDescripcionesSchemas=true;
 
 
   paginacion: IPaginacion;
@@ -34,14 +34,15 @@ export class MainEndpointsComponent {
 
 
   @ViewChild(MatAccordion) acordeon!: MatAccordion;
-  endpoints : IEndpoint[];
+  schemas : ISchemaObjectWithKey[];
 
-  @Input() mostrarEndpoints=true;
+  @Input() mostrarSchemas=true;
   
-  constructor(public dialog: MatDialog,private  was: WebapiService, was1: OpenApi3Service) {
+  constructor(public dialog: MatDialog,private  oas3: OpenApi3Service ) {
 
- 
-    this.was.endpoints$.subscribe(endpoints => {
+   
+    this.oas3.schemas$.subscribe(schemas => {
+
       this.paginacion = this.paginacion = {
         longitud:0,
         paginaSeleccionada:0,
@@ -50,8 +51,6 @@ export class MainEndpointsComponent {
       };
 
       this.actualizarDatos();
-
-      
 
     })
 
@@ -87,13 +86,17 @@ export class MainEndpointsComponent {
   actualizarDatos()
   {
    
-      const result: any = this.was.obtenerEndpointsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
-      this.endpoints = result.datos;
+      const result: any = this.oas3.obtenerSchemas(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
+      this.schemas = result.datos;
       this.paginacion.longitud = result.numeroElementos;
 
     
  
 
+  }
+
+  ObtenerSchemasTipoObjeto(): Array<ISchemaObjectWithKey> {
+    return this.schemas.filter(schema => schema.value.type === 'object')
   }
 
 }

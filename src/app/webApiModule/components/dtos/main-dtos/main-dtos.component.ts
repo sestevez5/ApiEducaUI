@@ -47,7 +47,6 @@ export class MainDtosComponent{
    
     this.was.dtos$.subscribe(dtos => {
 
-
       this.paginacion = this.paginacion = {
         longitud:0,
         paginaSeleccionada:0,
