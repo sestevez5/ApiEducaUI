@@ -16,6 +16,8 @@ import { MainEndpointsComponent } from './components/endpoints/main-endpoints/ma
 import { EndpointComponent } from './components/endpoints/endpoint/endpoint.component';
 import { MainSchemasComponent } from './components/schemas/main-schemas/main-schemas.component';
 import { ArbolSchemasComponent } from './components/schemas/arbol-schemas/arbol-schemas.component';
+import { MainOperationsComponent } from './components/operations/main-operators/main-operations.component';
+import { ArbolOperationsComponent } from './components/operations/arbol-operations/arbol-operations.component';
 
 
 
@@ -30,7 +32,9 @@ import { ArbolSchemasComponent } from './components/schemas/arbol-schemas/arbol-
     MainEndpointsComponent,
     EndpointComponent,
     MainSchemasComponent,
-    ArbolSchemasComponent
+    ArbolSchemasComponent,
+    MainOperationsComponent,
+    ArbolOperationsComponent
   ],
   imports: [
     CommonModule,

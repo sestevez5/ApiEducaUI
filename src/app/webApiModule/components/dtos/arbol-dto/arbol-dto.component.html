@@ -15,7 +15,7 @@
             <!-- Sección que contempla el nombre del campo. 
             Es común inependientemente de la tipología del campo -->
             <div class="seccion seccionNombreCampo" [ngClass]="{'seccionNombreCampoExpandido' : !this.mostrarTiposDeCampos}">
-          {{campo.nombreCampo}}{{this.mostrarTiposDeCampos?':':null}}
+                {{campo.nombreCampo}}{{this.mostrarTiposDeCampos?':':null}}
      
             <mat-icon *ngIf="campo.esColeccion" >reorder</mat-icon>
 

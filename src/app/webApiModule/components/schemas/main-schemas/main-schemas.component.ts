@@ -86,7 +86,7 @@ export class MainSchemasComponent {
   actualizarDatos()
   {
    
-      const result: any = this.oas3.obtenerSchemas(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
+      const result: any = this.oas3.obtenerSchemasFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
       this.schemas = result.datos;
       this.paginacion.longitud = result.numeroElementos;
 
@@ -96,7 +96,7 @@ export class MainSchemasComponent {
   }
 
   ObtenerSchemasTipoObjeto(): Array<ISchemaObjectWithKey> {
-    return this.schemas.filter(schema => schema.value.type === 'object')
+    return this.schemas.filter(schema => schema.type === 'object')
   }
 
 }

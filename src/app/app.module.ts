@@ -15,13 +15,10 @@ import { LoginComponent } from './componentes/general/login/login.component';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent
-
-
   ],
   imports: [
     BrowserModule,

@@ -14,12 +14,19 @@
 
   <mat-tab-group  >
 
-    <mat-tab label="Schemas">    
+    <mat-tab label="Modelo de datos">    
       <div class="webApiPestanya">
         <app-main-schemas [mostrarSchemas]="!this.cargando"></app-main-schemas>   
       </div>
       
    
+    </mat-tab>
+
+    <mat-tab label="Operators"> 
+      <div class="webApiPestanya">
+        <app-main-operations></app-main-operations>   
+      </div>
+      
     </mat-tab>
 
     <mat-tab label="Endpoints"> 
@@ -28,13 +35,15 @@
       </div>
       
     </mat-tab>
-    <mat-tab label="DTOS">    
+
+
+    <!-- <mat-tab label="DTOS">    
       <div class="webApiPestanya">
         <app-main-dtos [mostrarDtos]="!this.cargando"></app-main-dtos>   
       </div>
       
    
-    </mat-tab>
+    </mat-tab> -->
 
 
     

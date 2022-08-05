@@ -1,39 +1,60 @@
 <mat-expansion-panel [expanded]="this.expandido" *ngIf="schema" class="schema" [ngClass]="{'schemaPadre' : esSchemaRaiz}">
 
-        <!-- Cabecera -->
-        <mat-expansion-panel-header>
-            <mat-panel-title> {{schema.key}} </mat-panel-title>
-        <mat-panel-description *ngIf="this.mostrarDescripcionesSchemas" > This is a summary of the content </mat-panel-description>
-      </mat-expansion-panel-header>
+  <!-- Cabecera -->
+  <mat-expansion-panel-header>
+    <mat-panel-title> 
+      <div class="seccion seccionNombreSchema">
+        {{schema.key}}
+      </div> 
+    </mat-panel-title>
 
-    <!-- Cuerpo: Colección de campos -->
-    <div class="seccion seccionCuerpo">
+    <mat-panel-description *ngIf="this.mostrarDescripcionesSchemas" > 
+      <div class="seccion seccionDescripcionSchema">
+        <span mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="1000"
+        matTooltip="{{schema.description}}">{{schema.description}}</span>
+      </div> 
+    </mat-panel-description>
 
-      <div class="seccion seccionCampo" *ngFor="let property of schema.value.properties" >
-         
-          <!-- Sección que contempla el nombre del campo. 
-          Es común inependientemente de la tipología del campo -->
-        <div class="seccion seccionNombreCampo" [ngClass]="{'seccionNombreCampoExpandido' : !this.mostrarTiposDePropiedades}">
-          {{property.key}}{{this.mostrarTiposDePropiedades?':':null}}
+  </mat-expansion-panel-header>
+
+    <!-- Cuerpo: Colección de propiedad -->
+  <div class="seccion seccionCuerpo">
+
+    <div class="seccion seccionPropiedad" *ngFor="let property of schema.properties" >
   
-          <mat-icon *ngIf="property.value.type === 'array'">reorder</mat-icon>
-        </div>
-
-        <div class="seccion seccionTipo">
-              <!-- Caso 1. Campos de tipo simple -->
-          <ng-container *ngIf="this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
-              <div class="seccion seccionDatosTipoCampo seccionDatosTipoCampoSimple" 
-                      *ngIf="this.mostrarTiposDePropiedades"   >
-                  [{{property.value.type}}]
-              </div>
-          </ng-container>
-        </div>
-      
-    
-
+      <!-- Sección que contempla el nombre del propiedad. Es común, independiente del tipo de la propiedad -->
+      <div class="seccion seccionNombrePropiedad" [ngClass]="{'seccionNombrePropiedadExpandido' : !this.mostrarTiposDePropiedades}">
+        {{property.name}}{{this.mostrarTiposDePropiedades?':':null}}
+        <mat-icon *ngIf="property.value.type === 'array'">reorder</mat-icon> <!-- Solo se muestra cuando se trata de un array -->
       </div>
+
+      <!-- En esta sección hay bifurcaciones en base al tipo  -->
+      <div class="seccion seccionTipo">
+        
+        <!-- Caso 1. Propiedades de tipo simple -->
+        <ng-container *ngIf="this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
+            <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" 
+                    *ngIf="this.mostrarTiposDePropiedades"   >
+                [{{property.value.type}}]
+            </div>
+        </ng-container>
+
+        <!-- Caso 2. Propiedades de tipo object -->
+        <ng-container *ngIf="property.value.type === 'object'" >
+          <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" *ngIf="this.mostrarTiposDePropiedades"  >
+            <app-arbol-schemas class="schemaHijo" [schema]="property.value" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
+          </div>
+        </ng-container>
+
+        <!-- Caso 3. Propiedades de tipo array -->
+        <ng-container *ngIf="property.value.type === 'array'" >
+        <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" *ngIf="this.mostrarTiposDePropiedades"  >
+          <app-arbol-schemas [schema]="property.value.items" class="schemaHijo" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
+        </div>
+      </ng-container>
+
+      </div> 
     </div>
-
-
+  </div>
 </mat-expansion-panel>
     
