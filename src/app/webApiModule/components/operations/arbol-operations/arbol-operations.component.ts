@@ -1,4 +1,4 @@
-import { IOperationObject } from './../../../models/documentoOpenApi3';
+import { IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
 import { EnumMetodoHttp } from '../../../models/enumMetodoHttp';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -19,30 +19,49 @@ export class ArbolOperationsComponent implements OnInit {
   }
 
   
-  colorMetodo(metodo: EnumMetodoHttp): {color:string, nombreMetodo:string} {
+  colorMetodo(metodo: string): {color:string, nombreMetodo:string} {
 
     switch(metodo) { 
-      case EnumMetodoHttp.GET: { 
+      case "get": { 
          return {color:'#61affe', nombreMetodo:'GET'}
          break; 
       } 
-      case EnumMetodoHttp.POST: { 
+      case "post": { 
         return {color:'#49cc90', nombreMetodo:'POST'}
         break; 
       } 
-      case EnumMetodoHttp.PATCH: { 
+      case "patch": { 
         return {color:'#dfcaa6', nombreMetodo:'PATCH'}
         break; 
       } 
-      case EnumMetodoHttp.DELETE: { 
+      case "delete": { 
         return {color:'#f93e3e', nombreMetodo:'DELETE'}
         break; 
       } 
-      case EnumMetodoHttp.PUT: { 
+      case "put": { 
         return {color:'#fca130', nombreMetodo:'PUT'}
         break; 
       } 
+      default: { 
+        return {color:'#61affe', nombreMetodo:'GET'}
+        break; 
+     } 
    } 
   }
+
+  parametrosPath(): Array<IParameterObject> | undefined {
+
+
+
+    let parameters: Array<IParameterObject> | undefined = undefined;
+      this.operation.parameters?parameters=this.operation.parameters.filter(parameter => parameter.in === 'path'):undefined;
+      return parameters;
+  }
+
+  parametrosQuery(): Array<IParameterObject> | undefined {
+
+
+    return this.operation.parameters?this.operation.parameters.filter(parameter => parameter.in === 'query'):undefined;
+}
 
 }

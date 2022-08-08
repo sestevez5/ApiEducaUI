@@ -2,6 +2,10 @@ mat-panel-title {
     width: 25%;
 }
 
+mat-expansion-panel-header {
+    padding-left: 5px;
+}
+
 .schemaPadre mat-expansion-panel-header {
     height: 39px;
     border-bottom-style: solid; 
@@ -60,6 +64,7 @@ mat-panel-title {
 :host ::ng-deep mat-panel-description {
     width: 50%;
 }
+
 .seccionNombreSchema {
     padding-right: 3px;
     white-space:nowrap;
@@ -111,3 +116,37 @@ mat-icon {
     vertical-align:middle;   
 }
 
+
+
+:host ::ng-deep mat-expansion-panel.deshabilitarExpansion  {
+    pointer-events: none;
+
+}
+
+:host ::ng-deep mat-expansion-panel.deshabilitarExpansion .mat-expansion-panel-content  {
+
+    height: 0px;
+}
+
+:host ::ng-deep mat-expansion-panel.deshabilitarExpansion .mat-expansion-panel-header {
+    height: 29px;
+    background-color:  #f4f6fa;
+    box-shadow: 1px 1px 1px #999;
+}
+
+
+
+.atributoSchema  {
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    font-size: 12px;
+    margin-left: 5px;
+    font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nombreSchema {
+    margin-right: 10px;
+}

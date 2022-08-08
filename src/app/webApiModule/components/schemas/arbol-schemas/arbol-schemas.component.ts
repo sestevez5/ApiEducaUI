@@ -45,6 +45,39 @@ export class ArbolSchemasComponent {
 
   }
 
+  
+admiteNulo(): string {
+ return (this.schema.nullable && this.schema.nullable === true)?"Admite nulo":"No admite nulo";
+} 
+
+tienePropiedades(): boolean {
+  return (this.schema.properties && this.schema.properties.length > 0)?true:false;
+}
+
+
+colorAtributoSchema(atributoSchema: string): string {
+
+  switch(atributoSchema) { 
+    case "tipo": { 
+       return '#ededaf';
+       break; 
+    } 
+    case "formato": { 
+      return '#ffb6af';
+      break; 
+    } 
+    case "admiteNulo": { 
+      return '#dfcaa6';
+      break; 
+    } 
+    
+    default: { 
+      return '#61affe';
+      break; 
+   } 
+ } 
+}
+
 }
 
 enum EnumTipologiaDePropiedades {
@@ -52,3 +85,4 @@ enum EnumTipologiaDePropiedades {
   ENUMERADO,
   SCHEMA
 }
+                        

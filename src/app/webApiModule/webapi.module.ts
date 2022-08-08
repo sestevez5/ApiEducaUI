@@ -18,6 +18,8 @@ import { MainSchemasComponent } from './components/schemas/main-schemas/main-sch
 import { ArbolSchemasComponent } from './components/schemas/arbol-schemas/arbol-schemas.component';
 import { MainOperationsComponent } from './components/operations/main-operators/main-operations.component';
 import { ArbolOperationsComponent } from './components/operations/arbol-operations/arbol-operations.component';
+import { ParameterOperationComponent } from './components/operations/parameter-operation/parameter-operation.component';
+import { ParametersOperationComponent } from './components/operations/parameters-operation/parameters-operation.component';
 
 
 
@@ -34,7 +36,9 @@ import { ArbolOperationsComponent } from './components/operations/arbol-operatio
     MainSchemasComponent,
     ArbolSchemasComponent,
     MainOperationsComponent,
-    ArbolOperationsComponent
+    ArbolOperationsComponent,
+    ParameterOperationComponent,
+    ParametersOperationComponent
   ],
   imports: [
     CommonModule,

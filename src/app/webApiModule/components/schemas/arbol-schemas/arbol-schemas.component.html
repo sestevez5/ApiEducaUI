@@ -1,10 +1,31 @@
-<mat-expansion-panel [expanded]="this.expandido" *ngIf="schema" class="schema" [ngClass]="{'schemaPadre' : esSchemaRaiz}">
-
+<mat-expansion-panel 
+  *ngIf="schema"
+  class="schema"
+  [ngClass]="{'schemaPadre' : esSchemaRaiz}"
+  [expanded]="this.expandido" 
+  [hideToggle]="!this.tienePropiedades()" 
+  [ngClass]="{'mat-elevation-z0' : !this.tienePropiedades()}"
+  [ngClass]="{'deshabilitarExpansion' : !this.tienePropiedades()}">
+  
   <!-- Cabecera -->
   <mat-expansion-panel-header>
     <mat-panel-title> 
       <div class="seccion seccionNombreSchema">
-        {{schema.key}}
+        <span class="nombreSchema">{{schema.key?schema.key+':':''}}</span> 
+        <span 
+          *ngIf="schema.type"
+          class="atributoSchema atributoSchematipo" 
+          [ngStyle]="{'background-color': colorAtributoSchema('tipo')}" 
+          mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Tipo:{{schema.type}}">
+          {{schema.type}}</span> 
+
+        <span 
+          *ngIf="schema.format"
+          class="atributoSchema" 
+          [ngStyle]="{'background-color': colorAtributoSchema('formato')}"  
+          mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Formato: {{schema.format}">
+          {{schema.format}}</span>
+        <span class="atributoSchema" [ngStyle]="{'background-color': colorAtributoSchema('admiteNulo')}" > {{ this.admiteNulo() }}</span>
       </div> 
     </mat-panel-title>
 
@@ -17,8 +38,8 @@
 
   </mat-expansion-panel-header>
 
-    <!-- Cuerpo: Colección de propiedad -->
-  <div class="seccion seccionCuerpo">
+  <!-- Cuerpo: Colección de campos -->
+  <div *ngIf="this.tienePropiedades()"  class="seccion seccionCuerpo">
 
     <div class="seccion seccionPropiedad" *ngFor="let property of schema.properties" >
   
@@ -32,15 +53,15 @@
       <div class="seccion seccionTipo">
         
         <!-- Caso 1. Propiedades de tipo simple -->
-        <ng-container *ngIf="this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
+        <!-- <ng-container *ngIf="this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
             <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" 
                     *ngIf="this.mostrarTiposDePropiedades"   >
                 [{{property.value.type}}]
             </div>
-        </ng-container>
+        </ng-container> -->
 
         <!-- Caso 2. Propiedades de tipo object -->
-        <ng-container *ngIf="property.value.type === 'object'" >
+        <ng-container *ngIf="property.value.type === 'object' || this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
           <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" *ngIf="this.mostrarTiposDePropiedades"  >
             <app-arbol-schemas class="schemaHijo" [schema]="property.value" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
           </div>

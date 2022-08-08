@@ -90,7 +90,11 @@ export class OpenApi3Service {
           let pathsObject: Array<IPathObject> | undefined;
           let operationObjects: Array<IOperationObject>;
           cda.paths?pathsObject=this.obtenerPathsObject(cda.paths):pathsObject=undefined;
+          
+          
           pathsObject?operationObjects = this.obtenerOperationsObjects(pathsObject): operationObjects=[];
+
+        
           operationObjects?this.operations$.next(operationObjects):null
 
           
@@ -112,6 +116,7 @@ export class OpenApi3Service {
   }
 
   obtenerOperationsFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:IOperationObject[], numeroElementos:number} {
+   
     const operations = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
     const numeroElementos = operations.length;
     
@@ -257,22 +262,31 @@ export class OpenApi3Service {
     for ( const path in paths) {
       pathsObject.push(this.obtenerPathObject(path, paths[path]));
     }
-
+    
     return pathsObject;
   }
 
   private obtenerPathObject(path:string, definitionPath: any): IPathObject | undefined
   {
-    let pathObject: IPathObject;
 
-    let get: IOperationObject;
-    definitionPath.get?get=this.obtenerOperationObjects(path,'get',definitionPath['get']):undefined;
-    return undefined;
+
+    let pathObject: IPathObject = {
+      path: path,
+      get: definitionPath['get']?this.obtenerOperationObjects(path,'get',definitionPath['get']):undefined,
+      post: definitionPath['post']?this.obtenerOperationObjects(path,'post',definitionPath['post']):undefined,
+      put: definitionPath['put']?this.obtenerOperationObjects(path,'put',definitionPath['put']):undefined,
+      delete: definitionPath['delete']?this.obtenerOperationObjects(path,'delete',definitionPath['delete']):undefined,
+      parameters: undefined,
+    };
+
+
+    return pathObject;
   }
 
-  private obtenerOperationObjects(path: string, metodo:string, definitionOperation): IOperationObject | undefined
+  private obtenerOperationObjects(path: string, metodo:string, definitionOperation:any): IOperationObject | undefined
   {
   
+    
 
     let operation: IOperationObject  = {
 
@@ -288,7 +302,22 @@ export class OpenApi3Service {
    
  
 
-    return undefined
+    return operation;
+  }
+
+  private obtenerOperationsObjects(pathsObject: Array<IPathObject>): Array<IOperationObject> | undefined
+  {
+    const operationsObjects: Array<IOperationObject> = [];
+
+    pathsObject.forEach(pathObject => {
+
+      pathObject.get?operationsObjects.push(pathObject.get):null;
+      pathObject.post?operationsObjects.push(pathObject.post):null;
+      pathObject.put?operationsObjects.push(pathObject.put):null;
+      pathObject.post?operationsObjects.push(pathObject.post):null;
+      
+    });
+    return operationsObjects;
   }
 
   private obtenerParametersObject(parameters: any): Array<IParameterObject> | undefined {
@@ -368,10 +397,6 @@ export class OpenApi3Service {
     return mediaTypeResponseObjects;
   }
   
-  private obtenerOperationsObjects(IPathsObject): Array<IOperationObject> | undefined
-  {
-    return undefined;
-  }
 
 
 

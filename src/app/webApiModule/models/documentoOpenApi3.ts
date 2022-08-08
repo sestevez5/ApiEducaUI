@@ -22,21 +22,10 @@ export interface IServeObject {
     
 }
 
-export interface IPathObject {
-    path: string;
-    parameters: Array<IParameterObject>;
-    get?: IOperationObject;
-    put?: IOperationObject;
-    post?: IOperationObject;
-    delete?: IOperationObject;
-     
-}
 
 export interface IComponentObject {
     schemas?: Array<ISchemaObjectWithKey>;
 }
-
-
 
 export interface ISecurityRequerimentObject {
     
@@ -51,7 +40,7 @@ export interface IExternalDocumentationObject {
 }
 
 // ----------------------------------------------
-// Estructuras derivadas de IComponentObject.
+// Estructuras derivadas de "COMPONENTS --> SCHEMAS"".
 // ----------------------------------------------
 export interface ISchemaObject {
     type?: string;
@@ -60,7 +49,6 @@ export interface ISchemaObject {
     nullable?: boolean;
     description?: string;
     items?: ISchemaObjectWithKey;
-
 }
 
 export interface ISchemaObjectWithKey extends ISchemaObject {
@@ -72,15 +60,17 @@ export interface IProperty {
     value: ISchemaObjectWithKey
 }
 
-export interface IParameterObject {
-
-    name:string;
-    in: string;
-    description: string;
-    required: boolean;
-    deprecated: boolean;
-    allowEmptyValue: boolean;
-    schema: ISchemaObjectWithKey;
+// ----------------------------------------------
+// Estructuras derivadas del nodo "PATHS"
+// ----------------------------------------------
+export interface IPathObject {
+    path: string;
+    parameters: Array<IParameterObject>;
+    get?: IOperationObject;
+    put?: IOperationObject;
+    post?: IOperationObject;
+    delete?: IOperationObject;
+     
 }
 
 export interface IOperationObject {
@@ -95,6 +85,17 @@ export interface IOperationObject {
     responses?: Array<ICodeWithResponseObject>
 
 }
+
+export interface IParameterObject {
+    name:string;
+    in: string;
+    description: string;
+    required: boolean;
+    deprecated: boolean;
+    allowEmptyValue: boolean;
+    schema: ISchemaObjectWithKey;
+}
+
 
 export interface ICodeWithResponseObject{
     codigoHttpOrDefault: string; // No lo contempla el estándar. Es una réplica del nodo padre.

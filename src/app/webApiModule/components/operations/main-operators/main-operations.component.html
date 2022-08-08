@@ -43,12 +43,12 @@
       <!-- <mat-accordion [multi]="true" *ngIf="!this.cargando" > -->
   
         <mat-accordion [multi]="true" >
-          <!-- <app-arbol-operations
-            *ngFor="let dto of this.operations" 
-            [endpoint]="dto" 
+          <app-arbol-operations
+            *ngFor="let operation of this.operations" 
+            [operation]="operation" 
             [expandido]="this.panelesExpandidos" 
-            [mostrarDescripcionesDtos]="this.mostrarDescripcionesOperations">
-          </app-arbol-operations> -->
+            [mostrarDescripcionesOperations]="this.mostrarDescripcionesOperations">
+          </app-arbol-operations>
       </mat-accordion>
     </div>
   
