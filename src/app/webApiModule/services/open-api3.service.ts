@@ -11,21 +11,31 @@ import { Injectable, Component } from '@angular/core';
 })
 export class OpenApi3Service {
 
-
-  // Observable que emite la colección de rutas.
-  rutasPreestablecidasDocumentosOpenApi3$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  //---------------------------------------
+  // ORÍGENES DE DATOS
+  //---------------------------------------
 
   
-  // Contiene la ruta actual del documento para poder ser leido. Su valor se actualiza a partir del observable rutaDocumentoOpenApiActual$
-  rutaDocumentoOpenApiActual: string ='../assets/json/webapiPre.json';
-  rutaDocumentoOpenApiActual$: BehaviorSubject<string>= new BehaviorSubject<string>(this.rutaDocumentoOpenApiActual);
-  
+    // Ruta del fichero que contiene todas las rutas de los docuementos OpenApi.
+    origenDatosOpenApiOnline: string = '../assets/datas/origenesDatosOpenApi.json';
 
-  // Contiene el objeto global que representa al documento openApi3
-  OpenApiObject3Actual: IOpenApiObject3;
-  OpenApiObject3Actual$: BehaviorSubject<IOpenApiObject3|undefined> = new BehaviorSubject<IOpenApiObject3|undefined>(undefined);
+    // Observable que emite la colección de rutas.
+    rutasPreestablecidasDocumentosOpenApi3$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
-  auxDocumentoActual: any;
+    
+    // Contiene la ruta actual del documento para poder ser leido. Su valor se actualiza a partir del observable rutaDocumentoOpenApiActual$
+    rutaDocumentoOpenApiActual: string ='../assets/json/webapiPre.json';
+    rutaDocumentoOpenApiActual$: BehaviorSubject<string>= new BehaviorSubject<string>(this.rutaDocumentoOpenApiActual);
+    
+
+    // Contiene el objeto global que representa al documento openApi3
+    OpenApiObject3Actual: IOpenApiObject3;
+    OpenApiObject3Actual$: BehaviorSubject<IOpenApiObject3|undefined> = new BehaviorSubject<IOpenApiObject3|undefined>(undefined);
+
+    auxDocumentoActual: any;
+
+    erroresCargaDocumentoOpenApi$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+ 
   
   //---------------------------------------
   // OPERATIONS
@@ -43,14 +53,27 @@ export class OpenApi3Service {
   schemasActuales: Array<ISchemaObjectWithKey>;  // mantiene los últimos schemas cargados.
 
 
+  //---------------------------------------
+  // TOKEN
+  //---------------------------------------
+  token$: BehaviorSubject<string> = new BehaviorSubject<string>('xxx');
+  tokenActual: string ='';
+
+
 
   constructor(private http: HttpClient) {
 
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
+          if ( this.rutaDocumentoOpenApiActual != nuevoDocumentoOpenApi3 ) {
+            this.token$.next('');
+          }
+
           this.rutaDocumentoOpenApiActual = nuevoDocumentoOpenApi3;
           this.rutaDocumentoOpenApiActual?this.actualizarOpenApiObject3Actual():null;
+
+        
         }
       )
 
@@ -64,6 +87,28 @@ export class OpenApi3Service {
       operation => this.operationsActuales = operation
     );
 
+    this.http.get(this.origenDatosOpenApiOnline)
+    .subscribe(
+      contenidoDocumentoActual => {
+    
+        const coleccionRutas: any[]=[]
+        for(const [key, value] of Object.entries(contenidoDocumentoActual["rutas"])){
+  
+          coleccionRutas.push(value);
+        
+        } // Fin for
+
+        this.rutasPreestablecidasDocumentosOpenApi3$.next(coleccionRutas);
+        this.rutaDocumentoOpenApiActual$.next(this.rutasPreestablecidasDocumentosOpenApi3$.value[1].url);
+  
+      }
+
+    )
+
+
+
+
+
    }
 
 
@@ -71,6 +116,12 @@ export class OpenApi3Service {
   obtenerRutasPreestablecidasDocumentosOpenApi3(): BehaviorSubject<any[]> {
     return this.rutasPreestablecidasDocumentosOpenApi3$;
   }
+
+    // Se establece un nuevo documento openApi. Desencadenará la regeneración de todo el documento.
+  cambiarDocumento(nuevoDoc: string) {
+      this.rutaDocumentoOpenApiActual$.next(nuevoDoc);
+  }
+  
 
   // Actualización del objeto global cuando cambia la referencia del fichero "json"
   actualizarOpenApiObject3Actual() {
@@ -110,7 +161,9 @@ export class OpenApi3Service {
           // OBTENER NODO EXTERNALDOCS
           
 
-        }
+        },
+        error => this.erroresCargaDocumentoOpenApi$.next("No se ha podido cargar el documento")
+
       )
 
   }
@@ -136,6 +189,16 @@ export class OpenApi3Service {
       numeroElementos:numeroElementos
     }
     
+  }
+
+  establecerToken(nuevotoken:string) {
+    this.tokenActual = nuevotoken;
+    this.token$.next(nuevotoken);
+  }
+
+  eliminarToken() {
+    this.tokenActual='';
+    this.token$.next('');
   }
 
   //---------------------------------------------------------------------------

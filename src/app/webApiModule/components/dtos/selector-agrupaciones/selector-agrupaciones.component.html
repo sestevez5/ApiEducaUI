@@ -1,23 +1,32 @@
 <h2 mat-dialog-title>Selector de agrupamiento</h2>
+
     <div mat-dialog-content>
         <div class="arbol">
 
-            <div class="nodo nodoRaiz" [ngClass]="{nodoSeleccionado: this.nodosAgrupamientos.id === this.idNodoSeleccionado}" (click)="onSeleccionarNodo($event, this.nodosAgrupamientos.id)">
+            <div class="nodo nodoRaiz" [ngClass]="{nodoSeleccionado: this.nodosAgrupamientos.id === this.idNodoSeleccionado}" (click)="onSeleccionarNodo($event, this.nodosAgrupamientos.id,this.nodosAgrupamientos.texto)">
                 <span >Todos</span>
-
-                <div    class="nodo nodoIntermedio" 
+                <div    class="nodo " 
                         *ngFor="let nodoIntermedio of this.nodosAgrupamientos.hijos"  
                         [ngClass]="{nodoSeleccionado: this.nodoIntermedio.id === this.idNodoSeleccionado}" 
-                        (click)="onSeleccionarNodo($event,this.nodoIntermedio.id)">
+                        (click)="onSeleccionarNodo($event,this.nodoIntermedio.id,this.nodoIntermedio.texto)">
                     
                         <span >{{ nodoIntermedio.texto }}</span>
 
                     <div    class="nodo nodoHijo" 
                             *ngFor="let nodoHijo of this.nodoIntermedio.hijos" 
                             [ngClass]="{nodoSeleccionado: this.nodoHijo.id === this.idNodoSeleccionado}"
-                            (click)="onSeleccionarNodo($event,this.nodoHijo.id)" >
+                            (click)="onSeleccionarNodo($event,this.nodoHijo.id,this.nodoHijo.texto)" >
                         
                             <span>{{ nodoHijo.texto }}</span>
+
+                            <div    class="nodo nodoHijo" 
+                            *ngFor="let nodoHijo of this.nodoHijo.hijos" 
+                            [ngClass]="{nodoSeleccionado: this.nodoHijo.id === this.idNodoSeleccionado}"
+                            (click)="onSeleccionarNodo($event,this.nodoHijo.id,this.nodoHijo.texto)" >
+                        
+                            <span>{{ nodoHijo.texto }}</span>
+                        
+                    </div>
                         
                     </div>
 
@@ -25,13 +34,9 @@
 
             </div> 
             
-            
-        
-
-
         </div>
     </div>
     <div mat-dialog-actions>
         <button mat-button >Cancelar</button>
-        <button mat-button [mat-dialog-close]="this.idNodoSeleccionado" cdkFocusInitial>Aceptar</button>
+        <button mat-button [mat-dialog-close]="this.textoNodoSeleccionado" cdkFocusInitial>Aceptar</button>
       </div>

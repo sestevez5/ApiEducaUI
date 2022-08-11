@@ -20,7 +20,6 @@ mat-toolbar {
     font-size: 15px;
 }
 
-
 .seccionBuscador {
     width: 40%;
 }
@@ -28,11 +27,6 @@ mat-toolbar {
 
 .iconoColapsarDesplegar {
     margin-left: 40px;
-}
-
-.iconoFiltrarAgrupacion {
-    margin-left: 40px;
-
 }
 
 
@@ -43,3 +37,10 @@ mat-toolbar {
 :host ::ng-deep  .mat-accordion .mat-expansion-panel:last-of-type {
     border-radius: 0px;;
 }
+
+.selectorCategoria {
+    margin-left: 20px;
+    display: flex;
+}
+
+

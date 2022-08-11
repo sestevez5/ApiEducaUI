@@ -5,10 +5,23 @@
       <div class="seccionBuscador">
           <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
       </div>
+
+      <div class="selectorCategoria">
+        <mat-chip-list style="margin:4px" *ngIf="this.nodoSelecionado"  #chipList aria-label="Fruit selection">
+          <mat-chip>
+            {{this.nodoSelecionado}}
+            <button matChipRemove (click)="onRemove()">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-list>
   
-      <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
-        <mat-icon >account_tree</mat-icon>
-      </button>
+        <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
+          <mat-icon >account_tree</mat-icon>
+        </button>
+
+      </div>    
+   
   
       <span class="example-spacer"></span>
 

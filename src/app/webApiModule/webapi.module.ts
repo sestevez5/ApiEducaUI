@@ -21,6 +21,8 @@ import { ArbolOperationsComponent } from './components/operations/arbol-operatio
 import { ParameterOperationComponent } from './components/operations/parameter-operation/parameter-operation.component';
 import { ParametersOperationComponent } from './components/operations/parameters-operation/parameters-operation.component';
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -38,13 +40,16 @@ import { ParametersOperationComponent } from './components/operations/parameters
     MainOperationsComponent,
     ArbolOperationsComponent,
     ParameterOperationComponent,
-    ParametersOperationComponent
+    ParametersOperationComponent,
+   
   ],
   imports: [
     CommonModule,
     WebApiRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatChipsModule
  
 
     

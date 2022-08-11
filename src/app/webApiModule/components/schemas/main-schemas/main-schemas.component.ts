@@ -1,9 +1,11 @@
+import { SelectorAgrupacionesComponent } from './../../dtos/selector-agrupaciones/selector-agrupaciones.component';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ISchemaObject, ISchemaObjectWithKey } from './../../../models/documentoOpenApi3';
 import { MatAccordion } from '@angular/material/expansion';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+
 
 interface IPaginacion {
   longitud: number;
@@ -31,6 +33,7 @@ export class MainSchemasComponent {
   textoFiltro: string='';
 
   cargando:boolean=false;
+  nodoSelecionado: string =''
 
 
   @ViewChild(MatAccordion) acordeon!: MatAccordion;
@@ -57,8 +60,13 @@ export class MainSchemasComponent {
     
    }
 
-  openDialog() {
-    //this.dialog.open(SelectorAgrupacionesComponent);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SelectorAgrupacionesComponent, {
+      data: this.nodoSelecionado
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.nodoSelecionado = result;
+    })
   }
 
   onExpandirToggle() {
@@ -89,14 +97,16 @@ export class MainSchemasComponent {
       const result: any = this.oas3.obtenerSchemasFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
       this.schemas = result.datos;
       this.paginacion.longitud = result.numeroElementos;
-
-    
- 
-
   }
 
   ObtenerSchemasTipoObjeto(): Array<ISchemaObjectWithKey> {
     return this.schemas.filter(schema => schema.type === 'object')
   }
+
+  onRemove(){
+    this.nodoSelecionado='';
+
+  }
+
 
 }
