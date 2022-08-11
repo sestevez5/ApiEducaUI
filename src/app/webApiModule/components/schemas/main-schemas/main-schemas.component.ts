@@ -1,4 +1,4 @@
-import { SelectorAgrupacionesComponent } from './../../dtos/selector-agrupaciones/selector-agrupaciones.component';
+import { SelectorAgrupacionesComponent } from '../../comunes/selector-agrupaciones/selector-agrupaciones.component';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ISchemaObject, ISchemaObjectWithKey } from './../../../models/documentoOpenApi3';
