@@ -1,32 +1,67 @@
-<div>
+<div class="paginaWebApi">
   
+  <!-- Menú Web API -->
   <div class="menuGestionWebApi">
-    
-    <mat-form-field appearance="legacy">
-      <mat-label>Entorno</mat-label>
-      <mat-select [value]="this.rutaSeleccionada?.url" (selectionChange)="onSeleccionarRuta($event.value)">
-        <mat-option [value]="option.url" *ngFor="let option of documentosOpenApiPrefijados">{{ option.descripcion }}</mat-option>
-      </mat-select>
+
+    <!-- Selector de documento OPENAPI -->
+    <div class="selectorDocumento">
+      <mat-form-field appearance="legacy">
+        <mat-label>Entorno</mat-label>
+        <mat-select [value]="this.rutaSeleccionada?.url" (selectionChange)="onSeleccionarRuta($event.value)">
+          <mat-option [value]="option.url" *ngFor="let option of documentosOpenApiPrefijados">{{ option.descripcion }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
  
-    </mat-form-field>
-  </div>
+    <!-- Visualización de estado del token y acciones contextualizadas. -->
+    <div class="token">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <img *ngIf="!token"  mat-card-image src="./assets/img/SinToken.png" alt="Photo of a Shiba Inu">
+        <img *ngIf="token"  mat-card-image src="./assets/img/ConToken.png" alt="Photo of a Shiba Inu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button *ngIf="token" (click)="onEliminarToken()" mat-menu-item>
+          <mat-icon>close</mat-icon>
+          <span>Eliminar token</span>
+        </button>
+        <button *ngIf="token" mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Reestablecer token</span>
+        </button>
+        <button *ngIf="!token" mat-menu-item>
+          <mat-icon>add</mat-icon>
+          <span>Establecer token</span>
+        </button>
+      </mat-menu>
 
-
-  <mat-tab-group  >
-    <mat-tab label="DTOS">    
-      <div class="webApiPestanya">
-        <app-main-dtos [mostrarDtos]="!this.cargando"></app-main-dtos>   
-      </div>
       
-   
-    </mat-tab>
+    </div>
+  
+  </div>
+   <!-- Fin menú Web API -->
+
+
+  <!-- Pestañas de contenido -->
+  <mat-tab-group>
+
+    <!-- Pestaña que muestra Schemas (OpenAPi.Components.Schemas) -->
+    <mat-tab label="Modelo de datos">    
+      
+      <div class="webApiPestanya">
+        <app-main-schemas [mostrarSchemas]="!this.cargando"></app-main-schemas>   
+      </div>
     
+    </mat-tab>
+
+    <!-- Pestaña que muestra Schemas (OpenAPi.Paths) -->
     <mat-tab label="Endpoints"> 
       <div class="webApiPestanya">
-        <app-main-dtos></app-main-dtos>   
+        <app-main-operations></app-main-operations>   
       </div>
       
     </mat-tab>
+  
   </mat-tab-group>
 
 </div>

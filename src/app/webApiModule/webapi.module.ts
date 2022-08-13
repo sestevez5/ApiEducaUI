@@ -5,30 +5,43 @@ import { WebApiRoutingModule } from './webapi-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageWebApiComponent } from './components/comunes/pageWebApi/pageWebApi.component';
-import { ArbolDTOComponent } from './components/dtos/arbol-dto/arbol-dto.component';
 import { FormsModule } from '@angular/forms';
 
 
-import { MainDtosComponent } from './components/dtos/main-dtos/main-dtos.component';
 
-import { SelectorAgrupacionesComponent } from './components/dtos/selector-agrupaciones/selector-agrupaciones.component';
+import { SelectorAgrupacionesComponent } from './components/comunes/selector-agrupaciones/selector-agrupaciones.component';
+import { MainSchemasComponent } from './components/schemas/main-schemas/main-schemas.component';
+import { ArbolSchemasComponent } from './components/schemas/arbol-schemas/arbol-schemas.component';
+import { MainOperationsComponent } from './components/operations/main-operators/main-operations.component';
+import { ArbolOperationsComponent } from './components/operations/arbol-operations/arbol-operations.component';
+import { ParameterOperationComponent } from './components/operations/parameter-operation/parameter-operation.component';
+import { ParametersOperationComponent } from './components/operations/parameters-operation/parameters-operation.component';
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
 @NgModule({
   declarations: [
     PageWebApiComponent,
-    ArbolDTOComponent,
     ComoPipe,
-    MainDtosComponent,
-    SelectorAgrupacionesComponent
+    SelectorAgrupacionesComponent,
+    MainSchemasComponent,
+    ArbolSchemasComponent,
+    MainOperationsComponent,
+    ArbolOperationsComponent,
+    ParameterOperationComponent,
+    ParametersOperationComponent,
+   
   ],
   imports: [
     CommonModule,
     WebApiRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatChipsModule
  
 
     

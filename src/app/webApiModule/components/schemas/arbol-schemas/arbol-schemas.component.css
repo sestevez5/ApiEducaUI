@@ -1,0 +1,156 @@
+mat-panel-title {
+    width: 25%;
+}
+
+mat-expansion-panel-header {
+    padding-left: 5px;
+}
+
+.schemaPadre mat-expansion-panel-header {
+    height: 39px;
+    border-bottom-style: solid; 
+    border-bottom-width: 1px;
+    border-color: #eee; 
+}
+
+.schemaHijo mat-expansion-panel-header {
+    height: 29px;
+    background-color:  #C9D6E8;
+    box-shadow: 1px 1px 1px #999;
+}
+
+.seccionCabeceraSchema {
+    background-color: #f1f1f1;
+    box-shadow: 1px 1px 2px #999;
+    min-height: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    padding-left: 6px;
+}
+
+.schemaPadre > .seccionCabeceraSchema{
+    background-color: #ddd;
+}
+
+.seccionCuerpo {
+    padding-top: 5px;
+    min-height: 20px;
+    margin-left: 1px;
+    padding-left: 5px;
+}
+
+.seccionPropiedad {
+    margin:1px;
+    min-height: 30px;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.seccionNombrePropiedad {
+    width: 10%;
+    margin-right: 20px;
+    min-height: 30px;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: inline-block;    
+}
+
+
+.ellipsis {
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: inline-block;    
+}
+
+.seccionNombrePropiedadExpandido {
+    width: 100%;
+}
+
+.seccionNombrePropiedad, .seccionPropiedadTipoPropiedadSimple  {
+    padding-top: 4px;
+}
+
+
+
+.seccionTipo {
+    width: 100%;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+    padding-right: 5px;
+}
+
+mat-icon {
+    font-size: 17px;
+    color: #2b83bd;
+    margin: 0px;
+    padding: 0px;
+    vertical-align:middle;   
+}
+
+
+
+:host ::ng-deep mat-expansion-panel.deshabilitarExpansion  {
+    pointer-events: none;
+
+}
+
+:host ::ng-deep mat-expansion-panel.deshabilitarExpansion .mat-expansion-panel-content  {
+
+    height: 0px;
+}
+
+:host ::ng-deep mat-expansion-panel.deshabilitarExpansion .mat-expansion-panel-header {
+    height: 29px;
+    background-color:  #f4f6fa;
+    box-shadow: 1px 1px 1px #999;
+}
+
+/* Modelado de la cabecera:  */
+
+.seccionHeader {
+    width: 100%;
+    display: flex;
+}
+
+.seccionHeaderNombreSchema {
+    padding-right: 3px;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: inline-block;  
+}
+
+
+.seccionHeaderDescripcionSchema {
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: inline-block;
+    font-style: italic;    
+    font-size: 0.9em;
+}
+
+.seccionHeaderAtributos {
+    margin-right: 10px;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: inline-block; 
+   
+}
+
+
+.seccionHeaderAtributo  {
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    font-size: 12px;
+    margin-left: 5px;
+    /* font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+

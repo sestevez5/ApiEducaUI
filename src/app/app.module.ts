@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // Componentes
 import { LoginComponent } from './componentes/general/login/login.component';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -20,8 +20,6 @@ import { LoginComponent } from './componentes/general/login/login.component';
   declarations: [
     AppComponent,
     LoginComponent
-
-
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,8 @@ import { LoginComponent } from './componentes/general/login/login.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule
    
     
   ],

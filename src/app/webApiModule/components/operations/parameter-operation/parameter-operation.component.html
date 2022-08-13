@@ -1,0 +1,10 @@
+<!-- Sección que contempla el nombre del propiedad. Es común, independiente del tipo de la propiedad -->
+<div class="seccion seccionPropiedad">
+    <div class="seccion seccionNombrePropiedad" >
+        <span class="texto">{{this.parameter.name}}:</span>
+    </div>
+
+    <div class="seccion seccionTipo">
+        <app-arbol-schemas [schema]="this.parameter.schema"></app-arbol-schemas>
+    </div>
+</div>

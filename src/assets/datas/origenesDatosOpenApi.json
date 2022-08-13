@@ -3,6 +3,19 @@
    
     {
         "orden":1,
+<<<<<<< HEAD
+=======
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL]"
+    },
+    {
+        "orden":1,
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL2]"
+    },
+    {
+        "orden":2,
+>>>>>>> 114a93d15570eb1b24138031ab70bc544e6219d4
         "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Producción)"
     },

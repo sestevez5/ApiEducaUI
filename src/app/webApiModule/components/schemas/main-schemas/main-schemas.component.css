@@ -4,7 +4,7 @@ app-arbol-dto {
     margin-bottom: 20px;
 }
 
-.seccionDtos {
+.seccionSchemas {
     margin-top: 20px;
 }
 
@@ -18,11 +18,7 @@ mat-toolbar {
     padding-right: 0px;
     background-color: white;
     font-size: 15px;
-
-
-
 }
-
 
 .seccionBuscador {
     width: 40%;
@@ -33,11 +29,6 @@ mat-toolbar {
     margin-left: 40px;
 }
 
-.iconoFiltrarAgrupacion {
-    margin-left: 40px;
-
-}
-
 
 :host ::ng-deep .mat-accordion .mat-expansion-panel:last-of-type {
     border-radius: 0px;;
@@ -46,3 +37,10 @@ mat-toolbar {
 :host ::ng-deep  .mat-accordion .mat-expansion-panel:last-of-type {
     border-radius: 0px;;
 }
+
+.selectorCategoria {
+    margin-left: 20px;
+    display: flex;
+}
+
+

@@ -9,10 +9,26 @@
 
   background-color: #f7f7f7;
   width: 100%;
-  padding-top: 5px;
+  padding: 10px;
   display: flex;
-  justify-content: center; 
+  padding-left: 200px;
+  text-align: center;
+  padding-right: 30px;
 }
+
+.selectorDocumento {
+ flex:1
+}
+
+.token {
+  display: flex;
+}
+
+.token img {
+  height: 30px;
+}
+
+
 
 mat-form-field {
   min-width: 300px;
