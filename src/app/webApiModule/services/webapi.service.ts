@@ -134,7 +134,11 @@ export class WebapiService {
 
           this.dtos$.next(dtos);
         },
-        error => this.erroresCargaDocumentoOpenApi$.next("No se ha podido cargar el documento")
+        error => {
+
+         console.log(error);
+          this.erroresCargaDocumentoOpenApi$.next("No se ha podido cargar el documento")
+        }
       
     )
 
