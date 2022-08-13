@@ -8,7 +8,6 @@ export interface IOpenApiObject3 {
     security?: ISecurityRequerimentObject[],
     tags?: ITagObject[],
     externalDocs?: IExternalDocumentationObject
-
 }
 
 // ----------------------------------------------
