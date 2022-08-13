@@ -1,6 +1,8 @@
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { Component } from '@angular/core';
 import {MatSnackBar } from '@angular/material/snack-bar'
+import { IServerObject } from 'src/app/webApiModule/models/documentoOpenApi3';
+
 
 
 
@@ -18,6 +20,8 @@ interface OrigenDatosOpenApi {
 export class PageWebApiComponent {
 
   documentosOpenApiPrefijados: OrigenDatosOpenApi[]=[];
+  servidoresActuales: IServerObject[] | undefined = undefined;
+  servidorSeleccionado: IServerObject | undefined = undefined;
   rutaSeleccionada: OrigenDatosOpenApi;
   rutaSeleccionadaOld: OrigenDatosOpenApi;
   cargando= false;
@@ -26,8 +30,7 @@ export class PageWebApiComponent {
   constructor(private was: OpenApi3Service, private snackBar: MatSnackBar){
 
 
-      was.token$.subscribe(nuevoToken => this.token=nuevoToken);
-
+    was.token$.subscribe(nuevoToken => this.token=nuevoToken);
  
     was.erroresCargaDocumentoOpenApi$.subscribe(
       error =>  {
@@ -46,21 +49,34 @@ export class PageWebApiComponent {
         });
       
         }
-
-      
     }
     )
 
     was.schemas$.subscribe(
-      dtos => { 
+      schemas => { 
         this.cargando=false;
         this.rutaSeleccionadaOld = this.rutaSeleccionada
+      }
+    );
+
+    was.obtenerServidores().subscribe(
+      servidores => {
+
+        console.log(servidores.map(servidor=>servidor.url));
+        this.servidoresActuales = servidores;
+        if (servidores.length>0){
+          this.onSeleccionarServidor(this.servidoresActuales[0].url);
+        } else {
+          this.onSeleccionarServidor(undefined);
+        }
+
       }
     )
 
     was.obtenerRutasPreestablecidasDocumentosOpenApi3().subscribe(
       rutas => {
         if (rutas.length>0){
+
         this.documentosOpenApiPrefijados=rutas;
         this.onSeleccionarRuta(this.documentosOpenApiPrefijados[0].url);
         }
@@ -69,10 +85,18 @@ export class PageWebApiComponent {
   }
 
   onSeleccionarRuta(ruta:string) {
+
+
   
     this.rutaSeleccionada=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
     this.cargando=true;
     this.was.cambiarDocumento(this.rutaSeleccionada.url)
+  }
+
+  onSeleccionarServidor(urlServidor:string) {
+
+    this.servidorSeleccionado=this.servidoresActuales.filter(servidor => servidor.url === urlServidor)[0];
+    this.was.cambiarServidor(this.servidorSeleccionado);
   }
 
   onEliminarToken() {

@@ -3,34 +3,31 @@
    
     {
         "orden":1,
-<<<<<<< HEAD
-=======
-        "url":"../assets/json/webapiPre.json",
-        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL]"
-    },
-    {
-        "orden":1,
-        "url":"../assets/json/webapiPre.json",
-        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL2]"
+        "url":"../assets/json/webApiPro20220813.json",
+        "descripcion": "ApiEduca (Entorno de PRODUCCIÓN)  [LOCAL]"
     },
     {
         "orden":2,
->>>>>>> 114a93d15570eb1b24138031ab70bc544e6219d4
+        "url":"../assets/json/webapiPre.json",
+        "descripcion": "ApiEduca (Entorno de PREPRODUCCIÓN)  [LOCAL2]"
+    },
+    {
+        "orden":3,
         "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Producción)"
     },
     {
-        "orden":2,
+        "orden":4,
         "url":"https://wwwpre.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Preproducción)"
     },
     {
-        "orden":3,
+        "orden":5,
         "url":"https://wwwdesa.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Desarrollo)"
     },
     {
-        "orden":5,
+        "orden":6,
         "url":"../assets/json/webapiPre.json",
         "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL 1]"
     }

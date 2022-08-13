@@ -12,6 +12,16 @@
         </mat-select>
       </mat-form-field>
     </div>
+
+        <!-- Selector de documento OPENAPI -->
+        <div class="selectorServidor">
+          <mat-form-field appearance="legacy">
+            <mat-label>Servidor</mat-label>
+            <mat-select [value]="this.servidorSeleccionado?.url" (selectionChange)="onSeleccionarServidor($event.value)">
+              <mat-option [value]="option.url" *ngFor="let option of this.servidoresActuales">{{ option.url }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
  
     <!-- Visualización de estado del token y acciones contextualizadas. -->
     <div class="token">

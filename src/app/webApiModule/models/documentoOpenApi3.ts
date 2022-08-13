@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 export interface IOpenApiObject3 {
     openApi?: string,
     info?: IInfoObject,
-    servers?: IServeObject[],
+    servers?: IServerObject[],
     paths?: Array<IPathObject>,
     components?: IComponentObject,
     security?: ISecurityRequerimentObject[],
@@ -17,7 +17,10 @@ export interface IInfoObject {
 
 }
 
-export interface IServeObject {
+export interface IServerObject {
+
+    url: string;
+    description?: string;
     
 }
 

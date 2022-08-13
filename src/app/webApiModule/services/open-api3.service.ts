@@ -1,5 +1,5 @@
 import { SharedModule } from './../../sharedModule/shared.module';
-import { IComponentObject, IOpenApiObject3, ISchemaObject, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeResponseObject } from './../models/documentoOpenApi3';
+import { IComponentObject, IOpenApiObject3, ISchemaObject, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeResponseObject, IServerObject } from './../models/documentoOpenApi3';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Component } from '@angular/core';
@@ -24,7 +24,7 @@ export class OpenApi3Service {
 
     
     // Contiene la ruta actual del documento para poder ser leido. Su valor se actualiza a partir del observable rutaDocumentoOpenApiActual$
-    rutaDocumentoOpenApiActual: string ='../assets/json/webapiPre.json';
+    rutaDocumentoOpenApiActual: string ='';
     rutaDocumentoOpenApiActual$: BehaviorSubject<string>= new BehaviorSubject<string>(this.rutaDocumentoOpenApiActual);
     
 
@@ -36,7 +36,19 @@ export class OpenApi3Service {
 
     erroresCargaDocumentoOpenApi$: BehaviorSubject<string> = new BehaviorSubject<string>("");
  
-  
+  //---------------------------------------
+  //SERVERS
+  //---------------------------------------
+  // Observable que emite actualizaciones de colecciones de servidores (servers).
+  servers$: BehaviorSubject<IServerObject[]> = new BehaviorSubject<IServerObject[]>([]);
+  serversActuales: IServerObject[];  // mantiene los últimos servers cargados.
+
+  // Observable que emite actualizaciones de colecciones de servidores (servers).
+  server$: BehaviorSubject<IServerObject | undefined> = new BehaviorSubject<IServerObject>(undefined);
+  serverActual: IServerObject | undefined;  // mantiene los últimos servers cargados.
+
+
+
   //---------------------------------------
   // OPERATIONS
   //---------------------------------------
@@ -66,6 +78,7 @@ export class OpenApi3Service {
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
+          
           if ( this.rutaDocumentoOpenApiActual != nuevoDocumentoOpenApi3 ) {
             this.token$.next('');
           }
@@ -82,10 +95,26 @@ export class OpenApi3Service {
       schemas => this.schemasActuales=schemas
     );
 
-    // Cada vez que se emite una nueva colección de operations (endpoints) se almacena en la variable schemasActuales
+    // Cada vez que se emite una nueva colección de operations (endpoints) se almacena en la variable operationsActuales
     this.operations$.subscribe(
       operation => this.operationsActuales = operation
     );
+
+    // Cada vez que se emite una nueva colección de servidores (servers) se almacena en la variable serversActuales
+    this.servers$.subscribe(
+      servers => {
+        this.serversActuales = servers;
+      } 
+    );
+
+    // Cada vez que se emite una nueva colección de servidores (servers) se almacena en la variable serversActuales
+    this.server$.subscribe(
+      serverActual => {
+    
+        this.serverActual = serverActual;
+        console.log('server Actual',this.serverActual)
+      } 
+  );
 
     this.http.get(this.origenDatosOpenApiOnline)
     .subscribe(
@@ -99,8 +128,7 @@ export class OpenApi3Service {
         } // Fin for
 
         this.rutasPreestablecidasDocumentosOpenApi3$.next(coleccionRutas);
-        this.rutaDocumentoOpenApiActual$.next(this.rutasPreestablecidasDocumentosOpenApi3$.value[1].url);
-  
+        
       }
 
     )
@@ -117,14 +145,24 @@ export class OpenApi3Service {
     return this.rutasPreestablecidasDocumentosOpenApi3$;
   }
 
+  obtenerServidores(): BehaviorSubject<IServerObject[] | undefined> {
+    return this.servers$
+  }
+
     // Se establece un nuevo documento openApi. Desencadenará la regeneración de todo el documento.
   cambiarDocumento(nuevoDoc: string) {
       this.rutaDocumentoOpenApiActual$.next(nuevoDoc);
+  }
+
+  cambiarServidor(nuevoServidor: IServerObject) {
+    this.server$.next(nuevoServidor);
   }
   
 
   // Actualización del objeto global cuando cambia la referencia del fichero "json"
   actualizarOpenApiObject3Actual() {
+
+
 
     this.http.get(this.rutaDocumentoOpenApiActual)
       .subscribe(
@@ -135,17 +173,17 @@ export class OpenApi3Service {
 
           // OBTENER NODO INFO
 
+   
           // OBTENER NODO SERVERS
+          let serversObject: Array<IServerObject>;
+          cda.servers?serversObject=this.obtenerServersObject(cda.servers):serversObject=[];
+          serversObject?this.servers$.next(serversObject):this.servers$.next(undefined);
 
           // OBTENER NODO PATHS
           let pathsObject: Array<IPathObject> | undefined;
           let operationObjects: Array<IOperationObject>;
           cda.paths?pathsObject=this.obtenerPathsObject(cda.paths):pathsObject=undefined;
-          
-          
           pathsObject?operationObjects = this.obtenerOperationsObjects(pathsObject): operationObjects=[];
-
-        
           operationObjects?this.operations$.next(operationObjects):null
 
           
@@ -205,6 +243,24 @@ export class OpenApi3Service {
   // MÉTODOS PRIVADOS
   //---------------------------------------------------------------------------
 
+  //---------------------------------------------------------------------------
+  // Métodos relacionados con el nodo COMPONENTS
+  //---------------------------------------------------------------------------
+  private obtenerServersObject(servers: any): Array<IServerObject> {
+   
+    const auxServerObjects: Array<IServerObject> = [];
+    if (Array.isArray(servers)) {
+      const serversObject=<Array<any>>servers;
+      serversObject.forEach(serverData => {
+        let server: IServerObject = {
+          url: serverData.url,
+          description: serverData.description
+        }
+        auxServerObjects.push(server);
+      });
+    }
+    return auxServerObjects;
+  }
   //---------------------------------------------------------------------------
   // Métodos relacionados con el nodo COMPONENTS
   //---------------------------------------------------------------------------
