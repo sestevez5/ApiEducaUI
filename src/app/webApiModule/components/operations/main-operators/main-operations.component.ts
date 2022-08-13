@@ -1,8 +1,6 @@
 import { IOperationObject } from './../../../models/documentoOpenApi3';
 import { OpenApi3Service } from '../../../services/open-api3.service';
-import { WebapiService } from '../../../services/webapi.service';
 import { MatDialog } from '@angular/material/dialog';
-import { IDto } from '../../../models/dtoModel';
 import { MatAccordion } from '@angular/material/expansion';
 import { PageEvent } from '@angular/material/paginator';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
@@ -36,7 +34,7 @@ export class MainOperationsComponent  {
 
   @Input() mostrarOperations=true;
 
-  constructor(public dialog: MatDialog,private  was: WebapiService, private was1: OpenApi3Service) { 
+  constructor(public dialog: MatDialog, private was1: OpenApi3Service) { 
 
   this.was1.operations$.subscribe(operations => {
     this.paginacion = this.paginacion = {

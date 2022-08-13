@@ -9,32 +9,47 @@
   
   <!-- Cabecera -->
   <mat-expansion-panel-header>
-    <mat-panel-title> 
-      <div class="seccion seccionNombreSchema">
-        <span class="nombreSchema">{{schema.key?schema.key+':':''}}</span> 
-        <span 
-          *ngIf="schema.type"
-          class="atributoSchema atributoSchematipo" 
-          [ngStyle]="{'background-color': colorAtributoSchema('tipo')}" 
-          mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Tipo:{{schema.type}}">
-          {{schema.type}}</span> 
+    <div class="seccion seccionHeader">
 
-        <span 
-          *ngIf="schema.format"
-          class="atributoSchema" 
-          [ngStyle]="{'background-color': colorAtributoSchema('formato')}"  
-          mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Formato: {{schema.format}">
-          {{schema.format}}</span>
-        <span class="atributoSchema" [ngStyle]="{'background-color': colorAtributoSchema('admiteNulo')}" > {{ this.admiteNulo() }}</span>
+      <div class="seccion seccionHeaderNombreSchema">
+        {{schema.key?schema.key+':':''}}
       </div> 
-    </mat-panel-title>
 
-    <mat-panel-description *ngIf="this.mostrarDescripcionesSchemas" > 
-      <div class="seccion seccionDescripcionSchema">
-        <span mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="1000"
-        matTooltip="{{schema.description}}">{{schema.description}}</span>
-      </div> 
-    </mat-panel-description>
+      <div class="seccion seccionHeaderAtributos">
+        <span 
+        *ngIf="schema.type"
+        class="seccionHeaderAtributo" 
+        [ngStyle]="{'background-color': colorAtributoSchema('tipo')}" 
+        mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Tipo:{{schema.type}}">
+        {{schema.type}}
+      </span> 
+
+      <span class="atributoSchema"
+        *ngIf="schema.format"
+        class="seccionHeaderAtributo" 
+        [ngStyle]="{'background-color': colorAtributoSchema('formato')}"  
+        mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Formato: {{schema.format}}">
+        {{schema.format}}
+      </span>
+
+      <span class="seccionHeaderAtributo" [ngStyle]="{'background-color': colorAtributoSchema('admiteNulo')}" > 
+        {{ this.admiteNulo() }}
+      </span>
+
+
+      </div>
+    
+      <div class="seccion seccionHeaderDescripcionSchema">
+        <span 
+          mat-raised-button 
+          #tooltip="matTooltip" 
+          matTooltipShowDelay="1000"
+          matTooltip="{{schema.description}}">
+          {{schema.description}}
+        </span>
+      </div>
+
+    </div>
 
   </mat-expansion-panel-header>
 

@@ -1,5 +1,4 @@
 import { IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
-import { EnumMetodoHttp } from '../../../models/enumMetodoHttp';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

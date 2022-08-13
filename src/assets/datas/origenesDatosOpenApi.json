@@ -12,7 +12,7 @@
     },
     {
         "orden":2,
-        "url":"https://localhost:44371/swagger/v1/swagger.json",
+        "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
         "descripcion": "ApiEduca (Entorno de Producción)"
     },
     {

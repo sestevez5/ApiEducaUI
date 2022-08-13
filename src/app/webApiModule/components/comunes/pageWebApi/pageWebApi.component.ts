@@ -1,10 +1,5 @@
 import { OpenApi3Service } from './../../../services/open-api3.service';
-import { WebapiService } from './../../../services/webapi.service';
-
-import { IDto } from '../../../models/dtoModel';
-
-import { Component, Input, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 import {MatSnackBar } from '@angular/material/snack-bar'
 
 

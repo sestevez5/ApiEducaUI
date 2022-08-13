@@ -1,5 +1,4 @@
 import { ISchemaObject, ISchemaObjectWithKey } from './../../../models/documentoOpenApi3';
-import { IenumDto } from './../../../models/enumModel';
 import { Component, Input, OnInit } from '@angular/core';
 
 
@@ -13,7 +12,7 @@ export class ArbolSchemasComponent {
   enumTipologiaDePropiedades = EnumTipologiaDePropiedades;
 
   ISchemaObjectWithKey!: ISchemaObjectWithKey
-  IenumDto!: IenumDto;
+
 
 
   @Input() schema: ISchemaObjectWithKey | undefined; 
