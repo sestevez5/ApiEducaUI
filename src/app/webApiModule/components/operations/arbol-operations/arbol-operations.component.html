@@ -10,11 +10,13 @@
             <span>{{operation.path}}</span> 
         </mat-panel-title>
       <mat-panel-description *ngIf="this.mostrarDescripcionesOperations" > This is a summary of the content </mat-panel-description>
+
+   
+
     </mat-expansion-panel-header>
 
     <!-- Cuerpo: Colección de campos -->
     <div class="seccion seccionCuerpoEndpoint">
-
 
         <!-- Sección correspondiente a los campos de tipo path -->
         <mat-expansion-panel *ngIf="this.parametrosPath()" [expanded]="this.expandido" >
@@ -29,8 +31,6 @@
                 <app-parameters-operation  [parameters]="this.parametrosPath()" ></app-parameters-operation>
             </div> <!-- Fin sección cuerpo -->
         </mat-expansion-panel>
-
-
            
         <!-- Sección correspondiente a los campos de tipo query -->
         <mat-expansion-panel *ngIf="this.parametrosQuery()"  [expanded]="this.expandido" >
@@ -48,21 +48,34 @@
         </mat-expansion-panel>
 
 
-                <!-- Sección correspondiente a las respuestas -->
-                <mat-expansion-panel [expanded]="this.expandido" >
-            
-                    <!-- Cabecera -->
-                    <mat-expansion-panel-header class="seccion seccionCabeceraEndpoint">
-                        <mat-panel-title>Respuestas</mat-panel-title>
-                    </mat-expansion-panel-header>
-        
-                    <!-- Cuerpo: Colección de campos -->
-                    <div class="seccion seccionCuerpoEndpoint">
-                     
-                        Aquí van los campos
-                      
-                    </div> <!-- Fin sección cuerpo -->
-                </mat-expansion-panel>
+        <!-- Sección correspondiente a las respuestas -->
+        <mat-expansion-panel [expanded]="this.expandido" >
+    
+            <!-- Cabecera -->
+            <mat-expansion-panel-header class="seccion seccionCabeceraEndpoint">
+                <mat-panel-title>Respuestas</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <!-- Cuerpo: Colección de campos -->
+            <div class="seccion seccionCuerpoEndpoint">
+                
+                Aquí van los campos
+                
+            </div> <!-- Fin sección cuerpo -->
+        </mat-expansion-panel>
+
+
+        <div class="seccion seccionPieContenido">
+            <div class="botonEjecucion">
+                <div class="icono"><mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">play_circle</mat-icon></div>
+                <div class="texto">
+                    <span style="margin-top:9px">
+                    Ejecutar
+                    </span></div>
+                
+            </div>
+             
+        </div>
         
 
 

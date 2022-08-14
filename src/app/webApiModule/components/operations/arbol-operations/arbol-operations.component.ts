@@ -63,4 +63,8 @@ export class ArbolOperationsComponent implements OnInit {
     return this.operation.parameters?this.operation.parameters.filter(parameter => parameter.in === 'query'):undefined;
 }
 
+openDialog() {
+  
+}
+
 }

@@ -3,6 +3,7 @@ import { IComponentObject, IOpenApiObject3, ISchemaObject, ISchemaObjectWithKey,
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Component } from '@angular/core';
+import { EjecucionEndpointsService } from './ejecucion-endpoints.service';
 
 
 
@@ -73,8 +74,10 @@ export class OpenApi3Service {
 
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private xxx: EjecucionEndpointsService) {
 
+    console.log('ejecutando operación');
+    xxx.ejecutarOperation1();
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
@@ -112,7 +115,7 @@ export class OpenApi3Service {
       serverActual => {
     
         this.serverActual = serverActual;
-        console.log('server Actual',this.serverActual)
+        
       } 
   );
 

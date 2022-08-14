@@ -19,6 +19,7 @@ import { ParametersOperationComponent } from './components/operations/parameters
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
+import { PanelExecuteOperationComponent } from './components/operations/panel-execute-operation/panel-execute-operation.component';
 
 
 
@@ -33,6 +34,7 @@ import {MatChipsModule} from '@angular/material/chips';
     ArbolOperationsComponent,
     ParameterOperationComponent,
     ParametersOperationComponent,
+    PanelExecuteOperationComponent,
    
   ],
   imports: [
