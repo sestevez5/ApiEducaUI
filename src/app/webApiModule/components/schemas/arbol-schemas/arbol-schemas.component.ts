@@ -45,13 +45,14 @@ export class ArbolSchemasComponent {
   }
 
   
-admiteNulo(): string {
- return (this.schema.nullable && this.schema.nullable === true)?"Admite nulo":"No admite nulo";
-} 
+  admiteNulo(): string {
+  return (this.schema.nullable && this.schema.nullable === true)?"Admite nulo":"No admite nulo";
+  } 
 
-tienePropiedades(): boolean {
-  return (this.schema.properties && this.schema.properties.length > 0)?true:false;
-}
+  tienePropiedades(): boolean {
+    return (this.schema.properties && this.schema.properties.length > 0)?true:false;
+  }
+
 
 
 colorAtributoSchema(atributoSchema: string): string {
