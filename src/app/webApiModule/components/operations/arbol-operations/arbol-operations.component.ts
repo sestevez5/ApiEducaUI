@@ -1,3 +1,5 @@
+import { PanelExecuteOperationComponent } from './../panel-execute-operation/panel-execute-operation.component';
+import { MatDialog } from '@angular/material/dialog';
 import { IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -12,7 +14,7 @@ export class ArbolOperationsComponent implements OnInit {
   @Input() mostrarDescripcionesOperations=true;
   @Input() expandido: boolean = false;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -64,7 +66,18 @@ export class ArbolOperationsComponent implements OnInit {
 }
 
 openDialog() {
+  const dialogRef = this.dialog.open(PanelExecuteOperationComponent, {
+    data: this.operation
+  });
+
+ 
+}
+
+onEjecutar(){
+  this.openDialog();
+}
+
   
 }
 
-}
+

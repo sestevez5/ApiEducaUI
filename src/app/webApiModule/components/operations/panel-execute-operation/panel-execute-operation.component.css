@@ -1,0 +1,85 @@
+.secciones {
+    width: 1500px;
+    height: 600px; 
+    min-width: 1500;
+    overflow:-moz-hidden-unscrollable;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: 7.5% 75% 12% ;
+    
+    grid-gap: 8px;
+    
+}
+
+.seccion {
+    padding: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0.2px;
+    border-color: #eee;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    
+    /* background-color: #e4e4e4; */
+}
+
+.seccionCabecera {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    display: flex;
+
+    font-size: 20px;
+}
+
+.seccionEntradas {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.seccionSalidas {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.seccionPie {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
+}
+
+.metodoHttp {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
+    padding-bottom: 5px;
+    
+
+    height: 35px;
+    border-radius: 5px;
+
+}
+
+.path {
+    margin-left: 20px;
+    line-height: 34px;
+}
+
+.pieDialog, .cabeceraDialog {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.cabeceraDialog h1 {
+    font-size: xx-large;
+}
+
+
+

@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   error() {
     this.snackBar.open('Usuario o contraseña no válida', '', {
-      duration: 2000,
+      duration: 500,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     });
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['./dashboard']);
       
-    }, 1000);
+    }, 500);
   }
 
 

@@ -18,7 +18,7 @@ interface IPaginacion {
   styleUrls: ['./main-operations.component.css']
 })
 export class MainOperationsComponent  {
-  panelesExpandidos=false;
+  panelesExpandidos=true;
   mostrarTiposDeCampos=true;
   mostrarDescripcionesOperations=true;
 

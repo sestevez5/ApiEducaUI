@@ -1,8 +1,7 @@
-import { SharedModule } from './../../sharedModule/shared.module';
-import { IComponentObject, IOpenApiObject3, ISchemaObject, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeResponseObject, IServerObject } from './../models/documentoOpenApi3';
+import { IComponentObject, IOpenApiObject3, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeObject, IServerObject, IRequestBody } from './../models/documentoOpenApi3';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Component } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { EjecucionEndpointsService } from './ejecucion-endpoints.service';
 
 
@@ -420,6 +419,7 @@ export class OpenApi3Service {
     operationId: definitionOperation['operationId'],
     parameters: this.obtenerParametersObject(definitionOperation['parameters']),
     responses: this.obtenerResponsesWithCodeObject(definitionOperation['responses']),
+    requestBody: definitionOperation['requestBody']?this.obtenerRequestBody(definitionOperation['requestBody']):null
     }
    
  
@@ -495,24 +495,42 @@ export class OpenApi3Service {
 
     let responseObject: IResponseObject = {
       description: response.description,
-      content: this.obtenerMediaTypeResponseObject(response.content)
+      content: this.obtenerMediaTypeObject(response.content)
     }
     return responseObject;
   }
 
-  private obtenerMediaTypeResponseObject( mediaTypeResponse: any): Array<IMediaTypeResponseObject> | undefined
+  private obtenerRequestBody(request: any): IRequestBody | undefined {
+
+
+    const requestObject: IRequestBody = {
+      description:request.description,
+      content: this.obtenerMediaTypeObject(request.content),
+      required: request.required
+    }
+    console.log(requestObject);
+    return requestObject;
+
+  }
+
+  private obtenerMediaTypeObject( mediaTypeResponse: any): Array<IMediaTypeObject> | undefined
   {
     
-    const mediaTypeResponseObjects: Array<IMediaTypeResponseObject> = []
+    const mediaTypeResponseObjects: Array<IMediaTypeObject> = []
 
     for (const mediaType in mediaTypeResponse) {
 
-      let mediaTypeResponseObject: IMediaTypeResponseObject = {
-        mediaType: mediaType,
-        schema: this.obtenerSchemaObject(mediaTypeResponse[mediaType].schema)
-      };
+      if (mediaType === "application/json" ) {
+        let mediaTypeResponseObject: IMediaTypeObject = {
+          mediaType: mediaType,
+          schema: this.obtenerSchemaObject(mediaTypeResponse[mediaType].schema)
+        };
+  
+        mediaTypeResponseObjects.push(mediaTypeResponseObject);
 
-      mediaTypeResponseObjects.push(mediaTypeResponseObject);
+      }
+
+     
 
     }
 

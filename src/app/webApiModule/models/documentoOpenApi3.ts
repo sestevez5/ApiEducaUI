@@ -85,6 +85,7 @@ export interface IOperationObject {
     operationId?: string;
     parameters?: Array<IParameterObject>;
     responses?: Array<ICodeWithResponseObject>
+    requestBody?: IRequestBody;
 
 }
 
@@ -106,13 +107,20 @@ export interface ICodeWithResponseObject{
 
 export interface IResponseObject{
    description: string;
-   content: Array<IMediaTypeResponseObject>
+   content: Array<IMediaTypeObject>
 }
 
-export interface IMediaTypeResponseObject{
+export interface IMediaTypeObject{
     mediaType: string;
     schema: ISchemaObjectWithKey;
 }
+
+export interface IRequestBody{
+    description?: string;
+    content?: Array<IMediaTypeObject>
+    required?: boolean;
+}
+ 
  
 
 
