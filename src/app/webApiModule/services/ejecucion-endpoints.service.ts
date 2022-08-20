@@ -1,6 +1,6 @@
 import { IOperationObject } from './../models/documentoOpenApi3';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +47,39 @@ export class EjecucionEndpointsService {
   }
 
   ejecutarOperation2() {
+    console.log('entrando')
+
+    const endpoint:string = 'https://jsonplaceholder.typicode.com/todos/1';
+    
+
+    const headers = new HttpHeaders( {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    });
+
+    const requestOptions = { headers: headers, observe: 'response'};
+
+
+
+
+    this.http.get<HttpResponse<string>>(endpoint, { observe: 'response'}).subscribe(
+      datos =>  {
+        console.log(JSON.stringify(datos.body));
+       
+
+
+      }
+    )
+
+
+
+
+
+    
+
+  }
+
+  ejecutarOperation3() {
 
     const endpoint:string = 'https://wwwpre.educacion.org/educacion/bussed/sigacapi/api/SituacionesAprendizaje/33E35926-9D86-435B-BC2E-02F4B45C1E92';
     

@@ -76,7 +76,7 @@ export class OpenApi3Service {
   constructor(private http: HttpClient, private xxx: EjecucionEndpointsService) {
 
     console.log('ejecutando operación');
-    xxx.ejecutarOperation1();
+    xxx.ejecutarOperation2();
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
