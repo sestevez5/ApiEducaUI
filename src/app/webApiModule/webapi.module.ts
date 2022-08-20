@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageWebApiComponent } from './components/comunes/pageWebApi/pageWebApi.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -43,7 +45,8 @@ import { PanelExecuteOperationComponent } from './components/operations/panel-ex
     SharedModule,
     FormsModule,
     MatFormFieldModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule
  
 
     

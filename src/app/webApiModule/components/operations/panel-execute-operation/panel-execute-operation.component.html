@@ -15,8 +15,26 @@
 
             <div class="seccion seccionEntradas">
                 <h1>ENTRADA</h1>
-                <h2>Parámetros:</h2>
-                {{ this.data.parameters | json }}
+                
+                <div class="parametros" *ngIf="this.tieneParametros" >
+                    <h2>Parámetros:</h2>
+                    <form [formGroup]="formParametros">
+                        <ng-container *ngFor="let parametro of this.data.parameters" >
+                                <mat-form-field appearance="legacy">
+                                  <mat-label>{{ parametro.name}}</mat-label>
+                                  <input matInput >
+                                  <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                                  <mat-hint>Ej: 12345678-1234-1234-1234567812345678</mat-hint>
+                                </mat-form-field>
+                            
+                            
+                        </ng-container>
+                        <label for="street">Street</label>
+                        <!-- <input type="text" class="form-control" name="street" formControlName="street"> -->
+   
+
+                    </form>
+                </div>
                 <h2>Body:</h2>
 
                 {{ this.data.requestBody| json }}

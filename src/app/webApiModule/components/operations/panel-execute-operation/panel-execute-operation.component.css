@@ -101,3 +101,12 @@ mat-icon {
     width: 40px;
     color:#2b377b
 }
+.mat-form-field {
+    width: 70%;
+}
+
+h2 {
+    margin-bottom: 0px;
+}
+
+
