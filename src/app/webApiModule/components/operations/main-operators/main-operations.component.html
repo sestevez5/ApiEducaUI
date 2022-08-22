@@ -12,10 +12,10 @@
       <mat-slide-toggle [(ngModel)]="mostrarTiposDeCampos" color="primary">Mostrar tipo de campos</mat-slide-toggle>
       <mat-slide-toggle [(ngModel)]="this.mostrarDescripcionesOperations" color="primary">Mostrar descripciones</mat-slide-toggle>
 
-      <div class="metodoHttp metodoHttpGet"><mat-slide-toggle [(ngModel)]="this.mostrarDescripcionesOperations" color="primary">GET</mat-slide-toggle></div>
-      <div class="metodoHttp metodoHttpPost"><mat-slide-toggle [(ngModel)]="this.mostrarDescripcionesOperations" color="primary">POST</mat-slide-toggle></div>
-      <div class="metodoHttp metodoHttpPut"><mat-slide-toggle [(ngModel)]="this.mostrarDescripcionesOperations" color="primary">PUT</mat-slide-toggle></div>
-      <div class="metodoHttp metodoHttpDelete"><mat-slide-toggle [(ngModel)]="this.mostrarDescripcionesOperations" color="primary">DELETE</mat-slide-toggle></div>
+      <div class="metodoHttp metodoHttpGet"><mat-slide-toggle (change)="onCambiarFiltroMetodo('GET')" [ngModel]="this.mostrarMetodosGET" color="primary">GET</mat-slide-toggle></div>
+      <div class="metodoHttp metodoHttpPost"><mat-slide-toggle (change)="onCambiarFiltroMetodo('POST')" [ngModel]="this.mostrarMetodosPOST"color="primary">POST</mat-slide-toggle></div>
+      <div class="metodoHttp metodoHttpPut"><mat-slide-toggle (change)="onCambiarFiltroMetodo('PUT')" [ngModel]="this.mostrarMetodosPUT" color="primary">PUT</mat-slide-toggle></div>
+      <div class="metodoHttp metodoHttpDelete"><mat-slide-toggle (change)="onCambiarFiltroMetodo('DELETE')" [ngModel]="this.mostrarMetodosDELETE"color="primary">DELETE</mat-slide-toggle></div>
 
       
       

@@ -78,7 +78,7 @@ export interface IPathObject {
 export interface IOperationObject {
 
     metodo?: string;
-    tags?: Array<string>;
+    tags: Array<string>;
     path?: string // No lo contempla el estándar. Es una réplica del nodo padre.
     summary?: string;
     description?: string;

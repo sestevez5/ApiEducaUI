@@ -29,6 +29,9 @@ export class PanelExecuteOperationComponent implements OnInit {
   ) { 
     this.tieneParametros = data.parameters?true:false;
     this.tieneParametros?this.iniciarParametros():null;
+    this.formParametros = fb.group({});
+
+
 
 
   }
