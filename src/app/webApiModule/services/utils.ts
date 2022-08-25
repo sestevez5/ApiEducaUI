@@ -1,5 +1,7 @@
+import { IRequestBody } from './../models/documentoOpenApi3';
 
 import { ISchemaObjectWithKey } from "../models/documentoOpenApi3";
+import { ConvertPropertyBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 
 export function colorMetodo(metodo: string): {color:string, nombreMetodo:string} {
 
@@ -77,5 +79,28 @@ export function propertyInSchema(schema: ISchemaObjectWithKey, propertyName): bo
 
   return false;
 
+}
+
+export function ObtenerBodyRequestComoCadena( irb: IRequestBody): string {
+
+  // el body siempre estará formado por un objeto y comenzará por '{'
+  let cadena: string = '{'
+
+  // En el caso de que haya (debe haber) propiedades en un schema, iteramos sobre el para obtener los campos
+  if ( irb.content && irb.content.length>0 && irb.content[0].schema && irb.content[0].schema.properties) {
+    const properties = irb.content[0].schema.properties;
+    properties.forEach(
+      property => {
+        cadena += "\n\t" + property.name + ': "???",';
+      }
+    );
+    // En cada línea añadimos una "," al final. Debemos elimiar la última "," 
+    properties.length>0?cadena = cadena.substring(0, cadena.length - 1):null;
+ }
+
+  // Finalmente añadimos el "}" para cerrar el objeto.
+  cadena += "\n}";
+
+  return cadena;
 }
 

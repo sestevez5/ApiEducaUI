@@ -3,7 +3,7 @@ import { OpenApi3Service } from './../../../services/open-api3.service';
 import { IOpenApiObject3, IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { colorMetodo } from '../../../services/utils'
+import { colorMetodo, ObtenerBodyRequestComoCadena } from '../../../services/utils'
 
 interface parametroFormControl {
   nombre: string;
@@ -16,8 +16,14 @@ interface parametroFormControl {
 })
 export class PanelExecuteOperationComponent implements OnInit {
 
+  
   formParametros: FormGroup;
   tieneParametros: boolean;
+
+  formBody: FormGroup;
+  tieneBody: boolean;
+
+
   
 
   constructor(
@@ -28,16 +34,15 @@ export class PanelExecuteOperationComponent implements OnInit {
 
   ) { 
 
-   
-
-
     this.tieneParametros = data.parameters?true:false;
-    console.log('this.tieneParametros',this.tieneParametros);
     this.tieneParametros?this.iniciarParametros():null;
-    this.formParametros = fb.group({});
+  
+
+    this.tieneBody = data.requestBody?true:false;
+    this.tieneBody?this.iniciarBody():null;
 
 
-
+   
 
   }
 
@@ -60,7 +65,6 @@ export class PanelExecuteOperationComponent implements OnInit {
 
   iniciarParametros() {
 
-
     let parametrosFormControl: Object = new Object();
 
     this.data.parameters.forEach(
@@ -75,7 +79,7 @@ export class PanelExecuteOperationComponent implements OnInit {
     this.formParametros = this.fb.group(parametrosFormControl);
 
   }
-
+  
   obtenerRestricciones(parameter: IParameterObject): Array<any> {
     const restricciones: Array<any>=[];
 
@@ -99,6 +103,13 @@ export class PanelExecuteOperationComponent implements OnInit {
     
 
   }
+
+
+  iniciarBody(){
+    const valor: Array<any> = ['']; // Inicialmente solo tiene el valor inicial que siempre será la cadena vacía
+    this.formBody = this.fb.group({ body: [ObtenerBodyRequestComoCadena(this.data.requestBody),[]]});
+  }
+
 
  
   

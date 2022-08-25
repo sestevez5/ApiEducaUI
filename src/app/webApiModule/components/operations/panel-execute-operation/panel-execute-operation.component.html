@@ -21,6 +21,8 @@
            
                     <h2>Parámetros:</h2>
                     <form [formGroup]="formParametros">
+
+             
                         <ng-container *ngFor="let parametro of this.data.parameters" >
                               <mat-form-field appearance="legacy">
                                   <mat-label>{{ parametro.name}}</mat-label>
@@ -44,9 +46,22 @@
 
                     </form>
                 </div>
-                <h2>Body:</h2>
 
-                {{ this.data.requestBody| json }}
+                <div class="body" *ngIf="this.data.requestBody" >
+           
+                    <h2>Body:</h2>
+                    <form [formGroup]="formBody">
+                     
+                        <mat-form-field class="body" appearance="legacy">
+                            <textarea matInput  formControlName="body" ></textarea>
+                        </mat-form-field>
+
+                    </form>
+                </div> 
+
+
+
+
 
             </div>
 
