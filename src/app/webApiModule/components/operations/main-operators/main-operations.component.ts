@@ -21,6 +21,12 @@ export class MainOperationsComponent  {
   panelesExpandidos=true;
   mostrarTiposDeCampos=true;
   mostrarDescripcionesOperations=true;
+  mostrarMetodosGET=true;
+  mostrarMetodosPOST=true;
+  mostrarMetodosPUT=true;
+  mostrarMetodosDELETE=true;
+
+
 
   paginacion: IPaginacion;
   paginaEvent: PageEvent;
@@ -33,6 +39,7 @@ export class MainOperationsComponent  {
   operations : IOperationObject[];
 
   @Input() mostrarOperations=true;
+  @Input() OpAutenticacion = false
 
   constructor(public dialog: MatDialog, private was1: OpenApi3Service) { 
 
@@ -73,11 +80,37 @@ export class MainOperationsComponent  {
     this.actualizarDatos();
   }
 
+  onCambiarFiltroMetodo(metodo: string) {
+
+    switch (metodo) {
+      case 'GET':
+        this.mostrarMetodosGET=!this.mostrarMetodosGET;
+        break;
+      case 'POST':
+        this.mostrarMetodosPOST=!this.mostrarMetodosPOST;
+        break;
+      case 'PUT':
+        this.mostrarMetodosPUT=!this.mostrarMetodosPUT;
+        break;
+      case 'DELETE':
+        this.mostrarMetodosDELETE=!this.mostrarMetodosDELETE;
+        break;
+    
+      default:
+        break;
+    }
+
+    this.paginacion.paginaSeleccionada=0;
+    this.actualizarDatos();
+
+  }
+
 
 
   actualizarDatos()
   {
-      const result: any = this.was1.obtenerOperationsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
+
+      const result: any = this.was1.obtenerOperationsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina, this.OpAutenticacion, this.mostrarMetodosGET, this.mostrarMetodosPOST, this.mostrarMetodosPUT, this.mostrarMetodosDELETE);
       this.operations = result.datos;
       this.paginacion.longitud = result.numeroElementos;
   }

@@ -62,7 +62,7 @@ export class PageWebApiComponent {
     was.obtenerServidores().subscribe(
       servidores => {
 
-        console.log(servidores.map(servidor=>servidor.url));
+        
         this.servidoresActuales = servidores;
         if (servidores.length>0){
           this.onSeleccionarServidor(this.servidoresActuales[0].url);

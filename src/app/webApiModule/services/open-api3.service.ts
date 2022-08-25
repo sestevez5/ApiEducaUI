@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 import { EjecucionEndpointsService } from './ejecucion-endpoints.service';
+import { propertyInSchema } from './utils';
 
 
 
@@ -75,8 +76,9 @@ export class OpenApi3Service {
 
   constructor(private http: HttpClient, private xxx: EjecucionEndpointsService) {
 
-    console.log('ejecutando operación');
-    xxx.ejecutarOperation2();
+    
+    
+    xxx.ejecutarOperation1();
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
@@ -208,9 +210,20 @@ export class OpenApi3Service {
 
   }
 
-  obtenerOperationsFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:IOperationObject[], numeroElementos:number} {
+  obtenerOperationsFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number, esOperationAuth: boolean, mostrarMetodosGET: boolean, mostrarMetodosPOST: boolean, mostrarMetodosPUT: boolean, mostrarMetodosDELETE: boolean): {datos:IOperationObject[], numeroElementos:number} {
    
-    const operations = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
+    // Paso 1: Aplicamos el filtro en base a la cadena de búsqueda
+    let operations = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
+
+    // Paso 2: Aplicaciones el filtro en base al parámetro esOperationAuth
+    esOperationAuth?operations = operations.filter ( op => op.tags.includes("Authentication")):null;
+
+    !mostrarMetodosGET? operations = operations.filter ( op => !(op.metodo === 'get')):null;
+    !mostrarMetodosPOST? operations = operations.filter ( op => !(op.metodo === 'post')):null;
+    !mostrarMetodosPUT? operations = operations.filter ( op => !(op.metodo === 'put')):null;
+    !mostrarMetodosDELETE? operations = operations.filter ( op => !(op.metodo === 'delete')):null;
+
+  
     const numeroElementos = operations.length;
     
     return { 
@@ -218,6 +231,10 @@ export class OpenApi3Service {
       numeroElementos:numeroElementos
     }
   }
+
+ 
+
+
 
   // Se devuelve un subconjunto de dtos a partir de los datos pasados como parámetros.
   obtenerSchemasFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
@@ -380,10 +397,11 @@ export class OpenApi3Service {
   {
     const pathsObject: Array<IPathObject> = [];
 
+
     for ( const path in paths) {
       pathsObject.push(this.obtenerPathObject(path, paths[path]));
     }
-    
+  
     return pathsObject;
   }
 
@@ -436,7 +454,7 @@ export class OpenApi3Service {
       pathObject.get?operationsObjects.push(pathObject.get):null;
       pathObject.post?operationsObjects.push(pathObject.post):null;
       pathObject.put?operationsObjects.push(pathObject.put):null;
-      pathObject.post?operationsObjects.push(pathObject.post):null;
+      pathObject.delete?operationsObjects.push(pathObject.delete):null;
       
     });
     return operationsObjects;
@@ -508,7 +526,7 @@ export class OpenApi3Service {
       content: this.obtenerMediaTypeObject(request.content),
       required: request.required
     }
-    console.log(requestObject);
+    
     return requestObject;
 
   }

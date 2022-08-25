@@ -28,11 +28,13 @@ export class EjecucionEndpointsService {
     const body = { "username": "43361250V"};
 
 
-    this.http.post(endpoint,body).subscribe(
+    this.http.post(endpoint,body, {observe: 'response'}).subscribe(
       datos =>  {
-        console.log(datos['access_token']);
+        console.log('petición completa',datos);
+        console.log()
+     
         this.token = datos['access_token'];
-        this.ejecutarOperation2();
+        // this.ejecutarOperation2();
 
 
       }
