@@ -13,18 +13,27 @@
                <span class="path">{{ this.data.path}}</span>
             </div> 
 
+           
             <div class="seccion seccionEntradas">
                 <h1>ENTRADA</h1>
                 
                 <div class="parametros" *ngIf="this.tieneParametros" >
+           
                     <h2>Parámetros:</h2>
                     <form [formGroup]="formParametros">
                         <ng-container *ngFor="let parametro of this.data.parameters" >
-                                <mat-form-field appearance="legacy">
+                              <mat-form-field appearance="legacy">
                                   <mat-label>{{ parametro.name}}</mat-label>
-                                  <input matInput >
-                                  <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                                  <mat-hint>Ej: 12345678-1234-1234-1234567812345678</mat-hint>
+                       
+                                  <ng-container >
+                                
+                                    <input matInput type="{{this.tipoParametro(parametro).tipoDato}}" formControlName="{{parametro.name}}" >
+                                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                                    <mat-hint>Ej: 12345678-1234-1234-1234567812345678</mat-hint>
+
+
+                                  </ng-container>
+                                 
                                 </mat-form-field>
                             
                             

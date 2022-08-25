@@ -66,6 +66,7 @@ export class ArbolOperationsComponent implements OnInit {
 }
 
 openDialog() {
+
   const dialogRef = this.dialog.open(PanelExecuteOperationComponent, {
     data: this.operation
   });

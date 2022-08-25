@@ -6,8 +6,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { colorMetodo } from '../../../services/utils'
 
 interface parametroFormControl {
-  valorInicial: string;
-  restricciones: Array<any>;
+  nombre: string;
+  valor: Array<any>;
 }
 @Component({
   selector: 'app-panel-execute-operation',
@@ -27,7 +27,12 @@ export class PanelExecuteOperationComponent implements OnInit {
     private fb: FormBuilder
 
   ) { 
+
+   
+
+
     this.tieneParametros = data.parameters?true:false;
+    console.log('this.tieneParametros',this.tieneParametros);
     this.tieneParametros?this.iniciarParametros():null;
 
 
@@ -52,15 +57,19 @@ export class PanelExecuteOperationComponent implements OnInit {
 
   iniciarParametros() {
 
+
+    let parametrosFormControl: Object = new Object();
+
     this.data.parameters.forEach(
       parameter => {
-        const pfc: parametroFormControl = {
-          valorInicial: '',
-          restricciones: []
-          // this.obtenerRestricciones(parameter)
-        } 
+        const valor: Array<any> = ['']; // Inicialmente solo tiene el valor inicial que siempre será la cadena vacía
+        valor.push(this.obtenerRestricciones(parameter))
+        parametrosFormControl[parameter.name] = valor;
       }
-    )
+    );
+
+    // pasamos el objeto de arrays construdio al formulario reactivo.
+    this.formParametros = this.fb.group(parametrosFormControl);
 
   }
 
@@ -69,10 +78,26 @@ export class PanelExecuteOperationComponent implements OnInit {
 
     parameter.required?restricciones.push(Validators.required):null;
 
+    (parameter.schema.type === 'string' && parameter.schema.format === 'uuid')?
+      restricciones.push(Validators.pattern('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')):null;
+
     return restricciones;
 
   }
 
+  tipoParametro(parametro: IParameterObject): {tipoControl: string, tipoDato: string}{
+
+     if (parametro.schema.type === 'string' && parametro.schema.format === 'date-time') {
+      return { tipoControl:'input', tipoDato:'date'}
+    }  else
+    {
+      return { tipoControl:'input', tipoDato:'text'}
+    }
+    
+
+  }
+
+ 
   
 
 }
