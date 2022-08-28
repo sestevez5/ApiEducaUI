@@ -1,3 +1,5 @@
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { IDatosEjecucionOperation, IValorParametroPath, EjecucionOperation } from './../../../models/datosEjecucionOperation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { IOpenApiObject3, IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
@@ -19,9 +21,13 @@ export class PanelExecuteOperationComponent implements OnInit {
   
   formParametros: FormGroup;
   tieneParametros: boolean;
-
   formBody: FormGroup;
   tieneBody: boolean;
+  ejecucionOperation: EjecucionOperation;
+  
+  valorParametros$: BehaviorSubject<Array<IValorParametroPath>> = new BehaviorSubject([])
+
+
 
 
   
@@ -40,6 +46,52 @@ export class PanelExecuteOperationComponent implements OnInit {
 
     this.tieneBody = data.requestBody?true:false;
     this.tieneBody?this.iniciarBody():null;
+
+    this.ejecucionOperation = new EjecucionOperation(
+      {
+        servidor: this.servidorActual(),
+        path: data.path,
+        parametros: this.obtenerValoresParametros(),
+        tokenAutentication: oa3.tokenActual      
+      }
+    )
+
+
+    combineLatest(
+      [
+        oa3.serverActual$,
+        oa3.tokenActual$,
+        this.valorParametros$
+      ]
+    )
+    .pipe(
+      map( combinacion => {
+
+        return {
+          servidorActual: combinacion[0],
+          tokenActual: combinacion[1],
+          valorParametrosActuales: combinacion[2]
+        }
+        
+      })
+    ).subscribe(
+      combinacion => {
+
+
+
+        this.ejecucionOperation.ActualizarDatos({
+          
+            servidor: combinacion.servidorActual.url,
+            path: data.path,
+            parametros: combinacion.valorParametrosActuales,
+            tokenAutentication: combinacion.tokenActual      
+          
+        });
+
+    
+
+      }
+    )
 
 
    
@@ -109,6 +161,35 @@ export class PanelExecuteOperationComponent implements OnInit {
     const valor: Array<any> = ['']; // Inicialmente solo tiene el valor inicial que siempre será la cadena vacía
     this.formBody = this.fb.group({ body: [ObtenerBodyRequestComoCadena(this.data.requestBody),[]]});
   }
+
+  obtenerValoresParametros(): Array<IValorParametroPath> {
+
+    const valoresParametros: Array<IValorParametroPath> = []
+    this.data.parameters.forEach(
+      parametro => {
+        const valorParametro: IValorParametroPath = {
+          tipo: parametro.in,
+          nombre: parametro.name,
+          valor: this.formParametros.controls[parametro.name].value
+        }
+        console.log(this.formParametros);
+        valoresParametros.push(valorParametro);
+      }
+    )
+
+
+    return valoresParametros;
+
+  } 
+
+  onEjecutarOperation(){
+
+    this.valorParametros$.next(this.obtenerValoresParametros());
+
+    this.ejecucionOperation.ejecutar();
+
+  }
+  
 
 
  

@@ -1,14 +1,15 @@
+/* .mat-dialog-content {
+    height: 800px;
+} */
 .secciones {
     width: 1500px;
-    height: 600px; 
+    height: 800px; 
     min-width: 1500;
     overflow:-moz-hidden-unscrollable;
     display: grid;
 
     grid-template-columns: 47% 6% 47% ;
-    grid-template-rows: 8% 75% 12% ;
-    
-    grid-gap: 8px;
+    grid-template-rows: 7% 5% 70% 18% ;
     
 }
 
@@ -18,13 +19,14 @@
     border-style: solid;
     border-width: 0.2px;
     border-color: #eee;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     
-    
+     */
     /* background-color: #e4e4e4; */
 }
 
-.seccionCabecera {
+.seccionCabeceraPanel {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
@@ -35,19 +37,39 @@
     font-size: 20px;
 }
 
-.seccionEntradas {
+.seccionCabeceraEntradas {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 2;
     grid-row-end: 2;
+    border: none;
+    overflow: hidden;
+    text-align: right;
+
+}
+.seccionCuerpoEntradas {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end: 3;
     overflow-y: scroll;
 }
 
-.seccionSalidas {
+.seccionCabeceraSalidas {
     grid-column-start: 3;
-    grid-column-end: 3;
+    grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 2;
+    border: none;
+    overflow: hidden;
+    text-align: right;
+
+}
+.seccionCuerpoSalidas {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
     overflow-y: scroll;
 }
 
@@ -60,15 +82,19 @@
     align-items: center;
     justify-content:space-around;
     font-size: 25px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
     
 
 }
 
-.seccionPie {
+.seccionPiePanel {
     grid-column-start: 1;
     grid-column-end: 4;
-    grid-row-start: 3;
-    grid-row-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 4;
 }
 
 .metodoHttp {
@@ -100,7 +126,7 @@ mat-icon {
     font-size: 40px !important; 
     height: 40px;
     width: 40px;
-    color:#2b377b
+    color:#222;
 }
 .mat-form-field {
     width: 70%;

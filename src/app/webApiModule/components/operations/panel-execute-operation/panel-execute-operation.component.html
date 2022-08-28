@@ -3,99 +3,107 @@
         <h1 mat-dialog-title>Ejecución de endPoints</h1>
     </div>
       
-  </div>
+</div>
 
 
-    <div mat-dialog-content>
-        <div class="secciones">
-            <div class="seccion seccionCabecera">
-               <span class="metodoHttp" [ngStyle]="{'background-color': this.obtenerColorMetodo(this.data.metodo).color}">{{ this.obtenerColorMetodo(this.data.metodo).nombreMetodo }}</span>
-               <span class="path">{{ this.data.path}}</span>
-            </div> 
+<div mat-dialog-content>
+    <div class="secciones">
+        <div class="seccion seccionCabeceraPanel">
+            <span class="metodoHttp" [ngStyle]="{'background-color': this.obtenerColorMetodo(this.data.metodo).color}">{{ this.obtenerColorMetodo(this.data.metodo).nombreMetodo }}</span>
+            <span class="path">{{ this.data.path}}</span>
+        </div> 
 
-           
-            <div class="seccion seccionEntradas">
-                <h1>ENTRADA</h1>
-                
-                <div class="parametros" *ngIf="this.tieneParametros" >
-           
-                    <h2>Parámetros:</h2>
-                    <form [formGroup]="formParametros">
-
-             
-                        <ng-container *ngFor="let parametro of this.data.parameters" >
-                              <mat-form-field appearance="legacy">
-                                  <mat-label>{{ parametro.name}}</mat-label>
-                       
-                                  <ng-container >
-                                
-                                    <input matInput type="{{this.tipoParametro(parametro).tipoDato}}" formControlName="{{parametro.name}}" >
-                                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                                    <mat-hint>Ej: 12345678-1234-1234-1234567812345678</mat-hint>
-
-
-                                  </ng-container>
-                                 
-                                </mat-form-field>
-                            
-                            
-                        </ng-container>
-                        <label for="street">Street</label>
-                        <!-- <input type="text" class="form-control" name="street" formControlName="street"> -->
-   
-
-                    </form>
-                </div>
-
-                <div class="body" *ngIf="this.data.requestBody" >
-           
-                    <h2>Body:</h2>
-                    <form [formGroup]="formBody">
-                     
-                        <mat-form-field class="body" appearance="legacy">
-                            <textarea matInput  formControlName="body" ></textarea>
-                        </mat-form-field>
-
-                    </form>
-                </div> 
-
-
-
-
-
-            </div>
-
-            <div class="seccion seccionAcciones">
-                <div>
-                    <div class="botonEjecucion">
-                        <div class="icono"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">restart_alt</mat-icon></div>
-                        <div class="icono"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">play_circle</mat-icon></div>
-                    
-                    </div>
-                </div>
-                
-            </div>
-            <div class="seccion seccionSalidas">
-                <h1>SALIDA</h1>
-                <h2>Código:</h2>
-                <h2>Respuesta:</h2>
-            </div>
-            <div class="seccion seccionPie">
-                <div>
-                    <span>Token actual: </span><span>No definido</span>
-                </div>
-                <div><span>Servidor: </span><span>{{this.servidorActual()}}</span></div>
-                
-            </div>
+            
+        <div class="seccionCabeceraEntradas">
+            <h2>ENTRADAS</h2>
+        </div>
+        <div class="seccionCabeceraSalidas">
+            <h2>SALIDAS</h2>
         </div>
 
-        <!-- {{ data | json}} -->
-
-    </div>
-    <div mat-dialog-actions class="pieDialog">
-      <div>
-        <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
-      </div>
+        <div class="seccion seccionCuerpoEntradas">
+                        
+            <div class="parametros" *ngIf="this.tieneParametros" >
         
+                <h2>Parámetros:</h2>
+                <form [formGroup]="formParametros">
+
+            
+                    <ng-container *ngFor="let parametro of this.data.parameters" >
+                            <mat-form-field appearance="legacy">
+                                <mat-label>{{ parametro.name}}</mat-label>
+                    
+                                <ng-container >
+                            
+                                <input matInput type="{{this.tipoParametro(parametro).tipoDato}}" formControlName="{{parametro.name}}" >
+                                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                                <mat-hint>Ej: 12345678-1234-1234-1234567812345678</mat-hint>
+
+
+                                </ng-container>
+                                
+                            </mat-form-field>
+                        
+                        
+                    </ng-container>
+                    <label for="street">Street</label>
+                    <!-- <input type="text" class="form-control" name="street" formControlName="street"> -->
+
+
+                </form>
+            </div>
+
+            <div class="body" *ngIf="this.data.requestBody" >
+        
+                <h2>Body:</h2>
+                <form [formGroup]="formBody">
+                    
+                    <mat-form-field class="body" appearance="legacy">
+                        <textarea matInput  formControlName="body" ></textarea>
+                    </mat-form-field>
+
+                </form>
+            </div> 
+
+
+
+
+
+        </div>
+
+        <div class="seccion seccionAcciones">
+            <div>
+                <div class="botonEjecucion">
+                    <div class="icono"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">restart_alt</mat-icon></div>
+                    <div class="icono"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font" (click)="onEjecutarOperation()">play_circle</mat-icon></div>
+                
+                </div>
+            </div>
+            
+        </div>
+        <div class="seccion seccionCuerpoSalidas">
+        
+            <h2>Código:</h2>
+            <h2>Respuesta:</h2>
+        </div>
+        <div class="seccion seccionPiePanel">
+            <div>
+                <span>Token actual: </span><span>{{this.ejecucionOperation.datosEjecucion.tokenAutentication}}</span>
+            </div>
+            <div><span>Raíz del servicio: </span><span>{{this.ejecucionOperation.datosEjecucion.servidor}}</span></div>
+            <div><span>Ruta del recurso: </span><span>{{this.ejecucionOperation.pathConSustitucionParametros}}</span></div>
+            <div><span>Opciones de filtrado: </span><span></span></div>
+            
+        </div>
     </div>
+
+    <!-- {{ data | json}} -->
+
+</div>
+<div mat-dialog-actions class="pieDialog">
+    <div>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
+    </div>
+    
+</div>
 

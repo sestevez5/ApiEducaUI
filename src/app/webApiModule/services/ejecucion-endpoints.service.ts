@@ -1,6 +1,8 @@
+import { IDatosEjecucionOperation, IValorParametroPath } from './../models/datosEjecucionOperation';
 import { IOperationObject } from './../models/documentoOpenApi3';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -110,6 +112,32 @@ export class EjecucionEndpointsService {
 
 
     
+
+  }
+
+  ejecutarOperation(datosEjecucion: IDatosEjecucionOperation ) {
+
+    const parametrosTipoIn: IValorParametroPath[] = datosEjecucion.parametros.filter( p => p.tipo === 'in');
+
+    if ( parametrosTipoIn.length > 0 )
+    {
+      datosEjecucion.path = this.sustituirParametrosEnPath( datosEjecucion.path, datosEjecucion.parametros)
+    }
+    
+  }
+
+  sustituirParametrosEnPath(path: string, parametrosIn: Array<IValorParametroPath>): string {
+
+    let pathConSustitucionParametros = path;
+
+    parametrosIn.forEach(
+      parametro => {
+        const subcadena = '{'+parametro.nombre+'}';
+        pathConSustitucionParametros.replace(subcadena, parametro.valor);
+      }
+    )
+
+    return pathConSustitucionParametros;
 
   }
 }

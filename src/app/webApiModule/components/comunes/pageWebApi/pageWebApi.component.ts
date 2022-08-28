@@ -30,7 +30,7 @@ export class PageWebApiComponent {
   constructor(private was: OpenApi3Service, private snackBar: MatSnackBar){
 
 
-    was.token$.subscribe(nuevoToken => this.token=nuevoToken);
+    was.tokenActual$.subscribe(nuevoToken => this.token=nuevoToken);
  
     was.erroresCargaDocumentoOpenApi$.subscribe(
       error =>  {

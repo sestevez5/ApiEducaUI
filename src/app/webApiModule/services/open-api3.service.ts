@@ -45,7 +45,7 @@ export class OpenApi3Service {
   serversActuales: IServerObject[];  // mantiene los últimos servers cargados.
 
   // Observable que emite actualizaciones de colecciones de servidores (servers).
-  server$: BehaviorSubject<IServerObject | undefined> = new BehaviorSubject<IServerObject>(undefined);
+  serverActual$: BehaviorSubject<IServerObject | undefined> = new BehaviorSubject<IServerObject>(undefined);
   serverActual: IServerObject | undefined;  // mantiene los últimos servers cargados.
 
 
@@ -69,8 +69,8 @@ export class OpenApi3Service {
   //---------------------------------------
   // TOKEN
   //---------------------------------------
-  token$: BehaviorSubject<string> = new BehaviorSubject<string>('xxx');
-  tokenActual: string ='';
+  tokenActual$: BehaviorSubject<string> = new BehaviorSubject<string>('xxx');
+  tokenActual: string ='xxx';
 
 
 
@@ -84,7 +84,7 @@ export class OpenApi3Service {
         nuevoDocumentoOpenApi3 => {
           
           if ( this.rutaDocumentoOpenApiActual != nuevoDocumentoOpenApi3 ) {
-            this.token$.next('');
+            //this.tokenActual$.next('');
           }
 
           this.rutaDocumentoOpenApiActual = nuevoDocumentoOpenApi3;
@@ -112,7 +112,7 @@ export class OpenApi3Service {
     );
 
     // Cada vez que se emite una nueva colección de servidores (servers) se almacena en la variable serversActuales
-    this.server$.subscribe(
+    this.serverActual$.subscribe(
       serverActual => {
     
         this.serverActual = serverActual;
@@ -159,7 +159,7 @@ export class OpenApi3Service {
   }
 
   cambiarServidor(nuevoServidor: IServerObject) {
-    this.server$.next(nuevoServidor);
+    this.serverActual$.next(nuevoServidor);
   }
   
 
@@ -250,12 +250,12 @@ export class OpenApi3Service {
 
   establecerToken(nuevotoken:string) {
     this.tokenActual = nuevotoken;
-    this.token$.next(nuevotoken);
+    this.tokenActual$.next(nuevotoken);
   }
 
   eliminarToken() {
     this.tokenActual='';
-    this.token$.next('');
+    this.tokenActual$.next('');
   }
 
   //---------------------------------------------------------------------------
