@@ -58,6 +58,7 @@ export interface IDatosEjecucionOperation {
     path: string;
     parametros: Array<IValorParametroPath>;
     tokenAutentication: string;
+    body?: string;
 }
 
 export interface IValorParametroPath

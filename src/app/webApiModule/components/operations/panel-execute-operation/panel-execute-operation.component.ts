@@ -16,97 +16,111 @@ interface parametroFormControl {
   templateUrl: './panel-execute-operation.component.html',
   styleUrls: ['./panel-execute-operation.component.css']
 })
-export class PanelExecuteOperationComponent implements OnInit {
+export class PanelExecuteOperationComponent {
 
-  
-  formParametros: FormGroup;
-  tieneParametros: boolean;
-  formBody: FormGroup;
+  //------------------------------------------------------------------
+  // ESTABLECIMIENTO DE PARÁMETROS
+  //------------------------------------------------------------------
+  ejecutandoOperacion = false;
+  formParametros: FormGroup;  // Objeto de establecimiento de campos relativos a parámetros.
+  tieneParametros: boolean;  
+
+  formBody: FormGroup;  // Objeto de establecimiento del campo "Body"
   tieneBody: boolean;
-  ejecucionOperation: EjecucionOperation;
   
+  // Objeto que encapsula todos los datos necesarios para la ejecución de una operación
+  ejecucionOperation: EjecucionOperation; 
+  
+  // Observable que contiene la información actualizada del valor de los parámetros.
   valorParametros$: BehaviorSubject<Array<IValorParametroPath>> = new BehaviorSubject([])
+  valorBody$: BehaviorSubject<string> = new BehaviorSubject('');
 
+ 
 
-
-
-  
-
+  //------------------------------------------------------------------
+  // CONSTRUCTOR
+  //------------------------------------------------------------------
   constructor(
     public dialogRef: MatDialogRef<PanelExecuteOperationComponent >,
     @Inject(MAT_DIALOG_DATA) public data: IOperationObject,
     private oa3: OpenApi3Service,
     private fb: FormBuilder
-
   ) { 
 
+    // Iniciando datos de parámetros.
     this.tieneParametros = data.parameters?true:false;
     this.tieneParametros?this.iniciarParametros():null;
   
-
+    // Iniciando datos del "body" ( En el caso de que haya )
     this.tieneBody = data.requestBody?true:false;
     this.tieneBody?this.iniciarBody():null;
 
+
+    
+    // estableciendo valores iniciales de la ejecución
     this.ejecucionOperation = new EjecucionOperation(
       {
         servidor: this.servidorActual(),
         path: data.path,
-        parametros: this.obtenerValoresParametros(),
-        tokenAutentication: oa3.tokenActual      
+        parametros: this.tieneParametros?this.obtenerValoresParametros():[],
+        tokenAutentication: oa3.tokenActual,
+        body: this.tieneBody?this.formBody.controls['body'].value:null      
       }
-    )
+    );
+    console.log(this.ejecucionOperation.datosEjecucion);
 
-
+    // Los datos de ejecución de una operación dependen del servidor, el token de autenticación
+    // del valor de los parámetros, del body y del Path. Cada vez que alguno de estos datos cambien se debe
+    // reflejar en el objeto ejecuciónOperation. 
+    // Para ello se ha creado un observable que emite valores ante el cambio del servidor, del token 
+    // o de alguno de los parámetros.
     combineLatest(
       [
         oa3.serverActual$,
         oa3.tokenActual$,
-        this.valorParametros$
+        this.valorParametros$,
+        this.valorBody$
       ]
     )
     .pipe(
       map( combinacion => {
-
         return {
           servidorActual: combinacion[0],
           tokenActual: combinacion[1],
-          valorParametrosActuales: combinacion[2]
+          valorParametrosActuales: combinacion[2],
+          valorBodyActual: combinacion[3]
         }
         
       })
     ).subscribe(
       combinacion => {
 
-
-
         this.ejecucionOperation.ActualizarDatos({
           
             servidor: combinacion.servidorActual.url,
-            path: data.path,
+            path: data.path, // Siempre es el mismo valor. 
             parametros: combinacion.valorParametrosActuales,
-            tokenAutentication: combinacion.tokenActual      
+            tokenAutentication: combinacion.tokenActual,
+            body: combinacion.valorBodyActual      
           
         });
-
-    
+  
 
       }
     )
-
-
-   
+  
 
   }
 
-  ngOnInit(): void {
 
-    
-  }
 
   onCerrar(): void {
     this.dialogRef.close();
   }
 
+  //------------------------------------------------------------------
+  // MÉTODOS AUXILARES
+  //------------------------------------------------------------------
   obtenerColorMetodo(metodoHttp: string): {color: string, nombreMetodo: string} {
     return colorMetodo(metodoHttp)
   }
@@ -156,7 +170,6 @@ export class PanelExecuteOperationComponent implements OnInit {
 
   }
 
-
   iniciarBody(){
     const valor: Array<any> = ['']; // Inicialmente solo tiene el valor inicial que siempre será la cadena vacía
     this.formBody = this.fb.group({ body: [ObtenerBodyRequestComoCadena(this.data.requestBody),[]]});
@@ -172,7 +185,6 @@ export class PanelExecuteOperationComponent implements OnInit {
           nombre: parametro.name,
           valor: this.formParametros.controls[parametro.name].value
         }
-        console.log(this.formParametros);
         valoresParametros.push(valorParametro);
       }
     )
@@ -184,9 +196,12 @@ export class PanelExecuteOperationComponent implements OnInit {
 
   onEjecutarOperation(){
 
-    this.valorParametros$.next(this.obtenerValoresParametros());
+    this.tieneParametros?this.valorParametros$.next(this.obtenerValoresParametros()):null;
+    this.tieneBody?this.valorBody$.next(this.formBody.controls['body'].value):null;
 
-    this.ejecucionOperation.ejecutar();
+    console.log(this.ejecucionOperation);
+
+    //this.ejecucionOperation.ejecutar();
 
   }
   
