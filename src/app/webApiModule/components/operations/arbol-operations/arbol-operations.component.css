@@ -2,6 +2,10 @@ mat-panel-title {
     width: 25%;
 }
 
+.panelHijo {
+    box-shadow: none;
+}
+
 
 .operation mat-expansion-panel-header {
     height: 39px;
@@ -21,15 +25,12 @@ mat-panel-title {
     padding-left: 6px;
 }
 
-.operation > .seccionCabeceraOperation{
-    background-color: #ddd;
-}
 
 .seccionCuerpoOperation {
    padding: 10px;
    margin: 0px;
-    min-height: 20px;
-     background-color: #f5f5f5;
+min-height: 20px;
+    
     
 }
 
@@ -37,7 +38,7 @@ mat-panel-title {
    
     min-height: 20px;
     padding: 5px;
-    background-color: #efefef;
+    /* background-color: #efefef; */
 
 }
 
@@ -45,6 +46,11 @@ mat-panel-title {
    
 
     background-color: #e5e5e5;
+
+}
+
+.seccionCabeceraSubseccionOperation:hover {
+    background-color: #e5e5e5 !important;
 
 }
 

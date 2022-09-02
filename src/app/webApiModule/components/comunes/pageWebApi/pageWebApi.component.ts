@@ -100,6 +100,6 @@ export class PageWebApiComponent {
   }
 
   onEliminarToken() {
-    this.was.eliminarToken
+    this.was.eliminarToken();
   }
 }

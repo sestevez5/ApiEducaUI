@@ -137,6 +137,12 @@ export class OpenApi3Service {
 
     )
 
+    this.tokenActual$.subscribe(
+      nuevoToken => {
+        this.tokenActual = nuevoToken;
+      }
+    )
+
 
 
 
@@ -249,13 +255,11 @@ export class OpenApi3Service {
   }
 
   establecerToken(nuevotoken:string) {
-    this.tokenActual = nuevotoken;
     this.tokenActual$.next(nuevotoken);
   }
 
   eliminarToken() {
-    this.tokenActual='';
-    this.tokenActual$.next('');
+      this.tokenActual$.next('');
   }
 
   //---------------------------------------------------------------------------

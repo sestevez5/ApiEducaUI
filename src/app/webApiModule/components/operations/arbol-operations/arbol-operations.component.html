@@ -1,5 +1,5 @@
 
-<mat-expansion-panel [expanded]="this.expandido" *ngIf="this.operation" class="operation">
+<mat-expansion-panel [expanded]="this.expandido" *ngIf="this.operation" class="operation panelPadre">
     
     <!-- Cabecera -->
     <mat-expansion-panel-header class="seccion seccionCabeceraOperation">
@@ -18,7 +18,7 @@
 
         <mat-accordion [multi]="true">
         <!-- Sección correspondiente a los campos de tipo path -->
-        <mat-expansion-panel *ngIf="this.parametrosPath()" [expanded]="this.expandido" >
+        <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath()" [expanded]="this.expandido" >
             
             <!-- Cabecera -->
             <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
@@ -32,7 +32,7 @@
         </mat-expansion-panel>
            
         <!-- Sección correspondiente a los campos de tipo query -->
-        <mat-expansion-panel *ngIf="this.parametrosQuery()"  [expanded]="this.expandido" >
+        <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosQuery()"  [expanded]="this.expandido" >
             
             <!-- Cabecera -->
             <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
@@ -46,9 +46,24 @@
 
         </mat-expansion-panel>
 
+        <!-- Sección correspondiente a las respuestas -->
+        <mat-expansion-panel class="panelHijo" [expanded]="this.expandido" >
+
+            <!-- Cabecera -->
+            <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                <mat-panel-title>Body:</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <!-- Cuerpo: Colección de campos -->
+            <div class="seccion seccionCuerpoSubseccionOperation">
+                
+                {{'Pendiente'}}
+                
+            </div> <!-- Fin sección cuerpo -->
+        </mat-expansion-panel>
 
         <!-- Sección correspondiente a las respuestas -->
-        <mat-expansion-panel [expanded]="this.expandido" >
+        <mat-expansion-panel class="panelHijo" [expanded]="this.expandido" >
     
             <!-- Cabecera -->
             <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
