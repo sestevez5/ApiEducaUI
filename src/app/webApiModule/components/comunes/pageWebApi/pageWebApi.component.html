@@ -13,36 +13,44 @@
       </mat-form-field>
     </div>
 
-        <!-- Selector de documento OPENAPI -->
-        <div class="selectorServidor">
-          <mat-form-field appearance="legacy">
-            <mat-label>Servidor</mat-label>
-            <mat-select [value]="this.servidorSeleccionado?.url" (selectionChange)="onSeleccionarServidor($event.value)">
-              <mat-option [value]="option.url" *ngFor="let option of this.servidoresActuales">{{ option.url }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+    <!-- Selector de documento OPENAPI -->
+    <div class="selectorServidor">
+      <mat-form-field appearance="legacy">
+        <mat-label>Servidor</mat-label>
+        <mat-select [value]="this.servidorSeleccionado?.url" (selectionChange)="onSeleccionarServidor($event.value)">
+          <mat-option [value]="option.url" *ngFor="let option of this.servidoresActuales">{{ option.url }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
  
     <!-- Visualización de estado del token y acciones contextualizadas. -->
     <div class="token">
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <img *ngIf="!token"  mat-card-image src="./assets/img/SinToken.png" alt="Photo of a Shiba Inu">
-        <img *ngIf="token"  mat-card-image src="./assets/img/ConToken.png" alt="Photo of a Shiba Inu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <img *ngIf="!token"  mat-card-image src="./assets/img/SinToken.png">
+          <img *ngIf="token"  mat-card-image src="./assets/img/ConToken.png">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+     
       <mat-menu #menu="matMenu">
         <button *ngIf="token" (click)="onEliminarToken()" mat-menu-item>
           <mat-icon>close</mat-icon>
           <span>Eliminar token</span>
         </button>
-        <button *ngIf="token" mat-menu-item>
-          <mat-icon>edit</mat-icon>
-          <span>Reestablecer token</span>
-        </button>
-        <button *ngIf="!token" mat-menu-item>
-          <mat-icon>add</mat-icon>
-          <span>Establecer token</span>
-        </button>
+     
+          <button (click)="onReestablecerToken()" mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span *ngIf="token" >Modificar token</span>
+            <span *ngIf="!token" >Definir token</span>
+
+          </button>
+   
+
+
+      
+      
+    
       </mat-menu>
 
       

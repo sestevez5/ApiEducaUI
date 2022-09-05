@@ -74,11 +74,9 @@ export class OpenApi3Service {
 
 
 
-  constructor(private http: HttpClient, private xxx: EjecucionEndpointsService) {
+  constructor(private http: HttpClient, ) {
+   
 
-    
-    
-    xxx.ejecutarOperation1();
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
@@ -255,7 +253,10 @@ export class OpenApi3Service {
   }
 
   establecerToken(nuevotoken:string) {
+    
+
     this.tokenActual$.next(nuevotoken);
+
   }
 
   eliminarToken() {

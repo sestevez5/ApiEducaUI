@@ -39,7 +39,7 @@ export class MainOperationsComponent  {
   operations : IOperationObject[];
 
   @Input() mostrarOperations=true;
-  @Input() OpAutenticacion = false
+  @Input() OpAutenticacion = false;
 
   constructor(public dialog: MatDialog, private was1: OpenApi3Service) { 
 
@@ -109,7 +109,6 @@ export class MainOperationsComponent  {
 
   actualizarDatos()
   {
-
       const result: any = this.was1.obtenerOperationsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina, this.OpAutenticacion, this.mostrarMetodosGET, this.mostrarMetodosPOST, this.mostrarMetodosPUT, this.mostrarMetodosDELETE);
       this.operations = result.datos;
       this.paginacion.longitud = result.numeroElementos;

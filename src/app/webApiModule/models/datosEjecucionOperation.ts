@@ -2,6 +2,7 @@ export class EjecucionOperation {
    
     datosEjecucion: IDatosEjecucionOperation;
     pathConSustitucionParametros: string='';
+    uriCompleta: string=''
 
     constructor(datosEjecucion: IDatosEjecucionOperation){
        this.ActualizarDatos(datosEjecucion);
@@ -24,12 +25,11 @@ export class EjecucionOperation {
 
       }
 
-    }
-
-    public ejecutar() {
+      this.construirUriCompleta();
 
     }
 
+  
     private sustituirParametrosEnPath(path: string, parametrosPath: Array<IValorParametroPath>): string {
 
         let pathConSustitucionParametros = path;
@@ -46,6 +46,19 @@ export class EjecucionOperation {
         return pathConSustitucionParametros;
     
     }
+
+    public construirUriCompleta() {
+      let uri:string=this.pathConSustitucionParametros;
+
+      this.datosEjecucion.parametros.filter(p => p.tipo === 'query').forEach(
+        parametro => uri = uri + '?' + parametro.nombre + '=' + parametro.valor
+        );
+
+      this.uriCompleta = uri;
+
+    }
+
+
 
 
     

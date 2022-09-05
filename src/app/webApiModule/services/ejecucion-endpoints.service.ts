@@ -1,7 +1,8 @@
+import { Observable } from 'rxjs';
 import { IDatosEjecucionOperation, IValorParametroPath } from './../models/datosEjecucionOperation';
 import { IOperationObject } from './../models/documentoOpenApi3';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 
 
 @Injectable({
@@ -14,35 +15,52 @@ export class EjecucionEndpointsService {
 
   constructor(private http: HttpClient) { }
 
-  // ejecutarOperation(servidor: string, operation: IOperationObject)
-  ejecutarOperation1() {
 
-    const endpoint:string = 'https://wwwpre.educacion.org/educacion/bussed/sigacapi/api/Auth/autenticacionPorCredenciales';
-    let auth_token = "asjdhkjsdhjk";
-
-    const headers = new HttpHeaders( {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    });
-
-    const requestOptions = { headers: headers};
-
-    const body = { "username": "43361250V"};
+  ejecutarOperacionPost(uri: string, parametros: Object, tokenAutenticacion?: string, body?: string): Observable<Object> | undefined
+  {
 
 
-    this.http.post(endpoint,body, {observe: 'response'}).subscribe(
+    let opcionesPeticion = new Object();
+
+    opcionesPeticion['observe'] = 'response';
+
+
+    // Paso 1: estableciendo cabecera de la petición
+    if (tokenAutenticacion) {
+      const headers = new HttpHeaders( {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenAutenticacion}`
+      });
+
+      opcionesPeticion['headers'] = headers;
+    }
+
+
+
+    // Estableciendo parámetros Query
+    const httpParams = new HttpParams();
+    if (parametros) {
+      for (const key in parametros) {
+        if (Object.prototype.hasOwnProperty.call(parametros, key)) {
+  
+         httpParams.append(key, parametros[key])
+          
+        }
+      }
+
+      opcionesPeticion['params'] = httpParams;
+
+    }
+   
+
+ 
+    this.http.post(uri,body, opcionesPeticion).subscribe(
       datos =>  {
         console.log('petición completa',datos);
-        console.log()
-     
-        this.token = datos['access_token'];
-        // this.ejecutarOperation2();
-
-
       }
     )
 
-
+   return undefined;
 
 
 

@@ -1,11 +1,13 @@
+import { EjecucionEndpointsService } from './../../../services/ejecucion-endpoints.service';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
-import { IDatosEjecucionOperation, IValorParametroPath, EjecucionOperation } from './../../../models/datosEjecucionOperation';
+import { IValorParametroPath, EjecucionOperation } from './../../../models/datosEjecucionOperation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { IOpenApiObject3, IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { colorMetodo, ObtenerBodyRequestComoCadena } from '../../../services/utils'
+
 
 interface parametroFormControl {
   nombre: string;
@@ -44,6 +46,7 @@ export class PanelExecuteOperationComponent {
     public dialogRef: MatDialogRef<PanelExecuteOperationComponent >,
     @Inject(MAT_DIALOG_DATA) public data: IOperationObject,
     private oa3: OpenApi3Service,
+    private eep: EjecucionEndpointsService,
     private fb: FormBuilder
   ) { 
 
@@ -67,7 +70,7 @@ export class PanelExecuteOperationComponent {
         body: this.tieneBody?this.formBody.controls['body'].value:null      
       }
     );
-    console.log(this.ejecucionOperation.datosEjecucion);
+
 
     // Los datos de ejecución de una operación dependen del servidor, el token de autenticación
     // del valor de los parámetros, del body y del Path. Cada vez que alguno de estos datos cambien se debe
@@ -199,15 +202,7 @@ export class PanelExecuteOperationComponent {
     this.tieneParametros?this.valorParametros$.next(this.obtenerValoresParametros()):null;
     this.tieneBody?this.valorBody$.next(this.formBody.controls['body'].value):null;
 
-    console.log(this.ejecucionOperation);
-
-    //this.ejecucionOperation.ejecutar();
-
-  }
-  
-
-
- 
-  
+    console.log(this.ejecucionOperation.uriCompleta);
+  }  
 
 }

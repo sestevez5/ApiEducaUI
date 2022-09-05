@@ -1,3 +1,5 @@
+import { GestionarTokenComponent } from './../gestionar-token/gestionar-token.component';
+import { MatDialog } from '@angular/material/dialog';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { Component } from '@angular/core';
 import {MatSnackBar } from '@angular/material/snack-bar'
@@ -27,7 +29,11 @@ export class PageWebApiComponent {
   cargando= false;
   token: string ='';
 
-  constructor(private was: OpenApi3Service, private snackBar: MatSnackBar){
+  constructor(
+    private was: OpenApi3Service, 
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+    ){
 
 
     was.tokenActual$.subscribe(nuevoToken => this.token=nuevoToken);
@@ -102,4 +108,18 @@ export class PageWebApiComponent {
   onEliminarToken() {
     this.was.eliminarToken();
   }
+
+  onReestablecerToken() {
+
+    console.log('restablecer')
+
+    const dialogRef = this.dialog.open(GestionarTokenComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+
+  }
+
+
 }
