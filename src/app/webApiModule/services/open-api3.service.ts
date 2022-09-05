@@ -429,16 +429,13 @@ export class OpenApi3Service {
 
   private obtenerOperationObjects(path: string, metodo:string, definitionOperation:any): IOperationObject | undefined
   {
-  
-    
 
     let operation: IOperationObject  = {
 
     path: path,
     metodo: metodo,
     tags: definitionOperation['tags'],
-    summary: definitionOperation['sumary'],
-    description: definitionOperation['description'],
+    summary: definitionOperation['summary'],
     operationId: definitionOperation['operationId'],
     parameters: this.obtenerParametersObject(definitionOperation['parameters']),
     responses: this.obtenerResponsesWithCodeObject(definitionOperation['responses']),

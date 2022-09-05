@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './componentes/general/login/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
+import {MatTooltipModule} from '@angular/material/tooltip'
+
 
 
 
@@ -28,7 +30,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTooltipModule
    
     
   ],

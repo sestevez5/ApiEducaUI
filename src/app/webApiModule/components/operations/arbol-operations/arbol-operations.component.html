@@ -9,7 +9,7 @@
             </div> 
             <span>{{operation.path}}</span> 
         </mat-panel-title>
-      <mat-panel-description *ngIf="this.mostrarDescripcionesOperations" > This is a summary of the content </mat-panel-description>
+      <mat-panel-description *ngIf="this.mostrarDescripcionesOperations" > {{ this.operation.summary}} </mat-panel-description>
 
     </mat-expansion-panel-header>
 
@@ -17,66 +17,66 @@
     <div class="seccion seccionCuerpoOperation">
 
         <mat-accordion [multi]="true">
-        <!-- Sección correspondiente a los campos de tipo path -->
-        <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath()" [expanded]="this.expandido" >
-            
-            <!-- Cabecera -->
-            <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
-                <mat-panel-title>Parámetros Path</mat-panel-title>
-            </mat-expansion-panel-header>
 
-            <!-- Cuerpo: Colección de campos -->
-            <div class="seccion seccionCuerpoSubseccionOperation">
-                <app-parameters-operation  [parameters]="this.parametrosPath()" ></app-parameters-operation>
-            </div> <!-- Fin sección cuerpo -->
-        </mat-expansion-panel>
+            <!-- Sección correspondiente a los campos de tipo path -->
+            <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath()"  [expanded]="this.expandido" >
+                <!-- Cabecera -->
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                    <mat-panel-title>Parámetros Path</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <!-- Cuerpo: Colección de campos -->
+                <div class="seccion seccionCuerpoSubseccionOperation">
+                    <app-parameters-operation [mostrarDescripciones]="this.mostrarDescripcionesOperations" [parameters]="this.parametrosPath()" ></app-parameters-operation>
+                </div> <!-- Fin sección cuerpo -->
+            </mat-expansion-panel>
            
-        <!-- Sección correspondiente a los campos de tipo query -->
-        <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosQuery()"  [expanded]="this.expandido" >
+            <!-- Sección correspondiente a los campos de tipo query -->
+            <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosQuery()"  [expanded]="this.expandido" >
+                
+                <!-- Cabecera -->
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                    <mat-panel-title>Parámetros Query</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <!-- Cuerpo: Colección de campos -->
+                <div class="seccion seccionCuerpoSubseccionOperation">
+                    <app-parameters-operation [parameters]="this.parametrosQuery()"></app-parameters-operation>
+                </div> <!-- Fin sección cuerpo -->
+
+            </mat-expansion-panel>
+
+            <!-- Sección correspondiente al body -->
+            <mat-expansion-panel  *ngIf="this.operation.requestBody" class="panelHijo" [expanded]="this.expandido" >
+
+                <!-- Cabecera -->
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                    <mat-panel-title>Body:</mat-panel-title>
             
-            <!-- Cabecera -->
-            <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
-                <mat-panel-title>Parámetros Query</mat-panel-title>
-            </mat-expansion-panel-header>
+                </mat-expansion-panel-header>
 
-            <!-- Cuerpo: Colección de campos -->
-            <div class="seccion seccionCuerpoSubseccionOperation">
-                <app-parameters-operation [parameters]="this.parametrosQuery()"></app-parameters-operation>
-            </div> <!-- Fin sección cuerpo -->
+                <!-- Cuerpo: Colección de campos -->
+                <div class="seccion seccionCuerpoSubseccionOperation">
+                    {{bodyComoCadena()}}
+                </div> <!-- Fin sección cuerpo -->
+            </mat-expansion-panel>
 
-        </mat-expansion-panel>
+            <!-- Sección correspondiente a las respuestas -->
+            <mat-expansion-panel *ngIf="this.operation.responses" class="panelHijo" [expanded]="this.expandido" >
+        
+                <!-- Cabecera -->
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                    <mat-panel-title>Respuestas</mat-panel-title>
+                </mat-expansion-panel-header>
 
-        <!-- Sección correspondiente a las respuestas -->
-        <mat-expansion-panel class="panelHijo" [expanded]="this.expandido" >
+                <!-- Cuerpo: Colección de campos -->
+                <div class="seccion seccionCuerpoSubseccionOperation">
+                    
+                    <p class="pendiente">Pendiente de desarrollo</p>
+                    
+                </div> <!-- Fin sección cuerpo -->
+            </mat-expansion-panel>
 
-            <!-- Cabecera -->
-            <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
-                <mat-panel-title>Body:</mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <!-- Cuerpo: Colección de campos -->
-            <div class="seccion seccionCuerpoSubseccionOperation">
-                
-                {{'Pendiente'}}
-                
-            </div> <!-- Fin sección cuerpo -->
-        </mat-expansion-panel>
-
-        <!-- Sección correspondiente a las respuestas -->
-        <mat-expansion-panel class="panelHijo" [expanded]="this.expandido" >
-    
-            <!-- Cabecera -->
-            <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
-                <mat-panel-title>Respuestas</mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <!-- Cuerpo: Colección de campos -->
-            <div class="seccion seccionCuerpoSubseccionOperation">
-                
-                Aquí van los campos
-                
-            </div> <!-- Fin sección cuerpo -->
-        </mat-expansion-panel>
     </mat-accordion>
 
 

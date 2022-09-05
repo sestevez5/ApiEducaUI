@@ -2,6 +2,7 @@ import { PanelExecuteOperationComponent } from './../panel-execute-operation/pan
 import { MatDialog } from '@angular/material/dialog';
 import { IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
 import { Component, Input, OnInit } from '@angular/core';
+import { ObtenerBodyRequestComoCadena } from '../../../services/utils'
 
 @Component({
   selector: 'app-arbol-operations',
@@ -61,9 +62,17 @@ export class ArbolOperationsComponent implements OnInit {
 
   parametrosQuery(): Array<IParameterObject> | undefined {
 
+    console.log(this.operation.parameters?.filter(parameter => parameter.in === 'query'));
+    if (this.operation.parameters) {
 
-    return this.operation.parameters?this.operation.parameters.filter(parameter => parameter.in === 'query'):undefined;
-}
+      const parametrosQuery = this.operation.parameters.filter(parameter => parameter.in === 'query');
+      return parametrosQuery.length > 0? parametrosQuery:undefined;
+    } else return undefined;
+  }
+
+  bodyComoCadena(): string | undefined {
+    return this.operation.requestBody?ObtenerBodyRequestComoCadena(this.operation.requestBody):undefined;
+  }
 
 openDialog() {
 

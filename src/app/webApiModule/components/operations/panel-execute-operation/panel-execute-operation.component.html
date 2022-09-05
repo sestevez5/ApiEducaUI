@@ -74,8 +74,16 @@
         <div class="seccion seccionAcciones">
             <div>
                 <div class="botonEjecucion">
-                    <div class="icono"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">restart_alt</mat-icon></div>
-                    <div class="icono"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font" (click)="onEjecutarOperation()">play_circle</mat-icon></div>
+                    <div class="icono boton" >
+                        <mat-icon   class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">
+                            <span matToolTip="resetear datos de entrada">restart_alt</span>
+                        </mat-icon>
+                    </div>
+                    <div class="icono boton" >
+                        <mat-icon  matToolTip="ejecutar" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font" (click)="onEjecutarOperation()">
+                            play_circle
+                        </mat-icon>
+                    </div>
                 
                 </div>
             </div>

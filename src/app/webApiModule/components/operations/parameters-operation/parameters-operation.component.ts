@@ -9,6 +9,7 @@ import { IParameterObject } from 'src/app/webApiModule/models/documentoOpenApi3'
 export class ParametersOperationComponent implements OnInit {
 
   @Input() parameters: Array<IParameterObject>
+  @Input() mostrarDescripciones =true;
   
   constructor() { }
 

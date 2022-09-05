@@ -91,7 +91,7 @@ export function ObtenerBodyRequestComoCadena( irb: IRequestBody): string {
     const properties = irb.content[0].schema.properties;
     properties.forEach(
       property => {
-        cadena += "\n\t" + property.name + ': "???",';
+        cadena += "\n\t" + property.name + ': "'+property.value.type + '",';
       }
     );
     // En cada línea añadimos una "," al final. Debemos elimiar la última "," 

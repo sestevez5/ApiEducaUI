@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ParameterOperationComponent implements OnInit {
 
   @Input() parameter: IParameterObject;
+  @Input() mostrarDescripciones =true;
 
   constructor() { }
 
