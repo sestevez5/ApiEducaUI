@@ -1,8 +1,9 @@
 export class EjecucionOperation {
    
     datosEjecucion: IDatosEjecucionOperation;
-    pathConSustitucionParametros: string='';
-    uriCompleta: string=''
+    pathParametrizada: string;
+    seccionQuery: string;
+
 
     constructor(datosEjecucion: IDatosEjecucionOperation){
        this.ActualizarDatos(datosEjecucion);
@@ -11,51 +12,73 @@ export class EjecucionOperation {
     
     public ActualizarDatos (datosEjecucion: IDatosEjecucionOperation) {
       this.datosEjecucion = datosEjecucion;
+      this.pathParametrizada='';
+      this.seccionQuery='';
 
-   
-
+      // Procesamiento de parámetros tipo path
       const parametrosTipoPath: IValorParametroPath[] = this.datosEjecucion.parametros.filter( p => p.tipo === 'path');
 
       if ( parametrosTipoPath.length > 0 )
       {
-        this.pathConSustitucionParametros = this.sustituirParametrosEnPath( datosEjecucion.path, datosEjecucion.parametros)
+        this.pathParametrizada = this.sustituirParametrosEnPath( datosEjecucion.path, datosEjecucion.parametros)
       } else {
 
-          this.pathConSustitucionParametros = this.datosEjecucion.path
-
+          this.pathParametrizada = this.datosEjecucion.path
       }
 
-      this.construirUriCompleta();
+      // Procesamiento de parámetros tipo query
+      this.generarSeccionQuery();
 
     }
 
   
     private sustituirParametrosEnPath(path: string, parametrosPath: Array<IValorParametroPath>): string {
 
-        let pathConSustitucionParametros = path;
+        let pathParametrizada = path;
     
         parametrosPath.forEach(
           parametro => {
             if(parametro.valor) {
             const subcadena = '{'+parametro.nombre+'}';
-            pathConSustitucionParametros = pathConSustitucionParametros.replace(subcadena, parametro.valor);
+            pathParametrizada = pathParametrizada.replace(subcadena, parametro.valor);
             }
           }
         )
     
-        return pathConSustitucionParametros;
+        return pathParametrizada;
     
     }
 
-    public construirUriCompleta() {
-      let uri:string=this.pathConSustitucionParametros;
+    public generarSeccionQuery() {
+   
 
-      this.datosEjecucion.parametros.filter(p => p.tipo === 'query').forEach(
-        parametro => uri = uri + '?' + parametro.nombre + '=' + parametro.valor
-        );
+      const parametrosQuery = this.datosEjecucion.parametros.filter(p => p.tipo === 'query');
+      
+      if (parametrosQuery.length > 0) {
+        let primero: boolean = true;
+        parametrosQuery.forEach(
+          parametro => {
+            if (parametro.valor) {
+              if (primero) {
+                this.seccionQuery += '?';
+                primero = !primero
 
-      this.uriCompleta = uri;
+              } else {
+                this.seccionQuery += '&'
+              }
+              this.seccionQuery += parametro.nombre + '=' + parametro.valor;
+            }
+            
+          }
+          );
 
+      }
+
+
+    }
+
+    public urlCompleta() {
+      return this.datosEjecucion.servidor+this.pathParametrizada+this.seccionQuery;
     }
 
 

@@ -62,7 +62,6 @@ export class ArbolOperationsComponent implements OnInit {
 
   parametrosQuery(): Array<IParameterObject> | undefined {
 
-    console.log(this.operation.parameters?.filter(parameter => parameter.in === 'query'));
     if (this.operation.parameters) {
 
       const parametrosQuery = this.operation.parameters.filter(parameter => parameter.in === 'query');
@@ -74,7 +73,7 @@ export class ArbolOperationsComponent implements OnInit {
     return this.operation.requestBody?ObtenerBodyRequestComoCadena(this.operation.requestBody):undefined;
   }
 
-openDialog() {
+  openDialog() {
 
   const dialogRef = this.dialog.open(PanelExecuteOperationComponent, {
     data: this.operation

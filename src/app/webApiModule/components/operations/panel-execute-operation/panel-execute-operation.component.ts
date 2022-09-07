@@ -198,11 +198,8 @@ export class PanelExecuteOperationComponent {
   } 
 
   onEjecutarOperation(){
-
     this.tieneParametros?this.valorParametros$.next(this.obtenerValoresParametros()):null;
     this.tieneBody?this.valorBody$.next(this.formBody.controls['body'].value):null;
-
-    console.log(this.ejecucionOperation.uriCompleta);
   }  
 
 }
