@@ -92,6 +92,8 @@ min-height: 20px;
     border-radius: 6px;
     font-size: 16px;
     line-height: 26px;
+    cursor: pointer;
+    
 
     }
 
@@ -103,6 +105,11 @@ min-height: 20px;
         color:#2b377b;
         margin-right: 10px;
         
+    }
+
+    .pendiente {
+        font-style: italic;
+        color: red;
     }
     
 

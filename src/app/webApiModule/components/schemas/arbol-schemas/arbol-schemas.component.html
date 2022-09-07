@@ -39,7 +39,7 @@
 
       </div>
     
-      <div class="seccion seccionHeaderDescripcionSchema">
+      <div *ngIf="this.mostrarDescripcionesSchemas"  class="seccion seccionHeaderDescripcionSchema">
         <span 
           mat-raised-button 
           #tooltip="matTooltip" 
@@ -67,25 +67,18 @@
       <!-- En esta sección hay bifurcaciones en base al tipo  -->
       <div class="seccion seccionTipo">
         
-        <!-- Caso 1. Propiedades de tipo simple -->
-        <!-- <ng-container *ngIf="this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
-            <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" 
-                    *ngIf="this.mostrarTiposDePropiedades"   >
-                [{{property.value.type}}]
-            </div>
-        </ng-container> -->
 
         <!-- Caso 2. Propiedades de tipo object -->
         <ng-container *ngIf="property.value.type === 'object' || this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
           <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" *ngIf="this.mostrarTiposDePropiedades"  >
-            <app-arbol-schemas class="schemaHijo" [schema]="property.value" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
+            <app-arbol-schemas class="schemaHijo" [mostrarDescripcionesSchemas]="this.mostrarDescripcionesSchemas" [schema]="property.value" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
           </div>
         </ng-container>
 
         <!-- Caso 3. Propiedades de tipo array -->
         <ng-container *ngIf="property.value.type === 'array'" >
         <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" *ngIf="this.mostrarTiposDePropiedades"  >
-          <app-arbol-schemas [schema]="property.value.items" class="schemaHijo" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
+          <app-arbol-schemas   [mostrarDescripcionesSchemas]="this.mostrarDescripcionesSchemas" [schema]="property.value.items" class="schemaHijo" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
         </div>
       </ng-container>
 

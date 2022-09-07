@@ -180,3 +180,7 @@ h2 {
     height: 100px;
 
   }
+
+  .boton {
+    cursor: pointer;
+  }
