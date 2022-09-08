@@ -1,8 +1,14 @@
+import { BehaviorSubject, Observable } from "rxjs";
+
 export class EjecucionOperation {
    
     datosEjecucion: IDatosEjecucionOperation;
     pathParametrizada: string;
     seccionQuery: string;
+    parametrosQuery: Array<{nombre:string,valor:string}>;
+    parametrosPath: Array<{nombre:string,valor:string}>;
+
+
 
 
     constructor(datosEjecucion: IDatosEjecucionOperation){
@@ -14,6 +20,8 @@ export class EjecucionOperation {
       this.datosEjecucion = datosEjecucion;
       this.pathParametrizada='';
       this.seccionQuery='';
+      this.parametrosPath=[];
+      this.parametrosQuery=[];
 
       // Procesamiento de parámetros tipo path
       const parametrosTipoPath: IValorParametroPath[] = this.datosEjecucion.parametros.filter( p => p.tipo === 'path');
@@ -29,6 +37,8 @@ export class EjecucionOperation {
       // Procesamiento de parámetros tipo query
       this.generarSeccionQuery();
 
+  
+
     }
 
   
@@ -41,6 +51,8 @@ export class EjecucionOperation {
             if(parametro.valor) {
             const subcadena = '{'+parametro.nombre+'}';
             pathParametrizada = pathParametrizada.replace(subcadena, parametro.valor);
+
+            this.parametrosPath.push({nombre:parametro.nombre, valor:parametro.valor})
             }
           }
         )
@@ -67,6 +79,8 @@ export class EjecucionOperation {
                 this.seccionQuery += '&'
               }
               this.seccionQuery += parametro.nombre + '=' + parametro.valor;
+
+              this.parametrosQuery.push({nombre:parametro.nombre, valor:parametro.valor})
             }
             
           }

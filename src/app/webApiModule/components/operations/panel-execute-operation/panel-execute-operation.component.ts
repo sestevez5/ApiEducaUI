@@ -50,17 +50,41 @@ export class PanelExecuteOperationComponent {
     private fb: FormBuilder
   ) { 
 
-    // Iniciando datos de parámetros.
+    //----------------------------------------------------
+    // PASO 1: Iniciando datos de parámetros (tipo path y query)
+    //----------------------------------------------------
     this.tieneParametros = data.parameters?true:false;
     this.tieneParametros?this.iniciarParametros():null;
+
+    // Nos suscribimos al observable que emite un valor cuando algún parámetro cambie.
+    // La reacción será la emisión de una nueva 'versión' del valor de los parámetros 
+    // en el observable this.valorParametros$
+    this.tieneParametros?
+    this.formParametros.valueChanges.subscribe(
+      cambio => this.valorParametros$.next(this.obtenerValoresParametros())
+    ):
+    null;
   
-    // Iniciando datos del "body" ( En el caso de que haya )
+    //------------------------------------------------------
+    // PADO 2: Iniciando datos del "body" ( En el caso de que haya )
+    //------------------------------------------------------
     this.tieneBody = data.requestBody?true:false;
     this.tieneBody?this.iniciarBody():null;
 
+    // Nos suscribimos al observable que emite un valor cuando el body cambie.
+    // La reacción será la emisión de una nueva 'versión' del body de la petición 
+    // en el observable this.valorBody$
 
-    
-    // estableciendo valores iniciales de la ejecución
+    this.tieneBody?this.formBody.valueChanges.subscribe(
+      cambio => this.valorBody$.next(this.formBody.controls['body'].value)
+    ):
+    undefined;
+
+    //--------------------------------------------------------
+    // PASO 3: Estableciendo valores de la ejecución
+    //--------------------------------------------------------
+
+    // Estableciendo valores iniciales de datos de ejecución
     this.ejecucionOperation = new EjecucionOperation(
       {
         servidor: this.servidorActual(),
@@ -71,12 +95,10 @@ export class PanelExecuteOperationComponent {
       }
     );
 
-
-    // Los datos de ejecución de una operación dependen del servidor, el token de autenticación
-    // del valor de los parámetros, del body y del Path. Cada vez que alguno de estos datos cambien se debe
-    // reflejar en el objeto ejecuciónOperation. 
-    // Para ello se ha creado un observable que emite valores ante el cambio del servidor, del token 
-    // o de alguno de los parámetros.
+    // Actualización de los datos de ejecución cuando cambie algún elemento
+    // que esté relacionado: servidor, token, parámetros y body
+    // NOTA: Para ello combinamos los 4 observables que emiten cambios en los
+    // elementos que afectan a la ejecucion
     combineLatest(
       [
         oa3.serverActual$,
@@ -202,8 +224,7 @@ export class PanelExecuteOperationComponent {
   } 
 
   onEjecutarOperation(){
-    this.tieneParametros?this.valorParametros$.next(this.obtenerValoresParametros()):null;
-    this.tieneBody?this.valorBody$.next(this.formBody.controls['body'].value):null;
+
   }  
 
 }
