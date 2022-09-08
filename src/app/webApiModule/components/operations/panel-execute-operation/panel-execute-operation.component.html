@@ -4,6 +4,7 @@
     </div>
       
 </div>
+{{ this.ejecucionOperation | json}}
 
 
 <div mat-dialog-content>
@@ -88,18 +89,13 @@
             <h2>Respuesta:</h2>
         </div>
         <div class="seccion seccionPiePanel">
-            <div>
-                <span>Token actual: </span><span>{{this.ejecucionOperation.datosEjecucion.tokenAutentication}}</span>
-            </div>
-            <div><span>Raíz del servicio: </span><span>{{this.ejecucionOperation.datosEjecucion.servidor}}</span></div>
-            <div><span>Ruta del recurso: </span><span>{{this.ejecucionOperation.pathParametrizada}}</span></div>
-            <div><span>Opciones de filtrado: </span><span>{{this.ejecucionOperation.seccionQuery}}</span></div>
-            <div><span>Ruta completa: </span><span>{{this.ejecucionOperation.urlCompleta()}}</span></div>
+           
+            <app-panel-operation-information-execution [dataExecutionOperation]="this.ejecucionOperation"></app-panel-operation-information-execution>
             
         </div>
     </div>
 
-    <!-- {{ data | json}} -->
+  
 
 </div>
 <div mat-dialog-actions class="pieDialog">
