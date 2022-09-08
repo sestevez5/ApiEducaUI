@@ -161,14 +161,18 @@ export class PanelExecuteOperationComponent {
 
   }
 
-  tipoParametro(parametro: IParameterObject): {tipoControl: string, tipoDato: string}{
+  tipoParametro(parametro: IParameterObject): {tipoControl: string, tipoDato: string, formato: string}{
 
-     if (parametro.schema.type === 'string' && parametro.schema.format === 'date-time') {
-      return { tipoControl:'input', tipoDato:'date'}
-    }  else
-    {
-      return { tipoControl:'input', tipoDato:'text'}
-    }
+    if (parametro.schema.type === 'string' && parametro.schema.format === 'date-time') {
+      return { tipoControl:'input', tipoDato:'date', formato:''}
+    }  
+
+    if (parametro.schema.type === 'string' && parametro.schema.format === 'uuid') {
+      return { tipoControl:'input', tipoDato:'text', formato:'uuid'}
+    }  
+    
+      return { tipoControl:'input', tipoDato:'text',formato:''}
+    
     
 
   }

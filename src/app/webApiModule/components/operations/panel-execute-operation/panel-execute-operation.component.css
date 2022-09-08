@@ -1,15 +1,12 @@
-/* .mat-dialog-content {
-    height: 800px;
-} */
 .secciones {
-    width: 1500px;
-    height: 800px; 
+    width: 1200px;
+    height: 600px; 
     min-width: 1500;
     overflow:-moz-hidden-unscrollable;
     display: grid;
 
     grid-template-columns: 47% 6% 47% ;
-    grid-template-rows: 7% 5% 70% 18% ;
+    grid-template-rows: 10% 5% 65% 20% ;
     
 }
 
@@ -142,10 +139,6 @@ mat-icon {
 h2 {
     margin-bottom: 0px;
 }
-
-
-
-
 
 .seccion {
     overflow: auto;
