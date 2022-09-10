@@ -8,6 +8,8 @@ export class EjecucionOperation {
     parametrosQuery: Array<{nombre:string,valor:string}>;
     parametrosPath: Array<{nombre:string,valor:string}>;
 
+    seccionesPath: Array<ISeccionPath>
+
 
 
 
@@ -22,6 +24,7 @@ export class EjecucionOperation {
       this.seccionQuery='';
       this.parametrosPath=[];
       this.parametrosQuery=[];
+      this.seccionesPath=[];
 
       // Procesamiento de parámetros tipo path
       const parametrosTipoPath: IValorParametroPath[] = this.datosEjecucion.parametros.filter( p => p.tipo === 'path');
@@ -37,9 +40,49 @@ export class EjecucionOperation {
       // Procesamiento de parámetros tipo query
       this.generarSeccionQuery();
 
+
+      this.generarSeccionesPath();
+
+      console.log(this.seccionesPath);
+
   
 
     }
+
+
+    generarSeccionesPath(){
+
+    let secciones: string[] = this.datosEjecucion.path.split('/');
+
+    let seccionActual: ISeccionPath = {cadena:'', nombreParametro:'', valorParametro:''};
+
+    secciones.filter(seccion => seccion.length>0).forEach(
+      seccion => {
+
+        seccionActual.cadena = seccion;
+
+        if (seccion[0] !== '{') {
+
+          seccionActual.nombreParametro ='',
+          seccionActual.valorParametro = ''
+      
+        } else {
+
+          seccionActual.nombreParametro = seccion.substring(1,seccion.length-1);
+          seccionActual.valorParametro = ''
+
+
+        }
+
+  
+
+        this.seccionesPath.push(seccionActual);
+     
+        
+      }
+    );
+
+     }
 
   
     private sustituirParametrosEnPath(path: string, parametrosPath: Array<IValorParametroPath>): string {
@@ -114,3 +157,9 @@ export interface IDatosEjecucionOperation {
 export interface IValorParametroPath
 { tipo: string, nombre: string, valor: string }
 
+interface ISeccionPath {
+  cadena:string;
+  nombreParametro: string;
+  valorParametro: string;
+
+}
