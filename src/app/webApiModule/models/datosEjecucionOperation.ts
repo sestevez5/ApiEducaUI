@@ -43,24 +43,7 @@ export class EjecucionOperation {
 
       this.generarSeccionesPath();
 
-      let cadena = this.datosEjecucion.servidor;
-
-      this.seccionesPath.forEach(
-        seccion => {
-          cadena +='/'
-          if ( seccion.nombreParametro='' ) {
-            cadena += seccion.cadena;
-          } else
-          {
-            cadena += seccion.valorParametro?seccion.valorParametro:seccion.cadena
-          }
-          
-        }
-      )
-
-      console.log(cadena);
-
-  
+ 
 
     }
 
