@@ -43,7 +43,22 @@ export class EjecucionOperation {
 
       this.generarSeccionesPath();
 
-      console.log(this.seccionesPath);
+      let cadena = this.datosEjecucion.servidor;
+
+      this.seccionesPath.forEach(
+        seccion => {
+          cadena +='/'
+          if ( seccion.nombreParametro='' ) {
+            cadena += seccion.cadena;
+          } else
+          {
+            cadena += seccion.valorParametro?seccion.valorParametro:seccion.cadena
+          }
+          
+        }
+      )
+
+      console.log(cadena);
 
   
 
@@ -69,14 +84,14 @@ export class EjecucionOperation {
         } else {
 
           seccionActual.nombreParametro = seccion.substring(1,seccion.length-1);
-          seccionActual.valorParametro = ''
+          seccionActual.valorParametro = this.obtenerValorParametro(seccionActual.nombreParametro);
 
 
         }
 
   
 
-        this.seccionesPath.push(seccionActual);
+        this.seccionesPath.push({cadena: seccionActual.cadena, nombreParametro:seccionActual.nombreParametro, valorParametro:seccionActual.valorParametro});
      
         
       }
@@ -84,6 +99,15 @@ export class EjecucionOperation {
 
      }
 
+     obtenerValorParametro(nombreParametro:string):string {
+
+      const parametro = this.parametrosPath.filter(p => p.nombre === nombreParametro);
+
+      if (parametro.length>0){
+        return parametro[0].valor
+      }
+      return '';
+     }
   
     private sustituirParametrosEnPath(path: string, parametrosPath: Array<IValorParametroPath>): string {
 
