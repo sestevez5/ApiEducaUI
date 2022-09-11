@@ -86,6 +86,8 @@ export class PanelOperationInformationExecutionComponent implements OnInit, DoCh
 
    }
 
+
+
 }
 
 interface ISeccionPath {
@@ -93,3 +95,5 @@ interface ISeccionPath {
   nombreParametro: string;
   valorParametro: string;
 }
+
+

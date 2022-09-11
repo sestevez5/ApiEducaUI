@@ -2,6 +2,19 @@
     color: green;
 }
 
-.path {
+.seccion {
     color: blue;
+}
+
+.parametroQuery {
+    color: red;
+}
+
+.valorParametro {
+    font-weight: bold;
+}
+
+span {
+    margin: 0;
+    padding: 0;
 }

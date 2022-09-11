@@ -1,16 +1,14 @@
 
-<!-- <span class="servidor">{{this.dataExecutionOperation.datosEjecucion.servidor}}</span>
-<span class="path">{{this.dataExecutionOperation.pathParametrizada}}</span>
+<span class="servidor">{{this.dataExecutionOperation.datosEjecucion.servidor}}</span> 
 
- -->
+<ng-container *ngFor="let seccion of this.dataExecutionOperation.seccionesPath">
+    <span  *ngIf="seccion.valorParametro" class="seccion valorParametro">/{{seccion.valorParametro}}</span>
+    <span  *ngIf="!seccion.valorParametro" class="seccion">/{{seccion.cadena}}</span>
+</ng-container>
 
+<ng-container *ngFor="let parametroQuery of this.dataExecutionOperation.parametrosQuery; let indice=index">
+    <span  class="parametroQuery">{{indice===0?'?':' & '}}{{parametroQuery.nombre}}=</span>
+    <span  class="parametroQuery valorParametro">{{parametroQuery.valor}}</span>
+</ng-container>
 
-
- <!-- <div>
-                <span>Token actual: </span><span>{{this.dataExecutionOperation.datosEjecucion.tokenAutentication}}</span>
-            </div>
-            <div><span>Raíz del servicio: </span><span>{{this.dataExecutionOperation.datosEjecucion.servidor}}</span></div>
-            <div><span>Ruta del recurso: </span><span>{{this.dataExecutionOperation.pathParametrizada}}</span></div>
-            <div><span>Opciones de filtrado: </span><span>{{this.dataExecutionOperation.seccionQuery}}</span></div>
-            <div><span>Ruta completa: </span><span>{{this.dataExecutionOperation.urlCompleta()}}</span></div> -->
 
