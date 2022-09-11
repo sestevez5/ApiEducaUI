@@ -152,6 +152,7 @@ export interface IDatosEjecucionOperation {
     parametros: Array<IValorParametroPath>;
     tokenAutentication: string;
     body?: string;
+    metodo:string;
 }
 
 export interface IValorParametroPath

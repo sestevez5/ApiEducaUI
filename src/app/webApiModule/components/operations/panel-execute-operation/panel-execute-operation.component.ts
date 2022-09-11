@@ -91,7 +91,8 @@ export class PanelExecuteOperationComponent {
         path: data.path,
         parametros: this.tieneParametros?this.obtenerValoresParametros():[],
         tokenAutentication: oa3.tokenActual,
-        body: this.tieneBody?this.formBody.controls['body'].value:null      
+        body: this.tieneBody?this.formBody.controls['body'].value:null,
+        metodo: data.metodo      
       }
     );
 
@@ -126,7 +127,8 @@ export class PanelExecuteOperationComponent {
             path: data.path, // Siempre es el mismo valor. 
             parametros: combinacion.valorParametrosActuales,
             tokenAutentication: combinacion.tokenActual,
-            body: combinacion.valorBodyActual      
+            body: combinacion.valorBodyActual,   
+            metodo: data.metodo   
           
         });
   
@@ -224,6 +226,9 @@ export class PanelExecuteOperationComponent {
   } 
 
   onEjecutarOperation(){
+
+    console.log('hola')
+    this.eep.ejecutarOperation(this.ejecucionOperation);
 
   }  
 
