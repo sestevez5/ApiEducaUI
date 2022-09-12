@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,61 +72,54 @@ export class EjecucionEndpointsService {
   ejecutarOperacionPost(ejecutionOperation: EjecucionOperation): Observable<Object> | undefined
   {
 
+    // Obteniendo el token de autenticacion.
+    const tokenAutenticacion: string =  ejecutionOperation.datosEjecucion.tokenAutentication;
+    // Obteniendo los parámetros query
+    const parametrosQuery: {nombre: string, valor: string}[] = ejecutionOperation.parametrosQuery;
+    // Obteniendo la uri
+    const uri: string = ejecutionOperation.datosEjecucion.servidor + ejecutionOperation.pathParametrizada;
+    // Obteniendo los parámetros query
+    const body: string = ejecutionOperation.datosEjecucion.body;
 
+
+    // console.log('token:', tokenAutenticacion);
+    // console.log('parámetrosQuery:', parametrosQuery);
+    // console.log('uri:', uri);
+    // console.log('body:', body);
+
+    
     let opcionesPeticion = new Object();
 
     opcionesPeticion['observe'] = 'response';
 
-    // Obteniendo el token de autenticacion.
-    const tokenAutenticacion: string =  ejecutionOperation.datosEjecucion.tokenAutentication;
+    //Paso 1: estableciendo cabecera de la petición
+    if (tokenAutenticacion) {
+      const headers = new HttpHeaders( {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenAutenticacion}`
+      });
 
-    // Obteniendo los parámetros query
-    const paramQuery: {nombre: string, valor: string}[] = ejecutionOperation.parametrosQuery;
-
-    const uri: string = ejecutionOperation.pathParametrizada;
-
-    const body: string = ejecutionOperation.datosEjecucion.body;
-
-
-    console.log('token:', tokenAutenticacion);
-    console.log('parámetrosQuery:', paramQuery);
-    console.log('uri:', uri);
-    console.log('body:', body);
-
-    // Paso 1: estableciendo cabecera de la petición
-    // if (datosEjecucion.tokenAutentication) {
-    //   const headers = new HttpHeaders( {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${datosEjecucion.tokenAutentication}`
-    //   });
-
-    //   opcionesPeticion['headers'] = headers;
-    // }
+      opcionesPeticion['headers'] = headers;
+    }
 
 
 
-    // // Estableciendo parámetros Query
+    // Estableciendo parámetros Query
     // const httpParams = new HttpParams();
-    // if (datosEjecucion.parametros.filter(p => )) {
-    //   for (const key in parametros) {
-    //     if (Object.prototype.hasOwnProperty.call(parametros, key)) {
-  
-    //      httpParams.append(key, parametros[key])
-          
-    //     }
-    //   }
+    // parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
+    // opcionesPeticion['params'] = httpParams;
 
-    //   opcionesPeticion['params'] = httpParams;
+    console.log('uri:---',uri);
+    this.http.post(uri,body, opcionesPeticion).subscribe(
+      datos =>  {
+        
+        console.log('petición completa',datos);
+      },
+      error => {
+        console.log('ERROR:',error)
 
-    // }
-   
-
- 
-    // this.http.post(uri,body, opcionesPeticion).subscribe(
-    //   datos =>  {
-    //     console.log('petición completa',datos);
-    //   }
-    // )
+      }
+    )
 
    return undefined;
 
