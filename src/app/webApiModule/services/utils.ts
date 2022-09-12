@@ -81,7 +81,7 @@ export function propertyInSchema(schema: ISchemaObjectWithKey, propertyName): bo
 
 }
 
-export function ObtenerBodyRequestComoCadena( irb: IRequestBody): string {
+export function ObtenerBodyRequestComoCadena( irb: IRequestBody, formateado: boolean=true): string {
 
   // el body siempre estará formado por un objeto y comenzará por '{'
   let cadena: string = '{'
@@ -91,7 +91,9 @@ export function ObtenerBodyRequestComoCadena( irb: IRequestBody): string {
     const properties = irb.content[0].schema.properties;
     properties.forEach(
       property => {
-        cadena += "\n\t" + property.name + ': "'+property.value.type + '",';
+        // cadena += "\n\t" + property.name + ': "'+property.value.type + '",';
+        cadena += '"'+property.name + '":"43361250v",';
+        // cadena += '"'+property.name + '":"'+property.value.type + '",';
       }
     );
     // En cada línea añadimos una "," al final. Debemos elimiar la última "," 
@@ -99,7 +101,8 @@ export function ObtenerBodyRequestComoCadena( irb: IRequestBody): string {
  }
 
   // Finalmente añadimos el "}" para cerrar el objeto.
-  cadena += "\n}";
+  cadena += "}";
+  // cadena += "\n}";
 
   return cadena;
 }

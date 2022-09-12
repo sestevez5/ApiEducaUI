@@ -7,7 +7,6 @@ export class EjecucionOperation {
     seccionQuery: string;
     parametrosQuery: Array<{nombre:string,valor:string}>;
     parametrosPath: Array<{nombre:string,valor:string}>;
-
     seccionesPath: Array<ISeccionPath>
 
 
@@ -159,6 +158,7 @@ export interface IDatosEjecucionOperation {
     parametros: Array<IValorParametroPath>;
     tokenAutentication: string;
     body?: string;
+    bodyFormateado?:string
     metodo:string;
 }
 

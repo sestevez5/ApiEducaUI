@@ -204,6 +204,7 @@ export class PanelExecuteOperationComponent {
   iniciarBody(){
     const valor: Array<any> = ['']; // Inicialmente solo tiene el valor inicial que siempre será la cadena vacía
     this.formBody = this.fb.group({ body: [ObtenerBodyRequestComoCadena(this.data.requestBody),[]]});
+    this.valorBody$.next(this.formBody.controls['body'].value);
   }
 
   obtenerValoresParametros(): Array<IValorParametroPath> {
@@ -227,7 +228,6 @@ export class PanelExecuteOperationComponent {
 
   onEjecutarOperation(){
 
-    console.log('hola')
     this.eep.ejecutarOperation(this.ejecucionOperation);
 
   }  
