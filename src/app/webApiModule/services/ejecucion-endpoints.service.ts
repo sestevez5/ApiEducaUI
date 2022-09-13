@@ -109,19 +109,11 @@ export class EjecucionEndpointsService {
     // parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
     // opcionesPeticion['params'] = httpParams;
 
-    console.log('uri:---',uri);
-    this.http.post(uri,body, opcionesPeticion).subscribe(
-      datos =>  {
-        
-        console.log('petición completa',datos);
-      },
-      error => {
-        console.log('ERROR:',error)
 
-      }
-    )
+    return this.http.post(uri,body, opcionesPeticion);
+    
 
-   return undefined;
+ 
 
 
 
@@ -196,16 +188,17 @@ export class EjecucionEndpointsService {
 
   // }
 
-  ejecutarOperation(ejecucionOperation: EjecucionOperation) {
+  ejecutarOperation(ejecucionOperation: EjecucionOperation): Observable<Object> | undefined {
 
-    console.log(ejecucionOperation);
-    switch (ejecucionOperation.datosEjecucion.metodo) {
+     switch (ejecucionOperation.datosEjecucion.metodo) {
       case 'post':
-        this.ejecutarOperacionPost(ejecucionOperation)
+        return this.ejecutarOperacionPost(ejecucionOperation)
         
         break;
     
       default:
+
+      return undefined;
         break;
     }
     

@@ -35,9 +35,7 @@ export function colorMetodo(metodo: string): {color:string, nombreMetodo:string}
 
 export function propertyInSchema(schema: ISchemaObjectWithKey, propertyName): boolean{
 
- 
-
-  if ( schema.key === 'access_token') {
+   if ( schema.key === 'access_token') {
     console.log(schema.key);
     
     return true;

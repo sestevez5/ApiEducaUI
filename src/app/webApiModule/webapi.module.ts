@@ -24,7 +24,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { PanelExecuteOperationComponent } from './components/operations/panel-execute-operation/panel-execute-operation.component';
 import { GestionarTokenComponent } from './components/comunes/gestionar-token/gestionar-token.component';
 import { PanelOperationInformationExecutionComponent } from './components/operations/panel-operation-information-execution/panel-operation-information-execution.component';
-
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 
 @NgModule({
@@ -41,6 +41,7 @@ import { PanelOperationInformationExecutionComponent } from './components/operat
     PanelExecuteOperationComponent,
     GestionarTokenComponent,
     PanelOperationInformationExecutionComponent,
+ 
    
   ],
   imports: [
@@ -50,7 +51,8 @@ import { PanelOperationInformationExecutionComponent } from './components/operat
     FormsModule,
     MatFormFieldModule,
     MatChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxJsonViewerModule
  
 
     

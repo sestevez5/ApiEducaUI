@@ -37,6 +37,7 @@ export class PanelExecuteOperationComponent {
   valorParametros$: BehaviorSubject<Array<IValorParametroPath>> = new BehaviorSubject([])
   valorBody$: BehaviorSubject<string> = new BehaviorSubject('');
 
+  respuesta: Object | undefined;
  
 
   //------------------------------------------------------------------
@@ -228,8 +229,19 @@ export class PanelExecuteOperationComponent {
 
   onEjecutarOperation(){
 
-    this.eep.ejecutarOperation(this.ejecucionOperation);
+    this.eep.ejecutarOperation(this.ejecucionOperation)
+    .subscribe(
+      {
+        next: (res) =>  {
+          this.respuesta = res; 
+       
+        },
+        error: (e) => {
+          console.log('ERROR:',e)
 
-  }  
+        }
+      }
+    )
+  }
 
 }
