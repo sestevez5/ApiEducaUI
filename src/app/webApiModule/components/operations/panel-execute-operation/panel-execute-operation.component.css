@@ -177,3 +177,8 @@ h2 {
   .boton {
     cursor: pointer;
   }
+
+  :host ::ng-deep .ngx-json-viewer {
+    overflow:visible !important;
+   
+  }
