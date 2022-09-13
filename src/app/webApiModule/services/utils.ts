@@ -91,9 +91,11 @@ export function ObtenerBodyRequestComoCadena( irb: IRequestBody, formateado: boo
     const properties = irb.content[0].schema.properties;
     properties.forEach(
       property => {
-        // cadena += "\n\t" + property.name + ': "'+property.value.type + '",';
-        cadena += '"'+property.name + '":"43361250v",';
-        // cadena += '"'+property.name + '":"'+property.value.type + '",';
+
+        formateado? cadena += "\n\t": null;
+
+         cadena += '"' + property.name + '":"'+property.value.type + '",';
+       
       }
     );
     // En cada línea añadimos una "," al final. Debemos elimiar la última "," 
@@ -101,8 +103,9 @@ export function ObtenerBodyRequestComoCadena( irb: IRequestBody, formateado: boo
  }
 
   // Finalmente añadimos el "}" para cerrar el objeto.
+  formateado? cadena += "\n": null;
   cadena += "}";
-  // cadena += "\n}";
+
 
   return cadena;
 }
