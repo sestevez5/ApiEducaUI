@@ -233,11 +233,15 @@ export class PanelExecuteOperationComponent {
     .subscribe(
       {
         next: (res) =>  {
-          this.respuesta = res; 
+
+       
+          this.respuesta = res['body']; 
        
         },
         error: (e) => {
-          console.log('ERROR:',e)
+          console.log('e:', e)
+          this.respuesta = e['error']; 
+          
 
         }
       }
