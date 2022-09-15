@@ -67,33 +67,26 @@ export class PageWebApiComponent {
 
     was.obtenerServidores().subscribe(
       servidores => {
-
-        
         this.servidoresActuales = servidores;
         if (servidores.length>0){
           this.onSeleccionarServidor(this.servidoresActuales[0].url);
         } else {
           this.onSeleccionarServidor(undefined);
         }
-
       }
     )
 
     was.obtenerRutasPreestablecidasDocumentosOpenApi3().subscribe(
       rutas => {
         if (rutas.length>0){
-
-        this.documentosOpenApiPrefijados=rutas;
-        this.onSeleccionarRuta(this.documentosOpenApiPrefijados[0].url);
+          this.documentosOpenApiPrefijados=rutas;
+          this.onSeleccionarRuta(this.documentosOpenApiPrefijados[0].url);
         }
       }
     )
   }
 
   onSeleccionarRuta(ruta:string) {
-
-
-  
     this.rutaSeleccionada=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
     this.cargando=true;
     this.was.cambiarDocumento(this.rutaSeleccionada.url)
@@ -110,13 +103,8 @@ export class PageWebApiComponent {
   }
 
   onReestablecerToken() {
-
-    console.log('restablecer')
-
     const dialogRef = this.dialog.open(GestionarTokenComponent);
-
     dialogRef.afterClosed().subscribe(result => {
-
     });
 
   }

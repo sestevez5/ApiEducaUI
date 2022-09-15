@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-gestionar-token',
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionarTokenComponent implements OnInit {
   
+  tokenActual: string;
   token: string;
   form: FormGroup;
   nombreBotonModificarToken: string = 'Añadir token'
@@ -16,10 +18,22 @@ export class GestionarTokenComponent implements OnInit {
 
   constructor(private was: OpenApi3Service, private fb: FormBuilder) { 
 
-    this.was.tokenActual$.subscribe(
-      nuevoToken => {
-        this.token = nuevoToken;
-        console.log(nuevoToken);
+
+
+
+  }
+
+  ngOnInit(): void {
+
+    
+    
+    this.was.tokenActual$
+    .pipe(
+      take(1)
+    )
+    .subscribe(
+      tokenActual => {
+        this.tokenActual = tokenActual;
         this.token?this.nombreBotonModificarToken='Modificar Token': this.nombreBotonModificarToken= 'Definir Token';
       }
     );
@@ -30,13 +44,8 @@ export class GestionarTokenComponent implements OnInit {
   crearFormulario(){
 
     this.form = this.fb.group({
-      token: this.token
+      token: ''
     })
-
-
-  }
-
-  ngOnInit(): void {
   }
 
   onEstablecerToken() {

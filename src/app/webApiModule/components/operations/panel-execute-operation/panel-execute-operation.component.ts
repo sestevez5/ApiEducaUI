@@ -5,8 +5,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { IOpenApiObject3, IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { colorMetodo, ObtenerBodyRequestComoCadena } from '../../../services/utils'
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ThisReceiver } from '@angular/compiler';
 
 
 interface parametroFormControl {
@@ -38,6 +40,8 @@ export class PanelExecuteOperationComponent {
   valorBody$: BehaviorSubject<string> = new BehaviorSubject('');
 
   respuesta: Object | undefined;
+
+  nuevoToken$: Observable<string>= new Observable<string>();
  
 
   //------------------------------------------------------------------
@@ -48,7 +52,9 @@ export class PanelExecuteOperationComponent {
     @Inject(MAT_DIALOG_DATA) public data: IOperationObject,
     private oa3: OpenApi3Service,
     private eep: EjecucionEndpointsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private sb: MatSnackBar,
+    public dialog: MatDialog
   ) { 
 
     //----------------------------------------------------
@@ -133,6 +139,13 @@ export class PanelExecuteOperationComponent {
           
         });
   
+
+      }
+    )
+
+    // Propuesta de actualización de token.
+    this.nuevoToken$.subscribe(
+      nuevoToken => {
 
       }
     )
@@ -235,12 +248,12 @@ export class PanelExecuteOperationComponent {
         next: (res) =>  {
 
        
-          this.respuesta = res['body']; 
+          this.respuesta = res; 
        
         },
         error: (e) => {
           console.log('e:', e)
-          this.respuesta = e['error']; 
+          this.respuesta = e; 
           
 
         }
@@ -248,4 +261,36 @@ export class PanelExecuteOperationComponent {
     )
   }
 
+  onNotificarCambioToken(){
+
+    const x = this.sb.open('Se ha detectado un nuevo Token JWT. ¿Desea actualizar?', "cerrar");
+    x.afterDismissed().subscribe(() => {
+     
+      // this.cargando=false;
+      // this.rutaSeleccionada=this.rutaSeleccionadaOld;
+      
+    });
+    x.onAction().subscribe(() => {
+      // this.cargando=false;
+      // this.rutaSeleccionada=this.rutaSeleccionadaOld;
+    });
+
+
+  }
+
+  // openDialog(): void {
+  //   const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+  //     width: '250px',
+  //     // data: {name: this.name, animal: this.animal},
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     // this.animal = result;
+  //   });
+  // }
+
+
 }
+
+

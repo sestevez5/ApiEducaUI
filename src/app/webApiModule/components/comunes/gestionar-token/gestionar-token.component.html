@@ -1,13 +1,26 @@
-<h2 mat-dialog-title>Establecer Token</h2>
-<mat-dialog-content class="mat-typography">
-    <form [formGroup]="this.form">
-      <mat-form-field appearance="legacy">
-        <mat-label>Token</mat-label>
-        <input matInput  formControlName="token" >
 
-      </mat-form-field>
-     
+<h2 mat-dialog-title>Establecer Token</h2>
+
+
+
+
+
+<mat-dialog-content class="mat-typography">
+  <div class="contenidoCuadroDialogo">
+    <div class="seccionTokenActual">
+      <p>Token actual: </p>
+      <div class="tokenActual">{{this.tokenActual}}</div>
+    </div>
+    <div class="seccionNuevoToken">
+      <p>Nuevo Token: </p>
+      <form [formGroup]="this.form">
+        <mat-form-field class="body" appearance="outline">
+          <textarea matInput  formControlName="token" ></textarea>
+        </mat-form-field>
       </form>
+    </div>
+
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
