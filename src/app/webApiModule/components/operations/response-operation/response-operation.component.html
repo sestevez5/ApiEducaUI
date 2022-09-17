@@ -1,0 +1,12 @@
+<!-- Sección que contempla el nombre del propiedad. Es común, independiente del tipo de la propiedad -->
+<div class="seccion seccionPropiedad">
+    <div class="seccion seccionNombrePropiedad" >
+        <span class="texto">{{this.responseWithCode.codigoHttpOrDefault}}:</span>
+    </div>
+
+    <div class="seccion seccionTipo">
+        <app-arbol-schemas [schema]="this.responseWithCode.response.content[0].schema" [mostrarDescripcionesSchemas]="this.mostrarDescripciones"></app-arbol-schemas>
+    </div>
+
+    
+</div>
