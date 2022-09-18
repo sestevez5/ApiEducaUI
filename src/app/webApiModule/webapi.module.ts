@@ -25,6 +25,8 @@ import { PanelExecuteOperationComponent } from './components/operations/panel-ex
 import { GestionarTokenComponent } from './components/comunes/gestionar-token/gestionar-token.component';
 import { PanelOperationInformationExecutionComponent } from './components/operations/panel-operation-information-execution/panel-operation-information-execution.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { ResponseOperationComponent } from './components/operations/response-operation/response-operation.component';
+import { ResponsesOperationComponent } from './components/operations/responses-operation/responses-operation.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     PanelExecuteOperationComponent,
     GestionarTokenComponent,
     PanelOperationInformationExecutionComponent,
+    ResponseOperationComponent,
+    ResponsesOperationComponent
  
    
   ],

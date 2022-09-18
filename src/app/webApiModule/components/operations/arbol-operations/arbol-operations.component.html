@@ -72,7 +72,13 @@
                 <!-- Cuerpo: Colección de campos -->
                 <div class="seccion seccionCuerpoSubseccionOperation">
                     
-                    <p class="pendiente">Pendiente de desarrollo</p>
+                    <!-- <div *ngFor="let item of this.operation.responses">
+                        {{ item.codigoHttpOrDefault }}
+                        <app-arbol-schemas [schema]="item.response.content[0].schema"></app-arbol-schemas>
+                    </div> -->
+
+                    <app-responses-operation [responsesWithCodeHttp]="this.operation.responses"></app-responses-operation>
+
                     
                 </div> <!-- Fin sección cuerpo -->
             </mat-expansion-panel>

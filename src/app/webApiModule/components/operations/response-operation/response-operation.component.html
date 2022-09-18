@@ -1,12 +1,9 @@
 <!-- Sección que contempla el nombre del propiedad. Es común, independiente del tipo de la propiedad -->
-<div class="seccion seccionPropiedad">
-    <div class="seccion seccionNombrePropiedad" >
-        <span class="texto">{{this.responseWithCode.codigoHttpOrDefault}}:</span>
+<div class="seccion seccionRespuesta">
+    <div class="seccion seccionCodigoHttp" >
+        <span class="texto codigoHttp" [ngStyle]="{'color': this.responseWithCode.codigoHttpOrDefault==='200'?'green':'red'}">Código Http {{this.responseWithCode.codigoHttpOrDefault}}:</span>
     </div>
-
-    <div class="seccion seccionTipo">
-        <app-arbol-schemas [schema]="this.responseWithCode.response.content[0].schema" [mostrarDescripcionesSchemas]="this.mostrarDescripciones"></app-arbol-schemas>
+    <div class="seccion seccionSchemaRespuesta">
+        <app-arbol-schemas [schema]="this.responseWithCode.response.content[0]?.schema" [mostrarDescripcionesSchemas]="this.mostrarDescripciones"></app-arbol-schemas>
     </div>
-
-    
 </div>
