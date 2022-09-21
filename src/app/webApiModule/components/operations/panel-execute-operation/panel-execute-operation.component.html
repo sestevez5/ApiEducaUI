@@ -66,7 +66,7 @@
             <div>
                 <div class="botonEjecucion">
                     <div class="icono boton" >
-                        <mat-icon   class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">
+                        <mat-icon   class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font" (click)="onResetear()">
                             <span matToolTip="resetear datos de entrada">restart_alt</span>
                         </mat-icon>
                     </div>
@@ -85,7 +85,7 @@
             <h2 *ngIf="this.respuesta">Código: {{this.respuesta['status']}}</h2>
             <h2>Respuesta:</h2>
 
-            <ngx-json-viewer [json]="this.respuesta"></ngx-json-viewer>
+            <ngx-json-viewer *ngIf="this.respuesta" [json]="this.respuesta"></ngx-json-viewer>
 
         </div>
         <div class="seccion seccionPiePanel">

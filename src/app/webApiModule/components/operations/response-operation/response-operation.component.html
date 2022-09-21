@@ -3,7 +3,12 @@
     <div class="seccion seccionCodigoHttp" >
         <span class="texto codigoHttp" [ngStyle]="{'color': this.responseWithCode.codigoHttpOrDefault==='200'?'green':'red'}">Código Http {{this.responseWithCode.codigoHttpOrDefault}}:</span>
     </div>
-    <div class="seccion seccionSchemaRespuesta">
-        <app-arbol-schemas [schema]="this.responseWithCode.response.content[0]?.schema" [mostrarDescripcionesSchemas]="this.mostrarDescripciones"></app-arbol-schemas>
+
+    <div *ngIf="!this.responseWithCode.response.content[0]"  class="seccion seccionCodigoHttp" >
+        <span class="texto">Sin especificar</span>
+    </div>
+
+    <div *ngIf="this.responseWithCode.response.content[0]" class="seccion seccionSchemaRespuesta">
+        <app-arbol-schemas [schema]="this.responseWithCode.response.content[0].schema" [mostrarDescripcionesSchemas]="this.mostrarDescripciones"></app-arbol-schemas>
     </div>
 </div>

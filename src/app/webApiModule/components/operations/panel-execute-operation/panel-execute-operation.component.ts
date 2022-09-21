@@ -261,6 +261,29 @@ export class PanelExecuteOperationComponent {
     )
   }
 
+  onResetear() {
+
+
+    this.respuesta='';
+
+    if (this.formParametros) {
+      for (const key in this.formParametros.controls) {
+        if (Object.prototype.hasOwnProperty.call(this.formParametros.controls, key)) {
+          this.formParametros.controls[key].setValue('');
+          
+        }
+      }
+    }
+
+    if (this.formBody) {
+      this.formBody.controls['body']?.setValue(ObtenerBodyRequestComoCadena(this.data.requestBody, true));
+    }
+  
+
+   
+
+  }
+
   onNotificarCambioToken(){
 
     const x = this.sb.open('Se ha detectado un nuevo Token JWT. ¿Desea actualizar?', "cerrar");

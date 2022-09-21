@@ -32,7 +32,7 @@ export class PanelOperationInformationExecutionComponent implements OnInit, DoCh
    }
 
    ngDoCheck(): void {
-    this.gestionarSeccionesPath();
+    //this.gestionarSeccionesPath();
    }
 
 
