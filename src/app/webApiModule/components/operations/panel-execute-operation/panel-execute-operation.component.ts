@@ -241,6 +241,7 @@ export class PanelExecuteOperationComponent {
   } 
 
   onEjecutarOperation(){
+    console.log('this.eep: ',this.eep.ejecutarOperation(this.ejecucionOperation));
 
     this.eep.ejecutarOperation(this.ejecucionOperation)
     .subscribe(

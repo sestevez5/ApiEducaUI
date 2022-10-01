@@ -1,7 +1,7 @@
 import { PanelExecuteOperationComponent } from './../panel-execute-operation/panel-execute-operation.component';
 import { MatDialog } from '@angular/material/dialog';
-import { IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
-import { Component, Input, OnInit } from '@angular/core';
+import { ICodeWithResponseObject, IOperationObject, IParameterObject, IResponseObject } from './../../../models/documentoOpenApi3';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { ObtenerBodyRequestComoCadena } from '../../../services/utils'
 
 @Component({
@@ -15,37 +15,41 @@ export class ArbolOperationsComponent implements OnInit {
   @Input() mostrarDescripcionesOperations=true;
   @Input() expandido: boolean = false;
 
+  respuestasExpanded: boolean;
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+
+
   
-  colorMetodo(metodo: string): {color:string, nombreMetodo:string} {
+  colorMetodo(metodo: string): {color:string, nombreMetodo:string, colorFondo:string, colorFondoClaro} {
 
     switch(metodo) { 
       case "get": { 
-         return {color:'#61affe', nombreMetodo:'GET'}
+         return {color:'#61affe', nombreMetodo:'GET', colorFondo:'#ddeefe', colorFondoClaro:'#eff7fe'}
          break; 
       } 
       case "post": { 
-        return {color:'#49cc90', nombreMetodo:'POST'}
+        return {color:'#49cc90', nombreMetodo:'POST',colorFondo:'#d8f4e7', colorFondoClaro:'#ecf9f3'}
         break; 
       } 
       case "patch": { 
-        return {color:'#dfcaa6', nombreMetodo:'PATCH'}
+        return {color:'#dfcaa6', nombreMetodo:'PATCH',colorFondo:'#f8f3ec', colorFondoClaro:'#fbf9f6'}
         break; 
       } 
       case "delete": { 
-        return {color:'#f93e3e', nombreMetodo:'DELETE'}
+        return {color:'#f93e3e', nombreMetodo:'DELETE',colorFondo:'#fdd6d6', colorFondoClaro:'#feebeb'}
         break; 
       } 
       case "put": { 
-        return {color:'#fca130', nombreMetodo:'PUT'}
+        return {color:'#fca130', nombreMetodo:'PUT',colorFondo:'#feebd3', colorFondoClaro:'#fef5ea'}
         break; 
       } 
       default: { 
-        return {color:'#61affe', nombreMetodo:'GET'}
+        return {color:'#61affe', nombreMetodo:'GET',colorFondo:'#ddeefe', colorFondoClaro:'#eff7fe'}
         break; 
      } 
    } 
@@ -80,11 +84,17 @@ export class ArbolOperationsComponent implements OnInit {
   });
 
  
-}
+  }
 
-onEjecutar(){
-  this.openDialog();
-}
+  onEjecutar(){
+    this.openDialog();
+  }
+
+  validResponses(): ICodeWithResponseObject[] | undefined {
+    return this.operation.responses.filter(r => r.response.content[0]);
+
+  }
+
 
   
 }

@@ -7,7 +7,7 @@ const routes: Routes = [
 
   { path: '', component: DashboardComponent,
     children:  [
-      { path: '', redirectTo: 'inicio', pathMatch: 'full'},
+      { path: '', redirectTo: 'webapi', pathMatch: 'full'},
       { path: 'inicio', component: InicioComponent },
       { path: 'webapi', loadChildren: () => import('../webApiModule/webapi.module').then(x => x.WebapiModule) },
 

@@ -2,7 +2,7 @@
     "rutas":[
     {
         "orden":1,
-        "url":"../assets/json/swaggerPre20220911.json",
+        "url":"../assets/json/swaggerpre20220925.json",
         "descripcion": "ApiEduca (Entorno de PREPRODUCCIÓN)  [LOCAL]"
     },
    

@@ -1,5 +1,5 @@
 .seccionPropiedad {
-    margin:1px;
+    
     min-height: 30px;
     margin-bottom: 5px;
     display: flex;
@@ -14,12 +14,14 @@
     white-space: nowrap; 
     text-overflow: ellipsis;
     overflow:hidden;
-    line-height: 48px;
+    line-height: 30px;
    
 }
 
 .seccionTipo {
     width: 100%;
+    padding: 0px;
+    margin: 0px;
 }
 
 /* div {

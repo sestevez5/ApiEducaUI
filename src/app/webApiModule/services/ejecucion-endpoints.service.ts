@@ -80,13 +80,6 @@ export class EjecucionEndpointsService {
     const uri: string = ejecutionOperation.datosEjecucion.servidor + ejecutionOperation.pathParametrizada;
     // Obteniendo los parámetros query
     const body: string = ejecutionOperation.datosEjecucion.body;
-
-
-    // console.log('token:', tokenAutenticacion);
-    // console.log('parámetrosQuery:', parametrosQuery);
-    // console.log('uri:', uri);
-    // console.log('body:', body);
-
     
     let opcionesPeticion = new Object();
 
@@ -105,12 +98,57 @@ export class EjecucionEndpointsService {
 
 
     // Estableciendo parámetros Query
-    // const httpParams = new HttpParams();
-    // parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
-    // opcionesPeticion['params'] = httpParams;
+    const httpParams = new HttpParams();
+    parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
+    opcionesPeticion['params'] = httpParams;
 
 
     return this.http.post(uri,body, opcionesPeticion);
+    
+
+ 
+
+
+
+    
+
+  }
+
+  ejecutarOperacionGet(ejecutionOperation: EjecucionOperation): Observable<Object> | undefined
+  {
+
+    // Obteniendo el token de autenticacion.
+    const tokenAutenticacion: string =  ejecutionOperation.datosEjecucion.tokenAutentication;
+    // Obteniendo los parámetros query
+    const parametrosQuery: {nombre: string, valor: string}[] = ejecutionOperation.parametrosQuery;
+    // Obteniendo la uri
+    const uri: string = ejecutionOperation.datosEjecucion.servidor + ejecutionOperation.pathParametrizada;
+    // Obteniendo los parámetros query
+    const body: string = ejecutionOperation.datosEjecucion.body;
+    
+    let opcionesPeticion = new Object();
+
+    opcionesPeticion['observe'] = 'response';
+
+    //Paso 1: estableciendo cabecera de la petición
+    if (tokenAutenticacion) {
+      const headers = new HttpHeaders( {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenAutenticacion}`
+      });
+
+      opcionesPeticion['headers'] = headers;
+    }
+
+
+
+    // Estableciendo parámetros Query
+    const httpParams = new HttpParams();
+    parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
+    opcionesPeticion['params'] = httpParams;
+
+
+    return this.http.get(uri, opcionesPeticion);
     
 
  
@@ -193,6 +231,11 @@ export class EjecucionEndpointsService {
      switch (ejecucionOperation.datosEjecucion.metodo) {
       case 'post':
         return this.ejecutarOperacionPost(ejecucionOperation)
+        
+        break;
+
+      case 'get':
+        return this.ejecutarOperacionGet(ejecucionOperation)
         
         break;
     

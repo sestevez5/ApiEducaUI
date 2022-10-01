@@ -11,13 +11,16 @@
   width: 100%;
   padding: 10px;
   display: flex;
-  padding-left: 200px;
-  text-align: center;
+  padding-left: 30px;
   padding-right: 30px;
 }
 
 .selectorDocumento {
  flex:1
+}
+
+.selectorServidor {
+  padding-right: 20px;
 }
 
 .token {
@@ -29,9 +32,9 @@
 }
 
 
-
 mat-form-field {
-  min-width: 300px;
+
+  min-width: 400px;
 }
 
 
