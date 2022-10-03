@@ -54,9 +54,6 @@ export class MainOperationsComponent  {
     this.actualizarDatos();
   })
   }
-
-
-
   
   openDialog() {
     //this.dialog.open(SelectorAgrupacionesComponent);
@@ -66,15 +63,11 @@ export class MainOperationsComponent  {
     this.panelesExpandidos = !this.panelesExpandidos;
   }
 
-
   onSeleccionarPagina(event){
     this.paginacion.paginaSeleccionada=event.pageIndex;
     this.paginacion.tamanyoPagina=event.pageSize;
     this.actualizarDatos();
   }
-
-
-
 
   onCambiarTextoFiltro(nuevoTexto:string){
     this.textoFiltro=nuevoTexto;
@@ -115,5 +108,7 @@ export class MainOperationsComponent  {
       this.operations = result.datos;
       this.paginacion.longitud = result.numeroElementos;
   }
+
+  
 }
 

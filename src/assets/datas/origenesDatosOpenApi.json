@@ -1,36 +1,49 @@
 {
     "rutas":[
     {
-        "orden":1,
+        "orden":4,
         "url":"../assets/json/swaggerpre20220925.json",
-        "descripcion": "ApiEduca (Entorno de PREPRODUCCIÓN)  [LOCAL]"
+        "descripcion": "ApiEduca: entorno de Preproducción",
+        "local": "Sí",
+        "observaciones": "copia de especificaciones del entorno de Producción obtenida el 25/09/2022",
+        "uriDocumento": ""
+
     },
    
     {
-        "orden":2,
+        "orden":5,
         "url":"../assets/json/webApiPro20220813.json",
-        "descripcion": "ApiEduca (Entorno de PRODUCCIÓN)  [LOCAL]"
+        "descripcion": "ApiEduca: entorno de Producción",
+        "local": "Sí",
+        "observaciones": "copia de especificaciones del entorno de Producción obtenida el 13/08/2022",
+        "uriDocumento": ""
+
+
     },
   
     {
-        "orden":3,
+        "orden":1,
         "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
-        "descripcion": "ApiEduca (Entorno de Producción)"
+        "descripcion": "ApiEduca: entorno de Producción",
+        "local": "No",
+        "observaciones": "",
+        "uriDocumento": ""
     },
     {
-        "orden":4,
+        "orden":2,
         "url":"https://wwwpre.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
-        "descripcion": "ApiEduca (Entorno de Preproducción)"
+        "descripcion": "ApiEduca: entorno de Preproducción",
+        "local": "No",
+        "observaciones": "",
+        "uriDocumento": ""
     },
     {
-        "orden":5,
+        "orden":3,
         "url":"https://wwwdesa.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
-        "descripcion": "ApiEduca (Entorno de Desarrollo)"
-    },
-    {
-        "orden":6,
-        "url":"../assets/json/webapiPre.json",
-        "descripcion": "ApiEduca (Entorno de Producción)  [LOCAL 1]"
+        "descripcion": "ApiEduca: entorno de Desarrollo",
+        "local": "No",
+        "observaciones": "",
+        "uriDocumento": ""
     }
    
 ]

@@ -6,8 +6,8 @@
 </div>
 <div mat-dialog-content>
     <div class="secciones">
-        <div class="seccion seccionCabeceraPanel">
-            <span class="metodoHttp" [ngStyle]="{'background-color': this.obtenerColorMetodo(this.data.metodo).color}">{{ this.obtenerColorMetodo(this.data.metodo).nombreMetodo }}</span>
+        <div class="seccion seccionCabeceraPanel" [ngStyle]="{'background-color': colorMetodo(this.data.metodo).colorFondoClaro}">
+            <span class="metodoHttp" [ngStyle]="{'background-color': colorMetodo(this.data.metodo).color}">{{ this.colorMetodo(this.data.metodo).nombreMetodo }}</span>
             <span class="path">{{ this.data.path}}</span>
         </div> 
 

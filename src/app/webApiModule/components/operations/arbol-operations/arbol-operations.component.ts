@@ -2,7 +2,8 @@ import { PanelExecuteOperationComponent } from './../panel-execute-operation/pan
 import { MatDialog } from '@angular/material/dialog';
 import { ICodeWithResponseObject, IOperationObject, IParameterObject, IResponseObject } from './../../../models/documentoOpenApi3';
 import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
-import { ObtenerBodyRequestComoCadena } from '../../../services/utils'
+import { ObtenerBodyRequestComoCadena} from '../../../services/utils'
+import { UtilsService } from 'src/app/webApiModule/services/utils.service';
 
 @Component({
   selector: 'app-arbol-operations',
@@ -17,7 +18,7 @@ export class ArbolOperationsComponent implements OnInit {
 
   respuestasExpanded: boolean;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private us: UtilsService) { }
 
   ngOnInit(): void {
   }
@@ -26,33 +27,7 @@ export class ArbolOperationsComponent implements OnInit {
 
   
   colorMetodo(metodo: string): {color:string, nombreMetodo:string, colorFondo:string, colorFondoClaro} {
-
-    switch(metodo) { 
-      case "get": { 
-         return {color:'#61affe', nombreMetodo:'GET', colorFondo:'#ddeefe', colorFondoClaro:'#eff7fe'}
-         break; 
-      } 
-      case "post": { 
-        return {color:'#49cc90', nombreMetodo:'POST',colorFondo:'#d8f4e7', colorFondoClaro:'#ecf9f3'}
-        break; 
-      } 
-      case "patch": { 
-        return {color:'#dfcaa6', nombreMetodo:'PATCH',colorFondo:'#f8f3ec', colorFondoClaro:'#fbf9f6'}
-        break; 
-      } 
-      case "delete": { 
-        return {color:'#f93e3e', nombreMetodo:'DELETE',colorFondo:'#fdd6d6', colorFondoClaro:'#feebeb'}
-        break; 
-      } 
-      case "put": { 
-        return {color:'#fca130', nombreMetodo:'PUT',colorFondo:'#feebd3', colorFondoClaro:'#fef5ea'}
-        break; 
-      } 
-      default: { 
-        return {color:'#61affe', nombreMetodo:'GET',colorFondo:'#ddeefe', colorFondoClaro:'#eff7fe'}
-        break; 
-     } 
-   } 
+    return this.us.colorMetodo(metodo);
   }
 
   parametrosPath(): Array<IParameterObject> | undefined {

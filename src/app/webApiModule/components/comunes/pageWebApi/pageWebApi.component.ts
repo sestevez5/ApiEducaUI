@@ -3,16 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { OpenApi3Service } from './../../../services/open-api3.service';
 import { Component } from '@angular/core';
 import {MatSnackBar } from '@angular/material/snack-bar'
-import { IServerObject } from 'src/app/webApiModule/models/documentoOpenApi3';
+import { IServerObject, OrigenDatosOpenApi3 } from 'src/app/webApiModule/models/documentoOpenApi3';
+import { SelectorDocumentoOpenapi3Component } from '../selector-documento-openapi3/selector-documento-openapi3.component';
 
 
 
 
-interface OrigenDatosOpenApi {
-  orden: number;
-  url: string;
-  descripcion: string;
-}
+
 
 @Component({
   selector: 'app-pageWebApi',
@@ -21,11 +18,11 @@ interface OrigenDatosOpenApi {
 })
 export class PageWebApiComponent {
 
-  documentosOpenApiPrefijados: OrigenDatosOpenApi[]=[];
+  documentosOpenApiPrefijados: OrigenDatosOpenApi3[]=[];
   servidoresActuales: IServerObject[] | undefined = undefined;
   servidorSeleccionado: IServerObject | undefined = undefined;
-  rutaSeleccionada: OrigenDatosOpenApi;
-  rutaSeleccionadaOld: OrigenDatosOpenApi;
+  rutaSeleccionada: OrigenDatosOpenApi3;
+  rutaSeleccionadaOld: OrigenDatosOpenApi3;
   cargando= false;
   token: string ='';
 
@@ -108,6 +105,15 @@ export class PageWebApiComponent {
     });
 
   }
+
+  onSeleccionarDocumentoOpenApi3() {
+    const dialogRef = this.dialog.open(SelectorDocumentoOpenapi3Component);
+    dialogRef.afterClosed().subscribe(result => {
+    });
+
+  }
+
+
 
 
 }

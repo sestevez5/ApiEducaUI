@@ -9,6 +9,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { colorMetodo, ObtenerBodyRequestComoCadena } from '../../../services/utils'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThisReceiver } from '@angular/compiler';
+import { UtilsService } from 'src/app/webApiModule/services/utils.service';
 
 
 interface parametroFormControl {
@@ -54,7 +55,8 @@ export class PanelExecuteOperationComponent {
     private eep: EjecucionEndpointsService,
     private fb: FormBuilder,
     private sb: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private us: UtilsService
   ) { 
 
     //----------------------------------------------------
@@ -162,8 +164,9 @@ export class PanelExecuteOperationComponent {
   //------------------------------------------------------------------
   // MÉTODOS AUXILARES
   //------------------------------------------------------------------
-  obtenerColorMetodo(metodoHttp: string): {color: string, nombreMetodo: string} {
-    return colorMetodo(metodoHttp)
+
+  colorMetodo(metodo: string): {color:string, nombreMetodo:string, colorFondo:string, colorFondoClaro} {
+    return this.us.colorMetodo(metodo);
   }
 
   servidorActual():string {

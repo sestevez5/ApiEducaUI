@@ -1,4 +1,4 @@
-import { IComponentObject, IOpenApiObject3, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeObject, IServerObject, IRequestBody } from './../models/documentoOpenApi3';
+import { IComponentObject, IOpenApiObject3, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeObject, IServerObject, IRequestBody, OrigenDatosOpenApi3 } from './../models/documentoOpenApi3';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
@@ -21,7 +21,7 @@ export class OpenApi3Service {
     origenDatosOpenApiOnline: string = '../assets/datas/origenesDatosOpenApi.json';
 
     // Observable que emite la colección de rutas.
-    rutasPreestablecidasDocumentosOpenApi3$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    rutasPreestablecidasDocumentosOpenApi3$: BehaviorSubject<OrigenDatosOpenApi3[]> = new BehaviorSubject<OrigenDatosOpenApi3[]>([]);
 
     
     // Contiene la ruta actual del documento para poder ser leido. Su valor se actualiza a partir del observable rutaDocumentoOpenApiActual$
@@ -122,10 +122,10 @@ export class OpenApi3Service {
     .subscribe(
       contenidoDocumentoActual => {
     
-        const coleccionRutas: any[]=[]
+        const coleccionRutas: OrigenDatosOpenApi3[]=[]
         for(const [key, value] of Object.entries(contenidoDocumentoActual["rutas"])){
   
-          coleccionRutas.push(value);
+          coleccionRutas.push(<OrigenDatosOpenApi3>value);
         
         } // Fin for
 

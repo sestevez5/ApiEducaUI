@@ -4,13 +4,13 @@
       <div class="seccionBuscador">
             <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
       </div>
-      <!-- <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
+      <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
         <mat-icon >account_tree</mat-icon>
-      </button> -->
+      </button>
   
       <span class="example-spacer"></span>
-      <mat-slide-toggle [(ngModel)]="mostrarTiposDeCampos" color="primary">Mostrar tipo de campos</mat-slide-toggle>
-      <mat-slide-toggle [(ngModel)]="this.mostrarDescripcionesOperations" color="primary">Mostrar descripciones</mat-slide-toggle>
+      <!-- <mat-slide-toggle [(ngModel)]="mostrarTiposDeCampos" color="primary">Mostrar tipo de campos</mat-slide-toggle> -->
+      <mat-slide-toggle color="primary" [(ngModel)]="this.mostrarDescripcionesOperations">Mostrar descripciones</mat-slide-toggle>
 
       <div class="metodoHttp metodoHttpGet"><mat-slide-toggle (change)="onCambiarFiltroMetodo('GET')" [ngModel]="this.mostrarMetodosGET" color="primary">GET</mat-slide-toggle></div>
       <div class="metodoHttp metodoHttpPost"><mat-slide-toggle (change)="onCambiarFiltroMetodo('POST')" [ngModel]="this.mostrarMetodosPOST"color="primary">POST</mat-slide-toggle></div>
@@ -27,6 +27,7 @@
       
     <!-- Sección que renderiza los Dtos. -->
     <p *ngIf="!this.mostrarOperations">Cargando...</p>
+
     <div class="seccionEndpoints" *ngIf="this.mostrarOperations" >
       
       <mat-paginator [length]="this.paginacion.longitud"
@@ -37,19 +38,17 @@
                  
                      aria-label="Select page">
       </mat-paginator>
-      
-  
-      <!-- <p *ngIf="this.cargando" >Cargando...</p> -->
-      <!-- <mat-accordion [multi]="true" *ngIf="!this.cargando" > -->
-  
-        <mat-accordion [multi]="true" >
-          <app-arbol-operations
-            *ngFor="let operation of this.operations" 
-            [operation]="operation" 
-            [expandido]="this.panelesExpandidos" 
-            [mostrarDescripcionesOperations]="this.mostrarDescripcionesOperations">
-          </app-arbol-operations>
+
+      <mat-accordion [multi]="true" >
+        <app-arbol-operations
+          *ngFor="let operation of this.operations" 
+          [operation]="operation" 
+          [expandido]="this.panelesExpandidos" 
+          [mostrarDescripcionesOperations]="this.mostrarDescripcionesOperations">
+          
+        </app-arbol-operations>
       </mat-accordion>
+
     </div>
   
   </div>

@@ -11,12 +11,22 @@
   width: 100%;
   padding: 10px;
   display: flex;
-  padding-left: 30px;
+  padding-left: 10px;
   padding-right: 30px;
 }
 
+.mat-raised-button.mat-primary {
+
+  height: 35px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+
+
+
 .selectorDocumento {
- flex:1
+ flex:2
 }
 
 .selectorServidor {

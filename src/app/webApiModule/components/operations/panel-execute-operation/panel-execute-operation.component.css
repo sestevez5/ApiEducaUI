@@ -1,7 +1,7 @@
 .secciones {
-    width: 1200px;
+ 
     height: 600px; 
-    min-width: 1500;
+
     overflow:-moz-hidden-unscrollable;
     display: grid;
 
@@ -181,4 +181,8 @@ h2 {
   :host ::ng-deep .ngx-json-viewer {
     overflow:visible !important;
    
+  }
+
+  ::ng-deep .cdk-overlay-pane {
+    width: 100% !important
   }

@@ -1,10 +1,11 @@
-
 <mat-expansion-panel [expanded]="this.expandido" *ngIf="this.operation" class="operation panelPadre">
-    
+
     <!-- Cabecera -->
     <mat-expansion-panel-header class="seccion seccionCabeceraOperation"  [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondo, 'padding': 'none'}">
       
-        <div class="contenidoCabeceraOperation">
+        <div 
+        class="contenidoCabeceraOperation" 
+        [ngClass]="this.mostrarDescripcionesOperations ? 'contenidoCabeceraOperationConDescripcion':'contenidoCabeceraOperationSinDescripcion'" >
 
             <div class="metodoOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).color}"> 
                 {{colorMetodo(operation.metodo).nombreMetodo}}
@@ -14,7 +15,8 @@
                 {{operation.path}}
             </div>
             
-            <div class="descripcionOperation">
+            <div *ngIf="this.mostrarDescripcionesOperations"
+                class="descripcionOperation">
                 {{ this.operation.summary}}
             </div>
 
@@ -79,7 +81,7 @@
                 <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondoClaro, 'padding': 'none'}">
                     <mat-panel-title>Respuestas:
                         <div class="tagsCodigoHttp">
-                            <span class="tagCodigoHttp" [ngStyle]="{'background-color': x.codigoHttpOrDefault==='200'?'#009693':'#ff6961'}" *ngFor="let x of validResponses() ">
+                            <span class="tagCodigoHttp" [ngStyle]="{'background-color': x.codigoHttpOrDefault==='200'?'rgb(73,204,144)':'#ff6961'}" *ngFor="let x of validResponses() ">
                                 {{x.codigoHttpOrDefault}} 
                             </span>
                         </div>
