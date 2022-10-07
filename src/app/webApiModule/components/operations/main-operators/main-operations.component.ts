@@ -48,7 +48,7 @@ export class MainOperationsComponent  {
       longitud:0,
       paginaSeleccionada:0,
       opcionesPagina: [5,10,15,20],
-      tamanyoPagina: 15
+      tamanyoPagina: 10
     };
 
     this.actualizarDatos();
