@@ -2,18 +2,18 @@
   
   <!-- Menú Web API -->
   <div class="menuGestionWebApi">
-
-    <!-- Selector de documento OPENAPI -->
-    <div class="selectorDocumento">
-      <mat-form-field appearance="legacy">
-        <mat-label>Entorno</mat-label>
-        <mat-select [value]="this.rutaSeleccionada?.url" (selectionChange)="onSeleccionarRuta($event.value)">
-          <mat-option [value]="option.url" *ngFor="let option of documentosOpenApiPrefijados">{{ option.descripcion }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    
+    <!-- Botón para seleccionar un documento openApi 3 -->
+    <button mat-raised-button color="primary" (click)="onSeleccionarDocumentoOpenApi3()">
+      Seleccionar Documento ( Especificación OpenApi 3 )
+    </button>
+        
+    <!-- Información del documento seleccionado -->
+    <div class="infoDocumentoActual">
+      {{ this.documentoSeleccionado?.descripcion}}
     </div>
 
-    <!-- Selector de documento OPENAPI -->
+    <!-- Selector de servidores del documento seleccionado -->
     <div class="selectorServidor">
       <mat-form-field appearance="legacy">
         <mat-label>Servidor</mat-label>
@@ -27,8 +27,8 @@
     <div class="token">
 
         <button mat-icon-button [matMenuTriggerFor]="menu">
-          <img *ngIf="!token"  mat-card-image src="./assets/img/SinToken.png">
-          <img *ngIf="token"  mat-card-image src="./assets/img/ConToken.png">
+          <img *ngIf="!token"   src="./assets/img/SinToken.png">
+          <img *ngIf="token"   src="./assets/img/ConToken.png">
           <mat-icon>more_vert</mat-icon>
         </button>
 

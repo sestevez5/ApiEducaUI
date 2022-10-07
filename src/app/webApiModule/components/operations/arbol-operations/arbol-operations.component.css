@@ -1,86 +1,58 @@
-mat-panel-title {
-    width: 25%;
-}
-
 .panelHijo {
     box-shadow: none;
 }
-
 
 .operation mat-expansion-panel-header {
     height: 39px;
     border-bottom-style: solid; 
     border-bottom-width: 1px;
-    border-color: #eee;
+    border-color: #eee; 
 }
-
-
 
 .seccionCabeceraOperation {
     background-color: #f1f1f1;
     box-shadow: 1px 1px 2px #999;
-    min-height: 15px;
-   
-    display: flex;
-    padding-left: 6px;
 }
 
-
 .seccionCuerpoOperation {
-   padding: 10px;
-   margin: 0px;
-min-height: 20px;
-    
-    
+    padding: 10px;
+    margin: 0px;
+    min-height: 20px;  
 }
 
 .seccionCuerpoSubseccionOperation {
-   
     min-height: 20px;
     padding: 5px;
-    /* background-color: #efefef; */
-
+    padding-right: 0px;
 }
-
-.seccionCabeceraSubseccionOperation {
-   
-
-    background-color: #e5e5e5;
-
-}
-
-.seccionCabeceraSubseccionOperation:hover {
-    background-color: #e5e5e5 !important;
-
-}
-
 
 :host ::ng-deep .mat-expansion-panel-body {
     padding: 0px;
     margin: 0px;
-
 }
 
 :host ::ng-deep .mat-expansion-panel-header {
     padding-left: 5px;
 }
 
-.metodoOperation {
-    width: 50px;
-    padding: 5px;
-    margin-right: 20px;
+
+.tagCodigoHttp {
+    padding: 2px 10px 2px 10px;
+    font-size: small;
+    margin-right: 5px;
     border-radius: 5px;
     text-align: center;
+}
+
+.tagsCodigoHttp {
+  margin-left: 10px;
 }
 
 .seccionPieContenido {
     padding: 5px;
     display: flex;
-   
     justify-content: center;
 }
-
-
 
 .botonEjecucion { 
     margin-top: 5px;
@@ -93,26 +65,68 @@ min-height: 20px;
     font-size: 16px;
     line-height: 26px;
     cursor: pointer;
-    
-
     }
 
-    mat-icon {
+mat-icon {
+
+    font-size: 25px !important; 
+    height: 25px;
+    width: 25px;
+    color:#2b377b;
+    margin-right: 10px;
     
-        font-size: 25px !important; 
-        height: 25px;
-        width: 25px;
-        color:#2b377b;
-        margin-right: 10px;
-        
-    }
+}
 
-    .pendiente {
-        font-style: italic;
-        color: red;
-    }
+.pendiente {
+    font-style: italic;
+    color: red;
+}
     
 
 
+/* estructura del contenido de la cabecera de una operación */
+
+.contenidoCabeceraOperation {
+    width: 100%;
+    display: grid;
+    grid-gap: 10px;
+}
+
+.contenidoCabeceraOperationConDescripcion {
+    grid-template-columns: 60px 1fr 1fr;
+}
+.contenidoCabeceraOperationSinDescripcion {
+    grid-template-columns: 60px 1fr;
+}
 
 
+
+.metodoOperation {
+    grid-row: 1;
+    grid-column: 1;
+    width: 50px;
+    padding: 5px;
+    margin-right: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.pathOperation {
+    grid-row: 1;
+    grid-column: 2;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: inline-block;
+    line-height: 30px;
+
+}
+
+.descripcionOperation {
+    grid-row: 1;
+    grid-column: 3;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow:hidden;
+    display: inline-block;
+    line-height: 30px;}

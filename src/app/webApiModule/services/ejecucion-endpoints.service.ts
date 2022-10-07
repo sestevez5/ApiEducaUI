@@ -11,63 +11,8 @@ import { HttpClient, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResp
 })
 export class EjecucionEndpointsService {
 
-
-
-
   constructor(private http: HttpClient) { }
 
-
-  // ejecutarOperacionPost(): Observable<Object> | undefined
-  // {
-
-
-  //   let opcionesPeticion = new Object();
-
-  //   opcionesPeticion['observe'] = 'response';
-
-
-  //   // Paso 1: estableciendo cabecera de la petición
-  //   if (tokenAutenticacion) {
-  //     const headers = new HttpHeaders( {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${tokenAutenticacion}`
-  //     });
-
-  //     opcionesPeticion['headers'] = headers;
-  //   }
-
-
-
-  //   // Estableciendo parámetros Query
-  //   const httpParams = new HttpParams();
-  //   if (parametros) {
-  //     for (const key in parametros) {
-  //       if (Object.prototype.hasOwnProperty.call(parametros, key)) {
-  
-  //        httpParams.append(key, parametros[key])
-          
-  //       }
-  //     }
-
-  //     opcionesPeticion['params'] = httpParams;
-
-  //   }
-   
-
- 
-  //   this.http.post(uri,body, opcionesPeticion).subscribe(
-  //     datos =>  {
-  //       console.log('petición completa',datos);
-  //     }
-  //   )
-
-  //  return undefined;
-
-
-
-    
-
-  // }
 
   ejecutarOperacionPost(ejecutionOperation: EjecucionOperation): Observable<Object> | undefined
   {
@@ -80,13 +25,49 @@ export class EjecucionEndpointsService {
     const uri: string = ejecutionOperation.datosEjecucion.servidor + ejecutionOperation.pathParametrizada;
     // Obteniendo los parámetros query
     const body: string = ejecutionOperation.datosEjecucion.body;
+    
+    let opcionesPeticion = new Object();
+
+    opcionesPeticion['observe'] = 'response';
+
+    //Paso 1: estableciendo cabecera de la petición
+    if (tokenAutenticacion) {
+      const headers = new HttpHeaders( {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tokenAutenticacion}`
+      });
+
+      opcionesPeticion['headers'] = headers;
+    }
+
+    // Estableciendo parámetros Query
+    const httpParams = new HttpParams();
+    parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
+    opcionesPeticion['params'] = httpParams;
 
 
-    // console.log('token:', tokenAutenticacion);
-    // console.log('parámetrosQuery:', parametrosQuery);
-    // console.log('uri:', uri);
-    // console.log('body:', body);
+    return this.http.post(uri,body, opcionesPeticion);
+    
 
+ 
+
+
+
+    
+
+  }
+
+  ejecutarOperacionGet(ejecutionOperation: EjecucionOperation): Observable<Object> | undefined
+  {
+
+    // Obteniendo el token de autenticacion.
+    const tokenAutenticacion: string =  ejecutionOperation.datosEjecucion.tokenAutentication;
+    // Obteniendo los parámetros query
+    const parametrosQuery: {nombre: string, valor: string}[] = ejecutionOperation.parametrosQuery;
+    // Obteniendo la uri
+    const uri: string = ejecutionOperation.datosEjecucion.servidor + ejecutionOperation.pathParametrizada;
+    // Obteniendo los parámetros query
+    const body: string = ejecutionOperation.datosEjecucion.body;
     
     let opcionesPeticion = new Object();
 
@@ -105,12 +86,13 @@ export class EjecucionEndpointsService {
 
 
     // Estableciendo parámetros Query
-    // const httpParams = new HttpParams();
-    // parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
-    // opcionesPeticion['params'] = httpParams;
+    const httpParams = new HttpParams();
+    parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
+    opcionesPeticion['params'] = httpParams;
 
 
-    return this.http.post(uri,body, opcionesPeticion);
+    return this.http.get(uri, opcionesPeticion);
+
     
 
  
@@ -193,6 +175,11 @@ export class EjecucionEndpointsService {
      switch (ejecucionOperation.datosEjecucion.metodo) {
       case 'post':
         return this.ejecutarOperacionPost(ejecucionOperation)
+        
+        break;
+
+      case 'get':
+        return this.ejecutarOperacionGet(ejecucionOperation)
         
         break;
     

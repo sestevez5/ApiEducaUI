@@ -1,0 +1,24 @@
+<mat-card (click)="onSeleccionar()" [ngClass]="{'itemSeleccionado': itemSeleccionado}">
+    <mat-card-title>{{this.origenDatosOpenapi3.descripcion}}</mat-card-title>
+    <mat-card-subtitle >
+   
+    
+    </mat-card-subtitle>
+    <mat-card-content>
+      <div class="contenido"> {{this.origenDatosOpenapi3.local === 'Sí'?"Especificación local:":"Especificación original"}}
+        {{this.origenDatosOpenapi3.local === 'Sí'?'  '+this.origenDatosOpenapi3.observaciones:null}}</div>
+
+    
+       <div *ngIf="this.origenDatosOpenapi3.local === 'Sí'" class="warning">
+        <div><mat-icon>warning</mat-icon></div>
+        <div><p>Las copias locales podrían presentar problemas si el entorno del que se ha obtenido ha evolucionado. El objetivo de las compias locales es poder experimentar con funcionalidades que no se reflejan en el documento original</p></div>
+        
+        
+      </div>
+      
+    </mat-card-content>
+</mat-card>
+
+
+
+

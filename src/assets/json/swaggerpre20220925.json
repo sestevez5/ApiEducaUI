@@ -1,0 +1,4140 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ApiEduca",
+    "description": "Concentrador de servicios de educación",
+    "termsOfService": "https://example.com/terms",
+    "contact": {
+      "name": "Contacto",
+      "url": "https://unknowContactWeb.com/Contacto",
+      "email": ""
+    },
+    "license": {
+      "name": "Use under LICX",
+      "url": "https://example.com/license"
+    },
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://wwwpre.educacion.org/educacion/bussed/sigacapi"
+    }
+  ],
+  "paths": {
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/ActividadesSituacionAprendizaje/{id}": {
+      "get": {
+        "tags": [
+          "ActividadSituacionAprendizaje"
+        ],
+        "summary": "Obtiene una actividad de una situación de aprendizaje.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la actividad a obtener.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ActividadSituacionAprendizajeExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/SituacionesAprendizaje/{id}/ActividadesSituacionAprendizaje": {
+      "get": {
+        "tags": [
+          "ActividadSituacionAprendizaje"
+        ],
+        "summary": "Obtiene el conjunto de actividades asociadas a una situación de aprendizaje.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la situación de aprendizaje de la que se recuperarán las actividades asociadas.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ColeccionActividadSituacionAprendizajeExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/Seguridad/Autenticacion/AutenticacionPorCredenciales": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Autentica un usuario en el sistema.",
+        "requestBody": {
+          "description": "Datos de usuario para su autenticación.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ApiEduca/Seguridad/Autenticacion/AutenticacionPorProxyTicket": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Autentica un usuario en el sistema.",
+        "requestBody": {
+          "description": "Datos de usuario para su autenticación.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ApiEduca/Seguridad/Autenticacion/AutenticacionPorGuidSesion": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Autentica un usuario en el sistema.",
+        "requestBody": {
+          "description": "Datos de sesión de usuario en el SUA-CAS para su autenticación.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/Comunicaciones/ComunicacionesEnWeb/{id}": {
+      "get": {
+        "tags": [
+          "Comunicaciones"
+        ],
+        "summary": "Obtiene los datos de una comunicación en web.",
+        "parameters": [
+          {
+            "name": "idComunicacionEnWeb",
+            "in": "query",
+            "description": "Identificador de la comunicación en web a obtener.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.Comunicaciones.Models.Responses.ComunicacionEnWebExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/Comunicaciones/ComunicacionesEnWeb": {
+      "get": {
+        "tags": [
+          "Comunicaciones"
+        ],
+        "summary": "Obtiene los datos de comunicaciones web. Como mínimo se debe especificar al menos un parámetro referente al destinatario o remitente.",
+        "parameters": [
+          {
+            "name": "NifnieRemitente",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PasaporteRemitente",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CialRemitente",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NifnieDestinatario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PasaporteDestinatario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CialDestinatario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FechaDesde",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "FechaHasta",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "Ultimas",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.Comunicaciones.Models.Responses.ColeccionComunicacionEnWebExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/Comunicaciones/ComunicacionesEnWeb/{idComunicacion}/DestinatariosComunicacionEnWeb/{idDestinatario}": {
+      "get": {
+        "tags": [
+          "Comunicaciones"
+        ],
+        "summary": "Obtiene los datos de un destinatario asociado a una comunicación en web.",
+        "parameters": [
+          {
+            "name": "idComunicacion",
+            "in": "path",
+            "description": "Identificador de la comunicación en web a la que está asociada el destinatario.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "idDestinatario",
+            "in": "path",
+            "description": "Identificador del destinatario a obtener.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.Comunicaciones.Models.Responses.DestinatarioComunicacionEnWebExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Comunicaciones"
+        ],
+        "summary": "Actualiza los datos de un destinatario asociado a una comunicación en web.",
+        "parameters": [
+          {
+            "name": "idComunicacion",
+            "in": "path",
+            "description": "Identificador de la comunicación en web a la que pertenece el destinatario.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "idDestinatario",
+            "in": "path",
+            "description": "Identificador del destinatario al que se le desea actualizar sus datos.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Datos del destinatario a actualizar.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.CRUDResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/CriteriosEvaluacion/{id}": {
+      "get": {
+        "tags": [
+          "CriterioEvaluacion"
+        ],
+        "summary": "Obtiene un criterio de evaluación.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador del criterio de evaluación a obtener.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.CriterioEvaluacionExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/Areas/{id}/CriteriosEvaluacion": {
+      "get": {
+        "tags": [
+          "CriterioEvaluacion"
+        ],
+        "summary": "Obtiene la colección de criterios de evaluación según un área.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador del área a partir del cual se localizarán los criterios de evaluación.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.ColeccionCriterioEvaluacionExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/Edificios/{id}": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene los datos de un edificio.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador del edificio a obtener sus datos.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.EdificioCentroExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/Centros/{codigoCentro}/Edificios": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene la colección de edificios asocidos a un centro educativo.",
+        "parameters": [
+          {
+            "name": "codigoCentro",
+            "in": "path",
+            "description": "Código del centro a partir del cual se obtendrán los edificios.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecEdificiosCentroInfoDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/{id}": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene los datos de un espacio físico.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador del espacio físico a obtener sus datos.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.EspacioFisicoCentroExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/Centros/{codigoCentro}/EspaciosFisicos": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene la colección de espacios físicos asociados a un centro educativo.",
+        "parameters": [
+          {
+            "name": "codigoCentro",
+            "in": "path",
+            "description": "Código del centro a partir del cual se obtendrán los edificios.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecEspaciosFisicosCentroInfoDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/Dependencias/{id}": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene los datos de una dependencia.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la dependencia a obtener sus datos.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Request.DependenciaExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/Centros/{codigoCentro}/Dependencias": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene la colección de dependencias asociadas a un centro educativo.",
+        "parameters": [
+          {
+            "name": "codigoCentro",
+            "in": "path",
+            "description": "Código del centro a partir del cual se obtendrán las dependencias.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursoEscolar",
+            "in": "query",
+            "schema": {
+              "pattern": "^\\d{4}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecDependenciasInfoDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/Centros/{codigoCentro}/DependenciasEx": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene la colección de dependencias extendidas asociadas a un centro educativo.",
+        "parameters": [
+          {
+            "name": "codigoCentro",
+            "in": "path",
+            "description": "Código del centro a partir del cual se obtendrán las dependencias.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursoEscolar",
+            "in": "query",
+            "schema": {
+              "pattern": "^\\d{4}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecDependenciasExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/CursosCentros/{id}/Dependencias": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene la colección de dependencias asociadas a un centro educativo.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Indentificador del curso centro a partir del cual se obtendrán las dependencias.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecDependenciasInfoDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EspaciosFisicos/CursosCentros/{id}/DependenciasEX": {
+      "get": {
+        "tags": [
+          "EspacioFisico"
+        ],
+        "summary": "Obtiene la colección de dependencias extendidas asociadas a un centro educativo.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Indentificador del curso centro a partir del cual se obtendrán las dependencias.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecDependenciasExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/InstrumentoEvaluacion/{id}": {
+      "get": {
+        "tags": [
+          "InstrumentoEvaluacion"
+        ],
+        "summary": "Obtiene un instrumento de evaluación.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador del instrumento de evaluación a obtener.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.InstrumentoEvaluacionExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/InstrumentoEvaluacion/SituacionesAprendizaje/{id}/InstrumentosEvaluacion": {
+      "get": {
+        "tags": [
+          "InstrumentoEvaluacion"
+        ],
+        "summary": "Obtiene los instrumentos de evaluación asociados a una situación de aprendizaje.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la situación de aprendizaje de la que se obtendrán los instrumentos de evaluación.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.ColeccionInstrumentoEvaluacionExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/Matriculas/Nombramientos/{id}/Matriculas": {
+      "get": {
+        "tags": [
+          "Matricula"
+        ],
+        "summary": "Devolverá la colección de alumnos con los que un docente tiene relación (matrículas con las que un nombramiento tiene relación). La relación de un docente con un alumno puede provenir de la impartición de clases (vinculación vía horarios) o por ser tutor (alumno de alguno de los grupos que el docente tutoriza).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Foto",
+            "in": "path",
+            "description": "Indica si se debe incluir la foto del alumnado seleccionado. Por defecto, no se incluirá la foto del alumnado seleccionado.",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "FechaReferencia",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.Matricula.Models.Responses.MatriculasNombramientoExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/Matriculas/Nombramientos/{id}/MatriculasAreasImpartidas": {
+      "get": {
+        "tags": [
+          "Matricula"
+        ],
+        "summary": "Devolverá la colección de alumnos con los que un docente tiene relación (matrículas con las que un nombramiento tiene relación). La relación de un docente con un alumno puede provenir de la impartición de clases (vinculación vía horarios) o por ser tutor (alumno de alguno de los grupos que el docente tutoriza).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "FechaReferencia",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "CodigoGrupo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoArea",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IdArea",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.Matricula.Models.Responses.MatriculasAreasNombramientoExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/Matriculas/{id}": {
+      "get": {
+        "tags": [
+          "Matricula"
+        ],
+        "summary": "Endpoint para pruebas de chequeo de autorización en el sistema de control de autorización de Ekade.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de matrícula usando para la comprobación de autorización.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/ProductosInstrumentosEvaluacion/{id}": {
+      "get": {
+        "tags": [
+          "ProductoInstrumentoEvaluacion"
+        ],
+        "summary": "Obtiene un producto/instrumento de evaluación.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador del producto/instrumento de evaluación a obtener.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Responses.ProductoInstrumentoEvaluacionExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/Actividades/{id}/ProductoInstrumentosEvaluacion": {
+      "post": {
+        "tags": [
+          "ProductoInstrumentoEvaluacion"
+        ],
+        "summary": "Crear un instrumento de evaluación a una actividad",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la actividad.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Modelo de la entidad a crear",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionRequestModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionRequestModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionRequestModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.CRUDResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/SituacionesAprendizaje/{id}": {
+      "get": {
+        "tags": [
+          "SituacionAprendizaje"
+        ],
+        "summary": "Obtiene una situación de aprendizaje.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la situación de aprendizaje a obtener.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.SituacionAprendizajeExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/Nombramientos/{id}/SituacionesAprendizaje": {
+      "get": {
+        "tags": [
+          "SituacionAprendizaje"
+        ],
+        "summary": "Obtiene la colección de situaciones de aprendizaje vinculadas a un nombramiento.",
+        "parameters": [
+          {
+            "name": "PosicionInicial",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "TamanyoBloque",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Orden",
+            "in": "query",
+            "schema": {
+              "pattern": "^(\\s*,?\\s*(-?[^\\[\\]\\+]?\\w+|\\[\\w+\\]))+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador del nombramiento a partir del cual se obtendrá las situaciones de aprendizaje.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Cadena",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/SituacionesAprendizaje": {
+      "get": {
+        "tags": [
+          "SituacionAprendizaje"
+        ],
+        "summary": "Obtiene la colección de situaciones de aprendizaje según código del tipo de situación de aprendizaje e identificador de área del plan de estudio de Canarias.",
+        "parameters": [
+          {
+            "name": "PosicionInicial",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "TamanyoBloque",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Orden",
+            "in": "query",
+            "schema": {
+              "pattern": "^(\\s*,?\\s*(-?[^\\[\\]\\+]?\\w+|\\[\\w+\\]))+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodTipoSA",
+            "in": "query",
+            "description": "Código del tipo de situaciones de aprendizaje a obtener.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Requests.ECodigoSituacionAprendizaje"
+            }
+          },
+          {
+            "name": "IdArea",
+            "in": "query",
+            "description": "Identificador del área del plan de estudio de Canarias por el que filtrar las situaciones de aprendizaje a obtener.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Cadena",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/ApiEduca/GestionAcAdCentros/EvaluacionEducativa/SituacionesAprendizajePrivadas": {
+      "get": {
+        "tags": [
+          "SituacionAprendizaje"
+        ],
+        "summary": "Obtiene la colección de situaciones de aprendizaje según el nombramiento deducido por codigoCentro, cursoEscolar, nifnie/pasaporte y fechaReferencia además de, tener vinculada el área o estudio o enseñanza especificada.",
+        "parameters": [
+          {
+            "name": "PosicionInicial",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "TamanyoBloque",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Orden",
+            "in": "query",
+            "schema": {
+              "pattern": "^(\\s*,?\\s*(-?[^\\[\\]\\+]?\\w+|\\[\\w+\\]))+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoCentro",
+            "in": "query",
+            "description": "Código del centro por el para localizar el nombramiento docente.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CursoEscolar",
+            "in": "query",
+            "description": "Curso escolar para localizar el nombramiento docente.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Nifnie",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Pasaporte",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FechaReferencia",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "IdArea",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "IdEstudio",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "IdEnsenanza",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Cadena",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.CRUDResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comun.CRUDDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.Colecciones.MetadatosFiltroColeccionResponse": {
+        "type": "object",
+        "properties": {
+          "parametro": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.Colecciones.MetadatosOrdenColeccionResponse": {
+        "type": "object",
+        "properties": {
+          "campo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoOrden": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.Colecciones.MetadatosPaginacionColeccionResponse": {
+        "type": "object",
+        "properties": {
+          "posicionInicial": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tamanyoBloque": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalDatos": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion": {
+        "type": "object",
+        "properties": {
+          "fechaHoraPeticion": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "uriSolicitud": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "bloque": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.Colecciones.MetadatosPaginacionColeccionResponse"
+          },
+          "filtro": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.Colecciones.MetadatosFiltroColeccionResponse"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "orden": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.Colecciones.MetadatosOrdenColeccionResponse"
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple": {
+        "type": "object",
+        "properties": {
+          "fechaHoraPeticion": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "uriSolicitud": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorCredencialesRequest": {
+        "required": [
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Datos del usuario para la solicitud de autentificación."
+      },
+      "ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorGuidSesionRequest": {
+        "required": [
+          "guidSesion"
+        ],
+        "type": "object",
+        "properties": {
+          "guidSesion": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Datos de sesión de usuario en el SUA-CAS para su autenticación."
+      },
+      "ApiEduca.WebAPI.Controllers.Auth.Models.AutenticacionPorProxyTicketRequest": {
+        "required": [
+          "pt",
+          "service"
+        ],
+        "type": "object",
+        "properties": {
+          "pt": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "service": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Datos del usuario para la solicitud de autentificación."
+      },
+      "GestionAcAdCentros.Servicio.DTO.Centros.AreaInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idArea": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "idAreaSC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigoArea": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Centros.CentroInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idCentro": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "codigoCentro": {
+            "type": "string",
+            "nullable": true
+          },
+          "etapaCentro": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Centros.CursoCentroInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idCursoCentro": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "cursoEscolar": {
+            "type": "string",
+            "nullable": true
+          },
+          "infoCentro": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Centros.CentroInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Comun.CRUDDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uri": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Comunicaciones.ComunicacionEnWebExDTO": {
+        "type": "object",
+        "properties": {
+          "idComunicacionEnWeb": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "infoCursoCentro": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Centros.CursoCentroInfoDTO"
+          },
+          "documentoIdentificativoRemitente": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.General.DocumentoIdentificativoExDTO"
+          },
+          "remitente": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaEnvio": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "comunicacion": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.ComunicacionExDTO"
+          },
+          "destinatarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Comunicaciones.ComunicacionExDTO": {
+        "type": "object",
+        "properties": {
+          "asunto": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuerpo": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreArchivoAdjunto": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlArchivoAdjunto": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO": {
+        "type": "object",
+        "properties": {
+          "idDestinatarioComunicacionEnWeb": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentoIdentificativoDestinatarioComunicacionEnWeb": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.General.DocumentoIdentificativoExDTO"
+          },
+          "leido": {
+            "type": "boolean"
+          },
+          "fechaLeido": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Docentes.DocenteInfoDTO": {
+        "type": "object",
+        "properties": {
+          "apellido1": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido2": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "nifNie": {
+            "type": "string",
+            "nullable": true
+          },
+          "pasaporte": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Docentes.NombramientoInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idNombramiento": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fechaAlta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaBaja": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoDocente": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Docentes.DocenteInfoDTO"
+          },
+          "infoCursoCentro": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Centros.CursoCentroInfoDTO"
+          },
+          "esVigenteCursoEscolarNombramiento": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EspacioFisico.AgrupacionFuncionalExDTO": {
+        "type": "object",
+        "properties": {
+          "idAgrupacionFuncional": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EspacioFisico.DependenciaCursoCentroExDTO": {
+        "type": "object",
+        "properties": {
+          "idDependencia": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "infoEspacioFisico": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.EspacioFisicoCentroInfoDTO"
+          },
+          "infoCursoCentro": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Centros.CursoCentroInfoDTO"
+          },
+          "infoAgrupacionFuncional": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.AgrupacionFuncionalExDTO"
+          },
+          "habilitado": {
+            "type": "boolean"
+          },
+          "numeroPlazas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numeroActividadesSimultaneas": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EspacioFisico.DependenciaCursoCentroInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idDependencia": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "cursoEscolar": {
+            "type": "string",
+            "nullable": true
+          },
+          "infoEspacioFisico": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.EspacioFisicoCentroInfoDTO"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EspacioFisico.EdificioCentroExDTO": {
+        "type": "object",
+        "properties": {
+          "idEdificio": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "infoCentro": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Centros.CentroInfoDTO"
+          },
+          "denominacionCorta": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          },
+          "esPrincipal": {
+            "type": "boolean"
+          },
+          "titularidadConsejeria": {
+            "type": "boolean"
+          },
+          "distanciaAlEdificioPrincipal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "telefono1": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono2": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EspacioFisico.EdificioCentroInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idEdificio": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          },
+          "esPrincipal": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EspacioFisico.EspacioFisicoCentroExDTO": {
+        "type": "object",
+        "properties": {
+          "idEspacioFisico": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "metrosCuadrados": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fechaAlta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EspacioFisico.EspacioFisicoCentroInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idEspacioFisico": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ActividadSituacionAprendizajeExDTO": {
+        "type": "object",
+        "properties": {
+          "idActividad": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "infoSituacionAprendizajePadre": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.SituacionAprendizajePadreInfoDTO"
+          },
+          "identificacionActividad": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.IdentificacionActividadExDTO"
+          },
+          "datosTecnicosActividad": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.DatosTecnicosActividadSituacionAprendizajeExDTO"
+          },
+          "archivosAdjuntos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ArchivoAdjuntoExDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ActividadSituacionAprendizajeInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idActividad": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "identififcacionActividad": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.IdentificacionActividadExDTO"
+          },
+          "instrumentosEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.InstrumentoEvaluacionInfoDTO"
+            },
+            "nullable": true
+          },
+          "productos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ProductoInfoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ArchivoAdjuntoExDTO": {
+        "type": "object",
+        "properties": {
+          "idArchivo": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nombreArchivo": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CalificadorCriterioEvaluacionExDTO": {
+        "type": "object",
+        "properties": {
+          "idCalificadorCriterioEvaluacion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "orden": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "esPositiva": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CompetenciaInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idCompetencia": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionCorta": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionExDTO": {
+        "type": "object",
+        "properties": {
+          "idCriterioEvaluacion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "areas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.PlanEstudios.AreaSCInfoDTO"
+            },
+            "nullable": true
+          },
+          "competencias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CompetenciaInfoDTO"
+            },
+            "nullable": true
+          },
+          "rubricasCalificadores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.RubricaCalificadorExDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idCriterioEvaluacion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "area": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.PlanEstudios.AreaSCInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionSituacionAprendizajeInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idCriterioEvaluacion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigoCriterioEvaluacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "parcial": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.DatosTecnicosActividadSituacionAprendizajeExDTO": {
+        "type": "object",
+        "properties": {
+          "instrumentos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.InstrumentoEvaluacionInfoDTO"
+            },
+            "nullable": true
+          },
+          "productos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ProductoInfoDTO"
+            },
+            "nullable": true
+          },
+          "agrupamientos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "evaluacionAgente": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "sesiones": {
+            "type": "string",
+            "nullable": true
+          },
+          "recursos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "detalleRecursos": {
+            "type": "string",
+            "nullable": true
+          },
+          "espacios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "detalleEspacios": {
+            "type": "string",
+            "nullable": true
+          },
+          "actividadesComplementariasExtraescolares": {
+            "type": "string",
+            "nullable": true
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ETipoProductoInstrumento": {
+        "enum": [
+          "Producto",
+          "InstrumentoEvaluacion"
+        ],
+        "type": "string"
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idValorEntidadEstatica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "textoLibre": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.HerramientaEvaluacionExDTO": {
+        "type": "object",
+        "properties": {
+          "idValorEntidadEstatica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEntidadEstatica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionCorta": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlObservaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcionHerramientaEvaluacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.IdentificacionActividadExDTO": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.InstrumentoEvaluacionExDTO": {
+        "type": "object",
+        "properties": {
+          "idInstrumentoEvaluacion": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "infoActividadPadre": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ActividadSituacionAprendizajeInfoDTO"
+          },
+          "criteriosEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.RelacionInstrumentosEvaluacionCriterioEvaluacionInfoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.InstrumentoEvaluacionInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idInstrumentoEvaluacion": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "criteriosEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionSituacionAprendizajeInfoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ProductoInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idProducto": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ProductoInstrumentoEvaluacionExDTO": {
+        "type": "object",
+        "properties": {
+          "idProductoInstrumentoEvaluacion": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "idActividad": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoProductoInstrumentoEvaluacion": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ETipoProductoInstrumento"
+          },
+          "relacionesCriteriosEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.RelacionProductosInstrumentosCriteriosEvaluacionExDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.RelacionInstrumentosEvaluacionCriterioEvaluacionInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idRelacionProductoInstrumentoCriterioEvaluacion": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "criterioEvaluacion": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionInfoDTO"
+          },
+          "competencias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CompetenciaInfoDTO"
+            },
+            "nullable": true
+          },
+          "implementacionParcialCriterio": {
+            "type": "boolean"
+          },
+          "estandaresAprendizaje": {
+            "type": "string",
+            "nullable": true
+          },
+          "contenidos": {
+            "type": "string",
+            "nullable": true
+          },
+          "tecnicasEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ValorEntidadEstaticaExDTO"
+            },
+            "nullable": true
+          },
+          "herramientasEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ValorEntidadEstaticaExDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.RelacionProductosInstrumentosCriteriosEvaluacionExDTO": {
+        "type": "object",
+        "properties": {
+          "idRelacionProductoInstrumentoCriterioEvaluacion": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "criterioEvaluacion": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionInfoDTO"
+          },
+          "implementacionParcial": {
+            "type": "boolean"
+          },
+          "idProductoInstrumento": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "competencias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CompetenciaInfoDTO"
+            },
+            "nullable": true
+          },
+          "estandaresAprendizaje": {
+            "type": "string",
+            "nullable": true
+          },
+          "contenidos": {
+            "type": "string",
+            "nullable": true
+          },
+          "tecnicasEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.TecnicaEvaluacionExDTO"
+            },
+            "nullable": true
+          },
+          "herramientasEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.HerramientaEvaluacionExDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.RubricaCalificadorExDTO": {
+        "type": "object",
+        "properties": {
+          "idRubrica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descripcionRubrica": {
+            "type": "string",
+            "nullable": true
+          },
+          "calificador": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CalificadorCriterioEvaluacionExDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.SituacionAprendizajePadreInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idSituacionAprendizajePadre": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "titulo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.TecnicaEvaluacionExDTO": {
+        "type": "object",
+        "properties": {
+          "idValorEntidadEstatica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEntidadEstatica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionCorta": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlObservaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcionTecnicaEvaluacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.TipoSituacionAprendizajeExDTO": {
+        "type": "object",
+        "properties": {
+          "idTipoSituacionAprendizaje": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ValorEntidadEstaticaExDTO": {
+        "type": "object",
+        "properties": {
+          "idValorEntidadEstatica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEntidadEstatica": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionCorta": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlObservaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "textoLibre": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.VinculoSituacionAprendizajeExDTO": {
+        "type": "object",
+        "properties": {
+          "docente": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Docentes.DocenteInfoDTO"
+          },
+          "nombramiento": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Docentes.NombramientoInfoDTO"
+          },
+          "centro": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Centros.CentroInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ExpedienteAlumnado.AlumnoInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idAlumnadoCentro": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "apellido1": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido2": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "sexo": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreSentido": {
+            "type": "string",
+            "nullable": true
+          },
+          "sexoSentido": {
+            "type": "string",
+            "nullable": true
+          },
+          "foto": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "documentoIdentificativo": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.General.DocumentoIdentificativoExDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.General.DocumentoIdentificativoExDTO": {
+        "type": "object",
+        "properties": {
+          "nifNie": {
+            "type": "string",
+            "nullable": true
+          },
+          "cial": {
+            "type": "string",
+            "nullable": true
+          },
+          "pasaporte": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Grupos.GrupoInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idGrupoClase": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculaAreaInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idMatriculaArea": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "infoMatricula": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculaInfoDTO"
+          },
+          "infoArea": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Centros.AreaInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculaInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idMatricula": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "infoAlumno": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ExpedienteAlumnado.AlumnoInfoDTO"
+          },
+          "numeroLista": {
+            "type": "string",
+            "nullable": true
+          },
+          "infoGrupoClase": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Grupos.GrupoInfoDTO"
+          },
+          "infoEstudio": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.PlanEstudios.EstudioInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculasAreasNombramientoExDTO": {
+        "type": "object",
+        "properties": {
+          "nombramiento": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Docentes.NombramientoInfoDTO"
+          },
+          "matriculasAreas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculaAreaInfoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculasNombramientoExDTO": {
+        "type": "object",
+        "properties": {
+          "nombramiento": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Docentes.NombramientoInfoDTO"
+          },
+          "matriculas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matriculas.RelacionMatriculaNombramientoExDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.Matriculas.RelacionMatriculaNombramientoExDTO": {
+        "type": "object",
+        "properties": {
+          "idNombramiento": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "idMatricula": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "imparteClase": {
+            "type": "boolean"
+          },
+          "tutoriza": {
+            "type": "boolean"
+          },
+          "infoMatricula": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculaInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.PlanEstudios.AreaSCInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idAreaSC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codArea": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          },
+          "estudio": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.PlanEstudios.EstudioSCInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.PlanEstudios.EnsenyanzaSCInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idEnsenyanzaSC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codEnsenyanza": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.PlanEstudios.EstudioInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idEstudio": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "idEstudioSC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "denominacionCorta": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.PlanEstudios.EstudioSCInfoDTO": {
+        "type": "object",
+        "properties": {
+          "idEstudioSC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codEstudio": {
+            "type": "string",
+            "nullable": true
+          },
+          "denominacionLarga": {
+            "type": "string",
+            "nullable": true
+          },
+          "ensenyanza": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.PlanEstudios.EnsenyanzaSCInfoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.RelacionProductosInstrumentosCriteriosEvaluacionDTO": {
+        "type": "object",
+        "properties": {
+          "codigoCriterioEvaluacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "competencias": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "estandaresAprendizaje": {
+            "type": "string",
+            "nullable": true
+          },
+          "contenidos": {
+            "type": "string",
+            "nullable": true
+          },
+          "tecnicasEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ValorEntidadEstatica"
+            },
+            "nullable": true
+          },
+          "herramientasEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ValorEntidadEstatica"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.ValorEntidadEstatica": {
+        "type": "object",
+        "properties": {
+          "codigoValorEntidadEstatica": {
+            "type": "string",
+            "nullable": true
+          },
+          "textoLibre": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.DatosTecnicosSituacionAprendizajeExDTO": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tituloProgramacionDidacticaReferencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "autoria": {
+            "type": "string",
+            "nullable": true
+          },
+          "centroEducativo": {
+            "type": "string",
+            "nullable": true
+          },
+          "areas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.PlanEstudios.AreaSCInfoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionCurricularExDTO": {
+        "type": "object",
+        "properties": {
+          "criteriosEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionSituacionAprendizajeInfoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaConcrecionExDTO": {
+        "type": "object",
+        "properties": {
+          "fundamentosMetodologicos": {
+            "type": "string",
+            "nullable": true
+          },
+          "contribucionDesarrolloCompetencias": {
+            "type": "string",
+            "nullable": true
+          },
+          "modeloEnsenazas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "agrupamientos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "justificacionAgrupamientos": {
+            "type": "string",
+            "nullable": true
+          },
+          "espacios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "justificacionEspacios": {
+            "type": "string",
+            "nullable": true
+          },
+          "recursos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.EntidadEstaticaInfoDTO"
+            },
+            "nullable": true
+          },
+          "justificacionRecursos": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaInformacionAdicionalExDTO": {
+        "type": "object",
+        "properties": {
+          "fuentes": {
+            "type": "string",
+            "nullable": true
+          },
+          "vinculacionOtrasAreas": {
+            "type": "string",
+            "nullable": true
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.IdentificacionSituacionAprendizajeExDTO": {
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "justificacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "evaluacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.PeriodoImplementacionExDTO": {
+        "type": "object",
+        "properties": {
+          "fechaDesde": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaHasta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "numeroSesiones": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.SeguimientoAula.SeguimientoAulaExDTO": {
+        "type": "object",
+        "properties": {
+          "periodoImplementacion": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.PeriodoImplementacionExDTO"
+          },
+          "valoracionAjuste": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.ValoracionAjusteExDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO": {
+        "type": "object",
+        "properties": {
+          "idSituacionAprendizaje": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tipoSituacionAprendizaje": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.TipoSituacionAprendizajeExDTO"
+          },
+          "vinculoSituacionAprendizaje": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.VinculoSituacionAprendizajeExDTO"
+          },
+          "datosTecnicosSituacionAprendizaje": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.DatosTecnicosSituacionAprendizajeExDTO"
+          },
+          "idenficiacionSituacionAprendizaje": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.IdentificacionSituacionAprendizajeExDTO"
+          },
+          "fundamentacionCurricular": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionCurricularExDTO"
+          },
+          "fundamentacionMetodologicaConcrecion": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaConcrecionExDTO"
+          },
+          "fundamentacionMetodologicaInformacionAdicional": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.FundamentacionMetodologicaInformacionAdicionalExDTO"
+          },
+          "seguimientoAula": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.SeguimientoAula.SeguimientoAulaExDTO"
+          },
+          "actividades": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ActividadSituacionAprendizajeInfoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.ValoracionAjusteExDTO": {
+        "type": "object",
+        "properties": {
+          "desarrollo": {
+            "type": "string",
+            "nullable": true
+          },
+          "propuestaMejora": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.Comunicaciones.Models.Responses.ColeccionComunicacionEnWebExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.ComunicacionEnWebExDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades ComunicacionEnWebExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.Comunicaciones.Models.Responses.ComunicacionEnWebExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.ComunicacionEnWebExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad ComunicacionEnWebExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.Comunicaciones.Models.Responses.DestinatarioComunicacionEnWebExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Comunicaciones.DestinatarioComunicacionEnWebExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad DestinatarioComunicacionEnWebExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Request.DependenciaExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.DependenciaCursoCentroExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad DependenciaExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecDependenciasExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.DependenciaCursoCentroExDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades DependenciaExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecDependenciasInfoDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.DependenciaCursoCentroInfoDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades DependenciaInfoDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecEdificiosCentroInfoDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.EdificioCentroInfoDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades EdificioCentroInfoDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.ColecEspaciosFisicosCentroInfoDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.EspacioFisicoCentroInfoDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades EspacioFisicoCentroInfoDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.EdificioCentroExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.EdificioCentroExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad EdificioCentroExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.EspacioFisico.Models.Response.EspacioFisicoCentroExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EspacioFisico.EspacioFisicoCentroExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad EspacioFisicoCentroExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.Matricula.Models.Responses.MatriculasAreasNombramientoExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculasAreasNombramientoExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de matrículas-áreas filtradas en base a un nombramiento, fecha referencia,\r\ngrupo o area."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.Matricula.Models.Responses.MatriculasNombramientoExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matriculas.MatriculasNombramientoExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de MatriculasNombramientoExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ActividadSituacionAprendizajeExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ActividadSituacionAprendizajeExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad ActividadExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ActividadSituacionAprendizaje.Models.Responses.ColeccionActividadSituacionAprendizajeExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ActividadSituacionAprendizajeExDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección ActividadExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.ColeccionCriterioEvaluacionExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionExDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades CriterioEvaluacionExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.CriterioEvaluacion.Models.Responses.CriterioEvaluacionExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.CriterioEvaluacionExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad CriterioEvaluacionExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.ColeccionInstrumentoEvaluacionExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.InstrumentoEvaluacionExDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades InstrumentoEvaluacionExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.InstrumentoEvaluacion.Models.Responses.InstrumentoEvaluacionExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.InstrumentoEvaluacionExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad InstrumentoEvaluacionExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Requests.ProductoInstrumentoEvaluacionRequestModel": {
+        "type": "object",
+        "properties": {
+          "denominacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "relacionesCriteriosEvaluacion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.ProductoInstrumentoEvaluacion.RelacionProductosInstrumentosCriteriosEvaluacionDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.ProductoInstrumentoEvaluacion.Models.Responses.ProductoInstrumentoEvaluacionExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.ProductoInstrumentoEvaluacionExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad ProductoInstrumentoEvaluacionExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Requests.ECodigoSituacionAprendizaje": {
+        "enum": [
+          "CPUB",
+          "BRUJ"
+        ],
+        "type": "string",
+        "description": "Código tipo situación de aprendizaje."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.ColeccionSituacionAprendizajeExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaColeccion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la colección de entidades SituacionAprendizajeExDTO."
+      },
+      "GestionAcAdCentros.Servicio.WebAPI.Controllers.ProIdeac.SituacionAprendizaje.Models.Responses.SituacionAprendizajeExDTOResponseModel": {
+        "type": "object",
+        "properties": {
+          "dato": {
+            "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.ProIdeac.SituacionAprendizaje.SituacionAprendizajeExDTO"
+          },
+          "metadatos": {
+            "$ref": "#/components/schemas/ApiEduca.WebAPI.Base.Infraestructura.Models.Responses.MetadatosRespuestaEntidadSimple"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Modelo de la respuesta asociada con la entidad SituacionAprendizajeExDTO."
+      },
+      "Microsoft.AspNetCore.Mvc.ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header usado en el esquema Bearer.",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}

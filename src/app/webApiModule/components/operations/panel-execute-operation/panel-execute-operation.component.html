@@ -6,11 +6,10 @@
 </div>
 <div mat-dialog-content>
     <div class="secciones">
-        <div class="seccion seccionCabeceraPanel">
-            <span class="metodoHttp" [ngStyle]="{'background-color': this.obtenerColorMetodo(this.data.metodo).color}">{{ this.obtenerColorMetodo(this.data.metodo).nombreMetodo }}</span>
+        <div class="seccion seccionCabeceraPanel" [ngStyle]="{'background-color': colorMetodo(this.data.metodo).colorFondoClaro}">
+            <span class="metodoHttp" [ngStyle]="{'background-color': colorMetodo(this.data.metodo).color}">{{ this.colorMetodo(this.data.metodo).nombreMetodo }}</span>
             <span class="path">{{ this.data.path}}</span>
         </div> 
-
             
         <div class="seccionCabeceraEntradas">
             <h2>ENTRADAS</h2>
@@ -56,10 +55,6 @@
                 </form>
             </div> 
 
-
-
-
-
         </div>
 
         <div class="seccion seccionAcciones">
@@ -80,12 +75,28 @@
             </div>
             
         </div>
-        <div class="seccion seccionCuerpoSalidas">
-        
-            <h2 *ngIf="this.respuesta">Código: {{this.respuesta['status']}}</h2>
-            <h2>Respuesta:</h2>
 
-            <ngx-json-viewer *ngIf="this.respuesta" [json]="this.respuesta"></ngx-json-viewer>
+        <div class="seccion seccionCuerpoSalidas">
+            <div class="cabeceraSeccionCuerpoSalida">
+                <div class="panelSolicitudNuevoToken">
+                    <mat-card>
+                        Se ha detectado un nuevo token. ¿Desea establecerlo como token predeterminado?
+                        <button mat-raised-button color="basic">Sí</button>
+                        <button mat-raised-button color="basic">No</button>
+                    </mat-card>
+
+                </div>
+                <h2 *ngIf="this.respuesta">Código: {{this.respuesta['status']}}</h2>
+                <h2>Respuesta:</h2>
+               
+            </div>
+
+            <div class="cuerpoSeccionCuerpoSalida">
+                <ngx-json-viewer *ngIf="this.respuesta" [json]="this.respuesta"></ngx-json-viewer>
+            </div>
+
+          
+
 
         </div>
         <div class="seccion seccionPiePanel">

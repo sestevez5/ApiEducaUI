@@ -1,0 +1,36 @@
+.contenidoCuadroDialogo {
+    width: 800px;
+    max-width: 800px;
+    height: 500px;
+   overflow-y: scroll;
+   padding-right: 15px;
+}
+
+
+.contenidoCuadroDialogo {
+    overflow: auto;
+
+    
+    /*Firefox*/
+    scrollbar-color:grey;
+
+    scrollbar-width: thin;
+  }
+  /*Webkit*/
+  .contenidoCuadroDialogo::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+
+  }
+  .contenidoCuadroDialogo::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  .contenidoCuadroDialogo::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 5px;
+    
+  }

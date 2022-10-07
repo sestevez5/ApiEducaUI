@@ -9,6 +9,6 @@
     </div>
 
     <div *ngIf="this.responseWithCode.response.content[0]" class="seccion seccionSchemaRespuesta">
-        <app-arbol-schemas [schema]="this.responseWithCode.response.content[0].schema" [mostrarDescripcionesSchemas]="this.mostrarDescripciones"></app-arbol-schemas>
+        <app-arbol-schemas [schema]="this.responseWithCode.response.content[0].schema" [mostrarDescripcionesSchemas]="this.mostrarDescripciones" [expandido]="false"></app-arbol-schemas>
     </div>
 </div>

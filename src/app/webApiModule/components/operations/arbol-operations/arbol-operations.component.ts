@@ -1,8 +1,9 @@
 import { PanelExecuteOperationComponent } from './../panel-execute-operation/panel-execute-operation.component';
 import { MatDialog } from '@angular/material/dialog';
-import { IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
-import { Component, Input, OnInit } from '@angular/core';
-import { ObtenerBodyRequestComoCadena } from '../../../services/utils'
+import { ICodeWithResponseObject, IOperationObject, IParameterObject, IResponseObject } from './../../../models/documentoOpenApi3';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { ObtenerBodyRequestComoCadena} from '../../../services/utils'
+import { UtilsService } from 'src/app/webApiModule/services/utils.service';
 
 @Component({
   selector: 'app-arbol-operations',
@@ -15,40 +16,18 @@ export class ArbolOperationsComponent implements OnInit {
   @Input() mostrarDescripcionesOperations=true;
   @Input() expandido: boolean = false;
 
-  constructor(public dialog: MatDialog) { }
+  respuestasExpanded: boolean;
+
+  constructor(public dialog: MatDialog, private us: UtilsService) { }
 
   ngOnInit(): void {
   }
 
-  
-  colorMetodo(metodo: string): {color:string, nombreMetodo:string} {
 
-    switch(metodo) { 
-      case "get": { 
-         return {color:'#61affe', nombreMetodo:'GET'}
-         break; 
-      } 
-      case "post": { 
-        return {color:'#49cc90', nombreMetodo:'POST'}
-        break; 
-      } 
-      case "patch": { 
-        return {color:'#dfcaa6', nombreMetodo:'PATCH'}
-        break; 
-      } 
-      case "delete": { 
-        return {color:'#f93e3e', nombreMetodo:'DELETE'}
-        break; 
-      } 
-      case "put": { 
-        return {color:'#fca130', nombreMetodo:'PUT'}
-        break; 
-      } 
-      default: { 
-        return {color:'#61affe', nombreMetodo:'GET'}
-        break; 
-     } 
-   } 
+
+  
+  colorMetodo(metodo: string): {color:string, nombreMetodo:string, colorFondo:string, colorFondoClaro} {
+    return this.us.colorMetodo(metodo);
   }
 
   parametrosPath(): Array<IParameterObject> | undefined {
@@ -80,11 +59,17 @@ export class ArbolOperationsComponent implements OnInit {
   });
 
  
-}
+  }
 
-onEjecutar(){
-  this.openDialog();
-}
+  onEjecutar(){
+    this.openDialog();
+  }
+
+  validResponses(): ICodeWithResponseObject[] | undefined {
+    return this.operation.responses.filter(r => r.response.content[0]);
+
+  }
+
 
   
 }

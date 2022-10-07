@@ -1,15 +1,26 @@
-
 <mat-expansion-panel [expanded]="this.expandido" *ngIf="this.operation" class="operation panelPadre">
-    
+
     <!-- Cabecera -->
-    <mat-expansion-panel-header class="seccion seccionCabeceraOperation">
-        <mat-panel-title>
+    <mat-expansion-panel-header class="seccion seccionCabeceraOperation"  [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondo, 'padding': 'none'}">
+      
+        <div 
+        class="contenidoCabeceraOperation" 
+        [ngClass]="this.mostrarDescripcionesOperations ? 'contenidoCabeceraOperationConDescripcion':'contenidoCabeceraOperationSinDescripcion'" >
+
             <div class="metodoOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).color}"> 
                 {{colorMetodo(operation.metodo).nombreMetodo}}
             </div> 
-            <span>{{operation.path}}</span> 
-        </mat-panel-title>
-      <mat-panel-description *ngIf="this.mostrarDescripcionesOperations" > {{ this.operation.summary}} </mat-panel-description>
+
+            <div class="pathOperation">
+                {{operation.path}}
+            </div>
+            
+            <div *ngIf="this.mostrarDescripcionesOperations"
+                class="descripcionOperation">
+                {{ this.operation.summary}}
+            </div>
+
+        </div>
 
     </mat-expansion-panel-header>
 
@@ -21,7 +32,7 @@
             <!-- Sección correspondiente a los campos de tipo path -->
             <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath()"  [expanded]="this.expandido" >
                 <!-- Cabecera -->
-                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondoClaro, 'padding': 'none'}">
                     <mat-panel-title>Parámetros Path</mat-panel-title>
                 </mat-expansion-panel-header>
 
@@ -30,12 +41,12 @@
                     <app-parameters-operation [mostrarDescripciones]="this.mostrarDescripcionesOperations" [parameters]="this.parametrosPath()" ></app-parameters-operation>
                 </div> <!-- Fin sección cuerpo -->
             </mat-expansion-panel>
-           
+            
             <!-- Sección correspondiente a los campos de tipo query -->
             <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosQuery()"  [expanded]="this.expandido" >
                 
                 <!-- Cabecera -->
-                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondoClaro, 'padding': 'none'}">
                     <mat-panel-title>Parámetros Query</mat-panel-title>
                 </mat-expansion-panel-header>
 
@@ -50,7 +61,7 @@
             <mat-expansion-panel  *ngIf="this.operation.requestBody" class="panelHijo" [expanded]="this.expandido" >
 
                 <!-- Cabecera -->
-                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondoClaro, 'padding': 'none'}">
                     <mat-panel-title>Body:</mat-panel-title>
             
                 </mat-expansion-panel-header>
@@ -61,27 +72,29 @@
                 </div> <!-- Fin sección cuerpo -->
             </mat-expansion-panel>
 
+            <!---------------------------------------------->
             <!-- Sección correspondiente a las respuestas -->
-            <mat-expansion-panel *ngIf="this.operation.responses" class="panelHijo" [expanded]="this.expandido" >
+            <!---------------------------------------------->
+            <mat-expansion-panel *ngIf="this.operation.responses" class="panelHijo" [expanded]="false" [(expanded)]="respuestasExpanded">
         
                 <!-- Cabecera -->
-                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation">
-                    <mat-panel-title>Respuestas</mat-panel-title>
+                <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondoClaro, 'padding': 'none'}">
+                    <mat-panel-title>Respuestas:
+                        <div class="tagsCodigoHttp">
+                            <span class="tagCodigoHttp" [ngStyle]="{'background-color': x.codigoHttpOrDefault==='200'?'rgb(73,204,144)':'#ff6961'}" *ngFor="let x of validResponses() ">
+                                {{x.codigoHttpOrDefault}} 
+                            </span>
+                        </div>
+                        
+                    </mat-panel-title>
                 </mat-expansion-panel-header>
-
-                <!-- Cuerpo: Colección de campos -->
-                <div class="seccion seccionCuerpoSubseccionOperation">
-                    
-                    <!-- <div *ngFor="let item of this.operation.responses">
-                        {{ item.codigoHttpOrDefault }}
-                        <app-arbol-schemas [schema]="item.response.content[0].schema"></app-arbol-schemas>
-                    </div> -->
-
-                    <app-responses-operation [responsesWithCodeHttp]="this.operation.responses"></app-responses-operation>
-
-                    
-                </div> <!-- Fin sección cuerpo -->
+                
+                
             </mat-expansion-panel>
+
+            <div *ngIf="respuestasExpanded"  class="seccion seccionCuerpoSubseccionOperation">
+                <app-responses-operation [responsesWithCodeHttp]="this.operation.responses"></app-responses-operation>
+            </div> <!-- Fin sección cuerpo -->
 
     </mat-accordion>
 
@@ -95,11 +108,12 @@
                     </span></div>
                 
             </div>
-             
+                
         </div>
         
 
 
     </div> <!-- Fin sección cuerpo -->
+
 </mat-expansion-panel>
-  
+    

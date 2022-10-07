@@ -27,6 +27,9 @@ import { PanelOperationInformationExecutionComponent } from './components/operat
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { ResponseOperationComponent } from './components/operations/response-operation/response-operation.component';
 import { ResponsesOperationComponent } from './components/operations/responses-operation/responses-operation.component';
+import { SelectorDocumentoOpenapi3Component } from './components/comunes/selector-documento-openapi3/selector-documento-openapi3.component';
+import { ItemDocumentoOpenApi3Component } from './components/comunes/item-documento-openapi3/item-documento-openapi3.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -44,9 +47,10 @@ import { ResponsesOperationComponent } from './components/operations/responses-o
     GestionarTokenComponent,
     PanelOperationInformationExecutionComponent,
     ResponseOperationComponent,
-    ResponsesOperationComponent
- 
-   
+    ResponsesOperationComponent,
+    SelectorDocumentoOpenapi3Component,
+    ItemDocumentoOpenApi3Component
+      
   ],
   imports: [
     CommonModule,
@@ -56,10 +60,9 @@ import { ResponsesOperationComponent } from './components/operations/responses-o
     MatFormFieldModule,
     MatChipsModule,
     ReactiveFormsModule,
-    NgxJsonViewerModule
+    NgxJsonViewerModule,
+    MatCardModule
  
-
-    
   ]
 })
 export class WebapiModule { }

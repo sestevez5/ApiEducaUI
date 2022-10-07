@@ -3,7 +3,7 @@ import { OpenApi3Service } from '../../../services/open-api3.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { PageEvent } from '@angular/material/paginator';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 
 interface IPaginacion {
   longitud: number;
@@ -54,7 +54,6 @@ export class MainOperationsComponent  {
     this.actualizarDatos();
   })
   }
-
   
   openDialog() {
     //this.dialog.open(SelectorAgrupacionesComponent);
@@ -64,15 +63,11 @@ export class MainOperationsComponent  {
     this.panelesExpandidos = !this.panelesExpandidos;
   }
 
-
   onSeleccionarPagina(event){
     this.paginacion.paginaSeleccionada=event.pageIndex;
     this.paginacion.tamanyoPagina=event.pageSize;
     this.actualizarDatos();
   }
-
-
-
 
   onCambiarTextoFiltro(nuevoTexto:string){
     this.textoFiltro=nuevoTexto;
@@ -113,5 +108,7 @@ export class MainOperationsComponent  {
       this.operations = result.datos;
       this.paginacion.longitud = result.numeroElementos;
   }
+
+  
 }
 

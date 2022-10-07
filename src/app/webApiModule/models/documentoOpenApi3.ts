@@ -126,6 +126,15 @@ export interface IRequestBody{
 
 
 
+export interface OrigenDatosOpenApi3 {
+    orden: number;
+    url: string;
+    descripcion: string;
+    local: string;
+    observaciones: string;
+    uriDocumento: string;
+    servidoresAlternativos: IServerObject[]
+  }
 
 
 

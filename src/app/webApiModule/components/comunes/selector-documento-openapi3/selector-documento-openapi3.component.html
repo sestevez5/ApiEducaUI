@@ -1,0 +1,17 @@
+
+<h2 mat-dialog-title>Selector de documentos de especificación Open Api 3</h2>
+
+  <div class="contenidoCuadroDialogo" >
+
+    <app-item-documento-openapi3 [itemSeleccionado]="item === this.documentoSeleccionado"
+      *ngFor="let item of this.documentosopeApi3" 
+      [origenDatosOpenapi3]="item"
+      (origenDatoSeleccionado)="onSeleccionado(item)"></app-item-documento-openapi3>
+    </div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onAceptar()">Aceptar</button>
+</mat-dialog-actions>
+
+
