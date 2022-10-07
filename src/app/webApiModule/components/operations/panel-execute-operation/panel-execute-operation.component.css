@@ -180,7 +180,7 @@ h2 {
 
   .seccionCuerpoSalidas {
     display: grid;
-   grid-template-rows: 10% 85% ;
+    grid-template-rows: 20% 80% ;
   }
 
   .cabeceraSeccionCuerpoSalida {
@@ -195,13 +195,26 @@ h2 {
 
   .panelSolicitudNuevoToken {
     display: flex;
+    background-color: orange;
     align-items: center;
     justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 5px;
+
   }
 
-  .panelSolicitudNuevoToken mat-card {
-background-color: yellow;
 
+
+  .panelSolicitudNuevoToken p {
+    margin: 0px;
   }
 
+  .panelSolicitudNuevoToken  .aceptar {
+
+    margin-left: auto;
+    margin-right: 5px;
+
+  }
+   
   

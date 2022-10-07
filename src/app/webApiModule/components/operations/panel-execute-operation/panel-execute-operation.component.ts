@@ -43,6 +43,8 @@ export class PanelExecuteOperationComponent {
   respuesta: Object | undefined;
 
   nuevoToken$: Observable<string>= new Observable<string>();
+
+  mostrarPanelActualizacionToken: boolean = false;
  
 
   //------------------------------------------------------------------
@@ -244,7 +246,8 @@ export class PanelExecuteOperationComponent {
   } 
 
   onEjecutarOperation(){
-    console.log('this.eep: ',this.eep.ejecutarOperation(this.ejecucionOperation));
+
+
 
     this.eep.ejecutarOperation(this.ejecucionOperation)
     .subscribe(
@@ -303,10 +306,10 @@ export class PanelExecuteOperationComponent {
   verificarObtencionNuevoToken(body: Object){
 
     if (body["access_token"]) {
-      console.log("si")
+      this.mostrarPanelActualizacionToken = true;
     }
     else {
-      console.log("No")
+      this.mostrarPanelActualizacionToken = false;
     }
   }
 

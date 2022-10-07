@@ -78,16 +78,13 @@
 
         <div class="seccion seccionCuerpoSalidas">
             <div class="cabeceraSeccionCuerpoSalida">
-                <div class="panelSolicitudNuevoToken">
-                    <mat-card>
-                        Se ha detectado un nuevo token. ¿Desea establecerlo como token predeterminado?
-                        <button mat-raised-button color="basic">Sí</button>
-                        <button mat-raised-button color="basic">No</button>
-                    </mat-card>
-
+                <div *ngIf="this.mostrarPanelActualizacionToken"  class="panelSolicitudNuevoToken">
+                    <p>Se ha detectado un nuevo token. ¿Desea establecerlo como token actual?</p>
+                    <button mat-raised-button color="basic" class="aceptar">Sí</button>
+                    <button mat-raised-button color="basic" class="noAceptar">No</button>
                 </div>
-                <h2 *ngIf="this.respuesta">Código: {{this.respuesta['status']}}</h2>
                 <h2>Respuesta:</h2>
+                <h2 *ngIf="this.respuesta">Código: {{this.respuesta['status']}}</h2>
                
             </div>
 
