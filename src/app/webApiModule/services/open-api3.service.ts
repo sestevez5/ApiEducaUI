@@ -74,12 +74,14 @@ export class OpenApi3Service {
 
 
 
-  constructor(private http: HttpClient, ) {
+  constructor(private http: HttpClient) {
    
 
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
+
+          console.log('nuevoDocumentoOpenApi3', nuevoDocumentoOpenApi3)
           
           if ( this.rutaDocumentoOpenApiActual != nuevoDocumentoOpenApi3 ) {
             //this.tokenActual$.next('');
@@ -159,6 +161,7 @@ export class OpenApi3Service {
 
     // Se establece un nuevo documento openApi. Desencadenará la regeneración de todo el documento.
   cambiarDocumento(nuevoDoc: string) {
+
       this.rutaDocumentoOpenApiActual$.next(nuevoDoc);
   }
 

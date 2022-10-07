@@ -133,6 +133,7 @@ export interface OrigenDatosOpenApi3 {
     local: string;
     observaciones: string;
     uriDocumento: string;
+    servidoresAlternativos: IServerObject[]
   }
 
 

@@ -6,11 +6,6 @@ import {MatSnackBar } from '@angular/material/snack-bar'
 import { IServerObject, OrigenDatosOpenApi3 } from 'src/app/webApiModule/models/documentoOpenApi3';
 import { SelectorDocumentoOpenapi3Component } from '../selector-documento-openapi3/selector-documento-openapi3.component';
 
-
-
-
-
-
 @Component({
   selector: 'app-pageWebApi',
   templateUrl: './pageWebApi.component.html',
@@ -21,8 +16,8 @@ export class PageWebApiComponent {
   documentosOpenApiPrefijados: OrigenDatosOpenApi3[]=[];
   servidoresActuales: IServerObject[] | undefined = undefined;
   servidorSeleccionado: IServerObject | undefined = undefined;
-  rutaSeleccionada: OrigenDatosOpenApi3;
-  rutaSeleccionadaOld: OrigenDatosOpenApi3;
+  documentoSeleccionado: OrigenDatosOpenApi3;
+  documentoSeleccionadaOld: OrigenDatosOpenApi3;
   cargando= false;
   token: string ='';
 
@@ -35,6 +30,7 @@ export class PageWebApiComponent {
 
     was.tokenActual$.subscribe(nuevoToken => this.token=nuevoToken);
  
+    
     was.erroresCargaDocumentoOpenApi$.subscribe(
       error =>  {
 
@@ -43,29 +39,46 @@ export class PageWebApiComponent {
         x.afterDismissed().subscribe(() => {
          
           this.cargando=false;
-          this.rutaSeleccionada=this.rutaSeleccionadaOld;
+          this.documentoSeleccionado=this.documentoSeleccionadaOld;
           
         });
         x.onAction().subscribe(() => {
           this.cargando=false;
-          this.rutaSeleccionada=this.rutaSeleccionadaOld;
+          this.documentoSeleccionado=this.documentoSeleccionadaOld;
         });
       
         }
     }
     )
 
+    was.rutaDocumentoOpenApiActual$.subscribe(
+      url => {
+        const doc = this.documentosOpenApiPrefijados.filter( d => d.url === url);
+
+        if (doc && doc.length>0) {
+          this.documentoSeleccionado = doc[0];
+        }
+
+      }
+    )
+
     was.schemas$.subscribe(
       schemas => { 
         this.cargando=false;
-        this.rutaSeleccionadaOld = this.rutaSeleccionada
+        this.documentoSeleccionadaOld = this.documentoSeleccionado
       }
     );
 
     was.obtenerServidores().subscribe(
       servidores => {
-        this.servidoresActuales = servidores;
-        if (servidores.length>0){
+        if (this.documentoSeleccionado && this.documentoSeleccionado.servidoresAlternativos.length>0){
+          this.servidoresActuales = this.documentoSeleccionado.servidoresAlternativos 
+        }
+        else {
+          this.servidoresActuales = servidores;
+        }
+               
+        if (this.servidoresActuales.length>0){
           this.onSeleccionarServidor(this.servidoresActuales[0].url);
         } else {
           this.onSeleccionarServidor(undefined);
@@ -77,16 +90,16 @@ export class PageWebApiComponent {
       rutas => {
         if (rutas.length>0){
           this.documentosOpenApiPrefijados=rutas;
-          this.onSeleccionarRuta(this.documentosOpenApiPrefijados[0].url);
+          this.onSeleccionarRuta(this.documentosOpenApiPrefijados.sort((d1,d2) => d1.orden -d2.orden)[0].url);
         }
       }
     )
   }
 
   onSeleccionarRuta(ruta:string) {
-    this.rutaSeleccionada=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
+    this.documentoSeleccionado=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
     this.cargando=true;
-    this.was.cambiarDocumento(this.rutaSeleccionada.url)
+    this.was.cambiarDocumento(this.documentoSeleccionado.url)
   }
 
   onSeleccionarServidor(urlServidor:string) {

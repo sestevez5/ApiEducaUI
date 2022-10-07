@@ -2,33 +2,18 @@
   
   <!-- Menú Web API -->
   <div class="menuGestionWebApi">
-
-
-        <button mat-raised-button color="primary" (click)="onSeleccionarDocumentoOpenApi3()">
-          <!-- <mat-icon role="img" 
-            class="mat-icon notranslate material-icons mat-icon-no-color" 
-            aria-hidden="true" 
-            data-mat-icon-type="font"
-            style="margin-right: 10px;">
-            account_tree
-          </mat-icon> -->
-          Seleccionar Documento ( Especificación OpenApi 3 )
-        </button>
+    
+    <!-- Botón para seleccionar un documento openApi 3 -->
+    <button mat-raised-button color="primary" (click)="onSeleccionarDocumentoOpenApi3()">
+      Seleccionar Documento ( Especificación OpenApi 3 )
+    </button>
         
-
-
-
-    <!-- Selector de documento OPENAPI -->
-    <div class="selectorDocumento">
-      <!-- <mat-form-field appearance="legacy">
-        <mat-label>Entorno</mat-label>
-        <mat-select [value]="this.rutaSeleccionada?.url" (selectionChange)="onSeleccionarRuta($event.value)">
-          <mat-option [value]="option.url" *ngFor="let option of documentosOpenApiPrefijados">{{ option.descripcion }}</mat-option>
-        </mat-select>
-      </mat-form-field> -->
+    <!-- Información del documento seleccionado -->
+    <div class="infoDocumentoActual">
+      {{ this.documentoSeleccionado?.descripcion}}
     </div>
 
-    <!-- Selector de documento OPENAPI -->
+    <!-- Selector de servidores del documento seleccionado -->
     <div class="selectorServidor">
       <mat-form-field appearance="legacy">
         <mat-label>Servidor</mat-label>

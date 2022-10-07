@@ -3,47 +3,62 @@
     {
         "orden":4,
         "url":"../assets/json/swaggerpre20220925.json",
-        "descripcion": "ApiEduca: entorno de Preproducción",
+        "descripcion": "Especificación local 1",
         "local": "Sí",
         "observaciones": "copia de especificaciones del entorno de Producción obtenida el 25/09/2022",
-        "uriDocumento": ""
+        "uriDocumento": "",
+        "servidoresAlternativos": []
 
     },
    
     {
         "orden":5,
         "url":"../assets/json/webApiPro20220813.json",
-        "descripcion": "ApiEduca: entorno de Producción",
+        "descripcion": "Especificación local 2",
         "local": "Sí",
         "observaciones": "copia de especificaciones del entorno de Producción obtenida el 13/08/2022",
-        "uriDocumento": ""
+        "uriDocumento": "",
+        "servidoresAlternativos": []
 
 
     },
   
     {
         "orden":1,
-        "url":"https://www.gobiernodecanarias.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
+        "url":"https://www.gobiernodecanarias.org/educacion/bussed/apieduca/swagger/v1/swagger.json",
         "descripcion": "ApiEduca: entorno de Producción",
         "local": "No",
         "observaciones": "",
-        "uriDocumento": ""
+        "uriDocumento": "",
+        "servidoresAlternativos": [{
+            "url":"https://www.gobiernodecanarias.org/educacion/bussed/apieduca",
+            "description":""
+        }]
+        
     },
     {
         "orden":2,
-        "url":"https://wwwpre.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
+        "url":"https://wwwpre.educacion.org/educacion/bussed/apieduca/swagger/v1/swagger.json",
         "descripcion": "ApiEduca: entorno de Preproducción",
         "local": "No",
         "observaciones": "",
-        "uriDocumento": ""
+        "uriDocumento": "",
+        "servidoresAlternativos": [{
+            "url":"https://wwwpre.educacion.org/educacion/bussed/apieduca",
+            "description":""
+        }]
     },
     {
         "orden":3,
-        "url":"https://wwwdesa.educacion.org/educacion/bussed/sigacapi/swagger/v1/swagger.json",
+        "url":"https://wwwdesa.educacion.org/educacion/bussed/apieduca/swagger/v1/swagger.json",
         "descripcion": "ApiEduca: entorno de Desarrollo",
         "local": "No",
         "observaciones": "",
-        "uriDocumento": ""
+        "uriDocumento": "",
+        "servidoresAlternativos": [{
+            "url":"https://wwwdesa.educacion.org/educacion/bussed/apieduca",
+            "description":""
+        }]
     }
    
 ]

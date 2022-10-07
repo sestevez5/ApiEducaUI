@@ -17,13 +17,21 @@ mat-icon {
    margin-bottom: 0px;
 
 }
-
+mat-card-title {
+   color: grey;
+}
 mat-card {
    padding-bottom: 0px;
    margin-bottom: 7px;
    border-style: solid;
    border-color: #eee;
    border-width: 0.5px;
+   box-shadow: none;
+   box-shadow: none;
+
+   border-left-style: solid;
+   border-left-width: 5px;
+   border-left-color: #ddd;
 }
 
 .itemSeleccionado {
@@ -40,6 +48,7 @@ mat-card {
    text-justify: distribute;
 }
 
-/* ::ng-deep .mat-typography p {
-   margin: 0px;
-} */
+.mat-card:not([class*=mat-elevation-z]) {
+   box-shadow: none;
+}
+

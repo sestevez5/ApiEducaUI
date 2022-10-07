@@ -250,17 +250,12 @@ export class PanelExecuteOperationComponent {
     .subscribe(
       {
         next: (res) =>  {
-
-       
-          this.respuesta = res; 
-       
+          this.respuesta = res["body"]; 
+          this.verificarObtencionNuevoToken(res["body"]);
         },
         error: (e) => {
-          console.log('e:', e)
-          this.respuesta = e; 
-          
-
-        }
+            this.respuesta = e["error"]; 
+            }
       }
     )
   }
@@ -305,17 +300,15 @@ export class PanelExecuteOperationComponent {
 
   }
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-  //     width: '250px',
-  //     // data: {name: this.name, animal: this.animal},
-  //   });
+  verificarObtencionNuevoToken(body: Object){
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     // this.animal = result;
-  //   });
-  // }
+    if (body["access_token"]) {
+      console.log("si")
+    }
+    else {
+      console.log("No")
+    }
+  }
 
 
 }
