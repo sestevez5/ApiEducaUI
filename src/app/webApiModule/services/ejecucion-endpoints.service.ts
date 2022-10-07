@@ -11,63 +11,8 @@ import { HttpClient, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResp
 })
 export class EjecucionEndpointsService {
 
-
-
-
   constructor(private http: HttpClient) { }
 
-
-  // ejecutarOperacionPost(): Observable<Object> | undefined
-  // {
-
-
-  //   let opcionesPeticion = new Object();
-
-  //   opcionesPeticion['observe'] = 'response';
-
-
-  //   // Paso 1: estableciendo cabecera de la petición
-  //   if (tokenAutenticacion) {
-  //     const headers = new HttpHeaders( {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${tokenAutenticacion}`
-  //     });
-
-  //     opcionesPeticion['headers'] = headers;
-  //   }
-
-
-
-  //   // Estableciendo parámetros Query
-  //   const httpParams = new HttpParams();
-  //   if (parametros) {
-  //     for (const key in parametros) {
-  //       if (Object.prototype.hasOwnProperty.call(parametros, key)) {
-  
-  //        httpParams.append(key, parametros[key])
-          
-  //       }
-  //     }
-
-  //     opcionesPeticion['params'] = httpParams;
-
-  //   }
-   
-
- 
-  //   this.http.post(uri,body, opcionesPeticion).subscribe(
-  //     datos =>  {
-  //       console.log('petición completa',datos);
-  //     }
-  //   )
-
-  //  return undefined;
-
-
-
-    
-
-  // }
 
   ejecutarOperacionPost(ejecutionOperation: EjecucionOperation): Observable<Object> | undefined
   {
@@ -94,8 +39,6 @@ export class EjecucionEndpointsService {
 
       opcionesPeticion['headers'] = headers;
     }
-
-
 
     // Estableciendo parámetros Query
     const httpParams = new HttpParams();
@@ -149,6 +92,7 @@ export class EjecucionEndpointsService {
 
 
     return this.http.get(uri, opcionesPeticion);
+
     
 
  
