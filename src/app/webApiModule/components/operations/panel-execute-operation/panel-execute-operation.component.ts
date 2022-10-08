@@ -307,10 +307,17 @@ export class PanelExecuteOperationComponent {
 
     if (body["access_token"]) {
       this.mostrarPanelActualizacionToken = true;
+      
     }
     else {
       this.mostrarPanelActualizacionToken = false;
     }
+  }
+
+  onAceptarNuevoToken() {
+
+    this.oa3.establecerToken(this.respuesta["access_token"]);
+
   }
 
 

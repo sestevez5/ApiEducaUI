@@ -30,15 +30,17 @@ export class EjecucionEndpointsService {
 
     opcionesPeticion['observe'] = 'response';
 
-    //Paso 1: estableciendo cabecera de la petición
-    if (tokenAutenticacion) {
-      const headers = new HttpHeaders( {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenAutenticacion}`
-      });
+    // Paso 1: estableciendo cabecera de la petición
+    
+    const headers = new HttpHeaders( 
+      {'Content-Type': 'application/json'}
+      );
+    
+    tokenAutenticacion?headers.append('Authorization',`Bearer ${tokenAutenticacion}`):null;
 
-      opcionesPeticion['headers'] = headers;
-    }
+    
+
+    opcionesPeticion['headers'] = headers;
 
     // Estableciendo parámetros Query
     const httpParams = new HttpParams();

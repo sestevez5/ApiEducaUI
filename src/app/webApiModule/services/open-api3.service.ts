@@ -69,7 +69,7 @@ export class OpenApi3Service {
   //---------------------------------------
   // TOKEN
   //---------------------------------------
-  tokenActual$: BehaviorSubject<string> = new BehaviorSubject<string>('xxx');
+  tokenActual$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   tokenActual: string ='xxx';
 
 
