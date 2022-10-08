@@ -28,7 +28,10 @@ export class PageWebApiComponent {
     ){
 
 
-    was.tokenActual$.subscribe(nuevoToken => this.token=nuevoToken);
+    was.tokenActual$.subscribe(nuevoToken => {
+      this.token=nuevoToken;
+      this.token?this.snackBar.open('Se ha añadido un nuevo token JWT','Cerrar',{duration:2500}):null;
+    });
  
     
     was.erroresCargaDocumentoOpenApi$.subscribe(
