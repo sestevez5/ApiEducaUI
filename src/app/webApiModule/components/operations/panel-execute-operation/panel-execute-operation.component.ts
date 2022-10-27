@@ -206,15 +206,23 @@ export class PanelExecuteOperationComponent {
 
   tipoParametro(parametro: IParameterObject): {tipoControl: string, tipoDato: string, formato: string}{
 
+    if (parametro.schema.type === 'string' && parametro.schema.format === 'date') {
+      return { tipoControl:'input', tipoDato:'texto', formato:'fecha'}
+    }  
+
     if (parametro.schema.type === 'string' && parametro.schema.format === 'date-time') {
-      return { tipoControl:'input', tipoDato:'date', formato:''}
+      return { tipoControl:'input', tipoDato:'texto', formato:'fecha-hora'}
     }  
 
     if (parametro.schema.type === 'string' && parametro.schema.format === 'uuid') {
-      return { tipoControl:'input', tipoDato:'text', formato:'uuid'}
+      return { tipoControl:'input', tipoDato:'texto', formato:'uuid'}
+    }  
+
+    if (parametro.schema.type === 'boolean') {
+      return { tipoControl:'input', tipoDato:'booleano', formato:''}
     }  
     
-      return { tipoControl:'input', tipoDato:'text',formato:''}
+      return { tipoControl:'input', tipoDato:'texto',formato:''}
     
     
 
@@ -317,6 +325,7 @@ export class PanelExecuteOperationComponent {
   onAceptarNuevoToken() {
 
     this.oa3.establecerToken(this.respuesta["access_token"]);
+    this.mostrarPanelActualizacionToken = false;
 
   }
 

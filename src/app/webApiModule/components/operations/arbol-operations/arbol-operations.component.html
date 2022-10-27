@@ -15,10 +15,10 @@
                 {{operation.path}}
             </div>
             
-            <div *ngIf="this.mostrarDescripcionesOperations"
+            <!-- <div *ngIf="this.mostrarDescripcionesOperations"
                 class="descripcionOperation">
                 {{ this.operation.summary}}
-            </div>
+            </div> -->
 
         </div>
 
@@ -28,6 +28,9 @@
     <div class="seccion seccionCuerpoOperation">
 
         <mat-accordion [multi]="true">
+            <div *ngIf="this.mostrarDescripcionesOperations" class="seccion seccionCabeceraSubseccionOperation descripcionOperation">
+                {{this.operation.summary}}
+            </div>
 
             <!-- Sección correspondiente a los campos de tipo path -->
             <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath()"  [expanded]="this.expandido" >

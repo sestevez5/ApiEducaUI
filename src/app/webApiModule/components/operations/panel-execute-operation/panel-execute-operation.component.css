@@ -8,9 +8,6 @@
     grid-template-columns: 47% 6% 47% ;
     grid-template-rows: 10% 5% 65% 20% ; 
 }
-
-
-
 .metodoHttp {
     padding-left: 10px;
     padding-right: 10px;
@@ -20,7 +17,6 @@
     border-radius: 5px;
 
 }
-
 .path {
     margin-left: 20px;
     line-height: 34px;
@@ -169,7 +165,12 @@ h2 {
    
   }
 
-
+  
+  ::ng-deep  .ngx-json-viewer .segment-type-null> .segment-main > .segment-value {
+    background-color: white!important;
+    color: red !important;
+    font-weight: bold;
+  }
 
 
   .seccionCuerpoSalidas {
@@ -202,4 +203,8 @@ h2 {
     margin-right: 5px;
   }
    
-  
+  .parametro {
+    margin-left: 15px;
+
+   
+  }

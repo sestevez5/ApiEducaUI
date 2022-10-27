@@ -1,0 +1,10 @@
+[
+    {
+        "nombre":"Inicio",
+        "redirect": "/dashboard/inicio"
+    },
+    {
+        "nombre":"WebApi",
+        "redirect": "/dashboard/webapi"
+    }
+]

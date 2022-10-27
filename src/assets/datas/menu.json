@@ -1,10 +1,7 @@
 [
+
     {
-        "nombre":"Inicio",
-        "redirect": "/dashboard/inicio"
-    },
-    {
-        "nombre":"WebApi",
+        "nombre":"WebApiLab",
         "redirect": "/dashboard/webapi"
     }
 ]

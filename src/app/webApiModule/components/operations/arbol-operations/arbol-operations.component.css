@@ -93,7 +93,7 @@ mat-icon {
 }
 
 .contenidoCabeceraOperationConDescripcion {
-    grid-template-columns: 60px 1fr 1fr;
+    grid-template-columns: 60px 1fr;
 }
 .contenidoCabeceraOperationSinDescripcion {
     grid-template-columns: 60px 1fr;
@@ -130,3 +130,16 @@ mat-icon {
     overflow:hidden;
     display: inline-block;
     line-height: 30px;}
+    
+
+.descripcionOperation {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 12px;
+    font-style: italic;
+    
+    padding: 3px;
+}

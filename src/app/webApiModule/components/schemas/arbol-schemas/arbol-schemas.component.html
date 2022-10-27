@@ -21,7 +21,7 @@
         class="seccionHeaderAtributo" 
         [ngStyle]="{'background-color': colorAtributoSchema('tipo')}" 
         mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Tipo:{{schema.type}}">
-        {{schema.type}}
+        {{this.textoTipo(schema.type)}}
       </span> 
 
       <span class="atributoSchema"
@@ -29,7 +29,7 @@
         class="seccionHeaderAtributo" 
         [ngStyle]="{'background-color': colorAtributoSchema('formato')}"  
         mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Formato: {{schema.format}}">
-        {{schema.format}}
+        {{this.textoFormato(schema.format)}}
       </span>
 
       <span class="seccionHeaderAtributo" [ngStyle]="{'background-color': colorAtributoSchema('admiteNulo')}" > 

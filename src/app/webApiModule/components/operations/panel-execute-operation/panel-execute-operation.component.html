@@ -27,19 +27,35 @@
             
                     <h2>Parámetros:</h2>
                     <form [formGroup]="formParametros">
-
-                
                         <ng-container *ngFor="let parametro of this.data.parameters" >
+
+                            <div class="parametro" *ngIf="this.tipoParametro(parametro).tipoDato==='booleano'">
+                                <div>
+                                    <mat-checkbox class="example-margin" formControlName="{{parametro.name}}">
+                                        {{parametro.name}}
+                                    </mat-checkbox>
+                                </div>                        
+                            </div>
+                    
+
+                            <div class="parametro" *ngIf="this.tipoParametro(parametro).tipoDato==='texto'">
                                 <mat-form-field appearance="legacy">
                                     <mat-label>{{ parametro.name}}</mat-label>
-                                    <input matInput type="{{this.tipoParametro(parametro).tipoDato}}" formControlName="{{parametro.name}}" >
+                                    <input matInput type="{{this.tipoParametro(parametro).tipoDato}}" formControlName="{{parametro.name}}">
                                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                                    <mat-hint *ngIf="this.tipoParametro(parametro).formato === 'uuid'">Ej: 12345678-1234-1234-1234567812345678</mat-hint>
+                                    <mat-hint *ngIf="this.tipoParametro(parametro).formato === 'uuid'">Ej: 12345678-1234-1234-1234567812345678</mat-hint>     
+                                    <mat-hint *ngIf="this.tipoParametro(parametro).formato === 'fecha'">Ej: 2022-06-27</mat-hint>    
+                                    <mat-hint *ngIf="this.tipoParametro(parametro).formato === 'fecha-hora'">Ej: 2022-06-27T08:20:00Z</mat-hint>   
+                                    <mat-hint *ngIf="this.tipoParametro(parametro).formato === ''">cadena de texto</mat-hint>      
                                 </mat-form-field>
+
+                            </div>
+                            <br>
+
                             
                             
                         </ng-container>
-                        <label for="street">Street</label>
+                        
                         <!-- <input type="text" class="form-control" name="street" formControlName="street"> -->
 
 
