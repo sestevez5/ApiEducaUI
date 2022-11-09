@@ -21,15 +21,15 @@ export class SelectorDocumentoOpenapi3Component implements OnInit {
     oa3.rutaDocumentoOpenApiActual$.subscribe(
       url => {
 
-        console.log(url);
-
-        const d = this.documentosopeApi3.filter( d => d.url === url);
-        if (d.length>0) {
+         const d = this.documentosopeApi3.filter( d => d.url === url);
+         if (d.length>0) {
           this.documentoSeleccionado = d[0];
-        }
+
+         }
 
       }
-    )
+    );
+
 
   }
 
@@ -47,6 +47,10 @@ export class SelectorDocumentoOpenapi3Component implements OnInit {
 
     this.oa3.cambiarDocumento(this.documentoSeleccionado.url);
 
+    
+
   }
+
+
 
 }
