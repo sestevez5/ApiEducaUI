@@ -39,17 +39,14 @@
           <span>Eliminar token</span>
         </button>
      
-          <button (click)="onReestablecerToken()" mat-menu-item>
-            <mat-icon>edit</mat-icon>
-            <span *ngIf="token" >Modificar token</span>
-            <span *ngIf="!token" >Definir token</span>
+        <button (click)="onReestablecerToken()" mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span *ngIf="token" >Modificar token</span>
+          <span *ngIf="!token" >Definir token</span>
+        </button>
 
-          </button>
-   
-
-
-      
-      
+        <div class="metodoHttp metodoHttpGet"><mat-slide-toggle (change)="onPersistirToken()" [ngModel]="this.persistirToken" color="primary">Persistir token</mat-slide-toggle></div>
+    
     
       </mat-menu>
 

@@ -70,7 +70,7 @@ export class OpenApi3Service {
   // TOKEN
   //---------------------------------------
   tokenActual$: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  tokenActual: string ='xxx';
+  tokenActual: string;
 
 
 
@@ -81,10 +81,8 @@ export class OpenApi3Service {
       .subscribe(
         nuevoDocumentoOpenApi3 => {
 
-          console.log('nuevoDocumentoOpenApi3', nuevoDocumentoOpenApi3)
-          
           if ( this.rutaDocumentoOpenApiActual != nuevoDocumentoOpenApi3 ) {
-            //this.tokenActual$.next('');
+           
           }
 
           this.rutaDocumentoOpenApiActual = nuevoDocumentoOpenApi3;
@@ -137,15 +135,16 @@ export class OpenApi3Service {
 
     )
 
+   
+
     this.tokenActual$.subscribe(
       nuevoToken => {
         this.tokenActual = nuevoToken;
       }
     )
 
-
-
-
+    const token=localStorage.getItem('token');
+    token?this.tokenActual$.next(token):null;
 
    }
 
@@ -160,9 +159,19 @@ export class OpenApi3Service {
   }
 
     // Se establece un nuevo documento openApi. Desencadenará la regeneración de todo el documento.
-  cambiarDocumento(nuevoDoc: string) {
+  cambiarDocumento(nuevaUrl: string) {
 
-      this.rutaDocumentoOpenApiActual$.next(nuevoDoc);
+      this.rutaDocumentoOpenApiActual$.next(nuevaUrl);
+      
+      const urlLocalStore=localStorage.getItem('urlDocumentoEspecificacionOpenApi');
+
+      if (urlLocalStore !== nuevaUrl) {
+        localStorage.setItem('urlDocumentoEspecificacionOpenApi',nuevaUrl);
+        this.eliminarToken();
+      }
+
+      
+
   }
 
   cambiarServidor(nuevoServidor: IServerObject) {
@@ -223,7 +232,7 @@ export class OpenApi3Service {
     let operations = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
 
     // Paso 2: Aplicaciones el filtro en base al parámetro esOperationAuth
-    esOperationAuth?operations = operations.filter ( op => op.tags.includes("Authentication")):null;
+    esOperationAuth?operations = operations.filter ( op => op.tags.includes("Authentication")):operations =operations.filter ( op => !op.tags.includes("Authentication"));
 
     !mostrarMetodosGET? operations = operations.filter ( op => !(op.metodo === 'get')):null;
     !mostrarMetodosPOST? operations = operations.filter ( op => !(op.metodo === 'post')):null;
@@ -239,10 +248,6 @@ export class OpenApi3Service {
     }
   }
 
- 
-
-
-
   // Se devuelve un subconjunto de dtos a partir de los datos pasados como parámetros.
   obtenerSchemasFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
     const schemas = cadenaFiltro?this.schemasActuales.filter(schema => schema.key.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.schemasActuales;
@@ -256,14 +261,13 @@ export class OpenApi3Service {
   }
 
   establecerToken(nuevotoken:string) {
-    
-
-    this.tokenActual$.next(nuevotoken);
-
+     this.tokenActual$.next(nuevotoken);
+     localStorage.setItem('token',nuevotoken);
   }
 
   eliminarToken() {
       this.tokenActual$.next('');
+      localStorage.removeItem('token');   
   }
 
   //---------------------------------------------------------------------------
@@ -373,6 +377,7 @@ export class OpenApi3Service {
       properties: schema.properties?this.obtenerPropertiesObject(schema.properties):null,
       format: schema.format?schema.format:null,
       nullable: schema.nullable?schema.nullable:null,
+      enum:schema.enum?schema.enum:null,
       description: schema.description?schema.description:null,
       items: schema.items?this.obtenerSchemaObject(schema.items):null
       }

@@ -2,7 +2,7 @@
   *ngIf="schema"
   class="schema"
   [ngClass]="{'schemaPadre' : esSchemaRaiz}"
-  [expanded]="this.expandido" 
+  [(expanded)]="this.expandido" 
   [hideToggle]="!this.tienePropiedades()" 
   [ngClass]="{'mat-elevation-z0' : !this.tienePropiedades()}"
   [ngClass]="{'deshabilitarExpansion' : !this.tienePropiedades()}">
@@ -11,18 +11,31 @@
   <mat-expansion-panel-header>
     <div class="seccion seccionHeader">
 
-      <div class="seccion seccionHeaderNombreSchema">
+      <div *ngIf="!schema.enum" class="seccion seccionHeaderNombreSchema">
         {{schema.key?schema.key+':':''}}
       </div> 
 
       <div class="seccion seccionHeaderAtributos">
         <span 
-        *ngIf="schema.type"
+        *ngIf="schema.type && !schema.enum"
         class="seccionHeaderAtributo" 
         [ngStyle]="{'background-color': colorAtributoSchema('tipo')}" 
         mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Tipo:{{schema.type}}">
         {{this.textoTipo(schema.type)}}
       </span> 
+
+      <span 
+      *ngIf="schema.type && schema.enum"
+      class="seccionHeaderAtributo" 
+      [ngStyle]="{'background-color': colorAtributoSchema('tipo')}" 
+      mat-raised-button #tooltip="matTooltip" matTooltipShowDelay="500" matTooltip="Tipo:{{schema.type}}">
+      {{ 'Enumerado:  valores posibles {' }}
+      
+      <span *ngFor="let valor of schema.enum">
+        {{valor }}
+      </span>
+      {{'}'}}
+    </span> 
 
       <span class="atributoSchema"
         *ngIf="schema.format"
@@ -53,15 +66,21 @@
 
   </mat-expansion-panel-header>
 
-  <!-- Cuerpo: Colección de campos -->
-  <div *ngIf="this.tienePropiedades()"  class="seccion seccionCuerpo">
+</mat-expansion-panel>
 
+
+<div *ngIf="1">
+
+
+  <!-- Cuerpo: Colección de campos -->
+  <div *ngIf="this.tienePropiedades() && this.expandido"  class="seccion seccionCuerpo">
+  
     <div class="seccion seccionPropiedad" *ngFor="let property of schema.properties" >
   
       <!-- Sección que contempla el nombre del propiedad. Es común, independiente del tipo de la propiedad -->
       <div class="seccion seccionNombrePropiedad" [ngClass]="{'seccionNombrePropiedadExpandido' : !this.mostrarTiposDePropiedades}">
         <!-- <mat-icon *ngIf="property.value.type === 'array'">reorder</mat-icon> Solo se muestra cuando se trata de un array -->
-        <span *ngIf="property.value.type === 'array'" style="color:red; font-weight:bold;">[ ]</span>
+        <span *ngIf="property.value.type === 'array'" style="color:red; font-weight:bold; font-size: 10px;">[ ... ]</span>
 
         {{property.name}}{{this.mostrarTiposDePropiedades?':':null}}
         
@@ -88,5 +107,9 @@
       </div> 
     </div>
   </div>
-</mat-expansion-panel>
+
+</div>
+
+
+
     

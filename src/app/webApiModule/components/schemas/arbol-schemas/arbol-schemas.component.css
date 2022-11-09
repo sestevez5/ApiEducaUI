@@ -4,6 +4,7 @@ mat-panel-title {
 
 mat-expansion-panel-header {
     padding-left: 5px;
+    margin: 0px;
 }
 
 .schemaPadre mat-expansion-panel-header {
@@ -11,6 +12,7 @@ mat-expansion-panel-header {
     border-bottom-style: solid; 
     border-bottom-width: 1px;
     border-color: #eee; 
+    background-color:  #C9D6E8;
 }
 
 .schemaHijo mat-expansion-panel-header {
@@ -40,10 +42,13 @@ mat-expansion-panel-header {
 }
 
 .seccionPropiedad {
-    margin:1px;
-    min-height: 30px;
-    margin-bottom: 5px;
+    /* margin:1px; */
+    /* min-height: 30px; */
+    /* margin-bottom: 5px; */
     display: flex;
+    margin-bottom: 8px;
+   
+
 }
 
 .seccionNombrePropiedad {
@@ -66,21 +71,32 @@ mat-expansion-panel-header {
 
 .seccionNombrePropiedadExpandido {
     width: 100%;
+
 }
 
-.seccionNombrePropiedad, .seccionPropiedadTipoPropiedadSimple  {
-    padding-top: 4px;
-}
+
+
 
 
 
 .seccionTipo {
     width: 100%;
+
 }
 
 :host ::ng-deep .mat-expansion-panel-body {
     padding-right: 5px;
+    padding: 0px;
 }
+
+:host ::ng-deep .mat-expansion-panel-header.mat-expanded {
+   height: 48px;
+}
+
+:host ::ng-deep .mat-expansion-panel-spacing {
+
+    margin: 0px;
+ }
 
 mat-icon {
     font-size: 17px;
@@ -107,6 +123,7 @@ mat-icon {
     background-color:  #f4f6fa;
     box-shadow: 1px 1px 1px #999;
 }
+
 
 /* Modelado de la cabecera:  */
 

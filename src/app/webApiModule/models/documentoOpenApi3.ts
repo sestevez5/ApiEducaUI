@@ -51,6 +51,7 @@ export interface ISchemaObject {
     nullable?: boolean;
     description?: string;
     items?: ISchemaObjectWithKey;
+    enum?: Array<string>;
 }
 
 export interface ISchemaObjectWithKey extends ISchemaObject {

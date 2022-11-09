@@ -43,4 +43,18 @@ mat-toolbar {
     display: flex;
 }
 
+:host ::ng-deep mat-expansion-panel .mat-expansion-panel-header {
+    height: 39px;
+
+    box-shadow: 1px 1px 1px #999;
+}
+
+:host ::ng-deep mat-expansion-panel  {
+    background-color:  #C9D6E8;
+}
+
+:host ::ng-deep mat-expansion-panel :hover {
+    background-color:  #C9D6E8;
+}
+
 

@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import {MatSnackBar } from '@angular/material/snack-bar'
 import { IServerObject, OrigenDatosOpenApi3 } from 'src/app/webApiModule/models/documentoOpenApi3';
 import { SelectorDocumentoOpenapi3Component } from '../selector-documento-openapi3/selector-documento-openapi3.component';
+import { defaultRippleAnimationConfig } from '@angular/material/core';
 
 @Component({
   selector: 'app-pageWebApi',
@@ -20,6 +21,7 @@ export class PageWebApiComponent {
   documentoSeleccionadaOld: OrigenDatosOpenApi3;
   cargando= false;
   token: string ='';
+  persistirToken = false;
 
   constructor(
     private was: OpenApi3Service, 
@@ -93,7 +95,16 @@ export class PageWebApiComponent {
       rutas => {
         if (rutas.length>0){
           this.documentosOpenApiPrefijados=rutas;
-          this.onSeleccionarRuta(this.documentosOpenApiPrefijados.sort((d1,d2) => d1.orden -d2.orden)[0].url);
+
+             
+          // Intentamos localizar la ruta el localStore.
+          const url=localStorage.getItem('urlDocumentoEspecificacionOpenApi');
+          
+          // Si la localizamos (url=true) la establacemos como tura por defaultRippleAnimationConfig.
+          // En caso contrario se toma la primera de la lista. es lo que hace lar tres siguientes líneas.
+          url?  
+          this.onSeleccionarRuta(url):  
+          this.onSeleccionarRuta(this.documentosOpenApiPrefijados.sort((d1,d2) => d1.orden - d2.orden)[0].url);
         }
       }
     )
@@ -127,6 +138,11 @@ export class PageWebApiComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
 
+  }
+
+  onPersistirToken() {
+
+    this.persistirToken=!this.persistirToken;
   }
 
 
