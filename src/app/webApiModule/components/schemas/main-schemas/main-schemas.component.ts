@@ -94,7 +94,7 @@ export class MainSchemasComponent {
   actualizarDatos()
   {
    
-      const result: any = this.oas3.obtenerSchemasFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
+      const result: any = this.oas3.obtenerSchemasFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina, true);
       this.schemas = result.datos;
       this.paginacion.longitud = result.numeroElementos;
   }

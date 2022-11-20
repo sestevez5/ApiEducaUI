@@ -8,9 +8,12 @@
         <mat-icon >account_tree</mat-icon>
       </button>
   
-      <span class="example-spacer"></span>
+      
       <!-- <mat-slide-toggle [(ngModel)]="mostrarTiposDeCampos" color="primary">Mostrar tipo de campos</mat-slide-toggle> -->
-      <mat-slide-toggle color="primary" [(ngModel)]="this.mostrarDescripcionesOperations">Mostrar descripciones</mat-slide-toggle>
+      <div><mat-slide-toggle color="primary" [(ngModel)]="this.mostrarDescripcionesOperations">Mostrar descripciones</mat-slide-toggle></div>
+
+      <div><mat-slide-toggle  color="primary" (change)="onAgrupar()" [ngModel]="this.mostrarAgrupados" >Mostrar agrupados</mat-slide-toggle></div>
+      <span class="example-spacer"></span>
 
       <div class="metodoHttp metodoHttpGet"><mat-slide-toggle (change)="onCambiarFiltroMetodo('GET')" [ngModel]="this.mostrarMetodosGET" color="primary">GET</mat-slide-toggle></div>
       <div class="metodoHttp metodoHttpPost"><mat-slide-toggle (change)="onCambiarFiltroMetodo('POST')" [ngModel]="this.mostrarMetodosPOST"color="primary">POST</mat-slide-toggle></div>
@@ -39,15 +42,49 @@
                      aria-label="Select page">
       </mat-paginator>
 
-      <mat-accordion [multi]="true" >
-        <app-arbol-operations
-          *ngFor="let operation of this.operations" 
-          [operation]="operation" 
-          [expandido]="this.panelesExpandidos" 
-          [mostrarDescripcionesOperations]="this.mostrarDescripcionesOperations">
+      <ng-container *ngIf="!this.mostrarAgrupados">
+        <mat-accordion [multi]="true" >
+          <app-arbol-operations
+            *ngFor="let operation of this.operations" 
+            [operation]="operation" 
+            [expandido]="this.panelesExpandidos" 
+            [mostrarDescripcionesOperations]="this.mostrarDescripcionesOperations">
+            
+          </app-arbol-operations>
+        </mat-accordion>
+
+      </ng-container>
+
+      <ng-container *ngIf="this.mostrarAgrupados">
+        
+
+        <ng-container *ngFor="let tag of this.tags">
+
+          <div class="seccionTags">
+            {{ tag.tag0 + ': ' + tag.tag1}}
+          </div>
+
           
-        </app-arbol-operations>
-      </mat-accordion>
+       
+
+          <div class="seccionOperacionesPorTags">
+
+            <app-arbol-operations
+              *ngFor="let operation of this.operationsTags(tag)" 
+              [operation]="operation" 
+              [expandido]="this.panelesExpandidos" 
+              [mostrarDescripcionesOperations]="this.mostrarDescripcionesOperations">
+            </app-arbol-operations>
+
+          </div>
+       
+
+        
+        </ng-container>
+      
+
+      </ng-container>
+   
 
     </div>
   

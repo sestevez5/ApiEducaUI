@@ -1,3 +1,5 @@
+
+
 mat-panel-title {
     width: 25%;
 }
@@ -12,13 +14,13 @@ mat-expansion-panel-header {
     border-bottom-style: solid; 
     border-bottom-width: 1px;
     border-color: #eee; 
-    background-color:  #C9D6E8;
+    background-color:  #fffed1;
 }
 
 .schemaHijo mat-expansion-panel-header {
     height: 29px;
-    background-color:  #C9D6E8;
-    box-shadow: 1px 1px 1px #999;
+    background-color:  #fff7cc;
+    /* box-shadow: 1px 1px 1px #999; */
 }
 
 .seccionCabeceraSchema {
@@ -34,11 +36,10 @@ mat-expansion-panel-header {
     background-color: #ddd;
 }
 
-.seccionCuerpo {
-    padding-top: 5px;
-    min-height: 20px;
-    margin-left: 1px;
-    padding-left: 5px;
+.seccionCuerpoSchema {
+    padding: 10px;
+    margin: 0px;
+    min-height: 20px;  
 }
 
 .seccionPropiedad {
@@ -87,6 +88,7 @@ mat-expansion-panel-header {
 :host ::ng-deep .mat-expansion-panel-body {
     padding-right: 5px;
     padding: 0px;
+    background-color: white;
 }
 
 :host ::ng-deep .mat-expansion-panel-header.mat-expanded {
@@ -169,5 +171,19 @@ mat-icon {
     margin-left: 5px;
     /* font-style: italic;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+
+.descripcionSchema {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 12px;
+    font-style: italic;
+    padding: 3px;
+    margin-bottom: 5px;
+    height: 30px;
 }
 

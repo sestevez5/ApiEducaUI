@@ -2,10 +2,10 @@
     "rutas":[
     {
         "orden":4,
-        "url":"../assets/json/swaggerpre20220925.json",
+        "url":"../assets/json/swaggerpre20221110.json",
         "descripcion": "Especificación local 1",
         "local": "Sí",
-        "observaciones": "copia de especificaciones del entorno de Producción obtenida el 25/09/2022",
+        "observaciones": "copia de especificaciones del entorno de Preproducción obtenida el 10/11/2022",
         "uriDocumento": "",
         "servidoresAlternativos": []
 

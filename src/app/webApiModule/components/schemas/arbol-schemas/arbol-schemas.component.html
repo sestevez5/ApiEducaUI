@@ -66,14 +66,15 @@
 
   </mat-expansion-panel-header>
 
-</mat-expansion-panel>
-
-
-<div *ngIf="1">
 
 
   <!-- Cuerpo: Colección de campos -->
-  <div *ngIf="this.tienePropiedades() && this.expandido"  class="seccion seccionCuerpo">
+  <div *ngIf="this.tienePropiedades() && this.expandido"  class="seccion seccionCuerpoSchema">
+
+    <div *ngIf="this.mostrarDescripcionesSchemas" class="seccion  descripcionSchema">
+      {{this.schema.description?this.schema.description:'Sin definir'}}
+   </div>
+
   
     <div class="seccion seccionPropiedad" *ngFor="let property of schema.properties" >
   
@@ -108,8 +109,7 @@
     </div>
   </div>
 
-</div>
 
 
 
-    
+</mat-expansion-panel>

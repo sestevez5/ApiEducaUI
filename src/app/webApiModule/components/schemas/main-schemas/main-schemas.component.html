@@ -35,8 +35,10 @@
       
     <!-- Sección que renderiza los Dtos. -->
     <p *ngIf="!this.mostrarSchemas">Cargando...</p>
+
+    
     <div class="seccionSchemas" *ngIf="this.mostrarSchemas" >
-      
+
       <mat-paginator [length]="this.paginacion.longitud"
                      [pageSize]="this.paginacion.tamanyoPagina"
                      [pageSizeOptions]="this.paginacion.opcionesPagina"

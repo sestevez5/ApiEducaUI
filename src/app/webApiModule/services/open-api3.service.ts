@@ -2,8 +2,7 @@ import { IComponentObject, IOpenApiObject3, ISchemaObjectWithKey, IProperty, IPa
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
-import { EjecucionEndpointsService } from './ejecucion-endpoints.service';
-import { propertyInSchema } from './utils';
+
 
 
 
@@ -226,13 +225,40 @@ export class OpenApi3Service {
 
   }
 
-  obtenerOperationsFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number, esOperationAuth: boolean, mostrarMetodosGET: boolean, mostrarMetodosPOST: boolean, mostrarMetodosPUT: boolean, mostrarMetodosDELETE: boolean): {datos:IOperationObject[], numeroElementos:number} {
+  obtenerOperationsFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number, esOperationAuth: boolean, mostrarMetodosGET: boolean, mostrarMetodosPOST: boolean, mostrarMetodosPUT: boolean, mostrarMetodosDELETE: boolean, mostrarAgrupados: boolean): {datos:IOperationObject[], numeroElementos:number} {
    
     // Paso 1: Aplicamos el filtro en base a la cadena de búsqueda
-    let operations = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
+    let operations:IOperationObject[] = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
 
     // Paso 2: Aplicaciones el filtro en base al parámetro esOperationAuth
-    esOperationAuth?operations = operations.filter ( op => op.tags.includes("Authentication")):operations =operations.filter ( op => !op.tags.includes("Authentication"));
+    esOperationAuth?operations = operations.filter ( op => op.path.includes("/Autenticacion/")):operations =operations.filter ( op => !op.path.includes("/Autenticacion/"));
+
+    // Llegados a este punto tenemos localizados todos los endpoints que cumplan el filtro pasado por cadena. 
+    // en función de la opción serían los de autenticación o no
+
+    // Establecimiento del orden.
+    if ( mostrarAgrupados) {
+      operations = operations.sort(
+        (a,b) => { 
+
+          const cadenaA:string=''+a.tags[0]?a.tags[0]:''+a.tags[1]?a.tags[1]:''+a.path;
+          const cadenaB:string=''+b.tags[0]?b.tags[0]:''+b.tags[1]?b.tags[1]:''+b.path;
+
+          if (cadenaA<cadenaB) return -1
+          else return 1
+        }
+     
+        )
+    } else{
+
+      operations  = operations .sort(
+        (a,b) => { if (a.path<b.path) return -1
+        else return 1}
+        )
+
+    }
+
+
 
     !mostrarMetodosGET? operations = operations.filter ( op => !(op.metodo === 'get')):null;
     !mostrarMetodosPOST? operations = operations.filter ( op => !(op.metodo === 'post')):null;
@@ -241,7 +267,13 @@ export class OpenApi3Service {
 
   
     const numeroElementos = operations.length;
-    
+
+    let datos: IOperationObject[] = operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
+    datos.forEach(
+      o => {
+        console.log(o.path,'---', o.tags);
+      }
+    )
     return { 
       datos: operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos
@@ -249,8 +281,15 @@ export class OpenApi3Service {
   }
 
   // Se devuelve un subconjunto de dtos a partir de los datos pasados como parámetros.
-  obtenerSchemasFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
-    const schemas = cadenaFiltro?this.schemasActuales.filter(schema => schema.key.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.schemasActuales;
+  obtenerSchemasFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number, soloDtos?: boolean): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
+    let schemas = cadenaFiltro?this.schemasActuales.filter(schema => schema.key.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.schemasActuales;
+    schemas = soloDtos?schemas.filter(schema => schema.key.endsWith('DTO')):null;
+    schemas = schemas.sort(
+      (a,b) => { if (a.key<b.key) return -1
+      else return 1}
+      )
+
+
     const numeroElementos = schemas.length;
     
     return { 
@@ -449,6 +488,8 @@ export class OpenApi3Service {
     responses: this.obtenerResponsesWithCodeObject(definitionOperation['responses']),
     requestBody: definitionOperation['requestBody']?this.obtenerRequestBody(definitionOperation['requestBody']):null
     }
+
+   
    
  
 

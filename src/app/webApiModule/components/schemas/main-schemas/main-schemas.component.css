@@ -1,4 +1,3 @@
-
 app-arbol-dto {
 
     margin-bottom: 20px;
@@ -50,11 +49,13 @@ mat-toolbar {
 }
 
 :host ::ng-deep mat-expansion-panel  {
-    background-color:  #C9D6E8;
+    background-color:  #fffee8;
 }
 
-:host ::ng-deep mat-expansion-panel :hover {
-    background-color:  #C9D6E8;
-}
+/* :host ::ng-deep mat-expansion-panel :hover {
+    background-color:  #f6f695;
+} */
+
+
 
 

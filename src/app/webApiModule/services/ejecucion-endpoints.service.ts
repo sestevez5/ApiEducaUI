@@ -2,7 +2,8 @@ import { Observable } from 'rxjs';
 import { EjecucionOperation, IDatosEjecucionOperation, IValorParametroPath } from './../models/datosEjecucionOperation';
 import { IOperationObject } from './../models/documentoOpenApi3';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResponse,HttpParamsOptions } from '@angular/common/http';
+
 
 
 
@@ -62,10 +63,12 @@ export class EjecucionEndpointsService {
   ejecutarOperacionGet(ejecutionOperation: EjecucionOperation): Observable<Object> | undefined
   {
 
+    
     // Obteniendo el token de autenticacion.
     const tokenAutenticacion: string =  ejecutionOperation.datosEjecucion.tokenAutentication;
     // Obteniendo los parámetros query
     const parametrosQuery: {nombre: string, valor: string}[] = ejecutionOperation.parametrosQuery;
+ 
     // Obteniendo la uri
     const uri: string = ejecutionOperation.datosEjecucion.servidor + ejecutionOperation.pathParametrizada;
     // Obteniendo los parámetros query
@@ -85,25 +88,15 @@ export class EjecucionEndpointsService {
       opcionesPeticion['headers'] = headers;
     }
 
-
-
     // Estableciendo parámetros Query
-    const httpParams = new HttpParams();
-    parametrosQuery.forEach(parametroQuery => httpParams.append(parametroQuery.nombre , parametroQuery.valor));    
+    let httpParams = new HttpParams();
+  
+    parametrosQuery.forEach(parametroQuery => httpParams=httpParams.append(parametroQuery.nombre, parametroQuery.valor) ); 
+
     opcionesPeticion['params'] = httpParams;
 
-
     return this.http.get(uri, opcionesPeticion);
-
-    
-
- 
-
-
-
-    
-
-  }
+ }
 
   
 
