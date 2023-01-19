@@ -1,3 +1,4 @@
+import { IPropertyAux } from './../models/modelosAuxiliares';
 import { IComponentObject, IOpenApiObject3, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeObject, IServerObject, IRequestBody, OrigenDatosOpenApi3 } from './../models/documentoOpenApi3';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -64,6 +65,13 @@ export class OpenApi3Service {
   schemas$: BehaviorSubject<Array<ISchemaObjectWithKey>> = new BehaviorSubject<Array<ISchemaObjectWithKey>>([]);
   schemasActuales: Array<ISchemaObjectWithKey>;  // mantiene los últimos schemas cargados.
 
+  //---------------------------------------
+  // PROPERTIES
+  //---------------------------------------
+  // Observable que emite actualizaciones de colecciones de Propiedades.
+  propertiesAux$: BehaviorSubject<Array<IPropertyAux>> = new BehaviorSubject<Array<IPropertyAux>>([]);
+  propertiesAuxActuales: Array<IPropertyAux>;  // mantiene los últimos schemas cargados.
+
 
   //---------------------------------------
   // TOKEN
@@ -93,8 +101,18 @@ export class OpenApi3Service {
 
     // Cada vez que se emite una nueva colección de esquemas se almacena en la variable schemasActuales
     this.schemas$.subscribe(
-      schemas => this.schemasActuales=schemas
+      schemas => {
+        this.schemasActuales=schemas;
+        this.propertiesAux$.next(this.generarProperties(schemas)) 
+      }
     );
+
+    // Cada vez que se emite una nueva colección de esquemas se almacena en la variable schemasActuales
+    this.propertiesAux$.subscribe( propertyAux => 
+      {
+        this.propertiesAuxActuales=propertyAux;
+        console.log(propertyAux);
+      });
 
     // Cada vez que se emite una nueva colección de operations (endpoints) se almacena en la variable operationsActuales
     this.operations$.subscribe(
@@ -284,6 +302,24 @@ export class OpenApi3Service {
   obtenerSchemasFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number, soloDtos?: boolean): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
     let schemas = cadenaFiltro?this.schemasActuales.filter(schema => schema.key.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.schemasActuales;
     schemas = soloDtos?schemas.filter(schema => schema.key.endsWith('DTO')):null;
+    schemas = schemas.sort(
+      (a,b) => { if (a.key<b.key) return -1
+      else return 1}
+      )
+
+
+    const numeroElementos = schemas.length;
+    
+    return { 
+      datos: schemas.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
+      numeroElementos:numeroElementos
+    }
+    
+  }
+
+  obtenerPropertiesFiltradas(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
+    let schemas = cadenaFiltro?this.schemasActuales.filter(schema => schema.key.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.schemasActuales;
+    schemas = schemas.filter(schema => schema.key.endsWith('DTO'));
     schemas = schemas.sort(
       (a,b) => { if (a.key<b.key) return -1
       else return 1}
@@ -607,8 +643,56 @@ export class OpenApi3Service {
   }
   
 
+  //---------------------------------------------------------------------------
+  // Métodos relacionados con las propiedades
+  //---------------------------------------------------------------------------
+
+ generarProperties(schemas: Array<ISchemaObjectWithKey>):Array<IPropertyAux>{
+
+  const propertiesAux: Array<IPropertyAux>=[]; 
+  schemas.filter(schema => schema.properties)
+  .forEach(schema=> {
+
+    const propertiesActuales = schema.properties;
+    propertiesActuales.forEach(
+      propertyActual => {
+
+        const nombre = propertyActual.name;
+        const tipo = this.calcularTipoProperties(propertyActual.value);
+        const schema = propertyActual.value
+        propertiesAux.push({nombre,tipo,schema});
+
+      }
+    );
+  }
+  )
+
+  return propertiesAux;
+  
 
 
+}
+
+  calcularTipoProperties(schema: ISchemaObjectWithKey){
+    let tipo: string;
+
+    switch (schema.type) {
+      case 'array': tipo = this.calcularTipoProperties(schema.items)+'[]'
+        
+        break;
+
+        case 'object': tipo = schema.key
+        
+        break;
+    
+      default:
+
+      tipo = schema.type
+        break;
+    }
+
+    return tipo;
+  }
 
 
 

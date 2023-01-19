@@ -1,5 +1,6 @@
 import { ISchemaObject, ISchemaObjectWithKey } from './../../../models/documentoOpenApi3';
 import { Component, Input, OnInit } from '@angular/core';
+import { textoTipo, textoFormato} from 'src/app/webApiModule/services/utils'
 
 
 @Component({
@@ -76,64 +77,22 @@ export class ArbolSchemasComponent {
   } 
   }
 
-  textoTipo(tipoSchema:string):string {
 
-    switch (tipoSchema) {
-    case 'string':
-        return 'Cadena de caracteres'
-    break;
-
-    case 'integer':
-      return 'Entero'
-    break;
-
-    case 'number':
-      return 'Decimal'
-    break;
-
-    case 'boolean':
-      return 'Sí/No';
-    break;
-
-    
-    case 'object':
-      return 'Objeto';
-    break;
-
-    default:
-      return tipoSchema;
-    }
+  textoTipo( tipo:string) {
+    return textoTipo(tipo);
   }
+
+  textoFormato( formato:string) {
+    return textoFormato(formato);
+  }
+
+ 
+
+ 
+
 
   
-  textoFormato(formatoSchema:string):string {
 
-    switch (formatoSchema) {
-    case 'int32':
-        return '32 bits';
-    break;
-
-    case 'int64':
-      return '32 bits';
-    break;
-
-    case 'uuid':
-      return 'Guid'
-    break;
-
-    case 'date-time':
-      return 'Fecha/hora';
-    break;
-
-    case 'date':
-      return 'Fecha';
-    break;
-
-
-    default:
-      return formatoSchema;
-    }
-  }
 
 }
 

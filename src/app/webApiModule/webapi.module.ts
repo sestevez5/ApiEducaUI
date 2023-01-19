@@ -18,6 +18,7 @@ import { MainOperationsComponent } from './components/operations/main-operators/
 import { ArbolOperationsComponent } from './components/operations/arbol-operations/arbol-operations.component';
 import { ParameterOperationComponent } from './components/operations/parameter-operation/parameter-operation.component';
 import { ParametersOperationComponent } from './components/operations/parameters-operation/parameters-operation.component';
+import { MainPropertiesComponent } from './components/properties/main-schemas/main-properties.component';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
@@ -49,7 +50,8 @@ import { MatCardModule } from '@angular/material/card';
     ResponseOperationComponent,
     ResponsesOperationComponent,
     SelectorDocumentoOpenapi3Component,
-    ItemDocumentoOpenApi3Component
+    ItemDocumentoOpenApi3Component,
+    MainPropertiesComponent
       
   ],
   imports: [

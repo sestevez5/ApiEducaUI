@@ -1,37 +1,37 @@
 import { IRequestBody } from './../models/documentoOpenApi3';
 
 import { ISchemaObjectWithKey } from "../models/documentoOpenApi3";
-import { ConvertPropertyBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 
-export function colorMetodo(metodo: string): {color:string, nombreMetodo:string} {
 
-    switch(metodo) { 
-      case "get": { 
-         return {color:'#61affe', nombreMetodo:'GET'}
-         break; 
-      } 
-      case "post": { 
-        return {color:'#49cc90', nombreMetodo:'POST'}
-        break; 
-      } 
-      case "patch": { 
-        return {color:'#dfcaa6', nombreMetodo:'PATCH'}
-        break; 
-      } 
-      case "delete": { 
-        return {color:'#f93e3e', nombreMetodo:'DELETE'}
-        break; 
-      } 
-      case "put": { 
-        return {color:'#fca130', nombreMetodo:'PUT'}
-        break; 
-      } 
-      default: { 
-        return {color:'#61affe', nombreMetodo:'GET'}
-        break; 
-     } 
-   } 
-  }
+// export function colorMetodo(metodo: string): {color:string, nombreMetodo:string} {
+
+//     switch(metodo) { 
+//       case "get": { 
+//          return {color:'#61affe', nombreMetodo:'GET'}
+//          break; 
+//       } 
+//       case "post": { 
+//         return {color:'#49cc90', nombreMetodo:'POST'}
+//         break; 
+//       } 
+//       case "patch": { 
+//         return {color:'#dfcaa6', nombreMetodo:'PATCH'}
+//         break; 
+//       } 
+//       case "delete": { 
+//         return {color:'#f93e3e', nombreMetodo:'DELETE'}
+//         break; 
+//       } 
+//       case "put": { 
+//         return {color:'#fca130', nombreMetodo:'PUT'}
+//         break; 
+//       } 
+//       default: { 
+//         return {color:'#61affe', nombreMetodo:'GET'}
+//         break; 
+//      } 
+//    } 
+//   }
 
 export function propertyInSchema(schema: ISchemaObjectWithKey, propertyName): boolean{
 
@@ -107,4 +107,94 @@ export function ObtenerBodyRequestComoCadena( irb: IRequestBody, formateado: boo
 
   return cadena;
 }
+
+export function colorMetodo(metodo: string): {color:string, nombreMetodo:string, colorFondo:string, colorFondoClaro} {
+
+    switch(metodo) { 
+      case "get": { 
+         return {color:'#61affe', nombreMetodo:'GET', colorFondo:'#ddeefe', colorFondoClaro:'#eff7fe'}
+         break; 
+      } 
+      case "post": { 
+        return {color:'#49cc90', nombreMetodo:'POST',colorFondo:'#d8f4e7', colorFondoClaro:'#ecf9f3'}
+        break; 
+      } 
+      case "patch": { 
+        return {color:'#dfcaa6', nombreMetodo:'PATCH',colorFondo:'#f8f3ec', colorFondoClaro:'#fbf9f6'}
+        break; 
+      } 
+      case "delete": { 
+        return {color:'#f93e3e', nombreMetodo:'DELETE',colorFondo:'#fdd6d6', colorFondoClaro:'#feebeb'}
+        break; 
+      } 
+      case "put": { 
+        return {color:'#fca130', nombreMetodo:'PUT',colorFondo:'#feebd3', colorFondoClaro:'#fef5ea'}
+        break; 
+      } 
+      default: { 
+        return {color:'#61affe', nombreMetodo:'GET',colorFondo:'#ddeefe', colorFondoClaro:'#eff7fe'}
+        break; 
+     } 
+   } 
+  }
+
+
+export function textoTipo(tipoSchema:string):string {
+
+    switch (tipoSchema) {
+    case 'string':
+        return 'Cadena de caracteres'
+    break;
+
+    case 'integer':
+      return 'Entero'
+    break;
+
+    case 'number':
+      return 'Decimal'
+    break;
+
+    case 'boolean':
+      return 'Sí/No';
+    break;
+
+    
+    case 'object':
+      return 'Objeto';
+    break;
+
+    default:
+      return tipoSchema;
+    }
+  }
+
+
+  export function  textoFormato(formatoSchema:string):string {
+
+    switch (formatoSchema) {
+    case 'int32':
+        return '32 bits';
+    break;
+
+    case 'int64':
+      return '32 bits';
+    break;
+
+    case 'uuid':
+      return 'Guid'
+    break;
+
+    case 'date-time':
+      return 'Fecha/hora';
+    break;
+
+    case 'date':
+      return 'Fecha';
+    break;
+
+
+    default:
+      return formatoSchema;
+    }
+  }
 
