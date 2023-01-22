@@ -49,16 +49,19 @@
       </mat-paginator>
       
 
-        <mat-accordion [multi]="true" >
-          <app-arbol-schemas
-            *ngFor="let schema of this.ObtenerSchemasTipoObjeto()" 
-            [schema]="schema"
-            [expandido]="this.panelesExpandidos" 
-            [mostrarTiposDePropiedades]="this.mostrarTiposDePropiedades"
-            [mostrarDescripcionesSchemas]="this.mostrarDescripcionesSchemas">
-          </app-arbol-schemas>
-      </mat-accordion>
-    </div>
+<app-tabla-properties [_properties]="this.properties" [_textoFiltro]="this.textoFiltro">
+</app-tabla-properties>
+
+
+
+      <!-- <div  >
+        <div *ngFor="let property of this.properties" >
+          {{property.nombre|json}}
+        </div>
+    
+       
+   
+    </div> -->
   
   </div>
   

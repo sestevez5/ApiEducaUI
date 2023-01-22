@@ -31,6 +31,7 @@ import { ResponsesOperationComponent } from './components/operations/responses-o
 import { SelectorDocumentoOpenapi3Component } from './components/comunes/selector-documento-openapi3/selector-documento-openapi3.component';
 import { ItemDocumentoOpenApi3Component } from './components/comunes/item-documento-openapi3/item-documento-openapi3.component';
 import { MatCardModule } from '@angular/material/card';
+import { TablaPropertiesComponent } from './components/properties/tabla-properties/tabla-properties.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { MatCardModule } from '@angular/material/card';
     ResponsesOperationComponent,
     SelectorDocumentoOpenapi3Component,
     ItemDocumentoOpenApi3Component,
-    MainPropertiesComponent
+    MainPropertiesComponent,
+    TablaPropertiesComponent
       
   ],
   imports: [

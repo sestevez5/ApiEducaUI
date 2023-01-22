@@ -1,9 +1,8 @@
+import { IPropertyAux } from './../../../models/modelosAuxiliares';
 import { SelectorAgrupacionesComponent } from '../../comunes/selector-agrupaciones/selector-agrupaciones.component';
 import { OpenApi3Service } from '../../../services/open-api3.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ISchemaObject, ISchemaObjectWithKey } from '../../../models/documentoOpenApi3';
-import { MatAccordion } from '@angular/material/expansion';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 
@@ -22,7 +21,6 @@ interface IPaginacion {
 })
 export class MainPropertiesComponent {
 
-  
   panelesExpandidos=false;
   mostrarTiposDePropiedades=true;
   mostrarDescripcionesSchemas=true;
@@ -36,15 +34,16 @@ export class MainPropertiesComponent {
   nodoSelecionado: string =''
 
 
-  @ViewChild(MatAccordion) acordeon!: MatAccordion;
-  schemas : ISchemaObjectWithKey[];
+
+
+  properties: IPropertyAux[]
 
   @Input() mostrarSchemas=true;
   
   constructor(public dialog: MatDialog,private  oas3: OpenApi3Service ) {
 
-   
-    this.oas3.schemas$.subscribe(schemas => {
+
+    this.oas3.propertiesAux$.subscribe(property => {
 
       this.paginacion = this.paginacion = {
         longitud:0,
@@ -52,10 +51,10 @@ export class MainPropertiesComponent {
         opcionesPagina: [5,10,15,20],
         tamanyoPagina: 15
       };
-
       this.actualizarDatos();
+    }
+    );
 
-    })
 
     
    }
@@ -80,10 +79,8 @@ export class MainPropertiesComponent {
     this.actualizarDatos();
   }
 
-
-
-
   onCambiarTextoFiltro(nuevoTexto:string){
+
     this.textoFiltro=nuevoTexto;
     this.paginacion.paginaSeleccionada=0;
     this.actualizarDatos();
@@ -93,15 +90,12 @@ export class MainPropertiesComponent {
 
   actualizarDatos()
   {
-   
-      const result: any = this.oas3.obtenerSchemasFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina, true);
-      this.schemas = result.datos;
+      const result: any = this.oas3.obtenerPropertiesFiltradas(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
+      this.properties = result.datos;
+      console.log(this.properties)
       this.paginacion.longitud = result.numeroElementos;
   }
 
-  ObtenerSchemasTipoObjeto(): Array<ISchemaObjectWithKey> {
-    return this.schemas.filter(schema => schema.type === 'object')
-  }
 
   onRemove(){
     this.nodoSelecionado='';

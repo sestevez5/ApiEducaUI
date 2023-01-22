@@ -14,6 +14,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {MatTooltipModule} from '@angular/material/tooltip'
 
+import { MatTableModule } from '@angular/material/table'
+
 
 
 
@@ -32,6 +34,7 @@ import {MatTooltipModule} from '@angular/material/tooltip'
     HttpClientModule,
     MatFormFieldModule,
     MatTooltipModule,
+    MatTableModule
     
    
     

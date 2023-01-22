@@ -111,7 +111,7 @@ export class OpenApi3Service {
     this.propertiesAux$.subscribe( propertyAux => 
       {
         this.propertiesAuxActuales=propertyAux;
-        console.log(propertyAux);
+        
       });
 
     // Cada vez que se emite una nueva colección de operations (endpoints) se almacena en la variable operationsActuales
@@ -287,11 +287,11 @@ export class OpenApi3Service {
     const numeroElementos = operations.length;
 
     let datos: IOperationObject[] = operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
-    datos.forEach(
-      o => {
-        console.log(o.path,'---', o.tags);
-      }
-    )
+    // datos.forEach(
+    //   o => {
+    //     console.log(o.path,'---', o.tags);
+    //   }
+    // )
     return { 
       datos: operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos
@@ -317,19 +317,28 @@ export class OpenApi3Service {
     
   }
 
-  obtenerPropertiesFiltradas(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
-    let schemas = cadenaFiltro?this.schemasActuales.filter(schema => schema.key.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.schemasActuales;
-    schemas = schemas.filter(schema => schema.key.endsWith('DTO'));
-    schemas = schemas.sort(
-      (a,b) => { if (a.key<b.key) return -1
+  obtenerPropertiesFiltradas(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:Array<IPropertyAux>, numeroElementos:number} {
+
+    let properties = cadenaFiltro?
+      this.propertiesAuxActuales.filter(property => 
+        property.nombre.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        ||
+        property.tipoSchemaPadre.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        ||
+        property.tipoSchemaHijo.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        
+        ):this.propertiesAuxActuales;
+    properties = properties.filter(property =>property.tipoSchemaPadre.endsWith('DTO'));
+    properties = properties.sort(
+      (a,b) => { if (a.nombre<b.nombre) return -1
       else return 1}
       )
 
 
-    const numeroElementos = schemas.length;
+    const numeroElementos = properties.length;
     
     return { 
-      datos: schemas.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
+      datos: properties.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos
     }
     
@@ -647,37 +656,40 @@ export class OpenApi3Service {
   // Métodos relacionados con las propiedades
   //---------------------------------------------------------------------------
 
- generarProperties(schemas: Array<ISchemaObjectWithKey>):Array<IPropertyAux>{
+  generarProperties(schemas: Array<ISchemaObjectWithKey>):Array<IPropertyAux>{
 
-  const propertiesAux: Array<IPropertyAux>=[]; 
-  schemas.filter(schema => schema.properties)
-  .forEach(schema=> {
+    const propertiesAux: Array<IPropertyAux>=[]; 
+    schemas.filter(schema => schema.properties)
+    .forEach(schema=> {
 
-    const propertiesActuales = schema.properties;
-    propertiesActuales.forEach(
-      propertyActual => {
+      const propertiesActuales = schema.properties;
+      propertiesActuales.forEach(
+        propertyActual => {
 
-        const nombre = propertyActual.name;
-        const tipo = this.calcularTipoProperties(propertyActual.value);
-        const schema = propertyActual.value
-        propertiesAux.push({nombre,tipo,schema});
+          const schemaPadre = schema;
+          const tipoSchemaPadre = this.calcularTipoProperties(schema)
 
-      }
-    );
+          const nombre = propertyActual.name;
+          const tipoSchemaHijo = this.calcularTipoProperties(propertyActual.value);
+          const schemaHijo = propertyActual.value
+          propertiesAux.push({schemaPadre, tipoSchemaPadre, nombre,tipoSchemaHijo, schemaHijo});
+
+        }
+      );
+    }
+    )
+
+    return propertiesAux;
+    
+
+
   }
-  )
-
-  return propertiesAux;
-  
-
-
-}
 
   calcularTipoProperties(schema: ISchemaObjectWithKey){
     let tipo: string;
 
     switch (schema.type) {
-      case 'array': tipo = this.calcularTipoProperties(schema.items)+'[]'
+      case 'array': tipo = 'Colección de &lt;' + this.calcularTipoProperties(schema.items)+'&gt;'
         
         break;
 

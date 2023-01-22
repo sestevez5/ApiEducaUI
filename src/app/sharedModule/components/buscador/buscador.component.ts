@@ -26,7 +26,11 @@ export class BuscadorComponent implements OnInit {
       debounceTime(700),
       distinctUntilChanged()
     )
-    .subscribe(valor => this.texto.emit(valor));
+    .subscribe(valor =>
+      {
+        this.texto.emit(valor)
+
+      } );
   }
 
 }
