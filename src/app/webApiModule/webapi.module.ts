@@ -31,6 +31,9 @@ import { SelectorDocumentoOpenapi3Component } from './components/comunes/selecto
 import { ItemDocumentoOpenApi3Component } from './components/comunes/item-documento-openapi3/item-documento-openapi3.component';
 import { MatCardModule } from '@angular/material/card';
 
+import {MatTooltipModule} from '@angular/material/tooltip';
+
+
 
 @NgModule({
   declarations: [
@@ -61,7 +64,8 @@ import { MatCardModule } from '@angular/material/card';
     MatChipsModule,
     ReactiveFormsModule,
     NgxJsonViewerModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule
  
   ]
 })
