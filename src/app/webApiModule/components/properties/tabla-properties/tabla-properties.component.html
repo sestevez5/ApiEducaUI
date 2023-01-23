@@ -1,0 +1,70 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox color="primary"  (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+      <!-- nombre propiedad -->
+      <ng-container matColumnDef="nombrePropiedad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de la propiedad </th>
+        <td mat-cell *matCellDef="let row" [innerHtml]="row.nombre"></td>
+      </ng-container>
+
+      
+      <!-- tipoPropiedad Column -->
+      <ng-container matColumnDef="tipoPropiedad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> tipo de la propiedad </th>
+        <td mat-cell *matCellDef="let row" [innerHtml]="row.tipoPropiedad"> </td>
+      </ng-container>
+
+      <!-- tipoPadre Column -->
+      <ng-container matColumnDef="dtoPropiedad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre del DTO </th>
+        <td mat-cell *matCellDef="let row" [innerHtml]="row.dtoPropiedad">
+          <p ></p>  </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> 
+          <span >
+            Acciones
+          </span>
+          
+          <button mat-icon-button *ngIf="this.isAnySelected()" (click)="onCopiarMultiple()">
+            <mat-icon style="margin-left: auto;" >content_copy</mat-icon>        
+          </button>
+         </th>
+        <td mat-cell *matCellDef="let row;">
+          <button mat-icon-button (click)="onCopiarSimple(row)">
+            <mat-icon>content_copy</mat-icon>        
+          </button>
+          <button mat-icon-button>
+            <mat-icon class="white-icon">visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      
+  
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+   
+  
+   
+  </div>

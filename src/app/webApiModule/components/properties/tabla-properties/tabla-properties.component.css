@@ -1,0 +1,72 @@
+table {
+    width: 90%;
+    margin:1rem;
+ }
+
+ .white-icon {
+    color: dodgerblue;
+}
+
+.mat-column-tipoPropiedad {
+    flex: none;
+    width: 200px;
+}
+
+table {
+    width: 98%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mat-column-select {
+    flex: none;
+    width: 6% !important;
+}
+  .mat-column-dtoPropiedad {
+    flex: none;
+    width: 30% !important;
+}
+
+.mat-column-tipoPropiedad {
+    flex: none;
+    width: 30% !important;
+}
+
+.mat-column-nombrePropiedad {
+    flex: none;
+    width: 30% !important;
+}
+
+
+.mat-column-acciones {
+    flex: none;
+    width: 10% !important;
+
+}
+
+:host ::ng-deep .mat-column-acciones  th {
+
+    padding-right: 0px;
+}
+:host ::ng-deep .mat-column-acciones  span {
+    margin-right: 35px; 
+
+}
+
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+    padding-right: 0px;
+}
+
+
+:host ::ng-deep .subcadenaTexto  {
+    
+    text-decoration: underline 2px;
+    text-decoration-color: red;
+        
+
+}

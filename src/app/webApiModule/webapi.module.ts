@@ -18,6 +18,7 @@ import { MainOperationsComponent } from './components/operations/main-operators/
 import { ArbolOperationsComponent } from './components/operations/arbol-operations/arbol-operations.component';
 import { ParameterOperationComponent } from './components/operations/parameter-operation/parameter-operation.component';
 import { ParametersOperationComponent } from './components/operations/parameters-operation/parameters-operation.component';
+import { MainPropertiesComponent } from './components/properties/main-schemas/main-properties.component';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
@@ -30,6 +31,7 @@ import { ResponsesOperationComponent } from './components/operations/responses-o
 import { SelectorDocumentoOpenapi3Component } from './components/comunes/selector-documento-openapi3/selector-documento-openapi3.component';
 import { ItemDocumentoOpenApi3Component } from './components/comunes/item-documento-openapi3/item-documento-openapi3.component';
 import { MatCardModule } from '@angular/material/card';
+import { TablaPropertiesComponent } from './components/properties/tabla-properties/tabla-properties.component';
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 
@@ -52,7 +54,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ResponseOperationComponent,
     ResponsesOperationComponent,
     SelectorDocumentoOpenapi3Component,
-    ItemDocumentoOpenApi3Component
+    ItemDocumentoOpenApi3Component,
+    MainPropertiesComponent,
+    TablaPropertiesComponent
       
   ],
   imports: [

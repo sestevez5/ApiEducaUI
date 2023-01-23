@@ -1,9 +1,9 @@
 import { PanelExecuteOperationComponent } from './../panel-execute-operation/panel-execute-operation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ICodeWithResponseObject, IOperationObject, IParameterObject, IResponseObject } from './../../../models/documentoOpenApi3';
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
-import { ObtenerBodyRequestComoCadena} from '../../../services/utils'
-import { UtilsService } from 'src/app/webApiModule/services/utils.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { colorMetodo, ObtenerBodyRequestComoCadena} from '../../../services/utils'
+
 
 @Component({
   selector: 'app-arbol-operations',
@@ -18,7 +18,7 @@ export class ArbolOperationsComponent implements OnInit {
 
   respuestasExpanded: boolean;
 
-  constructor(public dialog: MatDialog, private us: UtilsService) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +27,7 @@ export class ArbolOperationsComponent implements OnInit {
 
   
   colorMetodo(metodo: string): {color:string, nombreMetodo:string, colorFondo:string, colorFondoClaro} {
-    return this.us.colorMetodo(metodo);
+    return colorMetodo(metodo);
   }
 
   parametrosPath(): Array<IParameterObject> | undefined {

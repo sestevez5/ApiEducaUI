@@ -1,0 +1,67 @@
+<div>
+
+    <!-- Barra de filtrado general -->
+    <mat-toolbar>
+      <div class="seccionBuscador">
+          <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
+      </div>
+
+      <div class="selectorCategoria">
+        <mat-chip-list style="margin:4px" *ngIf="this.nodoSelecionado"  #chipList aria-label="Fruit selection">
+          <mat-chip>
+            {{this.nodoSelecionado}}
+            <button matChipRemove (click)="onRemove()">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-list>
+  
+        <!-- <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
+          <mat-icon >account_tree</mat-icon>
+        </button> -->
+
+      </div>    
+   
+  
+      <span class="example-spacer"></span>
+
+      <mat-slide-toggle [(ngModel)]="mostrarTiposDePropiedades" color="primary">Mostrar tipo de campos</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="mostrarDescripcionesSchemas" color="primary">Mostrar descripciones</mat-slide-toggle>
+     
+      <button mat-icon-button class="iconoColapsarDesplegar" (click)="onExpandirToggle()" aria-label="Example icon-button with share icon">
+        <mat-icon >{{ this.panelesExpandidos? 'expand_less' : 'expand_more'}}</mat-icon>
+      </button>
+    </mat-toolbar>
+      
+    <!-- Sección que renderiza los Dtos. -->
+    <p *ngIf="!this.mostrarSchemas">Cargando...</p>
+
+    
+    <div class="seccionSchemas" *ngIf="this.mostrarSchemas" >
+
+      <mat-paginator [length]="this.paginacion.longitud"
+                     [pageSize]="this.paginacion.tamanyoPagina"
+                     [pageSizeOptions]="this.paginacion.opcionesPagina"
+                     [pageIndex]="this.paginacion.paginaSeleccionada"
+                     (page)="onSeleccionarPagina($event)"
+                 
+                     aria-label="Select page">
+      </mat-paginator>
+      
+
+<app-tabla-properties [_properties]="this.properties" [_textoFiltro]="this.textoFiltro">
+</app-tabla-properties>
+
+
+
+      <!-- <div  >
+        <div *ngFor="let property of this.properties" >
+          {{property.nombre|json}}
+        </div>
+    
+       
+   
+    </div> -->
+  
+  </div>
+  

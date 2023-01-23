@@ -3,13 +3,13 @@ import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { IValorParametroPath, EjecucionOperation } from './../../../models/datosEjecucionOperation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OpenApi3Service } from './../../../services/open-api3.service';
-import { IOpenApiObject3, IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
-import { Component, Inject, OnInit } from '@angular/core';
+import { IOperationObject, IParameterObject } from './../../../models/documentoOpenApi3';
+import { Component, Inject} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { colorMetodo, ObtenerBodyRequestComoCadena } from '../../../services/utils'
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ThisReceiver } from '@angular/compiler';
-import { UtilsService } from 'src/app/webApiModule/services/utils.service';
+
+
 
 
 interface parametroFormControl {
@@ -57,8 +57,7 @@ export class PanelExecuteOperationComponent {
     private eep: EjecucionEndpointsService,
     private fb: FormBuilder,
     private sb: MatSnackBar,
-    public dialog: MatDialog,
-    private us: UtilsService
+    public dialog: MatDialog
   ) { 
 
     //----------------------------------------------------
@@ -168,7 +167,7 @@ export class PanelExecuteOperationComponent {
   //------------------------------------------------------------------
 
   colorMetodo(metodo: string): {color:string, nombreMetodo:string, colorFondo:string, colorFondoClaro} {
-    return this.us.colorMetodo(metodo);
+    return colorMetodo(metodo);
   }
 
   servidorActual():string {

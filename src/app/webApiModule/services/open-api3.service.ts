@@ -1,3 +1,4 @@
+import { IPropertyAux } from './../models/modelosAuxiliares';
 import { IComponentObject, IOpenApiObject3, ISchemaObjectWithKey, IProperty, IPathObject, IOperationObject, IParameterObject, IResponseObject, ICodeWithResponseObject, IMediaTypeObject, IServerObject, IRequestBody, OrigenDatosOpenApi3 } from './../models/documentoOpenApi3';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -64,6 +65,13 @@ export class OpenApi3Service {
   schemas$: BehaviorSubject<Array<ISchemaObjectWithKey>> = new BehaviorSubject<Array<ISchemaObjectWithKey>>([]);
   schemasActuales: Array<ISchemaObjectWithKey>;  // mantiene los últimos schemas cargados.
 
+  //---------------------------------------
+  // PROPERTIES
+  //---------------------------------------
+  // Observable que emite actualizaciones de colecciones de Propiedades.
+  propertiesAux$: BehaviorSubject<Array<IPropertyAux>> = new BehaviorSubject<Array<IPropertyAux>>([]);
+  propertiesAuxActuales: Array<IPropertyAux>;  // mantiene los últimos schemas cargados.
+
 
   //---------------------------------------
   // TOKEN
@@ -93,8 +101,18 @@ export class OpenApi3Service {
 
     // Cada vez que se emite una nueva colección de esquemas se almacena en la variable schemasActuales
     this.schemas$.subscribe(
-      schemas => this.schemasActuales=schemas
+      schemas => {
+        this.schemasActuales=schemas;
+        this.propertiesAux$.next(this.generarProperties(schemas)) 
+      }
     );
+
+    // Cada vez que se emite una nueva colección de esquemas se almacena en la variable schemasActuales
+    this.propertiesAux$.subscribe( propertyAux => 
+      {
+        this.propertiesAuxActuales=propertyAux;
+        
+      });
 
     // Cada vez que se emite una nueva colección de operations (endpoints) se almacena en la variable operationsActuales
     this.operations$.subscribe(
@@ -269,11 +287,11 @@ export class OpenApi3Service {
     const numeroElementos = operations.length;
 
     let datos: IOperationObject[] = operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
-    datos.forEach(
-      o => {
-        console.log(o.path,'---', o.tags);
-      }
-    )
+    // datos.forEach(
+    //   o => {
+    //     console.log(o.path,'---', o.tags);
+    //   }
+    // )
     return { 
       datos: operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos
@@ -294,6 +312,33 @@ export class OpenApi3Service {
     
     return { 
       datos: schemas.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
+      numeroElementos:numeroElementos
+    }
+    
+  }
+
+  obtenerPropertiesFiltradas(cadenaFiltro:string, pagina: number, tamanyoPagina:number): {datos:Array<IPropertyAux>, numeroElementos:number} {
+
+    let properties = cadenaFiltro?
+      this.propertiesAuxActuales.filter(property => 
+        property.nombre.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        ||
+        property.tipoSchemaPadre.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        ||
+        property.tipoSchemaHijo.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        
+        ):this.propertiesAuxActuales;
+    properties = properties.filter(property =>property.tipoSchemaPadre.endsWith('DTO'));
+    properties = properties.sort(
+      (a,b) => { if (a.nombre<b.nombre) return -1
+      else return 1}
+      )
+
+
+    const numeroElementos = properties.length;
+    
+    return { 
+      datos: properties.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos
     }
     
@@ -607,8 +652,59 @@ export class OpenApi3Service {
   }
   
 
+  //---------------------------------------------------------------------------
+  // Métodos relacionados con las propiedades
+  //---------------------------------------------------------------------------
+
+  generarProperties(schemas: Array<ISchemaObjectWithKey>):Array<IPropertyAux>{
+
+    const propertiesAux: Array<IPropertyAux>=[]; 
+    schemas.filter(schema => schema.properties)
+    .forEach(schema=> {
+
+      const propertiesActuales = schema.properties;
+      propertiesActuales.forEach(
+        propertyActual => {
+
+          const schemaPadre = schema;
+          const tipoSchemaPadre = this.calcularTipoProperties(schema)
+
+          const nombre = propertyActual.name;
+          const tipoSchemaHijo = this.calcularTipoProperties(propertyActual.value);
+          const schemaHijo = propertyActual.value
+          propertiesAux.push({schemaPadre, tipoSchemaPadre, nombre,tipoSchemaHijo, schemaHijo});
+
+        }
+      );
+    }
+    )
+
+    return propertiesAux;
+    
 
 
+  }
+
+  calcularTipoProperties(schema: ISchemaObjectWithKey){
+    let tipo: string;
+
+    switch (schema.type) {
+      case 'array': tipo = 'Colección de &lt;' + this.calcularTipoProperties(schema.items)+'&gt;'
+        
+        break;
+
+        case 'object': tipo = schema.key
+        
+        break;
+    
+      default:
+
+      tipo = schema.type
+        break;
+    }
+
+    return tipo;
+  }
 
 
 
