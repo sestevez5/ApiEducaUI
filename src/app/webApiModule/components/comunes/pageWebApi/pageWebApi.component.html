@@ -58,7 +58,10 @@
 
 
   <!-- Pestañas de contenido -->
-  <mat-tab-group>
+
+  <div *ngIf="this.cargando">Cargando...</div>
+
+  <mat-tab-group *ngIf="!this.cargando" >
 
     <mat-tab label="Endpoints de gestión"> 
       <div class="webApiPestanya">

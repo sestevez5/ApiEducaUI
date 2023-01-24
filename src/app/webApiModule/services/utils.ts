@@ -36,8 +36,7 @@ import { ISchemaObjectWithKey } from "../models/documentoOpenApi3";
 export function propertyInSchema(schema: ISchemaObjectWithKey, propertyName): boolean{
 
    if ( schema.key === 'access_token') {
-    console.log(schema.key);
-    
+  
     return true;
   } 
 
@@ -47,7 +46,7 @@ export function propertyInSchema(schema: ISchemaObjectWithKey, propertyName): bo
 
     schema.properties.forEach(
       property => {
-        console.log(property.name);
+
         if (property.name === 'access_token') {
           result = true;
       

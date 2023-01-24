@@ -110,11 +110,11 @@ export class MainOperationsComponent  {
 
   actualizarDatos()
   {
-      const result: any = this.was1.obtenerOperationsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina, this.OpAutenticacion, this.mostrarMetodosGET, this.mostrarMetodosPOST, this.mostrarMetodosPUT, this.mostrarMetodosDELETE, this.mostrarAgrupados);
-      this.operations = result.datos;
-      this.calcularTags();
-      this.paginacion.longitud = result.numeroElementos;
-     
+        const result: any = this.was1.obtenerOperationsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina, this.OpAutenticacion, this.mostrarMetodosGET, this.mostrarMetodosPOST, this.mostrarMetodosPUT, this.mostrarMetodosDELETE, this.mostrarAgrupados);
+        this.operations = result.datos;
+        this.calcularTags();
+        this.paginacion.longitud = result.numeroElementos;
+  
   }
 
   calcularTags() {

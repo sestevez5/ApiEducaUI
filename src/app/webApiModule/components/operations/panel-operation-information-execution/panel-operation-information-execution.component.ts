@@ -1,6 +1,6 @@
 
-import { Component, Input, OnInit, OnChanges, SimpleChanges,ChangeDetectionStrategy, DoCheck } from '@angular/core';
-import { EjecucionOperation, IValorParametroPath } from 'src/app/webApiModule/models/datosEjecucionOperation';
+import { Component, Input, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { EjecucionOperation } from 'src/app/webApiModule/models/datosEjecucionOperation';
 
 @Component({
   selector: 'app-panel-operation-information-execution',
@@ -8,36 +8,14 @@ import { EjecucionOperation, IValorParametroPath } from 'src/app/webApiModule/mo
   changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./panel-operation-information-execution.component.css']
 })
-export class PanelOperationInformationExecutionComponent implements OnInit, DoCheck  {
-
+export class PanelOperationInformationExecutionComponent implements OnInit {
 
   @Input() dataExecutionOperation: EjecucionOperation
- 
-
   seccionesPath: Array<ISeccionPath>=[]
 
-
-  constructor() {
-
-   }
-
    ngOnInit(): void {
-
     this.gestionarSeccionesPath();
-    
    }
-
-   ngOnChanges(changes: SimpleChanges): void {
-     console.log(changes);
-   }
-
-   ngDoCheck(): void {
-    //this.gestionarSeccionesPath();
-   }
-
-
-
-  
 
    gestionarSeccionesPath(){
 
@@ -45,7 +23,6 @@ export class PanelOperationInformationExecutionComponent implements OnInit, DoCh
     this.seccionesPath = [];
 
     const fragmentosPath: string[] = this.dataExecutionOperation.datosEjecucion.path.split('/');
-
 
     let seccionActual: ISeccionPath; 
 

@@ -1,4 +1,4 @@
-import { IPropertyAux } from './../../../models/modelosAuxiliares';
+import { IPropertyAux } from '../../../models/modelosAuxiliares';
 import { SelectorAgrupacionesComponent } from '../../comunes/selector-agrupaciones/selector-agrupaciones.component';
 import { OpenApi3Service } from '../../../services/open-api3.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -92,7 +92,6 @@ export class MainPropertiesComponent {
   {
       const result: any = this.oas3.obtenerPropertiesFiltradas(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina);
       this.properties = result.datos;
-      console.log(this.properties)
       this.paginacion.longitud = result.numeroElementos;
   }
 

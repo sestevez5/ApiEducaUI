@@ -17,25 +17,27 @@ export class OpenApi3Service {
   //---------------------------------------
 
   
-    // Ruta del fichero que contiene todas las rutas de los docuementos OpenApi.
-    origenDatosOpenApiOnline: string = '../assets/datas/origenesDatosOpenApi.json';
+  // Ruta del fichero que contiene todas las rutas de los docuementos OpenApi.
+  origenDatosOpenApiOnline: string = '../assets/datas/origenesDatosOpenApi.json';
 
-    // Observable que emite la colección de rutas.
-    rutasPreestablecidasDocumentosOpenApi3$: BehaviorSubject<OrigenDatosOpenApi3[]> = new BehaviorSubject<OrigenDatosOpenApi3[]>([]);
+  // Observable que emite la colección de rutas.
+  rutasPreestablecidasDocumentosOpenApi3$: BehaviorSubject<OrigenDatosOpenApi3[]> = new BehaviorSubject<OrigenDatosOpenApi3[]>([]);
 
-    
-    // Contiene la ruta actual del documento para poder ser leido. Su valor se actualiza a partir del observable rutaDocumentoOpenApiActual$
-    rutaDocumentoOpenApiActual: string ='';
-    rutaDocumentoOpenApiActual$: BehaviorSubject<string>= new BehaviorSubject<string>(this.rutaDocumentoOpenApiActual);
-    
+  
+  // Contiene la ruta actual del documento para poder ser leido. Su valor se actualiza a partir del observable rutaDocumentoOpenApiActual$
+  rutaDocumentoOpenApiActual: string ='';
+  rutaDocumentoOpenApiActual$: BehaviorSubject<string>= new BehaviorSubject<string>(this.rutaDocumentoOpenApiActual);
+  
 
-    // Contiene el objeto global que representa al documento openApi3
-    OpenApiObject3Actual: IOpenApiObject3;
-    OpenApiObject3Actual$: BehaviorSubject<IOpenApiObject3|undefined> = new BehaviorSubject<IOpenApiObject3|undefined>(undefined);
+  // Contiene el objeto global que representa al documento openApi3
+  OpenApiObject3Actual: IOpenApiObject3;
+  OpenApiObject3Actual$: BehaviorSubject<IOpenApiObject3|undefined> = new BehaviorSubject<IOpenApiObject3|undefined>(undefined);
 
-    auxDocumentoActual: any;
+  auxDocumentoActual: any;
 
-    erroresCargaDocumentoOpenApi$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  erroresCargaDocumentoOpenApi$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+
+  cargandoDocumento$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
  
   //---------------------------------------
   //SERVERS
@@ -88,12 +90,10 @@ export class OpenApi3Service {
       .subscribe(
         nuevoDocumentoOpenApi3 => {
 
-          if ( this.rutaDocumentoOpenApiActual != nuevoDocumentoOpenApi3 ) {
-           
-          }
-
+          this.cargandoDocumento$.next(true);
           this.rutaDocumentoOpenApiActual = nuevoDocumentoOpenApi3;
           this.rutaDocumentoOpenApiActual?this.actualizarOpenApiObject3Actual():null;
+          this.cargandoDocumento$.next(false);
 
         
         }
@@ -287,11 +287,7 @@ export class OpenApi3Service {
     const numeroElementos = operations.length;
 
     let datos: IOperationObject[] = operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
-    // datos.forEach(
-    //   o => {
-    //     console.log(o.path,'---', o.tags);
-    //   }
-    // )
+
     return { 
       datos: operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos

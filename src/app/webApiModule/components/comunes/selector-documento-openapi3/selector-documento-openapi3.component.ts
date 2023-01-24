@@ -8,10 +8,11 @@ import { OpenApi3Service } from 'src/app/webApiModule/services/open-api3.service
   templateUrl: './selector-documento-openapi3.component.html',
   styleUrls: ['./selector-documento-openapi3.component.css']
 })
-export class SelectorDocumentoOpenapi3Component implements OnInit {
+export class SelectorDocumentoOpenapi3Component {
 
   documentosopeApi3: OrigenDatosOpenApi3[];
   documentoSeleccionado: OrigenDatosOpenApi3 | undefined;
+  
   constructor(private oa3: OpenApi3Service) { 
 
     oa3.rutasPreestablecidasDocumentosOpenApi3$.subscribe(
@@ -33,9 +34,6 @@ export class SelectorDocumentoOpenapi3Component implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
-
   onSeleccionado(ods: OrigenDatosOpenApi3) {
 
     this.documentoSeleccionado = ods;
@@ -45,6 +43,7 @@ export class SelectorDocumentoOpenapi3Component implements OnInit {
 
   onAceptar() {
 
+   
     this.oa3.cambiarDocumento(this.documentoSeleccionado.url);
 
     

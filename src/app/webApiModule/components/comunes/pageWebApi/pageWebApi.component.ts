@@ -7,6 +7,7 @@ import { IServerObject, OrigenDatosOpenApi3 } from 'src/app/webApiModule/models/
 import { SelectorDocumentoOpenapi3Component } from '../selector-documento-openapi3/selector-documento-openapi3.component';
 import { defaultRippleAnimationConfig } from '@angular/material/core';
 
+
 @Component({
   selector: 'app-pageWebApi',
   templateUrl: './pageWebApi.component.html',
@@ -67,12 +68,11 @@ export class PageWebApiComponent {
       }
     )
 
-    was.schemas$.subscribe(
-      schemas => { 
-        this.cargando=false;
-        this.documentoSeleccionadaOld = this.documentoSeleccionado
-      }
-    );
+    was.cargandoDocumento$.subscribe( cargando => this.cargando = cargando )
+
+    was.schemas$.subscribe(schemas =>   this.documentoSeleccionadaOld = this.documentoSeleccionado);
+
+    was.operations$.subscribe(operations => this.documentoSeleccionadaOld = this.documentoSeleccionado );
 
     was.obtenerServidores().subscribe(
       servidores => {
@@ -112,7 +112,6 @@ export class PageWebApiComponent {
 
   onSeleccionarRuta(ruta:string) {
     this.documentoSeleccionado=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
-    this.cargando=true;
     this.was.cambiarDocumento(this.documentoSeleccionado.url)
   }
 
@@ -135,17 +134,10 @@ export class PageWebApiComponent {
 
   onSeleccionarDocumentoOpenApi3() {
     const dialogRef = this.dialog.open(SelectorDocumentoOpenapi3Component);
-    dialogRef.afterClosed().subscribe(result => {
-    });
-
   }
 
   onPersistirToken() {
 
     this.persistirToken=!this.persistirToken;
   }
-
-
-
-
 }
