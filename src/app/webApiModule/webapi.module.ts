@@ -35,6 +35,8 @@ import { TablaPropertiesComponent } from './components/properties/tabla-properti
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 
+import { ShowdownModule } from 'ngx-showdown'
+
 
 
 @NgModule({
@@ -69,7 +71,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ReactiveFormsModule,
     NgxJsonViewerModule,
     MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ShowdownModule
  
   ]
 })

@@ -24,7 +24,8 @@
 
         <mat-accordion [multi]="true">
             <div *ngIf="this.mostrarDescripcionesOperations" class="seccion seccionCabeceraSubseccionOperation descripcionOperation">
-                {{this.operation.summary}}
+                <showdown [value]="this.operation.summary"></showdown>
+                       
             </div>
 
             <!-- Sección correspondiente a los campos de tipo path -->

@@ -12,9 +12,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './componentes/general/login/login.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
 
-import {MatTooltipModule} from '@angular/material/tooltip'
+import {MatTooltipModule} from '@angular/material/tooltip';
 
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
+
+import { ShowdownModule } from 'ngx-showdown'
+
+
+
 
 
 
@@ -34,8 +39,8 @@ import { MatTableModule } from '@angular/material/table'
     HttpClientModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatTableModule
-    
+    MatTableModule,
+    ShowdownModule
    
     
   ],

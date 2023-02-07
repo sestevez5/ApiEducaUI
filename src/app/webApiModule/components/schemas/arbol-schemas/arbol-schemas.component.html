@@ -6,11 +6,19 @@
   [hideToggle]="!this.tienePropiedades()" 
   [ngClass]="{'mat-elevation-z0' : !this.tienePropiedades()}"
   [ngClass]="{'deshabilitarExpansion' : !this.tienePropiedades()}">
+
+  <!-- <mat-expansion-panel 
+  *ngIf="schema"
+  class="schema"
+  [ngClass]="{'schemaPadre' : esSchemaRaiz}"
+  [(expanded)]="this.expandido" 
+  [hideToggle]="!this.tienePropiedades()" 
+  [ngClass]="{'mat-elevation-z0' : !this.tienePropiedades()}"
+  [ngClass]="{'deshabilitarExpansion' : !this.tienePropiedades()}"> -->
   
   <!-- Cabecera -->
   <mat-expansion-panel-header>
     <div class="seccion seccionHeader">
-
       <div *ngIf="!schema.enum" class="seccion seccionHeaderNombreSchema">
         {{schema.key?schema.key+':':''}}
       </div> 
@@ -52,7 +60,7 @@
 
       </div>
     
-      <div *ngIf="this.mostrarDescripcionesSchemas"  class="seccion seccionHeaderDescripcionSchema">
+      <div *ngIf="!this.tienePropiedades() && this.mostrarDescripcionesSchemas"  class="seccion seccionHeaderDescripcionSchema">
         <span 
           mat-raised-button 
           #tooltip="matTooltip" 
@@ -60,6 +68,7 @@
           matTooltip="{{schema.description}}">
           {{schema.description}}
         </span>
+        <!-- <showdown [value]="this.schema.description"></showdown> -->
       </div>
 
     </div>
@@ -72,7 +81,8 @@
   <div *ngIf="this.tienePropiedades() && this.expandido"  class="seccion seccionCuerpoSchema">
 
     <div *ngIf="this.mostrarDescripcionesSchemas" class="seccion  descripcionSchema">
-      {{this.schema.description?this.schema.description:'Sin definir'}}
+      <showdown [value]="this.schema.description?this.schema.description:'Sin definir'"></showdown>
+      <!-- {{this.schema.description?this.schema.description:'Sin definir'}} -->
    </div>
 
   
@@ -89,8 +99,6 @@
 
       <!-- En esta sección hay bifurcaciones en base al tipo  -->
       <div class="seccion seccionTipo">
-        
-
         <!-- Caso 2. Propiedades de tipo object -->
         <ng-container *ngIf="property.value.type === 'object' || this.tipoPropiedad(property.value.type)===enumTipologiaDePropiedades.SIMPLE" >
           <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" *ngIf="this.mostrarTiposDePropiedades"  >
@@ -101,7 +109,7 @@
         <!-- Caso 3. Propiedades de tipo array -->
         <ng-container *ngIf="property.value.type === 'array'" >
         <div class="seccion seccionDatosTipoPropiedad seccionDatosTipoPropiedadSimple" *ngIf="this.mostrarTiposDePropiedades"  >
-          <app-arbol-schemas   [mostrarDescripcionesSchemas]="this.mostrarDescripcionesSchemas" [schema]="property.value.items" class="schemaHijo" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
+          <app-arbol-schemas  [mostrarDescripcionesSchemas]="this.mostrarDescripcionesSchemas" [schema]="property.value.items" class="schemaHijo" [esSchemaRaiz]="false" [expandido]="this.expandido"></app-arbol-schemas>
         </div>
       </ng-container>
 

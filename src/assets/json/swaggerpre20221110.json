@@ -3189,6 +3189,7 @@
       },
       "GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.TipoSituacionAprendizajeExDTO": {
         "type": "object",
+        "description": "sjaflkjsaflksjalfksjlkf",
         "properties": {
           "idTipoSituacionAprendizaje": {
             "type": "integer",
@@ -3732,7 +3733,8 @@
         "properties": {
           "idSituacionAprendizaje": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "description": "esto es una prueba"
           },
           "tipoSituacionAprendizaje": {
             "$ref": "#/components/schemas/GestionAcAdCentros.Servicio.DTO.EvaluacionEducativa.TipoSituacionAprendizajeExDTO"
