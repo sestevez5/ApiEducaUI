@@ -1,14 +1,13 @@
 .seccionPropiedad {
-    
     min-height: 30px;
-    margin-bottom: 5px;
     display: flex;
 
 }
 
 .seccionNombrePropiedad {
-    display: block;
-    width: 10%;
+    display: flex;
+    align-items: center;
+    width: 12%;
     margin-right: 20px;
     min-height: 30px;
     white-space: nowrap; 
@@ -18,11 +17,30 @@
    
 }
 
+.nombrePropiedad {
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow:hidden;
+    line-height: 30px;
+   
+
+}
+.botonDescripcionParametro { 
+    cursor: pointer;
+    margin-left: auto;
+    }
+
 .seccionTipo {
     width: 100%;
-    padding: 0px;
-    margin: 0px;
+ /* display: flex; */
+ justify-content: stretch;
+ align-items: center;
+ 
+
+
 }
+
+
 
 
 .texto {
@@ -30,3 +48,12 @@
     vertical-align: middle;
     line-height: normal;
 }
+
+.seccionPropiedad {
+    height: min-content;
+}
+
+app-arbol-schemas {
+    height: min-content;
+}
+

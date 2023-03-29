@@ -7,14 +7,7 @@
   [ngClass]="{'mat-elevation-z0' : !this.tienePropiedades()}"
   [ngClass]="{'deshabilitarExpansion' : !this.tienePropiedades()}">
 
-  <!-- <mat-expansion-panel 
-  *ngIf="schema"
-  class="schema"
-  [ngClass]="{'schemaPadre' : esSchemaRaiz}"
-  [(expanded)]="this.expandido" 
-  [hideToggle]="!this.tienePropiedades()" 
-  [ngClass]="{'mat-elevation-z0' : !this.tienePropiedades()}"
-  [ngClass]="{'deshabilitarExpansion' : !this.tienePropiedades()}"> -->
+
   
   <!-- Cabecera -->
   <mat-expansion-panel-header>
@@ -40,7 +33,7 @@
       {{ 'Enumerado:  valores posibles {' }}
       
       <span *ngFor="let valor of schema.enum">
-        {{valor }}
+        {{valor}}
       </span>
       {{'}'}}
     </span> 
@@ -68,7 +61,7 @@
           matTooltip="{{schema.description}}">
           {{schema.description}}
         </span>
-        <!-- <showdown [value]="this.schema.description"></showdown> -->
+        
       </div>
 
     </div>

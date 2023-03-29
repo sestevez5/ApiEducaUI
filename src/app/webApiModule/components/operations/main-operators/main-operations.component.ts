@@ -31,7 +31,7 @@ export class MainOperationsComponent  {
   paginaEvent: PageEvent;
   textoFiltro: string='';
 
-  cargando:boolean=false;
+
 
 
   @ViewChild(MatAccordion) acordeon!: MatAccordion;
@@ -41,6 +41,8 @@ export class MainOperationsComponent  {
 
   @Input() mostrarOperations=true;
   @Input() OpAutenticacion = false;
+  
+
 
   constructor(public dialog: MatDialog, private was1: OpenApi3Service) { 
 
@@ -49,11 +51,12 @@ export class MainOperationsComponent  {
       longitud:0,
       paginaSeleccionada:0,
       opcionesPagina: [5,10,15,20],
-      tamanyoPagina: 10
+      tamanyoPagina: 20
     };
 
     this.actualizarDatos();
   })
+
   }
   
   openDialog() {

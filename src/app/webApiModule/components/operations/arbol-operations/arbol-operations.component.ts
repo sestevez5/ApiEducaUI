@@ -1,3 +1,4 @@
+import { PanelModalMarkdownComponent } from './../../../../sharedModule/components/panel-modal-markdown/panel-modal-markdown.component';
 import { PanelExecuteOperationComponent } from './../panel-execute-operation/panel-execute-operation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ICodeWithResponseObject, IOperationObject, IParameterObject, IResponseObject } from './../../../models/documentoOpenApi3';
@@ -15,6 +16,8 @@ export class ArbolOperationsComponent implements OnInit {
   @Input() operation: IOperationObject | undefined; 
   @Input() mostrarDescripcionesOperations=true;
   @Input() expandido: boolean = false;
+
+  descripcionExpandida: false;
 
   respuestasExpanded: boolean;
 
@@ -52,7 +55,7 @@ export class ArbolOperationsComponent implements OnInit {
     return this.operation.requestBody?ObtenerBodyRequestComoCadena(this.operation.requestBody):undefined;
   }
 
-  openDialog() {
+  openDialogPanelEjecucion() {
     const dialogRef = this.dialog.open(PanelExecuteOperationComponent, {
       data: this.operation,
       width: '100%'
@@ -60,11 +63,24 @@ export class ArbolOperationsComponent implements OnInit {
   }
 
   onEjecutar(){
-    this.openDialog();
+    this.openDialogPanelEjecucion();
   }
 
   validResponses(): ICodeWithResponseObject[] | undefined {
     return this.operation.responses.filter(r => r.response.content[0]);
+
+  }
+
+  openDialogPanelMensaje(cadena:string) {
+    const dialogRef = this.dialog.open(PanelModalMarkdownComponent, {
+      data: cadena,
+      width: '100%'
+    });
+  }
+
+  onMostrarMensaje(cadena: string){
+    
+    this.openDialogPanelMensaje(cadena);
 
   }
 

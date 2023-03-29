@@ -27,8 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { MatSelectModule } from '@angular/material/select';
+import { PanelModalMarkdownComponent } from './components/panel-modal-markdown/panel-modal-markdown.component';
+import { PanelExtensibleComponent } from './components/panel-extensible/panel-extensible.component';
 
-
+import { ShowdownModule } from 'ngx-showdown'
 
 
 
@@ -38,7 +40,9 @@ import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    BuscadorComponent
+    BuscadorComponent,
+    PanelModalMarkdownComponent,
+    PanelExtensibleComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +69,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatBadgeModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    ShowdownModule
+   
 
   ],
   exports: [
@@ -93,7 +99,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatBadgeModule,
     FormsModule,
     BuscadorComponent,
-    MatSelectModule
+    MatSelectModule,
+    PanelExtensibleComponent
   ]
 })
 export class SharedModule {

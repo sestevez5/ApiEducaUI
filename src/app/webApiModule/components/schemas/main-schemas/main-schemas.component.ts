@@ -50,7 +50,7 @@ export class MainSchemasComponent {
         longitud:0,
         paginaSeleccionada:0,
         opcionesPagina: [5,10,15,20],
-        tamanyoPagina: 15
+        tamanyoPagina: 25
       };
 
       this.actualizarDatos();

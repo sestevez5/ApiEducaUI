@@ -29,9 +29,7 @@
     </mat-toolbar>
       
     <!-- Sección que renderiza los Dtos. -->
-    <p *ngIf="!this.mostrarOperations">Cargando...</p>
-
-    <div class="seccionEndpoints" *ngIf="this.mostrarOperations" >
+    <div class="seccionEndpoints">
       
       <mat-paginator [length]="this.paginacion.longitud"
                      [pageSize]="this.paginacion.tamanyoPagina"

@@ -13,6 +13,8 @@ export class ResponseOperationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    // console.log(this.responseWithCode.response.content[0].schema);
   }
 
 }

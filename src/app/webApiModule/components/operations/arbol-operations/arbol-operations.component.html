@@ -15,6 +15,7 @@
                 {{operation.path}}
                 <!-- <span *ngFor="let tag of operation.tags" >{{tag}}</span> -->
             </div>
+           
         </div>
 
     </mat-expansion-panel-header>
@@ -24,9 +25,9 @@
 
         <mat-accordion [multi]="true">
             <div *ngIf="this.mostrarDescripcionesOperations" class="seccion seccionCabeceraSubseccionOperation descripcionOperation">
-                <showdown [value]="this.operation.summary"></showdown>
-                       
+                <app-panel-extensible [contenido]="this.operation.summary"></app-panel-extensible>
             </div>
+
 
             <!-- Sección correspondiente a los campos de tipo path -->
             <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath()"  [expanded]="this.expandido" >

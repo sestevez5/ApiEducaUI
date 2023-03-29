@@ -1,0 +1,18 @@
+<div class="panelExtensible" [ngClass]="{'panelExtensibleColapsado': this.descripcionExpandida===false, 'panelExtensibleDesplegado': this.descripcionExpandida===true }">
+
+    <div class="cabecera">
+        <div class="botonEjecucion" (click)="onToggleExpandir()"  >
+            <div class="icono" *ngIf="!this.descripcionExpandida" >
+                <mat-icon style="font-size: 15px;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">expand</mat-icon>
+            </div>               
+            <div class="icono" *ngIf="this.descripcionExpandida">
+                <mat-icon style="font-size: 15px;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">unfold_less</mat-icon>
+            </div>               
+        </div>       
+    </div>
+
+    <div class="cuerpo">
+        <showdown [value]="this.contenido"></showdown> 
+    </div>
+
+</div>

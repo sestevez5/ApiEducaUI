@@ -89,13 +89,10 @@ export class OpenApi3Service {
     this.rutaDocumentoOpenApiActual$
       .subscribe(
         nuevoDocumentoOpenApi3 => {
-
-          this.cargandoDocumento$.next(true);
+      
           this.rutaDocumentoOpenApiActual = nuevoDocumentoOpenApi3;
           this.rutaDocumentoOpenApiActual?this.actualizarOpenApiObject3Actual():null;
-          this.cargandoDocumento$.next(false);
-
-        
+       
         }
       )
 
@@ -200,10 +197,16 @@ export class OpenApi3Service {
   actualizarOpenApiObject3Actual() {
 
 
-
+    this.cargandoDocumento$.next(true);
     this.http.get(this.rutaDocumentoOpenApiActual)
       .subscribe(
         contenidoDocumentoActual => {
+
+          
+        this.cargandoDocumento$.next(false);
+
+            
+      
 
           this.auxDocumentoActual=contenidoDocumentoActual;
           const cda: any = contenidoDocumentoActual
@@ -237,7 +240,10 @@ export class OpenApi3Service {
           
 
         },
-        error => this.erroresCargaDocumentoOpenApi$.next("No se ha podido cargar el documento")
+        error => {
+          this.erroresCargaDocumentoOpenApi$.next("No se ha podido cargar el documento");
+          this.cargandoDocumento$.next(false);
+        }
 
       )
 
@@ -249,7 +255,7 @@ export class OpenApi3Service {
     let operations:IOperationObject[] = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
 
     // Paso 2: Aplicaciones el filtro en base al parámetro esOperationAuth
-    esOperationAuth?operations = operations.filter ( op => op.path.includes("/Autenticacion/")):operations =operations.filter ( op => !op.path.includes("/Autenticacion/"));
+    esOperationAuth?operations = operations.filter ( op => op.path.includes("/seguridad/")):operations =operations.filter ( op => !op.path.includes("/Autenticacion/"));
 
     // Llegados a este punto tenemos localizados todos los endpoints que cumplan el filtro pasado por cadena. 
     // en función de la opción serían los de autenticación o no
@@ -472,8 +478,32 @@ export class OpenApi3Service {
   }
 
   private nombreSimpleSchema(referencia:string): string {
-    const arraySeccionesReferencia=referencia.split('.');
-    return arraySeccionesReferencia[arraySeccionesReferencia.length-1]
+
+    //Si es un objeto de tipo parametricado
+    // ejemplo responses.responseSimple<algo1.algo2.algo3>
+    // en este caso devolveríamos
+    // responseSimple<algo3>
+    if (referencia.endsWith('>')) {
+      const arraySeccionesReferencia=referencia.split('<');
+      const arrayParte1 = arraySeccionesReferencia[0].split('.');
+      const parte1 = arrayParte1[arrayParte1.length-1];
+      const arrayParte2 = arraySeccionesReferencia[1].split('.');
+      const parte2 = arrayParte2[arrayParte2.length-1];
+
+      return  parte1 + '<' + parte2;
+
+
+    }
+    else {
+      const arraySeccionesReferencia=referencia.split('.');
+      return arraySeccionesReferencia[arraySeccionesReferencia.length-1]
+
+    }
+
+    
+
+
+
 
   }
 
@@ -482,6 +512,8 @@ export class OpenApi3Service {
     return arraySeccionesReferencia[arraySeccionesReferencia.length-1]
 
   }
+
+
 
   //---------------------------------------------------------------------------
   // Métodos relacionados con el nodo PATHS

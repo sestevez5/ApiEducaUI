@@ -102,6 +102,7 @@ export class PageWebApiComponent {
           
           // Si la localizamos (url=true) la establacemos como tura por defaultRippleAnimationConfig.
           // En caso contrario se toma la primera de la lista. es lo que hace lar tres siguientes líneas.
+          console.log('url', url);
           url?  
           this.onSeleccionarRuta(url):  
           this.onSeleccionarRuta(this.documentosOpenApiPrefijados.sort((d1,d2) => d1.orden - d2.orden)[0].url);
@@ -111,6 +112,7 @@ export class PageWebApiComponent {
   }
 
   onSeleccionarRuta(ruta:string) {
+    console.log(ruta);
     this.documentoSeleccionado=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
     this.was.cambiarDocumento(this.documentoSeleccionado.url)
   }

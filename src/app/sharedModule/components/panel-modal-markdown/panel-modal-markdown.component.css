@@ -1,0 +1,160 @@
+.panelEjecucion {
+    width: 100%;
+  }
+  .secciones {
+       height: 600px; 
+      overflow:-moz-hidden-unscrollable;
+      display: grid;
+      /* grid-template-rows: 10% 70% 20% ;  */
+      grid-template-rows: 10% 90% ; 
+
+  }
+
+  .seccionCabeceraPanel {
+     grid-row-start: 1;
+    grid-row-end: 1;
+    display: flex;
+    font-size: 20px;
+}
+
+
+
+.seccionCuerpoPanel {
+
+  grid-row-start: 2;
+  grid-row-end: 2;
+  overflow-y: scroll;
+}
+
+
+/* .seccionPiePanel {
+
+  grid-row-start: 3;
+  grid-row-end: 3;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+  .metodoHttp {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 7px;
+      padding-bottom: 5px;
+      height: 35px;
+      border-radius: 5px;
+  
+  }
+  .path {
+      margin-left: 20px;
+      line-height: 34px;
+  }
+  
+  .pieDialog, .cabeceraDialog {
+      display: flex;
+      flex-direction: row-reverse;
+  }
+  
+  .cabeceraDialog h1 {
+      font-size: xx-large;
+  }
+  
+  mat-icon {
+      
+      font-size: 40px !important; 
+      height: 40px;
+      width: 40px;
+      color:#222;
+  }
+  
+  .mat-form-field {
+      width: 70%;
+  }
+  
+  .mat-form-field.body{
+      
+      width: 100%;
+  }
+  
+  h2 {
+      margin-bottom: 0px;
+  }
+  
+  .seccion {
+      padding: 5px;
+      border-radius: 5px;
+      border-style: solid;
+      border-width: 0.2px;
+      border-color: #eee;
+      margin-bottom: 5px;
+      overflow: auto;
+      scrollbar-color:grey;
+      scrollbar-width: thin;
+    }
+
+
+
+  
+    .seccion::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      border-radius: 5px;
+  
+    }
+  
+    .seccion::-webkit-scrollbar-track {
+      background-color: transparent;
+      border-radius: 5px;
+      background-color: #ddd;
+      border-radius: 5px;
+    }
+    .seccion::-webkit-scrollbar-thumb {
+      background-color: #333;
+      border-radius: 5px;
+    }
+  
+    textarea {
+      height: 100px;
+  
+    }
+  
+    .boton {
+      cursor: pointer;
+    }
+  
+     ::ng-deep .ngx-json-viewer {
+      overflow:visible !important;
+     
+    }
+  
+    
+    ::ng-deep  .ngx-json-viewer .segment-type-null> .segment-main > .segment-value {
+      background-color: white!important;
+      color: red !important;
+      font-weight: bold;
+    }
+  
+  
+    .seccionCuerpoSalidas {
+  
+      display: flex;
+      flex-direction: column;
+  
+  
+    }
+  
+  
+
+    .parametro {
+      margin-left: 15px;
+  
+     
+    }
