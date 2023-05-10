@@ -52,6 +52,7 @@ export interface ISchemaObject {
     description?: string;
     items?: ISchemaObjectWithKey;
     enum?: Array<string>;
+    itemsMultiplesSchemas?: Array<ISchemaObjectWithKey>
 }
 
 export interface ISchemaObjectWithKey extends ISchemaObject {

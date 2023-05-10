@@ -17,7 +17,7 @@ interface IPaginacion {
   templateUrl: './main-operations.component.html',
   styleUrls: ['./main-operations.component.css']
 })
-export class MainOperationsComponent  {
+export class MainOperationsComponent implements OnInit  {
   panelesExpandidos=true;
   mostrarTiposDeCampos=true;
   mostrarDescripcionesOperations=true;
@@ -54,9 +54,13 @@ export class MainOperationsComponent  {
       tamanyoPagina: 20
     };
 
-    this.actualizarDatos();
+
   })
 
+  }
+
+  ngOnInit(): void {
+    this.actualizarDatos();
   }
   
   openDialog() {
@@ -113,6 +117,7 @@ export class MainOperationsComponent  {
 
   actualizarDatos()
   {
+        console.log('auth', this.OpAutenticacion);
         const result: any = this.was1.obtenerOperationsFiltrados(this.textoFiltro,this.paginacion.paginaSeleccionada,this.paginacion.tamanyoPagina, this.OpAutenticacion, this.mostrarMetodosGET, this.mostrarMetodosPOST, this.mostrarMetodosPUT, this.mostrarMetodosDELETE, this.mostrarAgrupados);
         this.operations = result.datos;
         this.calcularTags();

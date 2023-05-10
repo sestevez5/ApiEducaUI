@@ -192,7 +192,6 @@ export class OpenApi3Service {
     this.serverActual$.next(nuevoServidor);
   }
   
-
   // Actualización del objeto global cuando cambia la referencia del fichero "json"
   actualizarOpenApiObject3Actual() {
 
@@ -201,13 +200,8 @@ export class OpenApi3Service {
     this.http.get(this.rutaDocumentoOpenApiActual)
       .subscribe(
         contenidoDocumentoActual => {
-
-          
-        this.cargandoDocumento$.next(false);
-
-            
-      
-
+         
+          this.cargandoDocumento$.next(false);
           this.auxDocumentoActual=contenidoDocumentoActual;
           const cda: any = contenidoDocumentoActual
 
@@ -255,7 +249,9 @@ export class OpenApi3Service {
     let operations:IOperationObject[] = cadenaFiltro?this.operationsActuales.filter(operation => operation.path.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.operationsActuales;
 
     // Paso 2: Aplicaciones el filtro en base al parámetro esOperationAuth
-    esOperationAuth?operations = operations.filter ( op => op.path.includes("/seguridad/")):operations =operations.filter ( op => !op.path.includes("/Autenticacion/"));
+    esOperationAuth?
+    operations = operations.filter ( op => op.path.includes("/seguridad/")):
+    operations = operations.filter ( op => !op.path.includes("/seguridad/"));
 
     // Llegados a este punto tenemos localizados todos los endpoints que cumplan el filtro pasado por cadena. 
     // en función de la opción serían los de autenticación o no
@@ -325,9 +321,9 @@ export class OpenApi3Service {
       this.propertiesAuxActuales.filter(property => 
         property.nombre.toLowerCase().includes(cadenaFiltro.toLowerCase())
         ||
-        property.tipoSchemaPadre.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        property.tipoSchemaPadre?.toLowerCase().includes(cadenaFiltro.toLowerCase())
         ||
-        property.tipoSchemaHijo.toLowerCase().includes(cadenaFiltro.toLowerCase())
+        property.tipoSchemaHijo?.toLowerCase().includes(cadenaFiltro.toLowerCase())
         
         ):this.propertiesAuxActuales;
     properties = properties.filter(property =>property.tipoSchemaPadre.endsWith('DTO'));
@@ -443,6 +439,8 @@ export class OpenApi3Service {
       }
       const property: IProperty = {name:nombreProperty, value:schemaObjectWithKey}
 
+    
+
       
       schemasObjectWithKey.push(property); // Incorporamos el valor al Map creado.   
 
@@ -465,8 +463,28 @@ export class OpenApi3Service {
       nullable: schema.nullable?schema.nullable:null,
       enum:schema.enum?schema.enum:null,
       description: schema.description?schema.description:null,
-      items: schema.items?this.obtenerSchemaObject(schema.items):null
+      
       }
+
+
+
+      if (schema.items) {
+
+        if (schema.items["oneOf"]){
+
+          console.log('oneof: ', schema);
+
+        }
+        else{
+
+          schemaObjectWithkey.items = schema.items?this.obtenerSchemaObject(schema.items):null
+
+
+        }
+
+       
+      }
+ 
       return schemaObjectWithkey;
     } // Fin else
   }
@@ -690,14 +708,20 @@ export class OpenApi3Service {
     schemas.filter(schema => schema.properties)
     .forEach(schema=> {
 
+
+
       const propertiesActuales = schema.properties;
       propertiesActuales.forEach(
         propertyActual => {
 
           const schemaPadre = schema;
+
+      
           const tipoSchemaPadre = this.calcularTipoProperties(schema)
 
           const nombre = propertyActual.name;
+          
+
           const tipoSchemaHijo = this.calcularTipoProperties(propertyActual.value);
           const schemaHijo = propertyActual.value
           propertiesAux.push({schemaPadre, tipoSchemaPadre, nombre,tipoSchemaHijo, schemaHijo});
@@ -716,22 +740,31 @@ export class OpenApi3Service {
   calcularTipoProperties(schema: ISchemaObjectWithKey){
     let tipo: string;
 
-    switch (schema.type) {
-      case 'array': tipo = 'Colección de &lt;' + this.calcularTipoProperties(schema.items)+'&gt;'
-        
-        break;
+    // ARREGLO TEMPORAL
 
-        case 'object': tipo = schema.key
-        
-        break;
-    
-      default:
+    if (schema){
+      switch (schema.type) {
+        case 'array': tipo = 'Colección de &lt;' + this.calcularTipoProperties(schema.items)+'&gt;'
+          
+          break;
+  
+          case 'object': tipo = schema.key
+          
+          break;
+      
+        default:
+  
+        tipo = schema.type
+          break;
+      }
+  
+      return tipo;
 
-      tipo = schema.type
-        break;
     }
-
-    return tipo;
+    else {
+      return null;
+    }
+   
   }
 
 

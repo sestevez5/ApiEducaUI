@@ -2,10 +2,10 @@
     "rutas":[
     {
         "orden":5,
-        "url":"../assets/json/swaggerPre20230317.json",
+        "url":"../assets/json/swaggerPre20230401.json",
         "descripcion": "Especificación local 2",
         "local": "Sí",
-        "observaciones": "copia de especificaciones del entorno de Preproducción obtenida el 17/03/2022",
+        "observaciones": "copia de especificaciones del entorno de Preproducción obtenida el 01/04/2023",
         "uriDocumento": "",
         "servidoresAlternativos": []
 
@@ -16,7 +16,7 @@
         "url":"../assets/json/webApiPro20220813.json",
         "descripcion": "Especificación local 1",
         "local": "Sí",
-        "observaciones": "copia de especificaciones del entorno de Producción obtenida el 13/08/2023",
+        "observaciones": "copia de especificaciones del entorno de Producción obtenida el 13/08/2022",
         "uriDocumento": "",
         "servidoresAlternativos": []
 
