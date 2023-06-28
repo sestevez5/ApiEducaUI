@@ -250,8 +250,8 @@ export class OpenApi3Service {
 
     // Paso 2: Aplicaciones el filtro en base al parámetro esOperationAuth
     esOperationAuth?
-    operations = operations.filter ( op => op.path.includes("/seguridad/")):
-    operations = operations.filter ( op => !op.path.includes("/seguridad/"));
+    operations = operations.filter ( op => op.path.includes("/seguridad/au")):
+    operations = operations.filter ( op => !op.path.includes("/seguridad/au"));
 
     // Llegados a este punto tenemos localizados todos los endpoints que cumplan el filtro pasado por cadena. 
     // en función de la opción serían los de autenticación o no
