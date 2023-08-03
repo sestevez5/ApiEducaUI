@@ -290,6 +290,7 @@ export class OpenApi3Service {
 
     let datos: IOperationObject[] = operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
 
+    //operations.map(o => o.path).forEach(p => console.log(p));
     return { 
       datos: operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos
