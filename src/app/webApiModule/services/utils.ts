@@ -168,32 +168,32 @@ export function textoTipo(tipoSchema:string):string {
   }
 
 
-  export function  textoFormato(formatoSchema:string):string {
+export function  textoFormato(formatoSchema:string):string {
 
-    switch (formatoSchema) {
-    case 'int32':
-        return '32 bits';
-    break;
-
-    case 'int64':
+  switch (formatoSchema) {
+  case 'int32':
       return '32 bits';
-    break;
+  break;
 
-    case 'uuid':
-      return 'Guid'
-    break;
+  case 'int64':
+    return '32 bits';
+  break;
 
-    case 'date-time':
-      return 'Fecha/hora';
-    break;
+  case 'uuid':
+    return 'Guid'
+  break;
 
-    case 'date':
-      return 'Fecha';
-    break;
+  case 'date-time':
+    return 'Fecha/hora';
+  break;
+
+  case 'date':
+    return 'Fecha';
+  break;
 
 
-    default:
-      return formatoSchema;
-    }
+  default:
+    return formatoSchema;
   }
+}
 
