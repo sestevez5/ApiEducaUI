@@ -3,7 +3,7 @@
     <!-- Barra de filtrado general -->
     <mat-toolbar>
       <div class="seccionBuscador">
-          <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
+          <app-buscador (texto)="onCambiarTextoFiltro($event)" [textoPieBuscador]="'Introduzca cualquier subcadena del nombre de la propiedad, su tipo o DTO al que pertenece'"></app-buscador> 
       </div>
 
       <div class="selectorCategoria">

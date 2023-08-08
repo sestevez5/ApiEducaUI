@@ -3,7 +3,7 @@
     <!-- Barra de filtrado general -->
     <mat-toolbar>
       <div class="seccionBuscador">
-          <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
+          <app-buscador (texto)="onCambiarTextoFiltro($event)" [textoPieBuscador]="'Introduzca cualquier subcadena del nombre del DTO'"></app-buscador> 
       </div>
 
       <div class="selectorCategoria">

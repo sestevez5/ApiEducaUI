@@ -8,6 +8,8 @@ import { BehaviorSubject, debounceTime, skip, distinctUntilChanged } from 'rxjs'
 })
 export class BuscadorComponent implements OnInit {
 
+  @Input() textoPieBuscador: string = ''
+
   @Output() texto: EventEmitter<string> = new EventEmitter<string>();
 
   _textoFiltro: BehaviorSubject<string>= new BehaviorSubject('');

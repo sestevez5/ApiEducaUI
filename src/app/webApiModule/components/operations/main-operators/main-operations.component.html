@@ -2,7 +2,7 @@
     <!-- Barra de filtrado general -->
     <mat-toolbar>
       <div class="seccionBuscador">
-            <app-buscador (texto)="onCambiarTextoFiltro($event)"></app-buscador> 
+            <app-buscador (texto)="onCambiarTextoFiltro($event)" [textoPieBuscador]="'Introduzca cualquier sección del Path del endpoint'"></app-buscador> 
       </div>
       <button mat-icon-button class="iconoFiltrarAgrupacion" (click)="openDialog()" aria-label="Example icon-button with share icon">
         <mat-icon >account_tree</mat-icon>

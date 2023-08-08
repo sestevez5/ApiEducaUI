@@ -115,7 +115,7 @@ export class TablaPropertiesComponent {
 
   obtenerCadenaTextoPorFila(row: IProperty){
 
-    return ("|"+row['nombre']+"|"+row["tipoPropiedad"]+"||").replace('&lt;','<').replace('&gt;','>')
+    return ("|"+row['nombre']+"|"+row["tipoPropiedad"]+"|" + row["dtoPropiedad"]+"|").replace('<span class="subcadenaTexto">','').replace('</span>','').replace('&lt;','<').replace('&gt;','>')
 
   }
 
