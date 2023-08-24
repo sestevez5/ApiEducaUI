@@ -26,7 +26,7 @@ export class ArbolSchemasComponent {
 
   tipoPropiedad(tipoPropiedad: string): EnumTipologiaDePropiedades {
 
-    if (tipoPropiedad != 'object' && tipoPropiedad != 'array') return EnumTipologiaDePropiedades.SIMPLE
+    if (tipoPropiedad != 'object' && tipoPropiedad != 'array' && tipoPropiedad != 'polimorfico') return EnumTipologiaDePropiedades.SIMPLE
     //if ((tipoCampo instanceof Object) && tipoCampo.hasOwnProperty('valores')) return EnumTipologiaDePropiedades.ENUMERADO
     else return EnumTipologiaDePropiedades.SCHEMA
   }
@@ -101,6 +101,7 @@ export class ArbolSchemasComponent {
 enum EnumTipologiaDePropiedades {
   SIMPLE,
   ENUMERADO,
-  SCHEMA
+  SCHEMA,
+  POLIMORFICA
 }
                         

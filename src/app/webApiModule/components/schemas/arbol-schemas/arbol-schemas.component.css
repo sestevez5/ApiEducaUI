@@ -1,5 +1,3 @@
-
-
 mat-panel-title {
     width: 25%;
 }
@@ -7,6 +5,14 @@ mat-panel-title {
 mat-expansion-panel-header {
     padding-left: 5px;
     margin: 0px;
+}
+
+.schemaPadre mat-expansion-panel-header {
+    height: 39px;
+    border-bottom-style: solid; 
+    border-bottom-width: 1px;
+    border-color: #eee; 
+    background-color:  #fffed1;
 }
 
 .schemaPadre mat-expansion-panel-header {
@@ -43,9 +49,6 @@ mat-expansion-panel-header {
 }
 
 .seccionPropiedad {
-    /* margin:1px; */
-    /* min-height: 30px; */
-    /* margin-bottom: 5px; */
     display: flex;
     margin-bottom: 8px;
    
@@ -75,11 +78,6 @@ mat-expansion-panel-header {
 
 }
 
-
-
-
-
-
 .seccionTipo {
     width: 100%;
 
@@ -94,6 +92,7 @@ mat-expansion-panel-header {
 :host ::ng-deep .mat-expansion-panel-header.mat-expanded {
    height: 48px;
 }
+
 
 :host ::ng-deep .mat-expansion-panel-spacing {
 
@@ -122,7 +121,7 @@ mat-icon {
 
 :host ::ng-deep mat-expansion-panel.deshabilitarExpansion .mat-expansion-panel-header {
     height: 29px;
-    background-color:  #f4f6fa;
+    /* background-color:  #f4f6fa; */
     box-shadow: 1px 1px 1px #999;
 }
 
@@ -187,3 +186,20 @@ mat-icon {
     height: 30px;
 }
 
+.cabeceraSchemaPolimorficos {
+    display: block;
+    color: rgb(97, 175, 254);
+    margin-top: 15px;
+
+}
+
+.leyendaSchemasPolimorficos {
+    display: block;
+    font-style: italic;
+    margin-top: 2px;
+    background-color: rgb(97, 175, 254);
+    border-radius: 5px;
+    color: white;
+    padding: 2px;
+
+}

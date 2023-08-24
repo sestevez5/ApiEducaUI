@@ -20,8 +20,8 @@ import { ParameterOperationComponent } from './components/operations/parameter-o
 import { ParametersOperationComponent } from './components/operations/parameters-operation/parameters-operation.component';
 import { MainPropertiesComponent } from './components/properties/main-properties/main-properties.component';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatChipsModule} from '@angular/material/chips';
 import { PanelExecuteOperationComponent } from './components/operations/panel-execute-operation/panel-execute-operation.component';
 import { GestionarTokenComponent } from './components/comunes/gestionar-token/gestionar-token.component';
 import { PanelOperationInformationExecutionComponent } from './components/operations/panel-operation-information-execution/panel-operation-information-execution.component';
@@ -33,7 +33,7 @@ import { ItemDocumentoOpenApi3Component } from './components/comunes/item-docume
 import { MatCardModule } from '@angular/material/card';
 import { TablaPropertiesComponent } from './components/properties/tabla-properties/tabla-properties.component';
 
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule} from '@angular/material/tooltip';
 
 import { ShowdownModule } from 'ngx-showdown'
 

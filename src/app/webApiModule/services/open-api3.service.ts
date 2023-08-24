@@ -149,7 +149,7 @@ export class OpenApi3Service {
 
     )
 
-   
+    
 
     this.tokenActual$.subscribe(
       nuevoToken => {
@@ -162,7 +162,6 @@ export class OpenApi3Service {
 
    }
 
-
   // Método que devuelve el observable con la colección de rutas.
   obtenerRutasPreestablecidasDocumentosOpenApi3(): BehaviorSubject<any[]> {
     return this.rutasPreestablecidasDocumentosOpenApi3$;
@@ -172,7 +171,7 @@ export class OpenApi3Service {
     return this.servers$
   }
 
-    // Se establece un nuevo documento openApi. Desencadenará la regeneración de todo el documento.
+  // Se establece un nuevo documento openApi. Desencadenará la regeneración de todo el documento.
   cambiarDocumento(nuevaUrl: string) {
 
       this.rutaDocumentoOpenApiActual$.next(nuevaUrl);
@@ -290,7 +289,6 @@ export class OpenApi3Service {
 
     let datos: IOperationObject[] = operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina);
 
-    //operations.map(o => o.path).forEach(p => console.log(p));
     return { 
       datos: operations.slice(pagina*tamanyoPagina,pagina*tamanyoPagina+tamanyoPagina), 
       numeroElementos:numeroElementos
@@ -301,6 +299,10 @@ export class OpenApi3Service {
   obtenerSchemasFiltrados(cadenaFiltro:string, pagina: number, tamanyoPagina:number, soloDtos?: boolean): {datos:Array<ISchemaObjectWithKey>, numeroElementos:number} {
     let schemas = cadenaFiltro?this.schemasActuales.filter(schema => schema.key.toLowerCase().includes(cadenaFiltro.toLowerCase())):this.schemasActuales;
     schemas = soloDtos?schemas.filter(schema => schema.key.endsWith('DTO')):null;
+
+    // excluimos de la visualización los schemas de tipo objeto que no tengan propiedades
+    schemas = schemas.filter(schema => ! (schema.type==='object' && !schema.properties) )
+
     schemas = schemas.sort(
       (a,b) => { if (a.key<b.key) return -1
       else return 1}
@@ -402,21 +404,22 @@ export class OpenApi3Service {
 
     for (const key in schemas) {
 
+            
       keySchema=this.nombreSimpleSchema(key);
 
       
       if ( schemas[key].$ref ) {  // Nos encontramos con una referencia, no con un schema.
         valueSchemaWithKey = this.obtenerSchemaAPartirDeReferencia(schemas[key].$ref)
+
       
       } else {  // Nos encontramos con un schema
         valueSchemaWithKey =  this.obtenerSchemaObject(schemas[key]);
       }
-      valueSchemaWithKey.key= keySchema;
-      
-      schemasObjectWithKey.push(valueSchemaWithKey); // Incorporamos el valor al Map creado.   
-      
-    }
+       valueSchemaWithKey.key= keySchema;
+       schemasObjectWithKey.push(valueSchemaWithKey); // Incorporamos el valor al Map creado.   
     
+    }
+
     return schemasObjectWithKey;
 
   }
@@ -438,11 +441,8 @@ export class OpenApi3Service {
       } else {  // Nos encontramos con un schema
         schemaObjectWithKey =  this.obtenerSchemaObject(properties[key]);
       }
+
       const property: IProperty = {name:nombreProperty, value:schemaObjectWithKey}
-
-    
-
-      
       schemasObjectWithKey.push(property); // Incorporamos el valor al Map creado.   
 
     }
@@ -452,35 +452,53 @@ export class OpenApi3Service {
   
   private obtenerSchemaObject(schema:any): ISchemaObjectWithKey| undefined {
 
+    // En el caso de que un esquema se esté reutilizando, el esquema vendrá determinado por una referencia y no por una especificación.
+    // En este caso es necesario que vayamos a la referencia para obtener la estructura del schema. 
     if( schema && schema.$ref) {
       return this.obtenerSchemaAPartirDeReferencia(schema.$ref)
     }
+
+    //Aquí estamos en el caso de que no se trata de una referencia.
     else 
     {
-      let schemaObjectWithkey: ISchemaObjectWithKey = {
-      type: schema.type?schema.type:null,
-      properties: schema.properties?this.obtenerPropertiesObject(schema.properties):null,
-      format: schema.format?schema.format:null,
-      nullable: schema.nullable?schema.nullable:null,
-      enum:schema.enum?schema.enum:null,
-      description: schema.description?schema.description:null,
+      // TIPO DE SCHEMA: Tenemos un caso especial que aparece cuando tenemos un esquema "polimórfico" como en el caso del uso de OneOf. En este caso, la especificación OpeApi
+      // devuelve un schema de tipo array y en los ítmes devuelve un objeto con la propiedad "oneOf". Por tanto, para detectar y, así, registrar los tipos polimórficos debemos atender
+      // a la condición descrita.
+      let tipo: string;
       
+      if (schema.type ==='array' && schema.items && schema.items["oneOf"]) {
+        tipo = 'polimorfico'
+      }
+      else {
+        tipo = schema.type?schema.type:null;
       }
 
+      // Ya tenemos calculado el tipo del schema, que será el tipo que devuelve la especificación, salvo el caso del uso de tipo polimórfico ( OneOf)       
+      let schemaObjectWithkey: ISchemaObjectWithKey = {
+        type: tipo,
+        properties: schema.properties?this.obtenerPropertiesObject(schema.properties):null,
+        format: schema.format?schema.format:null,
+        nullable: schema.nullable?schema.nullable:null,
+        enum:schema.enum?schema.enum:null,
+        description: schema.description?schema.description:null,
+      }
 
 
       if (schema.items) {
 
         if (schema.items["oneOf"]){
+          
+          // Construimos un array para albergar todos los tipos que se obtienen.
+          const schemasOneOf: Array<ISchemaObjectWithKey>=[];
+          
+          schema.items["oneOf"].forEach(obj => schemasOneOf.push(this.obtenerSchemaAPartirDeReferencia(obj.$ref)));
 
-          console.log('oneof: ', schema);
-
+          // Registramos en la propiedad "itemsMultiplesSchemas" el array obtenido.
+          schemaObjectWithkey.itemsMultiplesSchemas = schemasOneOf;
         }
-        else{
-
+        else
+        {
           schemaObjectWithkey.items = schema.items?this.obtenerSchemaObject(schema.items):null
-
-
         }
 
        
@@ -492,8 +510,17 @@ export class OpenApi3Service {
 
   private obtenerSchemaAPartirDeReferencia(referencia:string): ISchemaObjectWithKey {
     const key = this.nombreCompletoSchema(referencia);
+
+ 
     const value = this.auxDocumentoActual.components.schemas[key];
-    return {...this.obtenerSchemaObject(value), ...{key: this.nombreSimpleSchema(referencia)}}
+
+
+    const iSchemaObjectWithKey: ISchemaObjectWithKey = {...this.obtenerSchemaObject(value), ...{key: this.nombreSimpleSchema(referencia)}}
+   
+ 
+    
+    return iSchemaObjectWithKey
+
   }
 
   private nombreSimpleSchema(referencia:string): string {
@@ -594,12 +621,23 @@ export class OpenApi3Service {
 
     pathsObject.forEach(pathObject => {
 
-      pathObject.get?operationsObjects.push(pathObject.get):null;
-      pathObject.post?operationsObjects.push(pathObject.post):null;
-      pathObject.put?operationsObjects.push(pathObject.put):null;
-      pathObject.delete?operationsObjects.push(pathObject.delete):null;
+      let newOperationObject: IOperationObject;
+
+      // pathObject.get?operationsObjects.push(pathObject.get):null;
+      // pathObject.post?operationsObjects.push(pathObject.post):null;
+      // pathObject.put?operationsObjects.push(pathObject.put):null;
+      // pathObject.delete?operationsObjects.push(pathObject.delete):null;
+      pathObject.get?newOperationObject=pathObject.get:null;
+      pathObject.post?newOperationObject=pathObject.post:null;
+      pathObject.put?newOperationObject=pathObject.put:null;
+      pathObject.delete?newOperationObject=pathObject.delete:null;
+      
+      operationsObjects.push(newOperationObject)
       
     });
+
+    
+
     return operationsObjects;
   }
 
@@ -676,6 +714,7 @@ export class OpenApi3Service {
 
   private obtenerMediaTypeObject( mediaTypeResponse: any): Array<IMediaTypeObject> | undefined
   {
+
     
     const mediaTypeResponseObjects: Array<IMediaTypeObject> = []
 
@@ -686,7 +725,8 @@ export class OpenApi3Service {
           mediaType: mediaType,
           schema: this.obtenerSchemaObject(mediaTypeResponse[mediaType].schema)
         };
-  
+
+ 
         mediaTypeResponseObjects.push(mediaTypeResponseObject);
 
       }
@@ -725,6 +765,8 @@ export class OpenApi3Service {
 
           const tipoSchemaHijo = this.calcularTipoProperties(propertyActual.value);
           const schemaHijo = propertyActual.value
+
+ 
           propertiesAux.push({schemaPadre, tipoSchemaPadre, nombre,tipoSchemaHijo, schemaHijo});
 
         }

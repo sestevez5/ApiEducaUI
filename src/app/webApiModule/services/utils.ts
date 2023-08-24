@@ -156,10 +156,13 @@ export function textoTipo(tipoSchema:string):string {
     case 'boolean':
       return 'Sí/No';
     break;
-
     
     case 'object':
       return 'Objeto';
+    break;
+
+    case 'polimorfico':
+      return 'Polimórfico';
     break;
 
     default:
