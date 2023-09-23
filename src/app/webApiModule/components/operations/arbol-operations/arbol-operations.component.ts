@@ -58,6 +58,7 @@ export class ArbolOperationsComponent implements OnInit {
   openDialogPanelEjecucion() {
     const dialogRef = this.dialog.open(PanelExecuteOperationComponent, {
       data: this.operation,
+       height: '90%',
       width: '100%'
     });
   }

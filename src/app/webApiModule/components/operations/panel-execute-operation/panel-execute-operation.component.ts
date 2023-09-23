@@ -41,6 +41,8 @@ export class PanelExecuteOperationComponent {
   valorBody$: BehaviorSubject<string> = new BehaviorSubject('');
 
   respuesta: Object | undefined;
+  codigoRespuesta: string;
+  tiempoTotal: number;
 
   nuevoToken$: Observable<string>= new Observable<string>();
 
@@ -254,17 +256,24 @@ export class PanelExecuteOperationComponent {
 
   onEjecutarOperation(){
 
-
-
+    const tiempoInicial=Date.now();
     this.eep.ejecutarOperation(this.ejecucionOperation)
     .subscribe(
       {
         next: (res) =>  {
+          this.tiempoTotal=Date.now()-tiempoInicial;
           this.respuesta = res["body"]; 
           this.verificarObtencionNuevoToken(res["body"]);
+          this.codigoRespuesta=res["status"];
+          
+          
+
         },
         error: (e) => {
+          this.tiempoTotal=Date.now()-tiempoInicial;
             this.respuesta = e["error"]; 
+            this.codigoRespuesta=e["status"]
+            
             }
       }
     )
@@ -274,6 +283,7 @@ export class PanelExecuteOperationComponent {
 
 
     this.respuesta='';
+    this.codigoRespuesta=''
 
     if (this.formParametros) {
       for (const key in this.formParametros.controls) {

@@ -1,13 +1,72 @@
-.panelEjecucion {
-  width: 100%;
+/* ::ng-deep  .cdk-overlay-pane {
+  height: 1200px;
+} */
+
+.seccionNivel1  {
+  padding: 5px;
+  overflow: overlay;
 }
+
+/* -----------------------------------------------
+Estructura en grid del panel de ejecución 
+----------------------------------------------- */
+.panelEjecucion {
+  height: 100%;
+  width: 100%;
+  display: grid; 
+  grid-template-rows: 1fr 22fr 1fr; 
+  gap: 6px 0px; 
+}
+
+.cabeceraDialog {
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.contenido {
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+
+.pieDialog {
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+/* -----------------------------------------------
+Estructura en grid del cuerpo de salida
+----------------------------------------------- */
+.seccionCuerpoSalidas {
+  display: grid; 
+  grid-template-rows: 1fr 20fr 1fr; 
+  gap: 6px 0px; 
+}
+
+.cabeceraSeccionCuerpoSalida {
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.cuerpoSeccionCuerpoSalida {
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+
+.pieSeccionCuerpoSalida{
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+/* ----------------------------------------------- */
+
+
 .secciones {
-     height: 600px; 
+    height: 100%; 
     overflow:-moz-hidden-unscrollable;
     display: grid;
     grid-template-columns: 47% 6% 47% ;
-    grid-template-rows: 10% 5% 65% 20% ; 
+    grid-template-rows: 6% 3% 84% 7% ; 
 }
+
 .metodoHttp {
     padding-left: 10px;
     padding-right: 10px;
@@ -17,6 +76,7 @@
     border-radius: 5px;
 
 }
+
 .path {
     margin-left: 20px;
     line-height: 34px;
@@ -64,6 +124,7 @@ h2 {
     scrollbar-width: thin;
   }
   .seccionCabeceraPanel {
+    padding-top: 10px;
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
@@ -87,7 +148,7 @@ h2 {
     grid-column-end: 1;
     grid-row-start: 3;
     grid-row-end: 3;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .seccionCabeceraSalidas {
@@ -106,7 +167,7 @@ h2 {
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 3;
-    overflow-y: scroll;
+    overflow-y:auto;
 }
 
 .seccionAcciones {
@@ -173,13 +234,13 @@ h2 {
   }
 
 
-  .seccionCuerpoSalidas {
+  /* .seccionCuerpoSalidas {
 
     display: flex;
     flex-direction: column;
 
 
-  }
+  } */
 
 
 

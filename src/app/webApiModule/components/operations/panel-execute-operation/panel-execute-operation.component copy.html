@@ -1,11 +1,13 @@
 
 <div class="panelEjecucion">
 
-    <div  class="seccionNivel1 cabeceraDialog">
-                <h1 mat-dialog-title>Ejecución de endPoints</h1>  
+    <div mat-dialog-title class="cabeceraDialog">
+        <div>
+            <h1 mat-dialog-title>Ejecución de endPoints</h1>
+        </div>
+        
     </div>
-    <div  class="seccionNivel1  contenido">
-       
+    <div mat-dialog-content class="contenido">
         <div class="secciones">
             <div class="seccion seccionCabeceraPanel" [ngStyle]="{'background-color': colorMetodo(this.data.metodo).colorFondoClaro}">
                 <span class="metodoHttp" [ngStyle]="{'background-color': colorMetodo(this.data.metodo).color}">{{ this.colorMetodo(this.data.metodo).nombreMetodo }}</span>
@@ -94,7 +96,6 @@
             </div>
 
             <div class="seccion seccionCuerpoSalidas">
-                
                 <div class="cabeceraSeccionCuerpoSalida">
                     <div *ngIf="this.mostrarPanelActualizacionToken"  class="panelSolicitudNuevoToken">
                         <p>Se ha detectado un nuevo token. ¿Desea establecerlo como token actual?</p>
@@ -102,7 +103,7 @@
                         <button mat-raised-button color="basic" class="noAceptar" (click)="this.mostrarPanelActualizacionToken=false">No</button>
                     </div>
                     <h2>Respuesta:</h2>
-                          
+                    <h2 *ngIf="this.respuesta">Código: {{this.respuesta['status']}}</h2>
                 
                 </div>
 
@@ -110,36 +111,24 @@
                     <ngx-json-viewer *ngIf="this.respuesta" [json]="this.respuesta"></ngx-json-viewer>
                 </div>
 
-                <div class="pieSeccionCuerpoSalida">
-                    <h3 style="margin: 0px;">Información adicional de la ejecución:</h3>
-                    <div style="padding: 5px; background-color: #eee; height: 30px;">
-                        <ng-container *ngIf="this.respuesta" >
-                            Código de respuesta: <span style="font-weight: bold;" *ngIf="this.respuesta"> {{this.codigoRespuesta}}</span>
-                            Tiempo de ejecución: <span style="font-weight: bold;"  *ngIf="this.respuesta"> {{this.tiempoTotal}}ms</span>
-                        </ng-container>
-                    </div>
-                    
-
-                </div>
-
             
 
 
             </div>
-
             <div class="seccion seccionPiePanel">
             
                 <app-panel-operation-information-execution [dataExecutionOperation]="this.ejecucionOperation"></app-panel-operation-information-execution>
                 
             </div>
         </div>
+
     
 
     </div>
-    <div class="seccionNivel1  pieDialog">
+    <div mat-dialog-actions class="pieDialog">
 
         <div>
-            <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
+        <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
         </div>
         
     </div>
