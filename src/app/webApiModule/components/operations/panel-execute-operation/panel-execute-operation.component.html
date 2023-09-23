@@ -113,10 +113,28 @@
                 <div class="pieSeccionCuerpoSalida">
                     <h3 style="margin: 0px;">Información adicional de la ejecución:</h3>
                     <div style="padding: 5px; background-color: #eee; height: 30px;">
-                        <ng-container *ngIf="this.respuesta" >
-                            Código de respuesta: <span style="font-weight: bold;" *ngIf="this.respuesta"> {{this.codigoRespuesta}}</span>
-                            Tiempo de ejecución: <span style="font-weight: bold;"  *ngIf="this.respuesta"> {{this.tiempoTotal}}ms</span>
-                        </ng-container>
+                        <div class="informacionAdicionaEjecucion" *ngIf="this.respuesta" >
+                            <div style="margin-right: 20px;">
+                                Código de respuesta: <span style="font-weight: bold;" *ngIf="this.respuesta"> {{this.codigoRespuesta}}</span>
+                            </div>
+                            <div>
+                                Tiempo de ejecución: <span style="font-weight: bold;"  *ngIf="this.respuesta"> {{this.tiempoTotal}}ms</span>
+                            </div>
+                                                       
+                            <div class="icono boton" >
+                                <mat-icon  
+                                    matToolTip="ejecutar" 
+                                    class="mat-icon-pequenyo notranslate material-icons mat-icon-no-color" 
+                                    aria-hidden="true" 
+                                    data-mat-icon-type="font" 
+                                    (click)="this.onCopiarRespuestaEnPortaPapeles(this.respuesta)">
+                                    <span class="material-symbols-outlined">
+                                        content_copy
+                                        </span>
+                                </mat-icon>
+                            </div>
+                            
+                        </div>
                     </div>
                     
 
@@ -145,3 +163,4 @@
     </div>
 
 </div>
+

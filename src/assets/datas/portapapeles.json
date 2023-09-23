@@ -1,0 +1,16 @@
+{
+    "datos": null,
+    "mensajes": [
+        {
+            "codMensaje": "Unauthorized",
+            "desMensaje": "No dispone de los privilegios necesarios: es condición necesaria la autenticación de la aplicación consumidora.",
+            "tipoMensaje": "Error"
+        }
+    ],
+    "metadatos": {
+        "fechaHoraPeticion": "2023-09-23T19:39:12",
+        "usuario": null,
+        "observaciones": null,
+        "uriSolicitud": "/centros/etapas-centro"
+    }
+}

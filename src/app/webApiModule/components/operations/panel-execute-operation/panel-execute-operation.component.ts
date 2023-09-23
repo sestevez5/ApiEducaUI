@@ -8,6 +8,7 @@ import { Component, Inject} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { colorMetodo, ObtenerBodyRequestComoCadena } from '../../../services/utils'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 
 
@@ -59,7 +60,9 @@ export class PanelExecuteOperationComponent {
     private eep: EjecucionEndpointsService,
     private fb: FormBuilder,
     private sb: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private clipboard: Clipboard,  // Servicio para usar el portapapeles
+    private snackBar: MatSnackBar  // Servicio para usar snackbars
   ) { 
 
     //----------------------------------------------------
@@ -337,6 +340,15 @@ export class PanelExecuteOperationComponent {
     this.mostrarPanelActualizacionToken = false;
 
   }
+
+  onCopiarRespuestaEnPortaPapeles(datos:object){
+    console.log(JSON.stringify(datos));
+  this.clipboard.copy(JSON.stringify(datos));
+  this.snackBar.open('¡Respuesta copiada en el portapapeles (formato JSON)!', null, {
+    duration: 2000,
+    panelClass: 'snackbar'
+  });
+}
 
 
 }

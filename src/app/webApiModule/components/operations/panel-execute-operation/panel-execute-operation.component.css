@@ -99,6 +99,14 @@ mat-icon {
     color:#222;
 }
 
+.mat-icon-pequenyo {
+    
+  font-size: 20px !important; 
+  height: 20px;
+  width: 20px;
+  color:#222;
+}
+
 .mat-form-field {
     width: 70%;
 }
@@ -269,3 +277,12 @@ h2 {
 
    
   }
+
+
+ .informacionAdicionaEjecucion {
+  display: flex;
+ }
+
+ .informacionAdicionaEjecucion div:last-child {
+  margin-left: auto;
+}
