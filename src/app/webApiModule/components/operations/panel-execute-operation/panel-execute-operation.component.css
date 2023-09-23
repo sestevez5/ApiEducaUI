@@ -19,16 +19,19 @@ Estructura en grid del panel de ejecución
 }
 
 .cabeceraDialog {
+  overflow: hidden;
   grid-row-start: 1;
   grid-row-end: 1;
 }
 
 .contenido {
+
   grid-row-start: 2;
   grid-row-end: 2;
 }
 
 .pieDialog {
+  overflow: hidden;
   grid-row-start: 3;
   grid-row-end: 3;
 }
@@ -37,8 +40,9 @@ Estructura en grid del panel de ejecución
 Estructura en grid del cuerpo de salida
 ----------------------------------------------- */
 .seccionCuerpoSalidas {
+
   display: grid; 
-  grid-template-rows: 1fr 20fr 1fr; 
+  grid-template-rows: 1fr 30fr 1fr; 
   gap: 6px 0px; 
 }
 
@@ -50,6 +54,7 @@ Estructura en grid del cuerpo de salida
 .cuerpoSeccionCuerpoSalida {
   grid-row-start: 2;
   grid-row-end: 2;
+  overflow-y: auto;
 }
 
 .pieSeccionCuerpoSalida{
@@ -83,6 +88,7 @@ Estructura en grid del cuerpo de salida
 }
 
 .pieDialog, .cabeceraDialog {
+ 
     display: flex;
     flex-direction: row-reverse;
 }
@@ -132,6 +138,7 @@ h2 {
     scrollbar-width: thin;
   }
   .seccionCabeceraPanel {
+    overflow: hidden;
     padding-top: 10px;
     grid-column-start: 1;
     grid-column-end: 4;
@@ -196,6 +203,7 @@ h2 {
 }
 
 .seccionPiePanel {
+  overflow: hidden;
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 4;

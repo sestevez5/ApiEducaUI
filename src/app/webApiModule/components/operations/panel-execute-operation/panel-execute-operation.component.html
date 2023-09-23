@@ -96,7 +96,9 @@
             <div class="seccion seccionCuerpoSalidas">
                 
                 <div class="cabeceraSeccionCuerpoSalida">
-                    <div *ngIf="this.mostrarPanelActualizacionToken"  class="panelSolicitudNuevoToken">
+                    <div 
+                   *ngIf="this.mostrarPanelActualizacionToken || 1===1"   
+                    class="panelSolicitudNuevoToken">
                         <p>Se ha detectado un nuevo token. ¿Desea establecerlo como token actual?</p>
                         <button mat-raised-button color="basic" class="aceptar" (click)="onAceptarNuevoToken()">Sí</button>
                         <button mat-raised-button color="basic" class="noAceptar" (click)="this.mostrarPanelActualizacionToken=false">No</button>
