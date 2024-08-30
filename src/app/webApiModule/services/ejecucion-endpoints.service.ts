@@ -86,9 +86,15 @@ export class EjecucionEndpointsService {
     // Estableciendo parámetros Query
     let httpParams = new HttpParams();
   
-    parametrosQuery.forEach(parametroQuery => httpParams=httpParams.append(parametroQuery.nombre, parametroQuery.valor) ); 
+    parametrosQuery.forEach(parametroQuery => {
+      if (parametroQuery.valor != ''){
+        httpParams=httpParams.append(parametroQuery.nombre, parametroQuery.valor)
+      }
+      }); 
 
     opcionesPeticion['params'] = httpParams;
+
+    console.log(opcionesPeticion['params']);
 
     return this.http.get(uri, opcionesPeticion);
  }
