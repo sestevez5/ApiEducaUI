@@ -83,6 +83,7 @@ export interface IOperationObject {
     tags: Array<string>;
     path?: string // No lo contempla el estándar. Es una réplica del nodo padre.
     summary?: string;
+    description?:string;
     operationId?: string;
     parameters?: Array<IParameterObject>;
     responses?: Array<ICodeWithResponseObject>

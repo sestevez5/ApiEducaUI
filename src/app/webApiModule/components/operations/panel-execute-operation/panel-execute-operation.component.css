@@ -117,6 +117,10 @@ mat-icon {
     width: 70%;
 }
 
+.mat-form-field {
+  width: 70%;
+}
+
 .mat-form-field.body{
     
     width: 100%;

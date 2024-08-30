@@ -10,7 +10,7 @@
 
   
   <!-- Cabecera -->
-  <mat-expansion-panel-header [ngStyle]="{'background-color': '#fff7cc'}">
+  <mat-expansion-panel-header [ngStyle]="{'background-color': '#f6f6f6'}">
     <div class="seccion seccionHeader">
       
       <div *ngIf="!schema.enum" class="seccion seccionHeaderNombreSchema">
@@ -90,7 +90,7 @@
         <!-- <mat-icon *ngIf="property.value.type === 'array'">reorder</mat-icon> Solo se muestra cuando se trata de un array -->
         <span *ngIf="property.value.type === 'array'" style="color:red; font-weight:bold; font-size: 10px;">[ ... ]</span>
         <span *ngIf="property.value.type === 'polimorfico'" style="color:red; font-weight:bold; font-size: 10px;"><mat-icon>category</mat-icon></span>
-        
+      
 
 
         {{property.name}}{{this.mostrarTiposDePropiedades?':':null}}

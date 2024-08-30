@@ -51,13 +51,29 @@
 .seccionPieContenido {
     padding: 5px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
-.botonEjecucion { 
-    margin-top: 5px;
-    width: 200px;
+
+.botonAyuda { 
+    /* margin-left: auto; */
+    margin-top: 12px;
+    /* width: 200px; */
     padding-top: 3px;
+    display: flex;
+    /* background-color: #ddd; */
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 26px;
+    cursor: pointer;
+
+         }
+.botonEjecucion { 
+    margin-left: auto;
+    margin-top: 8px;
+    width: 200px;
+    padding-top: 7px;
     display: flex;
     background-color: #ddd;
     justify-content: center;
@@ -66,6 +82,8 @@
     line-height: 26px;
     cursor: pointer;
     }
+
+  
 
 mat-icon {
 
@@ -93,13 +111,11 @@ mat-icon {
 }
 
 .contenidoCabeceraOperationConDescripcion {
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 60px 10fr 1fr;
 }
 .contenidoCabeceraOperationSinDescripcion {
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 60px 10fr 1fr;
 }
-
-
 
 .metodoOperation {
     grid-row: 1;

@@ -12,7 +12,7 @@ mat-expansion-panel-header {
     border-bottom-style: solid; 
     border-bottom-width: 1px;
     border-color: #eee; 
-    background-color:  #fffed1;
+    background-color:  #e3f7f9;
 }
 
 .schemaPadre mat-expansion-panel-header {
@@ -20,12 +20,12 @@ mat-expansion-panel-header {
     border-bottom-style: solid; 
     border-bottom-width: 1px;
     border-color: #eee; 
-    background-color:  #fffed1;
+    background-color:  #e3f7f9;
 }
 
 .schemaHijo mat-expansion-panel-header {
     height: 29px;
-    background-color:  #fff7cc;
+    background-color:  #e3f7f9;
     /* box-shadow: 1px 1px 1px #999; */
 }
 

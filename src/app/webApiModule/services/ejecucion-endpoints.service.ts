@@ -50,13 +50,8 @@ export class EjecucionEndpointsService {
 
 
     return this.http.post(uri,body, opcionesPeticion);
-    
-
  
 
-
-
-    
 
   }
 
@@ -97,9 +92,6 @@ export class EjecucionEndpointsService {
 
     return this.http.get(uri, opcionesPeticion);
  }
-
-  
-
 
   ejecutarOperation(ejecucionOperation: EjecucionOperation): Observable<Object> | undefined {
 

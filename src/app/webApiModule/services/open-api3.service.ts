@@ -602,6 +602,7 @@ export class OpenApi3Service {
     metodo: metodo,
     tags: definitionOperation['tags'],
     summary: definitionOperation['summary'],
+    description: definitionOperation['description'],
     operationId: definitionOperation['operationId'],
     parameters: this.obtenerParametersObject(definitionOperation['parameters']),
     responses: this.obtenerResponsesWithCodeObject(definitionOperation['responses']),

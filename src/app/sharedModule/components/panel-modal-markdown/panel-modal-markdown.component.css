@@ -1,20 +1,24 @@
 .panelEjecucion {
     width: 100%;
   }
+
   .secciones {
-       height: 600px; 
+      height: 600px; 
       overflow:-moz-hidden-unscrollable;
       display: grid;
-      /* grid-template-rows: 10% 70% 20% ;  */
       grid-template-rows: 10% 90% ; 
 
   }
 
   .seccionCabeceraPanel {
-     grid-row-start: 1;
+    grid-row-start: 1;
     grid-row-end: 1;
-    display: flex;
-    font-size: 20px;
+    font-size: 25px;
+    padding-top: 10px;
+}
+
+.seccionCabeceraPanel h1 {
+  margin-top: 10px;
 }
 
 
@@ -27,82 +31,33 @@
 }
 
 
-/* .seccionPiePanel {
-
-  grid-row-start: 3;
-  grid-row-end: 3;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-  .metodoHttp {
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-top: 7px;
-      padding-bottom: 5px;
-      height: 35px;
-      border-radius: 5px;
-  
-  }
-  .path {
-      margin-left: 20px;
-      line-height: 34px;
-  }
-  
   .pieDialog, .cabeceraDialog {
       display: flex;
       flex-direction: row-reverse;
+
   }
   
   .cabeceraDialog h1 {
       font-size: xx-large;
   }
   
-  mat-icon {
-      
-      font-size: 40px !important; 
-      height: 40px;
-      width: 40px;
-      color:#222;
-  }
+
   
-  .mat-form-field {
-      width: 70%;
-  }
-  
-  .mat-form-field.body{
-      
-      width: 100%;
-  }
-  
-  h2 {
-      margin-bottom: 0px;
-  }
+
   
   .seccion {
       padding: 5px;
+      padding-top: 15px;
       border-radius: 5px;
       border-style: solid;
-      border-width: 0.2px;
+      border-width: 1px;
       border-color: #eee;
       margin-bottom: 5px;
       overflow: auto;
       scrollbar-color:grey;
       scrollbar-width: thin;
     }
-
-
-
-  
+ 
     .seccion::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -140,21 +95,4 @@
       background-color: white!important;
       color: red !important;
       font-weight: bold;
-    }
-  
-  
-    .seccionCuerpoSalidas {
-  
-      display: flex;
-      flex-direction: column;
-  
-  
-    }
-  
-  
-
-    .parametro {
-      margin-left: 15px;
-  
-     
     }

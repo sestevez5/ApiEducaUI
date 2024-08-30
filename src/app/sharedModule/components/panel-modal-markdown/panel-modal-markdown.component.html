@@ -1,47 +1,26 @@
 <div class="panelEjecucion">
 
-    <div mat-dialog-title class="cabeceraDialog">
-        <div>
-            <h1 mat-dialog-title>Descripción de parámetro</h1>
-        </div>
-        
-    </div>
-    <div mat-dialog-content class="contenido">
+    <div  class="cabeceraDialog">
+            <h1 mat-dialog-title>Descripción</h1>
+     </div>
+
+    <div  class="contenido">
         <div class="secciones">
             <div class="seccion seccionCabeceraPanel">
-                <showdown [value]="data.cabecera"></showdown>
+                <p>{{data.cabecera}}</p>
             </div> 
-                
-  
 
             <div class="seccion seccionCuerpoPanel">
-
                 <showdown [value]="data.contenidoMarkdown"></showdown>
-           
-                            
-                            
-          
-
             </div>
 
-
-
-
-            <!-- <div class="seccion seccionPiePanel">
-     
-                
-            </div> -->
         </div>
-
-    
-
     </div>
-    <div mat-dialog-actions class="pieDialog">
 
+    <div mat-dialog-actions class="pieDialog">
         <div>
         <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
         </div>
-        
     </div>
 
 </div>

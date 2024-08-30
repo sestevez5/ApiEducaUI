@@ -72,7 +72,7 @@ export class ArbolOperationsComponent implements OnInit {
 
   }
 
-  openDialogPanelMensaje(cadena:string) {
+  openDialogPanelMensaje(cadena:any) {
     const dialogRef = this.dialog.open(PanelModalMarkdownComponent, {
       data: cadena,
       width: '100%'
@@ -83,6 +83,11 @@ export class ArbolOperationsComponent implements OnInit {
     
     this.openDialogPanelMensaje(cadena);
 
+  }
+
+
+  onAbrirDescripcionEndpoint(nombreParametro: string, descripcionParametro: string){
+    this.openDialogPanelMensaje({cabecera: nombreParametro, contenidoMarkdown: descripcionParametro})
   }
 
 

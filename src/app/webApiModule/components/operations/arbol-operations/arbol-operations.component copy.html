@@ -13,8 +13,9 @@
 
             <div class="pathOperation">
                 {{operation.path}}
-                <!-- <span *ngFor="let tag of operation.tags" >{{tag}}</span> -->
+                     <!-- <span *ngFor="let tag of operation.tags" >{{tag}}</span> -->
             </div>
+
            
         </div>
 
@@ -27,10 +28,8 @@
             <!-- <div *ngIf="this.mostrarDescripcionesOperations" class="seccion seccionCabeceraSubseccionOperation descripcionOperation">
                 <app-panel-extensible [contenido]="this.operation.description"></app-panel-extensible>
             </div> -->
-
-
             <!-- Sección correspondiente a los campos de tipo path -->
-            <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath()!=undefined && this.parametrosPath().length>0"  [expanded]="this.expandido" >
+            <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosPath().length>0"  [expanded]="this.expandido" >
                 <!-- Cabecera -->
                 <mat-expansion-panel-header class="seccion seccionCabeceraSubseccionOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondoClaro, 'padding': 'none'}">
                     <mat-panel-title>Parámetros Path</mat-panel-title>
@@ -41,7 +40,7 @@
                     <app-parameters-operation [mostrarDescripciones]="this.mostrarDescripcionesOperations" [parameters]="this.parametrosPath()" ></app-parameters-operation>
                 </div> <!-- Fin sección cuerpo -->
             </mat-expansion-panel>
-            
+           
             <!-- Sección correspondiente a los campos de tipo query -->
             <mat-expansion-panel class="panelHijo" *ngIf="this.parametrosQuery()!=undefined"  [expanded]="this.expandido" >
                 
@@ -96,28 +95,30 @@
                 <app-responses-operation [responsesWithCodeHttp]="this.operation.responses"></app-responses-operation>
             </div> <!-- Fin sección cuerpo -->
 
-    </mat-accordion>
+        </mat-accordion>
 
 
         <div class="seccion seccionPieContenido">
-            <!-- *ngIf="this.operation.description" -->
-         <div class="botonAyuda" *ngIf="this.operation.description"  (click)="onAbrirDescripcionEndpoint(this.operation.path, this.operation.description)">
+            <!-- <div class="botonAyuda" (click)="onAbrirDescripcionEndpoint('hola','hola')">
                 <div class="icono"><mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">help</mat-icon></div>
-            </div>     
+            </div>      -->
+
 
 
             <div class="botonEjecucion" (click)="onEjecutar()">
+                
                 <div class="icono"><mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">play_circle</mat-icon></div>
                 <div class="texto">
                     <span style="margin-top:9px">
-                    Ejecutar
-                    </span></div>
-                
-            </div>
-                
-        </div>
-        
+                        Ejecutar
+                    </span>
+                </div>
+                 
+            </div>     
+            
 
+   
+        </div>
 
     </div> <!-- Fin sección cuerpo -->
 

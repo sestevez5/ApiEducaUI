@@ -49,7 +49,7 @@ mat-toolbar {
 }
 
 :host ::ng-deep mat-expansion-panel  {
-    background-color:  #fffee8;
+    background-color:  #e3f7f9;
 }
 
 /* :host ::ng-deep mat-expansion-panel :hover {
