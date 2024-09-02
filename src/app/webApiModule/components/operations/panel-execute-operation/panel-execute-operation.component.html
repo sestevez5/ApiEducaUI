@@ -37,10 +37,10 @@
 
                             <div class="parametro" *ngIf="this.tipoParametro(parametro).tipoDato==='booleano'">
                                 <div>
-                                    <mat-form-field appearance="legacy">
+                                    <mat-form-field>
 
-                                        <mat-label>{{ parametro.name}}</mat-label>
-                                        <mat-select class="example-margin" formControlName="{{parametro.name}}">
+                                        <mat-label>{{parametro.name}}</mat-label>
+                                        <mat-select formControlName="{{parametro.name}}">
                                             <mat-option value="">No establecido</mat-option>
                                             <mat-option value="true">Sí</mat-option>
                                             <mat-option value="false">No</mat-option>

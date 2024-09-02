@@ -115,7 +115,7 @@ export class EjecucionOperation {
 
       const parametrosQuery = this.datosEjecucion.parametros.filter(p => p.tipo === 'query');
       
-      console.log(this.datosEjecucion);
+      
       if (parametrosQuery.length > 0) {
         let primero: boolean = true;
         parametrosQuery.forEach(

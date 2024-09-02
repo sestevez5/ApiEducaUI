@@ -94,7 +94,7 @@ export class EjecucionEndpointsService {
 
     opcionesPeticion['params'] = httpParams;
 
-    console.log(opcionesPeticion['params']);
+    
 
     return this.http.get(uri, opcionesPeticion);
  }
