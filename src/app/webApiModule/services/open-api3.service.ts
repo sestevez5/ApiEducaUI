@@ -452,6 +452,9 @@ export class OpenApi3Service {
   
   private obtenerSchemaObject(schema:any): ISchemaObjectWithKey| undefined {
 
+
+
+
     // En el caso de que un esquema se esté reutilizando, el esquema vendrá determinado por una referencia y no por una especificación.
     // En este caso es necesario que vayamos a la referencia para obtener la estructura del schema. 
     if( schema && schema.$ref) {
@@ -466,6 +469,7 @@ export class OpenApi3Service {
       // a la condición descrita.
       let tipo: string;
       
+      // Aquí determinamos el tipo del esquema.
       if (schema.type ==='array' && schema.items && schema.items["oneOf"]) {
         tipo = 'polimorfico'
       }
@@ -473,7 +477,8 @@ export class OpenApi3Service {
         tipo = schema.type?schema.type:null;
       }
 
-      // Ya tenemos calculado el tipo del schema, que será el tipo que devuelve la especificación, salvo el caso del uso de tipo polimórfico ( OneOf)       
+      // Ya tenemos calculado el tipo del schema, que será el tipo que devuelve la especificación, 
+      // salvo el caso del uso de tipo polimórfico (OneOf)       
       let schemaObjectWithkey: ISchemaObjectWithKey = {
         type: tipo,
         properties: schema.properties?this.obtenerPropertiesObject(schema.properties):null,
@@ -487,14 +492,29 @@ export class OpenApi3Service {
       if (schema.items) {
 
         if (schema.items["oneOf"]){
+
+         
+
+         
           
           // Construimos un array para albergar todos los tipos que se obtienen.
           const schemasOneOf: Array<ISchemaObjectWithKey>=[];
           
-          schema.items["oneOf"].forEach(obj => schemasOneOf.push(this.obtenerSchemaAPartirDeReferencia(obj.$ref)));
+          schema.items["oneOf"].forEach(obj => 
+
+            {
+               if (obj.$ref==='#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matricula.MatriculaInfoMDTO')  
+                {
+                
+                }  
+
+          
+              schemasOneOf.push(this.obtenerSchemaAPartirDeReferencia(obj.$ref))
+            });
 
           // Registramos en la propiedad "itemsMultiplesSchemas" el array obtenido.
           schemaObjectWithkey.itemsMultiplesSchemas = schemasOneOf;
+            
         }
         else
         {
@@ -509,10 +529,18 @@ export class OpenApi3Service {
   }
 
   private obtenerSchemaAPartirDeReferencia(referencia:string): ISchemaObjectWithKey {
+
+
+  
     const key = this.nombreCompletoSchema(referencia);
 
+   
  
     const value = this.auxDocumentoActual.components.schemas[key];
+
+         if( referencia === '#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matricula.MatriculaInfoMDTO') {
+          console.log(value)
+        }
 
 
     const iSchemaObjectWithKey: ISchemaObjectWithKey = {...this.obtenerSchemaObject(value), ...{key: this.nombreSimpleSchema(referencia)}}
@@ -621,20 +649,11 @@ export class OpenApi3Service {
     const operationsObjects: Array<IOperationObject> = [];
 
     pathsObject.forEach(pathObject => {
-
-      let newOperationObject: IOperationObject;
-
-      // pathObject.get?operationsObjects.push(pathObject.get):null;
-      // pathObject.post?operationsObjects.push(pathObject.post):null;
-      // pathObject.put?operationsObjects.push(pathObject.put):null;
-      // pathObject.delete?operationsObjects.push(pathObject.delete):null;
-      pathObject.get?newOperationObject=pathObject.get:null;
-      pathObject.post?newOperationObject=pathObject.post:null;
-      pathObject.put?newOperationObject=pathObject.put:null;
-      pathObject.delete?newOperationObject=pathObject.delete:null;
-      
-      operationsObjects.push(newOperationObject)
-      
+      pathObject.get?operationsObjects.push(pathObject.get):null;
+      pathObject.post?operationsObjects.push(pathObject.post):null;
+      pathObject.put?operationsObjects.push(pathObject.put):null;
+      pathObject.delete?operationsObjects.push(pathObject.delete):null;
+     
     });
 
     

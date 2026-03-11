@@ -13,10 +13,10 @@
    
     {
         "orden":4,
-        "url":"../assets/json/webApiPro20220813.json",
+        "url":"../assets/json/apiEducaPre20260310.json",
         "descripcion": "Especificación local 1",
         "local": "Sí",
-        "observaciones": "copia de especificaciones del entorno de Producción obtenida el 13/08/2022",
+        "observaciones": "copia de especificaciones del entorno de Producción obtenida el 10/03/2026",
         "uriDocumento": "",
         "servidoresAlternativos": []
 
