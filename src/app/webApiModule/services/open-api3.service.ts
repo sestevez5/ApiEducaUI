@@ -385,6 +385,7 @@ export class OpenApi3Service {
 
     let schemas: Array<ISchemaObjectWithKey> | undefined;
 
+
     components.schemas?schemas=this.obtenerSchemasObject(components.schemas):schemas=undefined
 
     return {
@@ -403,10 +404,12 @@ export class OpenApi3Service {
     let valueSchemaWithKey: ISchemaObjectWithKey;
     const schemasObjectWithKey:Array<ISchemaObjectWithKey> = [];
 
+  
     for (const key in schemas) {
 
-            
-      keySchema=this.nombreSimpleSchema(key);
+
+
+         keySchema=this.nombreSimpleSchema(key);
 
       
       if ( schemas[key].$ref ) {  // Nos encontramos con una referencia, no con un schema.
@@ -419,7 +422,11 @@ export class OpenApi3Service {
        valueSchemaWithKey.key= keySchema;
        schemasObjectWithKey.push(valueSchemaWithKey); // Incorporamos el valor al Map creado.   
     
+   
+            
+     
     }
+
 
     return schemasObjectWithKey;
 
@@ -491,6 +498,12 @@ export class OpenApi3Service {
         description: schema.description?schema.description:null,
       }
 
+      if (schema["allOf"]){
+
+        schemaObjectWithkey = this.obtenerSchemaAPartirDeReferenciaAllof(schema);
+
+      }else 
+
 
       if (schema.items) {
 
@@ -519,6 +532,11 @@ export class OpenApi3Service {
   }
 
   private obtenerSchemaAPartirDeReferencia(referencia:string): ISchemaObjectWithKey {
+
+    if (referencia==='#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matricula.MatriculaInfoEDTO'){
+    console.log(referencia)
+    }
+
     const key = this.nombreCompletoSchema(referencia);
     const value = this.auxDocumentoActual.components.schemas[key];
     const iSchemaObjectWithKey: ISchemaObjectWithKey = {...this.obtenerSchemaObject(value), ...{key: this.nombreSimpleSchema(referencia)}}
@@ -527,13 +545,11 @@ export class OpenApi3Service {
 
   private obtenerSchemaAPartirDeReferenciaAllof(schema: any): ISchemaObjectWithKey|null {
 
+    //console.log(schema)
 
     const objeto = this.obtenerSchemaObject(schema['allOf'][0]);
 
     const propiedades: IProperty[]=[]
-
-
-
     schema['allOf'].forEach(schema => {
 
       if (this.obtenerSchemaObject(schema).properties) {
@@ -545,7 +561,7 @@ export class OpenApi3Service {
       objeto.properties = propiedades;
     } 
 
-    console.log(objeto);
+ 
     return objeto
 
   }
