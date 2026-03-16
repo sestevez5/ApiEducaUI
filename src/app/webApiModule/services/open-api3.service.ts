@@ -3,6 +3,7 @@ import { IComponentObject, IOpenApiObject3, ISchemaObjectWithKey, IProperty, IPa
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
+import { SharedModule } from 'src/app/sharedModule/shared.module';
 
 
 
@@ -468,6 +469,8 @@ export class OpenApi3Service {
       // devuelve un schema de tipo array y en los ítmes devuelve un objeto con la propiedad "oneOf". Por tanto, para detectar y, así, registrar los tipos polimórficos debemos atender
       // a la condición descrita.
       let tipo: string;
+
+ 
       
       // Aquí determinamos el tipo del esquema.
       if (schema.type ==='array' && schema.items && schema.items["oneOf"]) {
@@ -492,25 +495,12 @@ export class OpenApi3Service {
       if (schema.items) {
 
         if (schema.items["oneOf"]){
-
-         
-
-         
-          
           // Construimos un array para albergar todos los tipos que se obtienen.
           const schemasOneOf: Array<ISchemaObjectWithKey>=[];
           
           schema.items["oneOf"].forEach(obj => 
-
-            {
-               if (obj.$ref==='#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matricula.MatriculaInfoMDTO')  
-                {
-                
-                }  
-
-          
               schemasOneOf.push(this.obtenerSchemaAPartirDeReferencia(obj.$ref))
-            });
+            );
 
           // Registramos en la propiedad "itemsMultiplesSchemas" el array obtenido.
           schemaObjectWithkey.itemsMultiplesSchemas = schemasOneOf;
@@ -529,25 +519,34 @@ export class OpenApi3Service {
   }
 
   private obtenerSchemaAPartirDeReferencia(referencia:string): ISchemaObjectWithKey {
-
-
-  
     const key = this.nombreCompletoSchema(referencia);
-
-   
- 
     const value = this.auxDocumentoActual.components.schemas[key];
-
-         if( referencia === '#/components/schemas/GestionAcAdCentros.Servicio.DTO.Matricula.MatriculaInfoMDTO') {
-          console.log(value)
-        }
-
-
     const iSchemaObjectWithKey: ISchemaObjectWithKey = {...this.obtenerSchemaObject(value), ...{key: this.nombreSimpleSchema(referencia)}}
-   
- 
-    
     return iSchemaObjectWithKey
+  }
+
+  private obtenerSchemaAPartirDeReferenciaAllof(schema: any): ISchemaObjectWithKey|null {
+
+
+    const objeto = this.obtenerSchemaObject(schema['allOf'][0]);
+
+    const propiedades: IProperty[]=[]
+
+
+
+    schema['allOf'].forEach(schema => {
+
+      if (this.obtenerSchemaObject(schema).properties) {
+           propiedades.push(...this.obtenerSchemaObject(schema).properties);
+      }
+    });
+
+    if (propiedades.length !== 0) {
+      objeto.properties = propiedades;
+    } 
+
+    console.log(objeto);
+    return objeto
 
   }
 
