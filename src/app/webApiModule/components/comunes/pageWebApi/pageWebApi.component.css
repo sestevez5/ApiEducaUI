@@ -39,6 +39,12 @@
   height: 30px;
 }
 
+img {
+  height: 20px;
+}
+
+
+
 ::ng-deep .mat-menu-panel {
   width: 200px !important;
 

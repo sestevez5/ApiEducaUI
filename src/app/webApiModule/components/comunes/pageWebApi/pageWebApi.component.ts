@@ -51,6 +51,7 @@ export class PageWebApiComponent {
         x.onAction().subscribe(() => {
           this.cargando=false;
           this.documentoSeleccionado=this.documentoSeleccionadaOld;
+          
         });
       
         }
@@ -111,7 +112,6 @@ export class PageWebApiComponent {
   }
 
   onSeleccionarRuta(ruta:string) {
-    console.log(ruta);
     this.documentoSeleccionado=this.documentosOpenApiPrefijados.filter(doc => doc.url === ruta)[0];
     this.was.cambiarDocumento(this.documentoSeleccionado.url)
   }
@@ -141,4 +141,9 @@ export class PageWebApiComponent {
 
     this.persistirToken=!this.persistirToken;
   }
+  
+  establecerTokenLLaveMaestra(){
+    this.was.establecerToken(this.documentoSeleccionado.apiMaestra);
+  }
+  
 }

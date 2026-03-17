@@ -137,6 +137,7 @@ export interface OrigenDatosOpenApi3 {
     observaciones: string;
     uriDocumento: string;
     servidoresAlternativos: IServerObject[]
+    apiMaestra:string;
   }
 
 

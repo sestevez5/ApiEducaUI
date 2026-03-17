@@ -10,7 +10,12 @@
         
     <!-- Información del documento seleccionado -->
     <div class="infoDocumentoActual">
-      {{ this.documentoSeleccionado?.descripcion}}
+      {{ this.documentoSeleccionado?.descripcion }}
+          <button *ngIf="documentoSeleccionado.apiMaestra !==''" mat-icon-button (click)="establecerTokenLLaveMaestra()">
+          <img *ngIf="1===1"    src="./assets/img/llave.png">
+          </button>
+
+
     </div>
 
     <!-- Selector de servidores del documento seleccionado -->

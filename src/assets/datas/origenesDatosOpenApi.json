@@ -7,7 +7,8 @@
         "local": "Sí",
         "observaciones": "copia de especificaciones del entorno de Preproducción obtenida el 01/04/2023",
         "uriDocumento": "",
-        "servidoresAlternativos": []
+        "servidoresAlternativos": [],
+        "apiMaestra":""
 
     },
    
@@ -18,7 +19,8 @@
         "local": "Sí",
         "observaciones": "copia de especificaciones del entorno de Producción obtenida el 10/03/2026",
         "uriDocumento": "",
-        "servidoresAlternativos": []
+        "servidoresAlternativos": [],
+        "apiMaestra":""
 
 
     },
@@ -33,7 +35,8 @@
         "servidoresAlternativos": [{
             "url":"https://www.gobiernodecanarias.org/educacion/bussed/apieduca",
             "description":""
-        }]
+        }],
+        "apiMaestra":""
         
     },
     {
@@ -46,7 +49,8 @@
         "servidoresAlternativos": [{
             "url":"https://wwwpre.educacion.org/educacion/bussed/apieduca",
             "description":""
-        }]
+        }],
+        "apiMaestra":"12D62B94-65CF-42E1-8E52-94EDE131E483"
     },
     {
         "orden":3,
@@ -58,7 +62,9 @@
         "servidoresAlternativos": [{
             "url":"https://wwwdesa.educacion.org/educacion/bussed/apieduca",
             "description":""
-        }]
+        }],
+        "apiMaestra":""
+        
     }
    
 ]
