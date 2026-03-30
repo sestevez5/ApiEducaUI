@@ -3,7 +3,8 @@ import { SelectorAgrupacionesComponent } from '../../comunes/selector-agrupacion
 import { OpenApi3Service } from '../../../services/open-api3.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, Input} from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { PaginacionPersonalizada } from '../../comunes/paginacionPersonalizada';
 
 
 interface IPaginacion {
@@ -17,7 +18,8 @@ interface IPaginacion {
 @Component({
   selector: 'app-main-properties',
   templateUrl: './main-properties.component.html',
-  styleUrls: ['./main-properties.component.css']
+  styleUrls: ['./main-properties.component.css'],
+    providers: [{provide: MatPaginatorIntl, useClass: PaginacionPersonalizada}]
 })
 export class MainPropertiesComponent {
 
@@ -48,8 +50,8 @@ export class MainPropertiesComponent {
       this.paginacion = this.paginacion = {
         longitud:0,
         paginaSeleccionada:0,
-        opcionesPagina: [5,10,15,20],
-        tamanyoPagina: 25
+        opcionesPagina: [10,20,100],
+        tamanyoPagina: 20
       };
       this.actualizarDatos();
     }

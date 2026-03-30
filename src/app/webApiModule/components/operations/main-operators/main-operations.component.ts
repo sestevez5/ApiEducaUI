@@ -2,8 +2,10 @@ import { IOperationObject } from './../../../models/documentoOpenApi3';
 import { OpenApi3Service } from '../../../services/open-api3.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
-import { PageEvent } from '@angular/material/paginator';
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { PaginacionPersonalizada } from '../../comunes/paginacionPersonalizada';
+
 
 interface IPaginacion {
   longitud: number;
@@ -15,10 +17,11 @@ interface IPaginacion {
 @Component({
   selector: 'app-main-operations',
   templateUrl: './main-operations.component.html',
-  styleUrls: ['./main-operations.component.css']
+  styleUrls: ['./main-operations.component.css'],
+  providers: [{provide: MatPaginatorIntl, useClass: PaginacionPersonalizada}]
 })
 export class MainOperationsComponent implements OnInit  {
-  panelesExpandidos=true;
+  panelesExpandidos=false;
   mostrarTiposDeCampos=true;
   mostrarDescripcionesOperations=true;
   mostrarMetodosGET=true;
@@ -50,7 +53,7 @@ export class MainOperationsComponent implements OnInit  {
     this.paginacion = this.paginacion = {
       longitud:0,
       paginaSeleccionada:0,
-      opcionesPagina: [5,10,15,20],
+      opcionesPagina: [10,20,100],
       tamanyoPagina: 20
     };
 
@@ -113,8 +116,6 @@ export class MainOperationsComponent implements OnInit  {
     this.actualizarDatos();
   }
 
-
-
   actualizarDatos()
   {
         
@@ -146,8 +147,6 @@ export class MainOperationsComponent implements OnInit  {
       else return 1;
   })
 }
-
-
 
   operationsTags(t: { tag0: string, tag1: string}){
     return this.operations.filter(operation => {

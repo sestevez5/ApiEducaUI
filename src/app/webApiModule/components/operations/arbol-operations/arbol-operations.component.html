@@ -3,9 +3,7 @@
     <!-- Cabecera -->
     <mat-expansion-panel-header class="seccion seccionCabeceraOperation"  [ngStyle]="{'background-color': colorMetodo(operation.metodo).colorFondo, 'padding': 'none'}">
       
-        <div 
-        class="contenidoCabeceraOperation" 
-        [ngClass]="this.mostrarDescripcionesOperations ? 'contenidoCabeceraOperationConDescripcion':'contenidoCabeceraOperationSinDescripcion'" >
+        <div class="contenidoCabeceraOperation" [ngClass]="this.mostrarDescripcionesOperations ? 'contenidoCabeceraOperationConDescripcion':'contenidoCabeceraOperationSinDescripcion'" >
 
             <div class="metodoOperation" [ngStyle]="{'background-color': colorMetodo(operation.metodo).color}"> 
                 {{colorMetodo(operation.metodo).nombreMetodo}}
@@ -15,6 +13,19 @@
                 {{operation.path}}
                 <!-- <span *ngFor="let tag of operation.tags" >{{tag}}</span> -->
             </div>
+
+         
+            <div class="botonAyuda" onclick="event.stopPropagation();" *ngIf="this.operation.description" style="margin: 0px; padding: 3px;" (click)="onAbrirDescripcionEndpoint(this.operation.path, this.operation.description)">
+                    <div class="icono">
+                        <mat-icon style="color: #84abca;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">info</mat-icon>
+                    </div>        
+            </div>  
+            
+            <button mat-stroked-button color="primary" class="botonEjecucion2" (click)="onEjecutar()">Ejecutar</button>
+
+
+   
+
            
         </div>
 
@@ -101,19 +112,19 @@
 
         <div class="seccion seccionPieContenido">
             <!-- *ngIf="this.operation.description" -->
-         <div class="botonAyuda" *ngIf="this.operation.description"  (click)="onAbrirDescripcionEndpoint(this.operation.path, this.operation.description)">
-                <div class="icono"><mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">help</mat-icon></div>
-            </div>     
+         <!-- <div class="botonAyuda" *ngIf="this.operation.description"  (click)="onAbrirDescripcionEndpoint(this.operation.path, this.operation.description)">
+                <div class="icono"><mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">info</mat-icon></div>
+            </div>      -->
 
 
-            <div class="botonEjecucion" (click)="onEjecutar()">
+            <!-- <div class="botonEjecucion" (click)="onEjecutar()">
                 <div class="icono"><mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">play_circle</mat-icon></div>
                 <div class="texto">
                     <span style="margin-top:9px">
                     Ejecutar
                     </span></div>
                 
-            </div>
+            </div> -->
                 
         </div>
         

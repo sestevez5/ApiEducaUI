@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ISchemaObject, ISchemaObjectWithKey } from './../../../models/documentoOpenApi3';
 import { MatAccordion } from '@angular/material/expansion';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { PaginacionPersonalizada } from '../../comunes/paginacionPersonalizada';
 
 
 interface IPaginacion {
@@ -18,7 +19,8 @@ interface IPaginacion {
 @Component({
   selector: 'app-main-schemas',
   templateUrl: './main-schemas.component.html',
-  styleUrls: ['./main-schemas.component.css']
+  styleUrls: ['./main-schemas.component.css'],
+    providers: [{provide: MatPaginatorIntl, useClass: PaginacionPersonalizada}]
 })
 export class MainSchemasComponent {
 
@@ -49,8 +51,8 @@ export class MainSchemasComponent {
       this.paginacion = this.paginacion = {
         longitud:0,
         paginaSeleccionada:0,
-        opcionesPagina: [5,10,15,20],
-        tamanyoPagina: 25
+        opcionesPagina: [10,20,100],
+        tamanyoPagina: 20
       };
 
       this.actualizarDatos();

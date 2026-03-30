@@ -5,7 +5,9 @@ import { Component } from '@angular/core';
 import {MatSnackBar } from '@angular/material/snack-bar'
 import { IServerObject, OrigenDatosOpenApi3 } from 'src/app/webApiModule/models/documentoOpenApi3';
 import { SelectorDocumentoOpenapi3Component } from '../selector-documento-openapi3/selector-documento-openapi3.component';
-import { defaultRippleAnimationConfig } from '@angular/material/core';
+import { EjecucionEndpointsService } from 'src/app/webApiModule/services/ejecucion-endpoints.service';
+import { EjecucionOperation, IDatosEjecucionOperation } from './../../../models/datosEjecucionOperation'
+
 
 
 @Component({
@@ -27,7 +29,8 @@ export class PageWebApiComponent {
   constructor(
     private was: OpenApi3Service, 
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private eep: EjecucionEndpointsService,
     ){
 
 
@@ -142,8 +145,42 @@ export class PageWebApiComponent {
     this.persistirToken=!this.persistirToken;
   }
   
-  establecerTokenLLaveMaestra(){
-    this.was.establecerToken(this.documentoSeleccionado.apiMaestra);
+  OnAutenticacionAutomatica(){
+
+
+
+    const body: string = `{ "apiKey": "${this.documentoSeleccionado.apiMaestra}"}`;
+    const datosEjecucion: IDatosEjecucionOperation = 
+        {
+        servidor: this.servidorSeleccionado.url,
+        path: '/v1/seguridad/autenticacion-por-aplicacion',
+        parametros: [],
+        tokenAutentication: '',
+        body: body,
+        metodo: 'GET'
+        }      
+
+    console.log(datosEjecucion)
+       
+    
+   
+    const ejecucion = new EjecucionOperation(datosEjecucion);
+    
+    
+
+    this.eep.ejecutarOperacionPost(ejecucion).subscribe(
+
+      resultado => 
+        {
+             this.was.establecerToken(resultado['body']['access_token']);
+        }
+
+    )
+
+
+    //datosEjecucion: EjecucionOperation= {}}
+
+    //
   }
   
 }

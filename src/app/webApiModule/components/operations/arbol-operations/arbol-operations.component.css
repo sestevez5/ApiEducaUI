@@ -56,29 +56,56 @@
 
 
 .botonAyuda { 
+
+    pointer-events: auto;
     /* margin-left: auto; */
-    margin-top: 12px;
+    margin-top: 0px;
     /* width: 200px; */
-    padding-top: 3px;
+    padding-top: 6px;
+     height: 25px;
     display: flex;
     /* background-color: #ddd; */
     justify-content: center;
     border-radius: 6px;
     font-size: 16px;
-    line-height: 26px;
+    @REM line-height: 26px;
     cursor: pointer;
 
+        white-space: nowrap; 
+            display: inline-block;
+                line-height: 30px;
+
          }
+
+
+
+
+
+
 .botonEjecucion { 
     margin-left: auto;
     margin-top: 8px;
     width: 200px;
+   
     padding-top: 7px;
     display: flex;
     background-color: #ddd;
     justify-content: center;
     border-radius: 6px;
     font-size: 16px;
+    line-height: 26px;
+    cursor: pointer;
+    }
+
+    .botonEjecucion2 { 
+        margin-top:3px;
+    margin-left: auto;
+    margin-right: 10px;
+
+    justify-content: center;
+    border-radius: 6px;
+    font: 100% sans-serif bold;
+
     line-height: 26px;
     cursor: pointer;
     }
@@ -91,8 +118,16 @@ mat-icon {
     height: 25px;
     width: 25px;
     color:#2b377b;
+    margin:0px !important; ;
     margin-right: 10px;
+    padding:0px !important; ;
     
+}
+
+.icono {
+    padding:0px;
+    margin: 0px;
+    height:25px;
 }
 
 .pendiente {
@@ -106,12 +141,12 @@ mat-icon {
 
 .contenidoCabeceraOperation {
     width: 100%;
-    display: grid;
+    display: flex;
     grid-gap: 10px;
 }
 
 .contenidoCabeceraOperationConDescripcion {
-    grid-template-columns: 60px 10fr 1fr;
+    grid-template-columns: 6px 10fr 1fr;
 }
 .contenidoCabeceraOperationSinDescripcion {
     grid-template-columns: 60px 10fr 1fr;

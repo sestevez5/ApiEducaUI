@@ -11,7 +11,7 @@
     <!-- Información del documento seleccionado -->
     <div class="infoDocumentoActual">
       {{ this.documentoSeleccionado?.descripcion }}
-          <button *ngIf="documentoSeleccionado.apiMaestra !==''" mat-icon-button (click)="establecerTokenLLaveMaestra()">
+          <button *ngIf="documentoSeleccionado.apiMaestra !==''" mat-icon-button (click)="OnAutenticacionAutomatica()">
           <img *ngIf="1===1"    src="./assets/img/llave.png">
           </button>
 
@@ -64,45 +64,51 @@
 
   <!-- Pestañas de contenido -->
 
+  
+    
+
   <div *ngIf="this.cargando" style="padding: 15px; font-size: 20px;">Cargando información del documento de especificación. Por favor, espere...</div>
 
-  <mat-tab-group *ngIf="!this.cargando" >
+      <mat-tab-group>
+      <mat-tab label="Endpoints de gestión"> 
+        <div class="webApiPestanya">
+          <app-main-operations [OpAutenticacion]=false></app-main-operations>   
+        </div>
+        
+      </mat-tab>
 
-    <mat-tab label="Endpoints de gestión"> 
-      <div class="webApiPestanya">
-        <app-main-operations [OpAutenticacion]=false></app-main-operations>   
-      </div>
-      
-    </mat-tab>
-
-    <mat-tab label="Endpoints de autenticación"> 
-      <div class="webApiPestanya">
-        <app-main-operations [OpAutenticacion]=true></app-main-operations>   
-      </div>
-      
-    </mat-tab>
-  
-
-    <!-- Pestaña que muestra Schemas (OpenAPi.Components.Schemas) -->
-    <mat-tab label="Modelo de datos (vista por DTOs)">    
-      
-      <div class="webApiPestanya">
-        <app-main-schemas [mostrarSchemas]="!this.cargando"></app-main-schemas>   
-      </div>
+      <mat-tab label="Endpoints de autenticación"> 
+        <div class="webApiPestanya">
+          <app-main-operations [OpAutenticacion]=true></app-main-operations>   
+        </div>
+        
+      </mat-tab>
     
-    </mat-tab>
-
-    <mat-tab label="Modelo de datos (vista por propiedades)"> 
-      <div class="webApiPestanya">
-        <app-main-properties></app-main-properties> 
-      </div>
+      <!-- Pestaña que muestra Schemas (OpenAPi.Components.Schemas) -->
+      <mat-tab label="Modelo de datos (vista por DTOs)">    
+        
+        <div class="webApiPestanya">
+          <app-main-schemas [mostrarSchemas]="!this.cargando"></app-main-schemas>   
+        </div>
       
-    </mat-tab>
-  </mat-tab-group>
+      </mat-tab>
+
+      <mat-tab label="Modelo de datos (vista por propiedades)"> 
+        <div class="webApiPestanya">
+          <app-main-properties></app-main-properties> 
+        </div>
+        
+      </mat-tab>
+
+      <mat-tab label="Descripción general de ApiEduca"> 
+        <div class="webApiPestanya">
+          <showdown src="assets/DescripcionGeneral.md" [scrollTop]="true"></showdown>
+        </div>
+        
+      </mat-tab>
+      </mat-tab-group>
 
 
-
-    <!-- Pestaña que muestra Schemas (OpenAPi.Paths) -->
 
 
 </div>
